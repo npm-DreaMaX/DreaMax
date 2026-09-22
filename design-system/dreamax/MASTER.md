@@ -21,3 +21,9 @@ Pinned design reference: dcc40ff5133ef78276117db0cc34e7b83cc8aeba.
 Read SKILL.md and interaction/accessibility guidance. Applied navigation continuity, restrained motion, contrast, touch target and keyboard requirements. Style suggestions do not supersede the user's request to preserve the original homepage.
 
 No downloaded decorative imagery. Source SVGs and the brand-asset generator are committed. Paper figures retain source and page attribution.
+
+## Original slogan — preserve
+
+The user specifically likes the original “A website / for everyone / to learn and / Change The World” beside the DreaMax nameplate. Preserve its word entrances, rainbow letters, spring bounce and hover/replay interaction. Keep the original Orbitron/Audiowide typefaces self-hosted. Place beside the nameplate on wide screens and below it on smaller screens to avoid overlap. This is part of the personal homepage identity.
+
+The original click-to-drop HTML strings and ripple are also explicitly requested. Keep them on personal-site pages, bounded and non-blocking. The portfolio background uses subtle blue light, restrained orbital lines, grain and deterministic stars; it remains separate from the LLM Training artwork.

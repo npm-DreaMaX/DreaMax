@@ -2,6 +2,7 @@
 import { profile } from "../../data/profile";
 import ScrollIndicator from "../ui/ScrollIndicator.astro";
 import DreaMaxLogo from "../ui/DreaMaxLogo.astro";
+import TerminalSlogan from "../ui/TerminalSlogan.astro";
 ---
 
 <section id="dreamax" class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden" style="padding-top:64px;"><!-- Tech icons removed -->
@@ -24,10 +25,13 @@ import DreaMaxLogo from "../ui/DreaMaxLogo.astro";
   <div class="relative z-10 flex w-full max-w-6xl flex-col items-center px-6" style="margin-top:80px;">
 
     <!-- DreaMax Logo -->
-    <DreaMaxLogo />
+    <div class="portfolio-identity">
+      <DreaMaxLogo />
+      <TerminalSlogan />
+    </div>
 
     <!-- VS Code block with AI/CS flavor -->
-    <div class="relative w-full max-w-3xl" style="margin-top:8px;">
+    <div class="portfolio-code-block relative w-full max-w-3xl" style="margin-top:8px;">
       <div class="select-none" style="font-family:'JetBrains Mono',monospace; font-size:clamp(11px, 1.8vw, 14px); line-height:1.9; text-align:center; padding:16px 0; color:rgba(255,255,255,0.45);">
         <span style="color:#569cd6; opacity:0.5;">&lt;html</span> <span style="color:#9cdcfe; opacity:0.5;">lang</span><span style="color:rgba(255,255,255,0.25); opacity:0.5;">=</span><span style="color:#ce9178; opacity:0.5;">"en"</span><span style="color:#569cd6; opacity:0.5;">&gt;</span><br/>
         <span style="opacity:0.45;">&nbsp;&nbsp;&lt;</span><span style="color:#569cd6; opacity:0.45;">head</span><span style="color:#569cd6; opacity:0.45;">&gt;</span><br/>
@@ -42,7 +46,6 @@ import DreaMaxLogo from "../ui/DreaMaxLogo.astro";
         <span style="opacity:0.45;">&nbsp;&nbsp;&lt;/</span><span style="color:#569cd6; opacity:0.45;">body</span><span style="opacity:0.45;">&gt;</span><br/>
         <span style="color:#569cd6; opacity:0.5;">&lt;/html&gt;</span>
       </div>
-      <div class="pointer-events-none absolute inset-0" style="background:linear-gradient(to bottom, transparent 0%, transparent 20%, #121216 100%);"></div>
     </div>
 
     <!-- Title -->

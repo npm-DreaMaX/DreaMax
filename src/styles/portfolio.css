@@ -230,6 +230,8 @@
 }
 /* Preserve the original centered identity, code motif and section order. */
 .dm-portfolio {
+  position: relative;
+  isolation: isolate;
   --dm-bg: #121216;
   --dm-panel: #1a1b20;
   --dm-line: #303238;
@@ -294,6 +296,13 @@
     linear-gradient(90deg, #dee7ca03 1px, transparent 1px);
   background-size: 100px 100px;
   mask-image: linear-gradient(transparent, #000, transparent);
+}
+.portfolio-code-block {
+  mask-image: linear-gradient(to bottom, #000 0%, #000 20%, transparent 100%);
+}
+.portfolio-identity {
+  position: relative;
+  max-width: 100%;
 }
 .portfolio-nameplate {
   position: relative;

@@ -69,7 +69,7 @@ npx playwright install chromium
 npm run test:web
 ```
 
-`npm run check` 合并内容检查、单元测试、Python 实验和生产构建。浏览器测试包含桌面/手机导航、跨页返回、搜索、阅读笔记、实验、原有工具和无 JavaScript 正文。工具测试拦截外部请求，不登录或写入线上服务。类型检查覆盖新集成与学习站；原有七个工具、分享页及三个未使用的旧视觉脚本沿用原始 JavaScript，明确排除在严格类型检查之外。
+`npm run check` 合并内容检查、单元测试、Python 实验和生产构建。浏览器测试包含桌面/手机导航、跨页返回、搜索、阅读笔记、实验、原有工具和无 JavaScript 正文。工具测试拦截外部请求，不登录或写入线上服务。类型检查覆盖新集成与学习站；原有七个工具、分享页及一个未使用的旧视觉脚本沿用原始 JavaScript，明确排除在严格类型检查之外。
 
 图标、分享图和几何图形为项目自绘。运行 `node scripts/generate-brand-assets.mjs` 从 SVG 生成 ICO/PNG，需要 Playwright Chromium。论文图像的归属见 `fieldwork/THIRD_PARTY_NOTICES.md`；不将论文资产纳入项目自身授权。
 

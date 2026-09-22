@@ -1,64 +1,52 @@
-<div class="starry-bg" aria-hidden="true">
-  <div class="stars" id="stars"></div>
-  <div class="shooting-stars" id="shooting-stars"></div>
-  <div class="bg-glow"></div>
+---
+// Deterministic stars keep server rendering stable and require no canvas loop.
+let seed = 1977;
+const random = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+const stars = Array.from({length:72}, () => ({x:random()*100,y:random()*100,r:.5+random()*.9,delay:random()*-12,duration:5+random()*7}));
+---
+<div class="portfolio-atmosphere" data-atmosphere aria-hidden="true" inert>
+  <div class="atmosphere-light"></div>
+  <svg class="atmosphere-orbits" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" fill="none">
+    <g stroke="#8eabc6" stroke-width=".65" opacity=".13">
+      <ellipse cx="1420" cy="160" rx="620" ry="385" transform="rotate(-32 1420 160)"/>
+      <ellipse cx="1420" cy="160" rx="655" ry="405" transform="rotate(-32 1420 160)"/>
+      <ellipse cx="1420" cy="160" rx="690" ry="425" transform="rotate(-32 1420 160)"/>
+    </g>
+    <g stroke="#c1c9a2" stroke-width=".65" opacity=".08">
+      <ellipse cx="60" cy="1050" rx="740" ry="470" transform="rotate(-24 60 1050)"/>
+      <ellipse cx="60" cy="1050" rx="770" ry="485" transform="rotate(-24 60 1050)"/>
+    </g>
+  </svg>
+  <div class="atmosphere-stars">{stars.map(star => <i style={`left:${star.x}%;top:${star.y}%;width:${star.r}px;height:${star.r}px;animation-delay:${star.delay}s;animation-duration:${star.duration}s`}></i>)}</div>
+  <div class="atmosphere-grain"></div>
 </div>
-
 <script>
-(function(){
-  var container = document.getElementById('stars');
-  if(!container) return;
-  for(var i=0;i<200;i++){
-    var star = document.createElement('div');
-    var size = 0.5 + Math.random()*2;
-    var x = Math.random()*100;
-    var y = Math.random()*100;
-    var delay = Math.random()*5;
-    var dur = 2 + Math.random()*3;
-    star.style.cssText = 'position:absolute;left:'+x+'%;top:'+y+'%;width:'+size+'px;height:'+size+'px;border-radius:50%;background:rgba(255,255,255,0.6);opacity:0;animation:twinkle '+dur+'s ease-in-out '+delay+'s infinite;';
-    container.appendChild(star);
-  }
-
-  /* Shooting stars */
-  var ss = document.getElementById('shooting-stars');
-  if(ss){
-    for(var j=0;j<3;j++){
-      var s = document.createElement('div');
-      s.className = 'shoot';
-      s.style.cssText = 'position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:0;';
-      s.style.left = (10+Math.random()*80)+'%';
-      s.style.top = (5+Math.random()*30)+'%';
-      s.style.animation = 'shoot '+(3+Math.random()*4)+'s ease-out '+(5+Math.random()*10)+'s infinite';
-      ss.appendChild(s);
-    }
-  }
-})();
+  const background = document.querySelector<HTMLElement>('[data-atmosphere]');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const coarse = matchMedia('(pointer: coarse)');
+  let frame = 0;
+  window.addEventListener('pointermove', event => {
+    if (!background || reduced.matches || coarse.matches || frame) return;
+    frame = requestAnimationFrame(() => {
+      background.style.setProperty('--atmosphere-x', `${(event.clientX / innerWidth - .5)*24}px`);
+      background.style.setProperty('--atmosphere-y', `${(event.clientY / innerHeight - .5)*18}px`);
+      frame = 0;
+    });
+  }, {passive:true});
+  document.addEventListener('visibilitychange', () => {
+    if (background) background.dataset.paused = String(document.hidden);
+  });
 </script>
-
 <style>
-.starry-bg {
-  position: fixed; inset: 0; z-index: -15;
-  background: #08080e;
-  overflow: hidden;
-}
-
-@keyframes twinkle {
-  0%,100% { opacity: 0; transform: scale(0.5); }
-  50% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes shoot {
-  0% { opacity: 0; transform: translate(0,0); }
-  10% { opacity: 1; }
-  40% { opacity: 1; }
-  100% { opacity: 0; transform: translate(120px,120px); box-shadow: 0 0 20px 4px rgba(255,255,255,0.3); }
-}
-
-.bg-glow {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% 30%, rgba(102,217,237,0.03), transparent 60%),
-    radial-gradient(ellipse 60% 60% at 80% 70%, rgba(227,27,109,0.02), transparent 60%);
-  pointer-events: none;
-}
+  .portfolio-atmosphere { position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; background:#101218; contain:strict; }
+  .atmosphere-light { position:absolute; inset:-35px; background:radial-gradient(ellipse 62% 60% at 14% 12%,#3a57783b,transparent 74%),radial-gradient(ellipse 55% 70% at 97% 60%,#5e52622a,transparent 72%),radial-gradient(ellipse 55% 30% at 55% 105%,#73805b1a,transparent 80%); transform:translate3d(var(--atmosphere-x,0),var(--atmosphere-y,0),0); transition:transform 1.2s ease-out; }
+  .atmosphere-orbits { position:absolute; inset:0; width:100%; height:100%; opacity:.9; }
+  .atmosphere-stars { position:absolute; inset:0; mask-image:radial-gradient(ellipse at 50% 38%,#0005,#000); }
+  .atmosphere-stars i { position:absolute; background:#d6e7ec; border-radius:50%; opacity:.3; animation:atmosphere-twinkle 8s ease-in-out infinite; }
+  .atmosphere-stars i:nth-child(9n) { background:#c6d4a7; box-shadow:0 0 6px #c6d4a74a; }
+  .atmosphere-grain { position:absolute; inset:0; opacity:.016; background-size:128px 128px; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' d='M0 0h128v128H0z'/%3E%3C/svg%3E"); }
+  @keyframes atmosphere-twinkle { 0%,100% {opacity:.13;} 50% {opacity:.55;} }
+  [data-paused='true'] .atmosphere-stars i { animation-play-state:paused; }
+  @media(max-width:650px) { .atmosphere-orbits {opacity:.55;} .atmosphere-light {background:radial-gradient(ellipse 90% 65% at 5% 0%,#3a57782f,transparent 80%),radial-gradient(ellipse 75% 50% at 100% 70%,#5e526226,transparent 85%);} }
+  @media(prefers-reduced-motion:reduce) { .atmosphere-stars i {animation:none;opacity:.28;} .atmosphere-light {transition:none;transform:none;} }
 </style>

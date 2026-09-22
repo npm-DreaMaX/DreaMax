@@ -1,54 +1,12 @@
+<div class="click-code-layer" aria-hidden="true" inert data-click-code-layer></div>
 <script>
-  (function() {
-    var tags = ['&lt;div&gt;', '&lt;/div&gt;', '&lt;p&gt;', '&lt;/p&gt;', '&lt;span&gt;', '&lt;/span&gt;', '&lt;h1&gt;', '&lt;h2&gt;', '&lt;h3&gt;', '&lt;a&gt;', '&lt;code&gt;', '&lt;/html&gt;', '&lt;header&gt;', '&lt;section&gt;', '&lt;body&gt;'];
-    var colors = ['#e31b6d', '#66d9ed', '#c586c0', '#ce9178', '#569cd6', '#ff6b2b', '#6a9955'];
-
-    document.addEventListener('mousedown', function(e) {
-      if (e.button !== 0) return;
-      var x = e.clientX, y = e.clientY;
-
-      /* RIPPLE — fixed, appended to body */
-      var ripple = document.createElement('div');
-      ripple.style.cssText = 'position:fixed; left:'+x+'px; top:'+y+'px; width:0; height:0; border-radius:50%; border:2px solid rgba(102,217,237,0.5); transform:translate(-50%,-50%); pointer-events:none; z-index:99999;';
-      document.body.appendChild(ripple);
-      var rs = null;
-      function ra(t) {
-        if (!rs) rs = t;
-        var p = Math.min((t - rs) / 800, 1);
-        var s = p * 200;
-        ripple.style.width = s + 'px';
-        ripple.style.height = s + 'px';
-        ripple.style.opacity = 0.6 * (1 - p);
-        if (p < 1) requestAnimationFrame(ra);
-        else if (ripple.parentNode) ripple.remove();
-      }
-      requestAnimationFrame(ra);
-
-      /* CODE CHARS — fixed, appended to body */
-      var count = 2 + Math.floor(Math.random() * 3);
-      for (var i = 0; i < count; i++) {
-        var el = document.createElement('span');
-        el.innerHTML = tags[Math.floor(Math.random() * tags.length)];
-        el.style.cssText = 'position:fixed; left:'+x+'px; top:'+y+'px; font-family:"JetBrains Mono",monospace; font-size:13px; font-weight:600; color:'+colors[Math.floor(Math.random() * colors.length)]+'; pointer-events:none; z-index:99999; white-space:nowrap; will-change:transform,opacity;';
-        document.body.appendChild(el);
-
-        var dx = (Math.random() - 0.5) * 80;
-        var dy = 40 + Math.random() * 120;
-        var cs = null;
-
-        (function(elem, ddx, ddy) {
-          function ac(t) {
-            if (!cs) cs = t;
-            var p = Math.min((t - cs) / 1800, 1);
-            var ease = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
-            elem.style.transform = 'translate(' + (ddx * ease) + 'px, ' + (ddy * ease) + 'px)';
-            elem.style.opacity = 0.9 * (1 - p);
-            if (p < 1) requestAnimationFrame(ac);
-            else if (elem.parentNode) elem.remove();
-          }
-          requestAnimationFrame(ac);
-        })(el, dx, dy);
-      }
-    });
-  })();
+  import { initClickEffects } from '../../scripts/click-effects';
+  const layer = document.querySelector<HTMLElement>('[data-click-code-layer]');
+  if (layer) initClickEffects(layer);
 </script>
+<style is:global>
+  .click-code-layer { position:fixed; inset:0; z-index:80; overflow:clip; pointer-events:none; contain:strict; }
+  .click-code-particle { position:absolute; white-space:nowrap; pointer-events:none; font:600 13px/1.4 ui-monospace,'Cascadia Code',monospace; text-shadow:0 0 12px currentColor; }
+  .click-code-ripple { position:absolute; width:110px; height:110px; margin:-55px 0 0 -55px; border:1px solid #66d9ed88; border-radius:50%; }
+  @media(prefers-reduced-motion:reduce) { .click-code-layer { display:none; } }
+</style>

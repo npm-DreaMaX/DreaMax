@@ -10,9 +10,7 @@
     "fieldwork/scripts",
     "src/pages/tools/*/index.astro",
     "src/pages/share.astro",
-    "src/components/ui/ClickEffect.astro",
-    "src/components/ui/DynamicBackground.astro",
-    "src/components/ui/TerminalSlogan.astro"
+    "src/components/ui/DynamicBackground.astro"
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
