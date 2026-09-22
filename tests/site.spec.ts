@@ -260,3 +260,31 @@ test("reduced motion and notes survive the boundary between portfolio and reader
     "data-route-transition",
   );
 });
+
+test("learning disclosure supports keyboard, dismissal and direct route links", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const toggle = page.locator("[data-training-toggle]");
+  if (await toggle.isVisible()) {
+    await expect(page.locator("#dm-training-menu")).toBeHidden();
+    await toggle.focus();
+    await page.keyboard.press("ArrowDown");
+    await expect(toggle).toHaveAttribute("aria-expanded", "true");
+    await expect(page.locator("#dm-training-menu a").first()).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(page.locator("#dm-training-menu")).toBeHidden();
+    await expect(toggle).toBeFocused();
+    await toggle.click();
+    await page.mouse.click(40, 650);
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await toggle.click();
+    await page
+      .locator('#dm-training-menu a[href="/fieldwork/paths/pretraining"]')
+      .click();
+    await expect(page).toHaveURL(/fieldwork\/paths\/pretraining/);
+  } else {
+    await page.locator(".dm-mobile-training").click();
+    await expect(page).toHaveURL(/llm-training/);
+  }
+});

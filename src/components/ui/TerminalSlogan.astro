@@ -10,7 +10,7 @@ let letterIndex = 0;
     {lines.map(line => <div class="ts-row" aria-hidden="true">{line.split(' ').map(word => <span class="ts-block">{word}</span>)}</div>)}
   </div>
   <button id="cw-line" class="ts-world" type="button" aria-label="Change The World — 点击重播跳动文字" title="点击，让文字再跳一次">
-    {words.map(word => <span class="ts-world-word" aria-hidden="true">{[...word].map(letter => <span class="cl" style={`--letter-color:hsl(${200 + letterIndex++ * 22} 80% 65%)`}>{letter}</span>)}</span>)}
+    {words.map(word => <span class="ts-world-word" aria-hidden="true">{[...word].map(letter => <span class="cl" style={`--letter-color:hsl(${200 + letterIndex++ * 22} 70% 48%)`}>{letter}</span>)}</span>)}
   </button>
 </div>
 <script>
@@ -21,11 +21,11 @@ let letterIndex = 0;
 <style>
   .ts-wrap { position:absolute; left:calc(100% + 24px); top:0; width:max-content; max-width:350px; z-index:2; user-select:none; text-align:right; }
   .ts-row { display:flex; gap:6px; justify-content:flex-end; margin-bottom:4px; }
-  .ts-block { display:inline-block; padding:3px 8px; border-radius:4px; font:700 clamp(12px,1.1vw,17px)/1.55 'Orbitron',monospace; color:#fff; background:#ffffff0a; border:1px solid #ffffff0f; letter-spacing:1px; }
+  .ts-block { display:inline-block; padding:3px 8px; border-radius:4px; font:700 clamp(12px,1.1vw,17px)/1.55 'Orbitron',monospace; color:#3d547f; background:#ffffffaa; border:1px solid #dce5f5; letter-spacing:1px; }
   .ts-world { display:flex; align-items:center; justify-content:flex-end; gap:.45em; min-height:44px; padding:8px 0; margin-top:5px; border:0; background:none; cursor:pointer; }
   .ts-world-word { display:inline-flex; white-space:nowrap; }
-  .cl { display:inline-block; font:400 clamp(20px,1.7vw,30px)/1.3 'Audiowide',cursive; color:var(--letter-color); text-shadow:0 0 8px color-mix(in srgb,var(--letter-color) 75%,transparent),0 0 25px color-mix(in srgb,var(--letter-color) 35%,transparent); letter-spacing:.5px; }
-  .ts-world:focus-visible { outline:2px solid #d6e2bd; outline-offset:5px; border-radius:3px; }
+  .cl { display:inline-block; font:400 clamp(20px,1.7vw,30px)/1.3 'Audiowide',cursive; color:var(--letter-color); text-shadow:0 0 8px color-mix(in srgb,var(--letter-color) 18%,transparent),0 0 25px color-mix(in srgb,var(--letter-color) 8%,transparent); letter-spacing:.5px; }
+  .ts-world:focus-visible { outline:2px solid #3158df; outline-offset:5px; border-radius:3px; }
   @media(max-width:1199px) { .ts-wrap { position:relative; left:auto; top:auto; margin:24px auto 5px; text-align:center; max-width:100%; }.ts-row,.ts-world { justify-content:center; }.ts-block { font-size:12px; }.cl { font-size:24px; } }
   @media(max-width:650px) { .ts-wrap { margin-top:22px; }.ts-block { font-size:10px; padding:2px 7px; }.ts-row { margin-bottom:3px; }.ts-world { margin-top:2px; padding:5px 0; }.cl { font-size:20px; } }
 </style>

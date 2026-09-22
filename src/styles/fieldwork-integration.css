@@ -1,8 +1,8 @@
 .fieldwork-host {
-  font-family: "Manrope Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "Inter Variable", "Noto Sans SC Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .fieldwork-host .wordmark {
-  font-family: "Space Grotesk Variable", sans-serif;
+  font-family: "Outfit Variable", "Noto Sans SC Variable", sans-serif;
 }
 .fieldwork-host .site-header {
   padding-inline: max(24px, calc((100vw - 1440px) / 2 + 48px));
@@ -15,7 +15,7 @@
 }
 .fieldwork-home-link {
   color: var(--ink);
-  font-family: "Space Grotesk Variable", sans-serif;
+  font-family: "Outfit Variable", "Noto Sans SC Variable", sans-serif;
   font-size: 19px;
   font-weight: 650;
   letter-spacing: -1px;

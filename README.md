@@ -29,7 +29,8 @@ src/pages/fieldwork/[...path].astro 预渲染全部学习页面
 src/components/navigation/       全站导航、搜索和转场
 src/components/home/             首页原有内容与学习入口
 src/data/                        简介、项目、栏目与动态
-src/styles/portfolio.css          个人主页微调和共享导航
+src/styles/portfolio.css          个人主页配色、字体和响应式布局
+src/styles/navigation.css         浮动导航、学习路线展开和全站目录
 src/styles/experience.css         LLM Training 的视觉系统
 src/scripts/                     搜索、导航、转场与 Three.js
 fieldwork/src/papers/             15 篇论文精读，63 个带页码段落
@@ -47,7 +48,8 @@ research/projects/               三个项目的 README 版本证据
 
 ## 导航与动态效果
 
-- 六个平级栏目；全屏导航中直接进入五条学习路线。
+- 浮动导航直达主要栏目；学习路线支持点击展开、方向键进入、Esc 和外部点击关闭。全屏导航保留六个平级栏目，直接进入五条学习路线。
+- 简洁 DreaMax 字标，浅色背景与钴蓝配色；自托管 Outfit / Inter / Noto Sans SC。原有跳动标语、点击掉落 HTML 字符串和涟漪保留，背景斜面提供轻微指针视差；减少动态效果时禁用。
 - `Ctrl+K` / `⌘K` 搜索栏目、项目、论文和工具，方向键选择，Esc 关闭。
 - 原生跨页链接使用可取消的幕布转场，浏览器前进/返回正常；减少动态效果时直接导航。
 - Three.js 雕塑支持拖动、方向键、三种形态、暂停与重置。无 WebGL 时显示自绘 SVG；屏外/后台暂停，限制像素比和帧率。

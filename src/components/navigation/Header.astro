@@ -3,7 +3,6 @@ import { papers } from '../../../fieldwork/src/data/readings';
 import { tools } from '../../data/experience';
 import { navigation } from '../../data/navigation';
 import { featuredProjects, featuredResearch } from '../../data/featured';
-import BrandMark from '../ui/BrandMark.astro';
 const pathname = Astro.url.pathname;
 const active = (href:string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
 const routes = [
@@ -22,21 +21,32 @@ const index = [
   ...featuredResearch.map(r=>({title:r.title,description:r.description,category:'Selected Research',href:r.link,keywords:r.venue})),
 ];
 ---
-<header class="dm-header">
-  <a href="/" class="dm-brand" aria-label="DreaMax 首页"><BrandMark />DreaMax<span class="dm-brand-dot">↗</span></a>
+<header class="dm-header" data-command-header>
+  <a href="/" class="dm-brand" aria-label="DreaMax 首页"><span class="dm-brand-text">Drea<em>Max</em><small>INDEPENDENT MIND.</small></span></a>
   <nav class="dm-primary-nav" aria-label="主导航">
-    {navigation.map(n => <a href={n.href} aria-current={active(n.href)?'page':undefined} class:list={{active:active(n.href)}}>{n.label}{n.short==='LEARN' && <i class="nav-training-dot" aria-hidden="true"></i>}</a>)}
+    <div class="dm-learning-nav">
+      <a href="/llm-training/" class:list={{active:pathname.startsWith('/llm-training')}} aria-current={pathname.startsWith('/llm-training')?'page':undefined}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 8 8-8 8-8-8Z"/><path d="M2 10h16M10 2v16"/></svg>LLM Training</a>
+      <button data-training-toggle aria-controls="dm-training-menu" aria-expanded="false" aria-label="展开 LLM Training 学习路线"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
+    </div>
+    <a href="/agentic-scholar/" class:list={{active:active('/agentic-scholar/')}} aria-current={active('/agentic-scholar/')?'page':undefined}><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="4" r="2"/><circle cx="4" cy="15" r="2"/><circle cx="16" cy="15" r="2"/><path d="m9 6-4 7m6-7 4 7M6 15h8"/></svg>Agentic Scholar</a>
+    <a href="/#projects" data-project-nav><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="6" width="15" height="11.5" rx="2"/><path d="M6 6V3h8v3M3 10h14"/></svg>Projects</a>
+    <a href="/tools/" class:list={{active:active('/tools/')}} aria-current={active('/tools/')?'page':undefined}><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="12" width="5" height="5" rx="1"/><path d="M14.5 11v7M11 14.5h7"/></svg>Tools</a>
   </nav>
   <div class="dm-header-actions">
-    <button class="dm-search-trigger" data-open-search aria-label="搜索全站"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><kbd>⌘ K</kbd></button>
-    <button class="dm-menu-trigger" data-open-menu aria-haspopup="dialog" aria-controls="dm-menu" aria-label="打开全站导航"><span>EXPLORE</span><i aria-hidden="true"></i></button>
+    <a class="dm-mobile-training" href="/llm-training/">LLM Training <span>↗</span></a>
+    <button class="dm-search-trigger" data-open-search aria-label="搜索全站"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><kbd>⌘K</kbd></button>
+    <button class="dm-menu-trigger" data-open-menu aria-haspopup="dialog" aria-controls="dm-menu" aria-label="打开全站导航"><span>Explore</span><i aria-hidden="true"></i></button>
   </div>
+  <section id="dm-training-menu" class="dm-training-menu" aria-label="LLM Training 快捷导航" hidden>
+    <a href="/llm-training/" class="dm-training-feature"><span class="dm-flyout-eyebrow">THE LEARNING SPACE</span><strong>Inside<br/>the model.</strong><p>从原始技术报告，<br/>走进真正的训练系统。</p><span class="dm-flyout-link">探索 LLM Training <b>↗</b></span><svg viewBox="0 0 180 180" class="dm-flyout-art" fill="none" aria-hidden="true">{[0,1,2,3,4,5].map(i=><ellipse cx="90" cy="90" rx="70" ry={18+i*9} transform={`rotate(${i*24} 90 90)`}/>)}</svg></a>
+    <div class="dm-training-links"><span class="dm-flyout-eyebrow">CHOOSE YOUR STARTING POINT</span>{routes.map((r,i)=><a href={r.href}><span class="dm-path-number">0{i+1}</span><span><strong>{r.title}</strong><small>{r.description}</small></span><span aria-hidden="true">↗</span></a>)}<div class="dm-training-extras"><a href="/fieldwork/papers">论文书架 ↗</a><a href="/fieldwork/labs">交互实验 ↗</a><a href="/fieldwork/notebook">我的阅读 ↗</a></div></div>
+  </section>
 </header>
 <dialog id="dm-menu" class="dm-menu-dialog" aria-labelledby="dm-menu-heading">
-  <div class="dm-dialog-top"><a href="/" class="dm-brand"><BrandMark />DreaMax</a><span class="dm-menu-top-note">A PERSONAL SPACE FOR CURIOUS MINDS.</span><button class="dm-close" data-close-dialog aria-label="关闭导航">关闭 <span aria-hidden="true">×</span></button></div>
+  <div class="dm-dialog-top"><a href="/" class="dm-brand"><span class="dm-brand-text">Drea<em>Max</em></span></a><span class="dm-menu-top-note">EXPLORE / LEARN / BUILD</span><button class="dm-close" data-close-dialog aria-label="关闭导航">关闭 <span aria-hidden="true">×</span></button></div>
   <div class="dm-menu-content">
     <nav class="dm-menu-main" aria-labelledby="dm-menu-heading">
-      <p id="dm-menu-heading" class="dm-eyebrow">WHERE WOULD YOU LIKE TO GO?</p>
+      <p id="dm-menu-heading" class="dm-eyebrow">THE INDEX / DREAMAX</p>
       {navigation.map((n,i) => <a href={n.href} aria-current={active(n.href)?'page':undefined} data-nav-preview={n.description} data-nav-number={`0${i+1}`}><sup>0{i+1}</sup><span>{n.label}</span><span aria-hidden="true">↗</span></a>)}
     </nav>
     <div class="dm-menu-secondary">

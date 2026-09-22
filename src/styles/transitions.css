@@ -6,9 +6,9 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 32px clamp(24px, 5vw, 96px);
-  background: #d7e6b9;
-  color: #1b2319;
-  font-family: "Space Grotesk Variable", sans-serif;
+  background: #3158df;
+  color: #ffffff;
+  font-family: "Outfit Variable", sans-serif;
   transform: translateY(101%);
   visibility: hidden;
   pointer-events: none;
@@ -33,7 +33,7 @@
 .route-curtain-center {
   position: relative;
   padding: 35px 0 55px;
-  border-bottom: 1px solid #1b231930;
+  border-bottom: 1px solid #ffffff30;
   display: flex;
   flex-direction: column;
   gap: 22px;
@@ -58,7 +58,7 @@
 }
 .route-curtain-bottom i {
   height: 1px;
-  background: #1b23194a;
+  background: #ffffff4a;
   flex: 1;
 }
 html[data-route-transition="exit"] .route-curtain {

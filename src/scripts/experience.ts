@@ -1,3 +1,4 @@
+import { initCommandNavigation } from "./navigation";
 interface SearchItem {
   title: string;
   description: string;
@@ -6,6 +7,7 @@ interface SearchItem {
   keywords: string;
 }
 export function initExperience() {
+  initCommandNavigation();
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   // Observe only after initialization, leaving the entire page readable without JS.
   if (!reduced.matches && "IntersectionObserver" in window) {

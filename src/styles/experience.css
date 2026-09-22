@@ -9,14 +9,14 @@
   --dm-paper: #eeede6;
   --dm-paper-ink: #252921;
   --dm-paper-muted: #61675b;
-  --dm-font: "Manrope Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --dm-font: "Inter Variable", "Noto Sans SC Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
   --dm-display:
-    "Space Grotesk Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+    "Outfit Variable", "Noto Sans SC Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
   --dm-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dm-gutter: clamp(22px, 4.8vw, 88px);
 }
 @theme {
-  --font-sans: "Manrope Variable", "PingFang SC", sans-serif;
+  --font-sans: "Inter Variable", "Noto Sans SC Variable", "PingFang SC", sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "SFMono-Regular", monospace;
 }
 html {

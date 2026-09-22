@@ -1,5 +1,4 @@
 ---
 import { profile } from '../../data/profile';
-import BrandMark from './BrandMark.astro';
 ---
-<footer class="portfolio-footer"><a href="/" class="dm-brand"><BrandMark size={26}/>DreaMax</a><a href={`mailto:${profile.email}`} class="portfolio-email">{profile.email}</a><div><a href={profile.social.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a></div><p>© {new Date().getFullYear()} DreaMax · Keep learning, keep building.</p></footer>
+<footer class="portfolio-footer"><a href="/" class="dm-brand"><span class="dm-brand-text">Drea<em>Max</em></span></a><a href={`mailto:${profile.email}`} class="portfolio-email">{profile.email}</a><div><a href={profile.social.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a></div><p>© {new Date().getFullYear()} DreaMax · Keep learning, keep building.</p></footer>

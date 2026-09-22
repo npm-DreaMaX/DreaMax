@@ -1,24 +1,7 @@
----
-// Deterministic stars keep server rendering stable and require no canvas loop.
-let seed = 1977;
-const random = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
-const stars = Array.from({length:72}, () => ({x:random()*100,y:random()*100,r:.5+random()*.9,delay:random()*-12,duration:5+random()*7}));
----
 <div class="portfolio-atmosphere" data-atmosphere aria-hidden="true" inert>
-  <div class="atmosphere-light"></div>
-  <svg class="atmosphere-orbits" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" fill="none">
-    <g stroke="#8eabc6" stroke-width=".65" opacity=".13">
-      <ellipse cx="1420" cy="160" rx="620" ry="385" transform="rotate(-32 1420 160)"/>
-      <ellipse cx="1420" cy="160" rx="655" ry="405" transform="rotate(-32 1420 160)"/>
-      <ellipse cx="1420" cy="160" rx="690" ry="425" transform="rotate(-32 1420 160)"/>
-    </g>
-    <g stroke="#c1c9a2" stroke-width=".65" opacity=".08">
-      <ellipse cx="60" cy="1050" rx="740" ry="470" transform="rotate(-24 60 1050)"/>
-      <ellipse cx="60" cy="1050" rx="770" ry="485" transform="rotate(-24 60 1050)"/>
-    </g>
-  </svg>
-  <div class="atmosphere-stars">{stars.map(star => <i style={`left:${star.x}%;top:${star.y}%;width:${star.r}px;height:${star.r}px;animation-delay:${star.delay}s;animation-duration:${star.duration}s`}></i>)}</div>
-  <div class="atmosphere-grain"></div>
+  <div class="atmosphere-plane atmosphere-plane-one"></div>
+  <div class="atmosphere-plane atmosphere-plane-two"></div>
+  <div class="atmosphere-wash"></div>
 </div>
 <script>
   const background = document.querySelector<HTMLElement>('[data-atmosphere]');
@@ -26,27 +9,20 @@ const stars = Array.from({length:72}, () => ({x:random()*100,y:random()*100,r:.5
   const coarse = matchMedia('(pointer: coarse)');
   let frame = 0;
   window.addEventListener('pointermove', event => {
-    if (!background || reduced.matches || coarse.matches || frame) return;
+    if (!background || reduced.matches || coarse.matches || frame || scrollY > innerHeight) return;
     frame = requestAnimationFrame(() => {
-      background.style.setProperty('--atmosphere-x', `${(event.clientX / innerWidth - .5)*24}px`);
-      background.style.setProperty('--atmosphere-y', `${(event.clientY / innerHeight - .5)*18}px`);
+      background.style.setProperty('--atmosphere-x', `${(event.clientX / innerWidth - .5) * 18}px`);
+      background.style.setProperty('--atmosphere-y', `${(event.clientY / innerHeight - .5) * 12}px`);
       frame = 0;
     });
   }, {passive:true});
-  document.addEventListener('visibilitychange', () => {
-    if (background) background.dataset.paused = String(document.hidden);
-  });
 </script>
 <style>
-  .portfolio-atmosphere { position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; background:#101218; contain:strict; }
-  .atmosphere-light { position:absolute; inset:-35px; background:radial-gradient(ellipse 62% 60% at 14% 12%,#3a57783b,transparent 74%),radial-gradient(ellipse 55% 70% at 97% 60%,#5e52622a,transparent 72%),radial-gradient(ellipse 55% 30% at 55% 105%,#73805b1a,transparent 80%); transform:translate3d(var(--atmosphere-x,0),var(--atmosphere-y,0),0); transition:transform 1.2s ease-out; }
-  .atmosphere-orbits { position:absolute; inset:0; width:100%; height:100%; opacity:.9; }
-  .atmosphere-stars { position:absolute; inset:0; mask-image:radial-gradient(ellipse at 50% 38%,#0005,#000); }
-  .atmosphere-stars i { position:absolute; background:#d6e7ec; border-radius:50%; opacity:.3; animation:atmosphere-twinkle 8s ease-in-out infinite; }
-  .atmosphere-stars i:nth-child(9n) { background:#c6d4a7; box-shadow:0 0 6px #c6d4a74a; }
-  .atmosphere-grain { position:absolute; inset:0; opacity:.016; background-size:128px 128px; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' d='M0 0h128v128H0z'/%3E%3C/svg%3E"); }
-  @keyframes atmosphere-twinkle { 0%,100% {opacity:.13;} 50% {opacity:.55;} }
-  [data-paused='true'] .atmosphere-stars i { animation-play-state:paused; }
-  @media(max-width:650px) { .atmosphere-orbits {opacity:.55;} .atmosphere-light {background:radial-gradient(ellipse 90% 65% at 5% 0%,#3a57782f,transparent 80%),radial-gradient(ellipse 75% 50% at 100% 70%,#5e526226,transparent 85%);} }
-  @media(prefers-reduced-motion:reduce) { .atmosphere-stars i {animation:none;opacity:.28;} .atmosphere-light {transition:none;transform:none;} }
+  .portfolio-atmosphere { position:absolute; inset:0 0 auto; height:1100px; z-index:-1; overflow:hidden; pointer-events:none; background:#f7f9fd; contain:strict; }
+  .atmosphere-plane { position:absolute; transform:translate3d(var(--atmosphere-x,0),var(--atmosphere-y,0),0) rotate(-28deg); transition:transform 1.4s ease-out; }
+  .atmosphere-plane-one { width:1100px; height:580px; left:-630px; top:20px; border:1px solid #dbe5f559; background:linear-gradient(140deg,#d7e5fc70,#edf3fc30); box-shadow:35px 30px 80px #a9c3ee0a; }
+  .atmosphere-plane-two { width:950px; height:630px; right:-500px; top:170px; border:1px solid #dae6fa80; background:linear-gradient(135deg,#e0ebfc20,#d8e6fc8c); box-shadow:-40px -20px 90px #99b7ec0a; }
+  .atmosphere-wash { position:absolute; inset:0; background:radial-gradient(ellipse 50% 60% at 50% 35%,#ffffffba,transparent),linear-gradient(0deg,#f7f9fd 0%,transparent 32%); }
+  @media(max-width:760px) { .portfolio-atmosphere {height:1050px}.atmosphere-plane-one {left:-950px;top:60px}.atmosphere-plane-two {right:-840px;top:130px} }
+  @media(prefers-reduced-motion:reduce) { .atmosphere-plane {transition:none;transform:rotate(-28deg)} }
 </style>

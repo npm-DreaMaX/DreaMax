@@ -1,8 +1,0 @@
-<nav class="portfolio-section-nav" aria-label="首页章节"><a href="#dreamax" aria-label="个人简介"><span></span><b>Intro</b></a><a href="#research" aria-label="Selected Research"><span></span><b>Research</b></a><a href="#projects" aria-label="Projects"><span></span><b>Projects</b></a><a href="#llm-training" aria-label="LLM Training 栏目"><span></span><b>LLM Training</b></a><a href="#tools" aria-label="Fun Tools"><span></span><b>Tools</b></a><a href="#updates" aria-label="Recent Updates"><span></span><b>Updates</b></a></nav>
-<script>
-  const links = document.querySelectorAll<HTMLAnchorElement>('.portfolio-section-nav a');
-  const observer = new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(entry.isIntersecting) links.forEach(link=>{ const current=link.hash==='#'+entry.target.id; link.classList.toggle('current',current); if(current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current'); });
-  }),{rootMargin:'-20% 0px -60% 0px'});
-  links.forEach(a=>{const target=document.querySelector(a.hash);if(target)observer.observe(target);});
-</script>

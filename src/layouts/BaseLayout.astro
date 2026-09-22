@@ -1,9 +1,9 @@
 ---
 import "../styles/global.css";
-import "@fontsource-variable/space-grotesk";
-import "@fontsource-variable/manrope";
+import "../styles/type.css";
 import "../styles/experience.css";
 import "../styles/portfolio.css";
+import "../styles/navigation.css";
 import RouteTransition from "../components/navigation/RouteTransition.astro";
 import TransitionHead from "../components/navigation/TransitionHead.astro";
 import ClickEffect from "../components/ui/ClickEffect.astro";
@@ -26,7 +26,7 @@ const { title = "DreaMax", description = "Personal academic portfolio", area = "
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-    <meta name="theme-color" content="#111210" />
+    <meta name="theme-color" content={Astro.url.pathname === "/" ? "#f7f9fd" : "#10141e"} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL('/social-cover.png', Astro.site)} />
@@ -35,9 +35,10 @@ const { title = "DreaMax", description = "Personal academic portfolio", area = "
     <meta name="google-site-verification" content="3YL1gKOah_n_SNHoKifTj6UMS3C6bJEj0_3UXSkF4pg" />
     <meta name="msvalidate.01" content="95670F94350AAEFDAB55FD3E650690FA" />
   </head>
-  <body class:list={["dm-site", `dm-${area}`]}>
+  <body class:list={["dm-site", `dm-${area}`, { "dm-home": Astro.url.pathname === "/" }]}>
     <RouteTransition />
-    {area === "portfolio" && <><GradientBackground /><ClickEffect /></>}
+    {Astro.url.pathname === "/" && <GradientBackground />}
+    {area === "portfolio" && <ClickEffect />}
     <a class="dm-skip" href="#main-content">跳到正文</a>
     <slot />
     <script>

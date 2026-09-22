@@ -49,19 +49,19 @@ import TerminalSlogan from "../ui/TerminalSlogan.astro";
     </div>
 
     <!-- Title -->
-    <p style="font-family:'Roboto Mono',monospace; font-size:clamp(13px, 1.8vw, 16px); letter-spacing:2px; color:rgba(255,255,255,0.70); text-align:center; margin-top:2px; position:relative; z-index:2;">
+    <p class="portfolio-focus" style="font-family:'Roboto Mono',monospace; font-size:clamp(13px, 1.8vw, 16px); letter-spacing:2px; color:rgba(255,255,255,0.70); text-align:center; margin-top:2px; position:relative; z-index:2;">
       {profile.title}
     </p>
 
     <!-- Quote — single line -->
-    <div style="margin-top:20px; position:relative; z-index:2; text-align:center;">
+    <div class="portfolio-quote" style="margin-top:20px; position:relative; z-index:2; text-align:center;">
       <p style="font-family:'JetBrains Mono',monospace; font-size:clamp(11px, 1.2vw, 13px); color:#ff6b2b; opacity:0.45; letter-spacing:1px; margin:0;">
         "It&rsquo;s about a man who has nothing, who risks everything, to feel something." &mdash; <span style="color:#66d9ed;">Jessica Day</span>
       </p>
     </div>
 
     <!-- Buttons -->
-    <div class="flex flex-wrap justify-center gap-4" style="margin-top:32px; position:relative; z-index:2;">
+    <div class="portfolio-hero-actions flex flex-wrap justify-center gap-4" style="margin-top:32px; position:relative; z-index:2;">
       <a href="/agentic-scholar/" class="btn btn-pink">View Research <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#projects" class="btn btn-ghost">Explore Projects <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
