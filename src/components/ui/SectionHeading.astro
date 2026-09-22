@@ -14,7 +14,7 @@ const accentColors: Record<string, string> = {
 };
 ---
 
-<h2 class="section-heading {className}">
-  <span class="accent-bar" style="background:{accentColors[accent]};"></span>
+<h2 class={`section-heading ${className}`}>
+  <span class="accent-bar" style={{background:accentColors[accent]}}></span>
   {label}
 </h2>

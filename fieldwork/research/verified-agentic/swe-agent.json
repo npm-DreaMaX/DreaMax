@@ -1,0 +1,8 @@
+{
+  "id": "swe-agent",
+  "repository": "https://github.com/SWE-agent/SWE-agent",
+  "version": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+  "file": "sweagent/agent/agents.py",
+  "url": "https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/agent/agents.py",
+  "commitDate": "2026-07-16T15:21:18Z"
+}

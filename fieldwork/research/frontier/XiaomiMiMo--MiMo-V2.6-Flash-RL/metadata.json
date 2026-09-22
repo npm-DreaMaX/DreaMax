@@ -1,0 +1,383 @@
+{
+  "_id": "6ab14fc71e92143b484f4f8c",
+  "id": "XiaomiMiMo/MiMo-V2.6-Flash-RL",
+  "private": false,
+  "pipeline_tag": "text-generation",
+  "library_name": "transformers",
+  "tags": [
+    "transformers",
+    "safetensors",
+    "mimo_v2",
+    "text-generation",
+    "multimodal",
+    "vision-language",
+    "audio",
+    "agent",
+    "video-understanding",
+    "long-context",
+    "conversational",
+    "custom_code",
+    "en",
+    "zh",
+    "license:mit",
+    "eval-results",
+    "8-bit",
+    "fp8",
+    "region:us"
+  ],
+  "downloads": 0,
+  "likes": 300,
+  "modelId": "XiaomiMiMo/MiMo-V2.6-Flash-RL",
+  "author": "XiaomiMiMo",
+  "sha": "5711b268169967567844e1e560e8a3966da959b1",
+  "lastModified": "2026-09-22T03:52:25.000Z",
+  "gated": false,
+  "disabled": false,
+  "widgetData": [
+    {
+      "text": "Hi, what can you help me with?"
+    },
+    {
+      "text": "What is 84 * 3 / 2?"
+    },
+    {
+      "text": "Tell me an interesting fact about the universe!"
+    },
+    {
+      "text": "Explain quantum computing in simple terms."
+    }
+  ],
+  "model-index": null,
+  "config": {
+    "architectures": [
+      "MiMoV2ForCausalLM"
+    ],
+    "auto_map": {
+      "AutoConfig": "configuration_mimo_v2.MiMoV2Config",
+      "AutoModel": "modeling_mimo_v2.MiMoV2Model",
+      "AutoModelForCausalLM": "modeling_mimo_v2.MiMoV2ForCausalLM"
+    },
+    "model_type": "mimo_v2",
+    "num_experts_per_tok": 8,
+    "processor_config": {},
+    "quantization_config": {
+      "quant_method": "fp8"
+    },
+    "tokenizer_config": {
+      "bos_token": null,
+      "chat_template": "{%- macro render_value(value) -%}\n    {%- if value is string -%}\n        {{- value -}}\n    {%- else -%}\n        {{- value | tojson(ensure_ascii=False) -}}\n    {%- endif -%}\n{%- endmacro -%}\n\n{%- macro render_content(message_content) -%}\n    {%- if message_content is string -%}\n        {{- message_content -}}\n    {%- elif message_content is iterable -%}\n        {%- for part in message_content -%}\n            {%- if part is not mapping -%}\n                {{- part -}}\n            {%- elif part['type'] == 'image' or 'image' in part or 'image_url' in part -%}\n                {{- '<|vision_start|><|image_pad|><|vision_end|>' -}}\n            {%- elif part['type'] == 'audio' or part['type'] == 'input_audio' or 'audio' in part or 'audio_url' in part or 'input_audio' in part -%}\n                {{- '<|mimo_audio_start|><|audio_pad|><|mimo_audio_end|>' -}}\n            {%- elif part['type'] == 'video' or 'video' in part or 'video_url' in part -%}\n                {{- '<|vision_start|><|video_pad|><|vision_end|>' -}}\n            {%- elif 'text' in part -%}\n                {{- part['text'] -}}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- endif -%}\n{%- endmacro -%}\n\n{%- macro render_tools(tools) -%}\n    {{- 'You are provided with the following tools:\\n\\n<tools>' -}}\n    {%- for tool in tools -%}\n        {{- '\\n' ~ (tool | tojson(ensure_ascii=False)) -}}\n    {%- endfor -%}\n    {{- '\\n</tools>' -}}\n{%- endmacro -%}\n\n{%- macro render_tool_calls(tool_calls) -%}\n    {%- for tool_call in tool_calls -%}\n        {%- if tool_call.function is defined -%}\n            {%- set tool_call = tool_call.function -%}\n        {%- elif tool_call.custom is defined -%}\n            {%- set tool_call = tool_call.custom -%}\n        {%- endif -%}\n        {{- '<tool_call><function=' ~ tool_call.name ~ '>' -}}\n        {%- if tool_call.input is defined and tool_call.input is string -%}\n            {{- tool_call.input -}}\n        {%- elif tool_call.arguments -%}\n            {%- if tool_call.arguments is string -%}\n                {{- tool_call.arguments -}}\n            {%- else -%}\n                {%- for args_name, args_value in tool_call.arguments | items -%}\n                    {{- '<parameter=' ~ args_name ~ '>' ~ render_value(args_value) ~ '</parameter>' -}}\n                {%- endfor -%}\n            {%- endif -%}\n        {%- endif -%}\n        {{- '</function></tool_call>' -}}\n    {%- endfor -%}\n{%- endmacro -%}\n\n{%- macro render_assistant_message(message) -%}\n    {%- set content = render_content(message.content) -%}\n    {%- set reasoning = message.reasoning_content if message.reasoning_content is string else '' -%}\n    {{- '<|im_start|>assistant\\n<think>' ~ reasoning ~ '</think>' ~ content -}}\n    {%- if message.tool_calls is defined and message.tool_calls is iterable and message.tool_calls | length > 0 -%}\n        {{- render_tool_calls(message.tool_calls) -}}\n    {%- endif -%}\n    {{- '<|im_end|>' -}}\n{%- endmacro -%}\n\n{%- if tools is defined and tools is iterable and tools | length > 0 -%}\n    {{- '<|im_start|>system\\n' ~ render_tools(tools) ~ '<|im_end|>' -}}\n{%- endif -%}\n\n{%- for message in messages -%}\n    {%- if message.role == 'assistant' -%}\n        {{- render_assistant_message(message) -}}\n    {%- else -%}\n        {%- set body = render_content(message.content) -%}\n        {{- '<|im_start|>' ~ message.role ~ '\\n' ~ body -}}\n        {%- if message.tools is defined and message.tools is iterable and message.tools | length > 0 -%}\n            {%- if body -%}\n                {{- '\\n\\n' -}}\n            {%- endif -%}\n            {{- render_tools(message.tools) -}}\n        {%- endif -%}\n        {{- '<|im_end|>' -}}\n    {%- endif -%}\n{%- endfor -%}\n\n{%- if add_generation_prompt -%}\n    {{- '<|im_start|>assistant\\n' -}}\n    {%- if enable_thinking is false -%}\n        {{- '<think></think>' -}}\n    {%- endif -%}\n{%- endif -%}\n",
+      "eos_token": "<|im_end|>",
+      "pad_token": "<|endoftext|>",
+      "unk_token": null
+    },
+    "chat_template_jinja": "{%- macro render_value(value) -%}\n    {%- if value is string -%}\n        {{- value -}}\n    {%- else -%}\n        {{- value | tojson(ensure_ascii=False) -}}\n    {%- endif -%}\n{%- endmacro -%}\n\n{%- macro render_content(message_content) -%}\n    {%- if message_content is string -%}\n        {{- message_content -}}\n    {%- elif message_content is iterable -%}\n        {%- for part in message_content -%}\n            {%- if part is not mapping -%}\n                {{- part -}}\n            {%- elif part['type'] == 'image' or 'image' in part or 'image_url' in part -%}\n                {{- '<|vision_start|><|image_pad|><|vision_end|>' -}}\n            {%- elif part['type'] == 'audio' or part['type'] == 'input_audio' or 'audio' in part or 'audio_url' in part or 'input_audio' in part -%}\n                {{- '<|mimo_audio_start|><|audio_pad|><|mimo_audio_end|>' -}}\n            {%- elif part['type'] == 'video' or 'video' in part or 'video_url' in part -%}\n                {{- '<|vision_start|><|video_pad|><|vision_end|>' -}}\n            {%- elif 'text' in part -%}\n                {{- part['text'] -}}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- endif -%}\n{%- endmacro -%}\n\n{%- macro render_tools(tools) -%}\n    {{- 'You are provided with the following tools:\\n\\n<tools>' -}}\n    {%- for tool in tools -%}\n        {{- '\\n' ~ (tool | tojson(ensure_ascii=False)) -}}\n    {%- endfor -%}\n    {{- '\\n</tools>' -}}\n{%- endmacro -%}\n\n{%- macro render_tool_calls(tool_calls) -%}\n    {%- for tool_call in tool_calls -%}\n        {%- if tool_call.function is defined -%}\n            {%- set tool_call = tool_call.function -%}\n        {%- elif tool_call.custom is defined -%}\n            {%- set tool_call = tool_call.custom -%}\n        {%- endif -%}\n        {{- '<tool_call><function=' ~ tool_call.name ~ '>' -}}\n        {%- if tool_call.input is defined and tool_call.input is string -%}\n            {{- tool_call.input -}}\n        {%- elif tool_call.arguments -%}\n            {%- if tool_call.arguments is string -%}\n                {{- tool_call.arguments -}}\n            {%- else -%}\n                {%- for args_name, args_value in tool_call.arguments | items -%}\n                    {{- '<parameter=' ~ args_name ~ '>' ~ render_value(args_value) ~ '</parameter>' -}}\n                {%- endfor -%}\n            {%- endif -%}\n        {%- endif -%}\n        {{- '</function></tool_call>' -}}\n    {%- endfor -%}\n{%- endmacro -%}\n\n{%- macro render_assistant_message(message) -%}\n    {%- set content = render_content(message.content) -%}\n    {%- set reasoning = message.reasoning_content if message.reasoning_content is string else '' -%}\n    {{- '<|im_start|>assistant\\n<think>' ~ reasoning ~ '</think>' ~ content -}}\n    {%- if message.tool_calls is defined and message.tool_calls is iterable and message.tool_calls | length > 0 -%}\n        {{- render_tool_calls(message.tool_calls) -}}\n    {%- endif -%}\n    {{- '<|im_end|>' -}}\n{%- endmacro -%}\n\n\n{%- if tools is defined and tools is iterable and tools | length > 0 -%}\n    {{- '<|im_start|>system\\n' ~ render_tools(tools) ~ '<|im_end|>' -}}\n{%- endif -%}\n\n{%- for message in messages -%}\n    {%- if message.role == 'assistant' -%}\n        {{- render_assistant_message(message) -}}\n    {%- else -%}\n        {%- set body = render_content(message.content) -%}\n        {{- '<|im_start|>' ~ message.role ~ '\\n' ~ body -}}\n        {%- if message.tools is defined and message.tools is iterable and message.tools | length > 0 -%}\n            {%- if body -%}\n                {{- '\\n\\n' -}}\n            {%- endif -%}\n            {{- render_tools(message.tools) -}}\n        {%- endif -%}\n        {{- '<|im_end|>' -}}\n    {%- endif -%}\n{%- endfor -%}\n\n{%- if add_generation_prompt -%}\n    {{- '<|im_start|>assistant\\n' -}}\n    {%- if enable_thinking is false -%}\n        {{- '<think></think>' -}}\n    {%- endif -%}\n{%- endif -%}\n"
+  },
+  "cardData": {
+    "license": "mit",
+    "language": [
+      "en",
+      "zh"
+    ],
+    "tags": [
+      "text-generation",
+      "multimodal",
+      "vision-language",
+      "audio",
+      "agent",
+      "video-understanding",
+      "long-context",
+      "mimo_v2",
+      "transformers"
+    ],
+    "library_name": "transformers"
+  },
+  "transformersInfo": {
+    "auto_model": "AutoModelForCausalLM",
+    "custom_class": "modeling_mimo_v2.MiMoV2ForCausalLM",
+    "pipeline_tag": "text-generation"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "MiMo_V2_6_technical_report.pdf"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "assets/architecture.png"
+    },
+    {
+      "rfilename": "audio_tokenizer/chat_template.jinja"
+    },
+    {
+      "rfilename": "audio_tokenizer/config.json"
+    },
+    {
+      "rfilename": "audio_tokenizer/generation_config.json"
+    },
+    {
+      "rfilename": "audio_tokenizer/model.safetensors"
+    },
+    {
+      "rfilename": "audio_tokenizer/tokenizer_config.json"
+    },
+    {
+      "rfilename": "chat_template.jinja"
+    },
+    {
+      "rfilename": "config.json"
+    },
+    {
+      "rfilename": "configuration_mimo_v2.py"
+    },
+    {
+      "rfilename": "dflash/config.json"
+    },
+    {
+      "rfilename": "dflash/dflash.py"
+    },
+    {
+      "rfilename": "dflash/dflash_draft_model.safetensors"
+    },
+    {
+      "rfilename": "dflash/mask_embedding.pt"
+    },
+    {
+      "rfilename": "dflash/model.safetensors.index.json"
+    },
+    {
+      "rfilename": "generation_config.json"
+    },
+    {
+      "rfilename": "merges.txt"
+    },
+    {
+      "rfilename": "model.safetensors.index.json"
+    },
+    {
+      "rfilename": "model_mtp.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep0_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep10_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep11_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep12_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep13_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep14_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep15_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep16_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep17_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep18_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep19_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep1_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep20_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep21_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep22_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep23_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep24_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep25_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep26_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep27_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep28_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep29_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep2_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep30_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep31_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep32_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep33_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep34_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep35_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep36_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep37_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep38_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep39_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep3_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep40_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep41_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep42_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep43_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep44_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep45_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep46_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep47_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep48_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep49_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep4_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep50_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep51_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep52_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep53_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep54_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep55_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep56_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep57_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep58_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep59_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep5_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep60_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep61_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep62_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep63_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep6_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep7_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep8_shard0.safetensors"
+    },
+    {
+      "rfilename": "model_pp0_ep9_shard0.safetensors"
+    },
+    {
+      "rfilename": "modeling_mimo_v2.py"
+    },
+    {
+      "rfilename": "preprocessor_config.json"
+    },
+    {
+      "rfilename": "tokenizer.json"
+    },
+    {
+      "rfilename": "tokenizer_config.json"
+    },
+    {
+      "rfilename": "vocab.json"
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2026-09-21T15:39:51.000Z",
+  "safetensors": {
+    "parameters": {
+      "F32": 12032,
+      "BF16": 4101308032,
+      "F8_E4M3": 3859808256,
+      "U8": 151397597184
+    },
+    "total": 159358725504
+  },
+  "usedStorage": 177759177245
+}

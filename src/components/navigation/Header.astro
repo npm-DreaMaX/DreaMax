@@ -1,69 +1,58 @@
 ---
-import { navigation } from "../../data/navigation";
-import { profile } from "../../data/profile";
-const path = Astro.url.pathname;
+import { papers } from '../../../fieldwork/src/data/readings';
+import { tools } from '../../data/experience';
+import { navigation } from '../../data/navigation';
+import { featuredProjects, featuredResearch } from '../../data/featured';
+import BrandMark from '../ui/BrandMark.astro';
+const pathname = Astro.url.pathname;
+const active = (href:string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
+const routes = [
+  { title: '预训练', en:'PRETRAINING', href:'/fieldwork/paths/pretraining', description:'数据、MoE、预算与训练稳定性' },
+  { title: '中训练', en:'MID-TRAINING', href:'/fieldwork/paths/midtraining', description:'长上下文、能力塑形与阶段接口' },
+  { title: '后训练', en:'POST-TRAINING', href:'/fieldwork/paths/posttraining', description:'SFT、偏好与推理强化学习' },
+  { title: 'Agentic RL', en:'LEARNING TO ACT', href:'/fieldwork/paths/agentic', description:'环境、长轨迹与异步 rollout' },
+  { title: '算子与集群', en:'SYSTEMS', href:'/fieldwork/paths/systems', description:'GPU、显存、带宽与通信' },
+];
+const index = [
+  ...navigation.map(n => ({title:n.label,description:n.description,category:'栏目',href:n.href,keywords:n.short})),
+  ...featuredProjects.map(p=>({title:p.title,description:p.description,category:'我的项目',href:p.link,keywords:p.tags.join(' ')})),
+  ...papers.map(p => ({ title:p.title,description:p.subtitle,category:'论文精读',href:`/fieldwork/papers/${p.id}`,keywords:p.tags.join(' ') })),
+  ...tools.map(t => ({ title:t.title+' '+t.zh,description:t.description,category:'工具',href:t.href,keywords:t.category })),
+  ...routes.map(r=>({title:r.title,description:r.description,category:'阅读路线',href:r.href,keywords:r.en})),
+  ...featuredResearch.map(r=>({title:r.title,description:r.description,category:'Selected Research',href:r.link,keywords:r.venue})),
+];
 ---
-
-<header class="glass-header fixed top-0 left-0 right-0 z-50">
-  <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-    <a href="/" class="font-mono text-base font-bold tracking-widest text-white/90 transition-colors duration-200 hover:text-[#66d9ed]">
-      DREA<span class="text-[#66d9ed]">MAX</span>
-    </a>
-
-    <ul class="hidden items-center gap-1 md:flex">
-      {navigation.map((item) => {
-        const isActive = path === item.href || (item.href !== "/" && path.startsWith(item.href));
-        return (
-          <li>
-            <a href={item.href}
-              class="relative px-3 py-2 font-mono text-xs tracking-wider transition-colors duration-200"
-              style={{ color: isActive ? '#66d9ed' : 'rgba(255,255,255,0.45)', fontWeight: isActive ? 600 : 400 }}
-              onmouseover="this.style.color='#ffffff'"
-              onmouseout="this.style.color=this.getAttribute('data-restore')"
-              data-restore={isActive ? '#66d9ed' : 'rgba(255,255,255,0.45)'}
-            >
-              {item.label}
-              {isActive && <span class="absolute bottom-0 left-3 right-3 h-[1.5px] bg-[#66d9ed]" />}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-
-    <!-- Colored social icons -->
-    <div class="hidden items-center gap-2 md:flex">
-      <a href={profile.social.github} target="_blank" class="flex h-9 w-9 items-center justify-center rounded border border-white/8 transition-all duration-300 hover:border-[#333] hover:bg-white/5" title="GitHub" style="color:#888;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
-      <a href={profile.social.googleScholar} target="_blank" class="flex h-9 w-9 items-center justify-center rounded border border-white/8 transition-all duration-300 hover:border-[#4285f4]/40" title="Google Scholar" style="color:#4285f4;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
-      </a>
-      <a href={profile.social.csdn} target="_blank" class="flex h-9 w-9 items-center justify-center rounded border border-white/8 transition-all duration-300 hover:border-[#e31b6d]/40" title="CSDN" style="color:#e31b6d;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.8 6.8c0-.3.2-.5.4-.7.2-.2.5-.3.8-.3h13.9c.3 0 .6.1.8.3.2.2.4.4.4.7v.1l-1.5 3.4c-.1.3-.4.5-.7.5h-9.5l-.7 1.6h8.4c.5 0 .9.2 1.2.6.3.4.4.8.2 1.3l-1.9 4.3c-.2.4-.5.7-.9.9-.4.2-.8.3-1.2.3H6.7c-.6 0-1.1-.2-1.5-.7-.4-.5-.6-1-.5-1.6L6 13.1l2.7-6.3H3.8z"/></svg>
-      </a>
-    </div>
-
-    <button id="menu-toggle" class="flex items-center text-white/40 md:hidden" aria-label="Toggle menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
+<header class="dm-header">
+  <a href="/" class="dm-brand" aria-label="DreaMax 首页"><BrandMark />DreaMax<span class="dm-brand-dot">↗</span></a>
+  <nav class="dm-primary-nav" aria-label="主导航">
+    {navigation.map(n => <a href={n.href} aria-current={active(n.href)?'page':undefined} class:list={{active:active(n.href)}}>{n.label}{n.short==='LEARN' && <i class="nav-training-dot" aria-hidden="true"></i>}</a>)}
   </nav>
-
-  <div id="mobile-menu" class="hidden border-t border-white/5 bg-[#121216] px-6 pb-4 md:hidden">
-    <ul class="flex flex-col gap-1 pt-2">
-      {navigation.map((item) => {
-        const isActive = path === item.href || (item.href !== "/" && path.startsWith(item.href));
-        return (
-          <li><a href={item.href} class="block rounded px-3 py-2 font-mono text-sm tracking-wider transition-colors duration-200" style={{ color: isActive ? '#66d9ed' : 'rgba(255,255,255,0.45)', background: isActive ? 'rgba(102,217,237,0.06)' : 'transparent' }}>{item.label}</a></li>
-        );
-      })}
-    </ul>
+  <div class="dm-header-actions">
+    <button class="dm-search-trigger" data-open-search aria-label="搜索全站"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><kbd>⌘ K</kbd></button>
+    <button class="dm-menu-trigger" data-open-menu aria-haspopup="dialog" aria-controls="dm-menu" aria-label="打开全站导航"><span>EXPLORE</span><i aria-hidden="true"></i></button>
   </div>
 </header>
-
-<script>
-  const toggle = document.getElementById("menu-toggle");
-  const menu = document.getElementById("mobile-menu");
-  if (toggle && menu) {
-    toggle.addEventListener("click", () => menu.classList.toggle("hidden"));
-  }
-</script>
+<dialog id="dm-menu" class="dm-menu-dialog" aria-labelledby="dm-menu-heading">
+  <div class="dm-dialog-top"><a href="/" class="dm-brand"><BrandMark />DreaMax</a><span class="dm-menu-top-note">A PERSONAL SPACE FOR CURIOUS MINDS.</span><button class="dm-close" data-close-dialog aria-label="关闭导航">关闭 <span aria-hidden="true">×</span></button></div>
+  <div class="dm-menu-content">
+    <nav class="dm-menu-main" aria-labelledby="dm-menu-heading">
+      <p id="dm-menu-heading" class="dm-eyebrow">WHERE WOULD YOU LIKE TO GO?</p>
+      {navigation.map((n,i) => <a href={n.href} aria-current={active(n.href)?'page':undefined} data-nav-preview={n.description} data-nav-number={`0${i+1}`}><sup>0{i+1}</sup><span>{n.label}</span><span aria-hidden="true">↗</span></a>)}
+    </nav>
+    <div class="dm-menu-secondary">
+      <div class="dm-menu-map" aria-hidden="true"><span class="dm-menu-map-number" data-nav-preview-number>02</span><div class="dm-menu-orbits"><i></i><i></i><i></i></div><span class="dm-menu-map-coordinate">D / M</span></div>
+      <p class="dm-nav-preview" data-nav-preview-description>论文精读、训练路线与交互实验</p>
+      <div class="dm-menu-paths"><p class="dm-eyebrow">INSIDE LLM TRAINING</p>{routes.map((r,i)=><a href={r.href}><span><small>0{i+1}</small>{r.title}</span><span aria-hidden="true">↗</span></a>)}</div>
+      <div class="dm-menu-shortcuts"><a href="/fieldwork/notebook">我的阅读 ↗</a><a href="/#projects">开源项目 ↗</a><a href="https://github.com/npm-DreaMaX" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+    </div>
+  </div>
+  <div class="dm-menu-bottom"><span>Curiosity is a way of life.</span><a href="mailto:3752703718@qq.com">LET'S TALK ↗</a></div>
+</dialog>
+<dialog id="dm-search" class="dm-search-dialog" aria-labelledby="dm-search-heading">
+  <div class="dm-search-top"><label id="dm-search-heading" for="dm-search-input">你想探索什么？</label><button class="dm-close" data-close-dialog aria-label="关闭搜索">Esc <span aria-hidden="true">×</span></button></div>
+  <input id="dm-search-input" type="search" placeholder="项目、论文、训练路线或工具…" autocomplete="off" />
+  <p id="dm-search-count" class="dm-eyebrow" aria-live="polite">精选入口</p>
+  <div id="dm-search-results"></div>
+  <p class="dm-search-hint">方向键选择 · Enter 打开 · Esc 返回</p>
+</dialog>
+<script type="application/json" id="dm-search-data" set:html={JSON.stringify(index).replaceAll('<','\u003c')}></script>

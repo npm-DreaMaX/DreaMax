@@ -1,0 +1,8 @@
+{
+  "phase_steps": 120,
+  "batch_size": 64,
+  "learning_rate": 0.08,
+  "base_probability_a": 0.5,
+  "focused_probability_a": 0.95,
+  "replay_probability_a": 0.65
+}

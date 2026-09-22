@@ -1,0 +1,61 @@
+## 接受 128K，并不表示有效利用 128K
+上下文至少有四种长度：配置允许的长度、实际训练见过的长度、推理实现能承受的长度、模型可靠利用信息的长度。它们不同，产品页面上的最大数字通常无法回答后者。**课程分析**：真正的目标是让模型在预算内定位、保留和组合远处证据，而不是仅保证不报 OOM。
+
+真实 Agent 会把工具输出、错误日志、网页内容和历史动作装进上下文；这些内容的价值高度不均匀。训练长文档能力与 harness 的摘要/裁剪策略必须一起评估。更大窗口也可能只是延迟了遗忘，没解决工具输出污染、证据冲突和无效循环。
+
+## 现代配方把长度当成一个阶段
+Qwen3 报告将长上下文列为独立预训练阶段，区分训练长度与进一步推理扩展；DeepSeek-V3 报告采用分两步的上下文扩展。这些是特定公开方案，不是“所有模型都用同一长度 curriculum”。[Qwen3 报告](/sources#qwen3-report) [V3 报告](/sources#deepseek-v3-report)
+
+**课程分析**：先在较短序列建立广覆盖能力，再投入更贵的长序列训练，是一种成本分配思路。前提是长阶段确实提供远距离依赖，而不是把许多互不相关的短句接到一起。否则模型见过大 position ID，却没有学会跨文档推断。
+
+## 位置扩展：为什么只改最大长度不够
+RoPE 通过不同频率编码相对位置关系。延长位置范围后，模型将接触训练时未覆盖的相位组合。简单地统一压缩位置可能改变短距离分辨率；完全不缩放又可能出现外推失配。YaRN 提供分频段处理与 attention scaling 的扩展路线。[论文方法](/sources#yarn)
+
+**数学旁注**：若一对维度的旋转相位为 $\phi_j(p)=p\omega_j$，位置拉长后，$p$ 增大改变了模型看到的相位分布。把 $p$ 除以扩展系数能压回原范围，但也同时压缩局部距离。不同频率控制不同尺度，分段策略因此有意义。这里是帮助理解的简化描述，完整频率边界与 scaling 应对照论文和实现。
+
+在固定 OLMo-core `YaRNRoPEScalingConfig` 中能直接定位参数及频率计算方法；长上下文官方脚本用 `with_rope_scaling` 把它接到模型配置。[源码：RoPE](/sources#olmo-rope) [源码：阶段配置](/sources#olmo3-longcontext) 它是透明实现对照，不能由此推定 Qwen 或其他模型使用相同 kernel、beta 或 scale。
+
+## 长数据：长度分布比一个 max_len 更重要
+```flow
+真实长文档／代码仓库／多文档任务
+校验抽取顺序、段落结构与依赖
+按长度和能力分桶，保留短文本回放
+packing 与文档边界／attention mask
+位置编码扩展 + 长序列并行
+长度×位置×任务类型的评测矩阵
+```
+打包提高有效 token 利用，但必须决定是否允许前一文档影响后一文档。文档内 attention masking、document lengths 和 label mask 分别控制注意力可见性与 loss；它们不是一回事。若边界处理错误，模型可能学到伪跨文档依赖，或者训练与实际推理中的注意力模式不一致。
+
+长任务应包含不同操作：needle 检索测定位，跨段问答测组合，长代码修改测依赖保持，多文档冲突处理测证据判别，长工具轨迹测状态与动作。单一 needle 成功不能证明任务理解，也不能证明长 horizon credit assignment 已经解决。
+
+## 计算和显存为什么一起变贵
+完整 dense attention 的算术通常随序列长度近似二次增长；激活、KV 和并行通信也随配置扩大。FlashAttention 是 IO-aware exact attention，通过减少显存搬运改善效率，并不把 dense attention 的所有二次算术变成线性。[论文方法](/sources#flashattention)
+
+Context Parallel 把同一序列的工作划分到多个设备，换取显存空间与并行执行，但必须交换实现所需的 K/V 或中间状态。增加 CP degree 会改变每设备序列切分与通信，不能把它当作纯增大 data parallel。长序列 batch 常变小，因此梯度噪声、吞吐与有效更新次数也会改变。
+
+**课程建议**：比较长度配方时同时固定有效 token 预算和记录 wall clock；报告 peak memory、tokens/s、通信占比、padding 比例和 achieved quality。只固定 steps 会使较长训练组见过更多 token；只固定 token 则可能隐藏更高算力成本。两种对照各自回答不同问题。
+
+## 真实配置导读与一个值得警惕的细节
+固定版本 OLMo 3 长上下文脚本默认 65,536 序列，YaRN factor 8、旧长度 8,192；packed dataset 生成 document lengths，配置 context parallel degree 8 和 Float8。它将 model/data/parallelism 同时调整，说明长上下文从来不只是一个 position 参数。[源码观察](/sources#olmo3-longcontext)
+
+同一脚本仍含 5T `max_duration` 与看似沿用自其他阶段的 `hard_stop` 注释。**公开证据边界**：本课不能据此声称它真的进行了 5T 长上下文训练。要把声明的实际训练量与报告、发布日志及 checkpoint 交叉核验。这也是“以源码为核心”不等于“任意一行代码都代表最终生产事实”的具体例子。
+
+## 可运行机制实验与进阶任务
+```bash
+python3 -m labs.run --experiment mixture --seed 7
+python3 -m labs.run --experiment rollout --seed 7
+```
+第一个实验展示长数据加权可能如何牺牲短域；第二个用离散事件模拟观察长短任务、延迟与轨迹陈旧度。它们**不复现 RoPE 或 attention kernel**。长上下文的生产验证需要真实模型和长样本，因此这里明确区分已运行的机制实验与下面的 GPU 工程任务。
+
+进阶任务：在小模型上固定总有效 token，比较原长度、直接扩长、缩放后扩长、长短混合四种方案。为文档边界构造单元测试：改变前一独立文档不应影响被 mask 后的后一文档 logits；固定随机种子并报告容差。随后扫描证据位置、干扰段数和依赖跳数，画出质量随位置和长度的曲线。
+
+## 如何定位“长上下文没用”
+| 失败表现 | 首要检查 |
+| --- | --- |
+| 一到扩展长度就崩 | RoPE 参数、position IDs、kernel 支持和显存 |
+| 检索成功但综合回答错 | 长任务的数据操作类型与跨段训练覆盖 |
+| 中间证据经常丢失 | 位置扫描评测、截断策略与训练长度分布 |
+| 长域提升但短域下降 | replay 比例、token 预算与 LR 切换 |
+| Agent 仍反复查同一页面 | harness memory、动作循环、reward 与任务状态 |
+
+工程交付物应同时含训练配方、mask 语义、长度分布和任务矩阵。完成后进入 [Agent rollout](/learn/agent-rollout)，把“模型能读多长”与“环境轨迹怎样采集和优化”连接起来。

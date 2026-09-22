@@ -1,45 +1,18 @@
 ---
-import Card from "../ui/Card.astro";
 import TagBadge from "../ui/TagBadge.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import { featuredProjects } from "../../data/featured";
 ---
-
 <section id="projects" class="px-6 py-24">
   <div class="mx-auto" style="max-width:1100px;">
-    <SectionHeading label="Projects" accent="cyan" />
-
-    <div class="grid gap-6 md:grid-cols-2" style="margin-top:48px;">
-      {featuredProjects.map((item) => (
-        <Card clickable>
-          <div class="flex h-full flex-col gap-4 p-6" data-click-card>
-            <h3 class="font-sans text-xl font-semibold text-white">
-              {item.title}
-            </h3>
-            <p class="text-sm leading-relaxed text-white/50" style="font-weight:300;">
-              {item.description}
-            </p>
-            <div class="mt-auto flex flex-wrap gap-2">
-              {item.tags.map((tag) => (
-                <TagBadge label={tag} variant="subtle" />
-              ))}
-            </div>
-          </div>
-        </Card>
-      ))}
+    <div class="portfolio-project-heading"><SectionHeading label="Projects" accent="cyan" /><a href="https://github.com/npm-DreaMaX" target="_blank" rel="noreferrer">ALL ON GITHUB ↗</a></div>
+    <div class="portfolio-project-grid">
+      {featuredProjects.map((item, index) => <a class="portfolio-project" href={item.link} target="_blank" rel="noreferrer">
+        <div class="portfolio-project-top"><span>0{index+1} / OPEN SOURCE</span><span aria-hidden="true">↗</span></div>
+        <div class={`portfolio-project-glyph glyph-${index}`} aria-hidden="true"><i></i><i></i><i></i></div>
+        <h3>{item.title}</h3><p>{item.description}</p>
+        <div class="portfolio-project-tags">{item.tags.map(tag => <TagBadge label={tag} variant="subtle" />)}</div>
+      </a>)}
     </div>
   </div>
 </section>
-
-<script>
-  document.querySelectorAll("[data-click-card]").forEach((el) => {
-    const card = el.closest("[data-clickable]");
-    if (!card) return;
-    const cls = "card-clicked";
-    card.addEventListener("mousedown", () => card.classList.add(cls));
-    card.addEventListener("mouseup", () => setTimeout(() => card.classList.remove(cls), 150));
-    card.addEventListener("mouseleave", () => card.classList.remove(cls));
-    card.addEventListener("touchstart", () => card.classList.add(cls), { passive: true });
-    card.addEventListener("touchend", () => setTimeout(() => card.classList.remove(cls), 150), { passive: true });
-  });
-</script>

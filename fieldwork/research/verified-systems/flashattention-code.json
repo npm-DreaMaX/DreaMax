@@ -1,0 +1,9 @@
+{
+  "id": "flashattention-code",
+  "repository": "https://github.com/Dao-AILab/flash-attention",
+  "version": "edb5c76ee329b18ed95d1f7ea9aa522a1331ab7d",
+  "file": "flash_attn/flash_attn_interface.py",
+  "url": "https://github.com/Dao-AILab/flash-attention/blob/edb5c76ee329b18ed95d1f7ea9aa522a1331ab7d/flash_attn/flash_attn_interface.py",
+  "accessed": "2026-09-22",
+  "commitDate": "2026-09-19T17:32:06Z"
+}

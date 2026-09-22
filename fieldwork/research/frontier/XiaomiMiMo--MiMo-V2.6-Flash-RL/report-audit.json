@@ -1,0 +1,32 @@
+{
+  "repository": "XiaomiMiMo/MiMo-V2.6-Flash-RL",
+  "sha": "5711b268169967567844e1e560e8a3966da959b1",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-09-21T15:39:51.000Z",
+  "lastModified": "2026-09-22T03:52:25.000Z",
+  "license": "mit",
+  "results": [
+    {
+      "file": "MiMo_V2_6_technical_report.pdf",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL/resolve/5711b268169967567844e1e560e8a3966da959b1/MiMo_V2_6_technical_report.pdf",
+      "bytes": 3046687,
+      "sha256": "fb81e6e083801b3358f084ed6be953dc23b0d2e434690f4541d5eae03e01e7af"
+    },
+    {
+      "file": "modeling_mimo_v2.py",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL/resolve/5711b268169967567844e1e560e8a3966da959b1/modeling_mimo_v2.py",
+      "bytes": 85516,
+      "sha256": "a8c3cb3aae473bcc15f023010547c919f15eba6546e6ed7efb61a8937b12f3ad"
+    },
+    {
+      "file": "configuration_mimo_v2.py",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL/resolve/5711b268169967567844e1e560e8a3966da959b1/configuration_mimo_v2.py",
+      "bytes": 10049,
+      "sha256": "773062ac9850b908eb54751b3e4dbe00e653c0e80595599409e97d0c1af2ce3e"
+    },
+    {
+      "file": "LICENSE",
+      "status": "not listed"
+    }
+  ]
+}

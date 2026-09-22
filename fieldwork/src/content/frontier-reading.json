@@ -1,0 +1,35 @@
+{
+  "slug": "frontier-reading",
+  "title": "读懂最新模型：从代际变化回到训练机制",
+  "subtitle": "CED、KDA、残差门控与中训练接口的源码对照",
+  "track": "systems",
+  "order": 9,
+  "minutes": 45,
+  "difficulty": "研究",
+  "description": "深入审读当前代表性模型的官方报告与真实源码，区分序列、深度、优化器、数据和后训练带来的变化。",
+  "prerequisites": ["现代预训练与中训练", "基本张量shape与缓存概念"],
+  "learningGoals": [
+    "把新机制放回训练阶段和成本结构",
+    "辨认同名gate与同系列不同架构",
+    "对报告、模型卡、推理源码做交叉核验"
+  ],
+  "sources": [
+    "deepseek-v41",
+    "deepseek-v41-report",
+    "deepseek-v41-code",
+    "kimi-k3",
+    "kimi-k3-report",
+    "kimi-k3-code",
+    "qwen38",
+    "qwen38-report",
+    "qwen38-dense",
+    "glm53",
+    "mimo26",
+    "mimo26-report",
+    "mimo26-code",
+    "gemma4",
+    "gemma4-report"
+  ],
+  "lab": "rollout",
+  "body": "## 拿到一个新模型，先定位它改变了哪条成本曲线\n本章使用 2026-09-22 核验的 DeepSeek-V4.1-Flash、Kimi K3、Qwen3.8-Flash-Next、GLM-5.3、MiMo-V2.6 与 Gemma4 资料。它们的价值是提供不同工程问题的真实答案。模型卡、完整报告和实际代码分别登记，固定版本见 [技术演进地图](/models)。\n\n**课程分析**：先画一张四轴图——能力数据、优化信号、计算结构、部署负载。看到新名词时问它改变了哪一轴、代价转移到哪一轴。一个 gate 可能控制时间上的记忆衰减，也可能控制层间信息流或专家选择；把三者都理解成“注意力改进”会丢掉真正的设计。\n\n## 五条跨代问题线索\n| 要解决的问题 | 可核验案例 | 回到哪门课 |\n| --- | --- | --- |\n| Agent 输入很长，缓存与prefill贵 | V4.1 的 CED/CSA2 | 长上下文、推理、rollout成本 |\n| 长序列与深网络需要不同信息路径 | K3 的 KDA 与 AttnRes | 状态、激活、分布式拓扑 |\n| 残差容量与稀疏检索如何协同 | Qwen3.8 Next 的 QSA/GR | 架构消融、精度、优化器 |\n| 相同base还能怎样变强 | GLM-5.3 与 5.2 的同base声明 | 后训练数据与评测协议 |\n| 大规模RL需要怎样的起点和反馈 | MiMo2.6 的中训练与分组评分 | 能力塑形、奖励、异步系统 |\n\n表中是问题映射，不是性能排行。每项结论的可见程度不同：报告能解释设计动机，推理源码能确认运行结构，完整训练配方则需要训练器、数据与日志。\n\n## 序列轴：压缩KV、复用索引和递归state是不同路线\nDeepSeek-V4.1 报告的 CED 让 decoder 的全局 KV 从最终 encoder 表示投影得到；CSA2 又将层划分为 Full、Reindex、Reuse，分别决定是否生成新KV、是否重新索引。固定候选池限制的是后续 indexer 的搜索范围，首次扫描仍看全范围。尤其要留意：Hierarchical Sparse Indexer 在后训练中引入，训练和推理使用一致候选限制。[官方报告 §2.2–2.3](/sources#deepseek-v41-report)\n\n**课程分析**：这并不意味着整模型复杂度从此与长度无关。你要把 KV 字节、首次扫描、后续检索、局部窗口和专家计算分开计账。稀疏化省掉的算术有时被不规则访存或额外索引抵消，所以必须同时测 kernel 时间和端到端 token/s。\n\nKimi K3 的混合结构在 KDA 层维护递归状态，在其他层保留全局注意力路径。官方代码 `KimiDeltaAttention.forward` 在训练选择 chunk 模式，单token缓存解码可进入 fused recurrent 模式。[源码](/sources#kimi-k3-code) **课程分析**：固定大小state压缩历史与显式缓存历史的误差模式不同；应分别测顺序依赖、远距离精确复制、前缀复用和截断恢复。\n\n## 深度轴：为什么普通残差直觉不再够用\n标准残差写作 $h_{l+1}=h_l+f_l(h_l)$，较早信息通过累积传到后层。AttnRes 让当前层对先前表示做数据相关加权。Kimi 固定代码的 `_apply_attn_res` 收到 `prefix_sum [T,H]` 和 `block_residual [T,N,H]`，拼接候选后按归一化键计算分数，在 **block维度** softmax，再加权得到 `[T,H]`。[源码与精确片段](/sources#kimi-k3-code)\n\n一份对应的教学表达是\n$$\\alpha_{t,i}=\\mathrm{softmax}_i\\big(w^\\top\\mathrm{RMSNorm}(v_{t,i})\\big),\\qquad h_t=\\sum_i\\alpha_{t,i}v_{t,i}.$$\n这里 $i$ 代表深度候选，不是时间位置，也不是专家。Block AttnRes 将部分层输出聚合成块，减少需保存的状态。[论文机制](/sources#kimi-k3-report) **课程分析**：从单卡扩到pipeline parallel时，额外深度状态的驻留与跨stage传输可能改变原本合适的分层边界。\n\nQwen3.8 Flash-Next 的 Gated Residual 使用加宽残差流上的 read/write gate；它与 KDA 的 forget gate、MoE router 不在同一位置。[官方模型卡](/sources#qwen38) **课程建议**：读任意 gate，必须先写它的shape、归一化轴、输出用于选择还是加权，以及它在反向传播中接收哪项loss的梯度。\n\n## 一个关键失败实验：预训练看不出的后训练退步\nQwen3.8 Next 报告记录一种残差分支稀疏化尝试：预训练 loss 与若干基准几乎不变，但后训练后的生成质量明显下降，因此没有采用。[报告的失败消融](/sources#qwen38-report)\n\n**课程分析**：这是为什么架构选择不能在base checkpoint的少量指标上结束。后训练可能需要尚未被现有评测激活的表示灵活性；也可能只是训练分布与输出要求发生改变。报告的观察本身不能证明唯一原因，但足以要求做“同架构变体 → 相同SFT/RL预算 → 相同生成预算”的接口测试。\n\n```flow\n架构／数据候选A与B\n相同pretraining预算和多域评测\n相同midtraining能力塑形\n相同SFT／RL数据与计算预算\n固定harness、生成token与验证器\n比较最终成功率、成本和失败簇\n```\n\n“预训练效果相同”与“后训练可塑性相同”是两个需要不同实验支持的命题。这个检查也适用于量化、长上下文缩放和MoE容量调整。\n\n## 优化器与阶段轴：最新中训练包含系统准备\nMiMo-V2.6 的 §3 明确描述 agent-centric mid-training：从 256K 扩展到 1M，把隐藏矩阵切换到 Muown，而 embedding、head、router 保留 AdamW，并在中训练使用 MXFP4 QAT。[官方报告](/sources#mimo26-report) 这些是该配方的公开事实，不能自动推广成其他模型最佳实践。\n\n**课程分析**：这里的中训练承担三种接口准备。任务轨迹改善RL探索起点；长上下文让任务状态容纳得下；优化器与量化适配则让后续大批RL/推理成本可承受。若只看数据名称，你会漏掉后两项。反过来，报告观察到稳定不代表任何AdamW checkpoint都能无损切换优化器。\n\nQwen3.8 Next 报告也按参数类别分配优化器，而不是把所有二维矩阵一律交给Muon。[优化器分析](/sources#qwen38-report) 这提示一个可迁移读法：先检查参数语义和矩阵形状，再检查fused参数如何切分；router输出维对应专家分数，与共享表示投影的结构并不相同。\n\n## 行为与奖励轴：同base和同算法都不意味着同能力\nGLM-5.3 官方模型卡声明沿用 GLM-5.2 的base，变化来自后训练；其评测脚注还详细列出harness、时限及任务修订。[官方模型卡](/sources#glm53) 这为研究增益位置提供了依据，但没有公开的RL数据比例、具体奖励权重不能由该声明补齐。\n\nDeepSeek-V4.1 报告将后训练收益重点归于任务和环境数据工程；MiMo-V2.6 则提供 GRS/GAR 的奖励细化设计。[V4.1 §5](/sources#deepseek-v41-report) [MiMo §4.3](/sources#mimo26-report) **课程分析**：优化算法、训练任务分布和反馈质量是可分开的变量。相同GRPO名字可能包着截然不同的可探索任务；相同通过率也可能掩盖不同的解题质量与路径成本。\n\n把这层问题带回 [奖励与验证器](/learn/agent-rewards)：测试通过以后能否分辨解决方案质量？奖励排名是否稳定？隐藏测试是否与训练grader独立？环境构造是否泄漏参考解答？一张高分表不能代替这些接口证据。\n\n## 从真实源码判断你到底看到了什么\n| 文件／符号 | 能确认 | 不能据此确认 |\n| --- | --- | --- |\n| V4.1 `Attention._compress_kv` | shared KV生成／复用路径 | 完整预训练与RL同步策略 |\n| K3 `_apply_attn_res` | 深度加权、shape与dtype转换 | 所有pipeline并行kernel性能 |\n| MiMo `_get_multimodal_embeds` | image/video/audio怎样进入token表示 | GRS/GAR grader如何部署和更新 |\n\n[DeepSeek源码](/sources#deepseek-v41-code) [Kimi源码](/sources#kimi-k3-code) [MiMo源码](/sources#mimo26-code)\n\n特别是 V4.1 的 `Transformer.forward` 受 `torch.inference_mode()` 装饰；它是公开推理路径。MiMo的模型文件即使支持loss，也没有因此包含报告中完整异步RL系统。这种边界意识比搜到一个与论文同名的class更重要。\n\n## 公开性需要按版本、文件和产物分别记录\nQwen3.8-27B 与 Flash-Next 的许可证不同；MiMo模型卡写MIT，其 `modeling_mimo_v2.py` 文件头写Apache-2.0；Kimi的文件头区分继承代码与自有部分。来源页保留原始链接和逐项记录。[Dense分支](/sources#qwen38-dense) [Flash-Next分支](/sources#qwen38) [MiMo源码](/sources#mimo26-code)\n\nGemma4-12B Unified 则提供一个海外设计对照：官方说明该分支采用encoder-free多模态接口，适合从数据输入与部署约束重新思考架构。[官方模型卡](/sources#gemma4) [报告v2](/sources#gemma4-report) 不同尺寸和分支有不同模态支持，不能把家族功能直接复制成每个checkpoint的能力。\n\n工程判断需要分清：权重可获取、推理代码可读、后训练代码可运行、训练数据可重建、报告足够详细，是五件不同的事。许可条款提到“training code”也不证明对应训练代码已经发布；必须找到实际文件和运行入口。\n\n## 可运行的成本直觉与源码任务\n```bash\npython3 -m labs.run --experiment moe --seed 7\npython3 -m labs.run --experiment rollout --seed 7\n```\n前者观察路由容量与负载，后者观察长短任务、队列与policy lag。这两个CPU机制实验无法实测这些大型模型的kernel或能力，但能检验你从报告推导出的系统因果方向。若假设一种架构减少每次推理服务时间，rollout瓶颈是否会转移到环境或grader？不要把“模型更快”直接换算成“训练同比例更快”。\n\n源码练习：在固定K3文件定位 `_apply_attn_res`，写出softmax轴和候选张量shape；在V4.1定位 `_compress_kv`，区分source与consumer；在MiMo文件确认模态token替换。交付一张调用图，给每条边标上张量/状态大小、生命周期、所属worker和是否需要梯度。\n\n研究任务：选择一个新的发布，提出可证伪的假设——它降低哪项成本，在哪类任务可能失败，最小消融怎样区分算法收益与数据收益。列出报告事实、源码确认、课程推断、未知四列，并为每个未知写出需要向上游寻找的具体证据。完成这一步，你就有了面对下一代模型时可复用的阅读方法。\n"
+}

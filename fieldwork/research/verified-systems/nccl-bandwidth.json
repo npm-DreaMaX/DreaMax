@@ -1,0 +1,9 @@
+{
+  "id": "nccl-bandwidth",
+  "repository": "https://github.com/NVIDIA/nccl-tests",
+  "version": "b4d5beebca8a76cf01335f724d154b9b9d394d96",
+  "file": "doc/PERFORMANCE.md",
+  "url": "https://github.com/NVIDIA/nccl-tests/blob/b4d5beebca8a76cf01335f724d154b9b9d394d96/doc/PERFORMANCE.md",
+  "accessed": "2026-09-22",
+  "commitDate": "2026-08-28T01:13:11Z"
+}

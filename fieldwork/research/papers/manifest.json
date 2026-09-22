@@ -1,0 +1,137 @@
+[
+  {
+    "id": "chinchilla",
+    "sourceId": "chinchilla",
+    "url": "https://arxiv.org/pdf/2203.15556",
+    "pdfPath": "research/papers/chinchilla/paper.pdf",
+    "pages": 36,
+    "sha256": "3fd3632a8ef48171bd25282990221d49535d75356192f068b3b2ebe08f2aedd4",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "deepseek-v3",
+    "sourceId": "deepseek-v3-report",
+    "url": "https://arxiv.org/pdf/2412.19437v2",
+    "pdfPath": "research/papers/deepseek-v3/paper.pdf",
+    "pages": 53,
+    "sha256": "812a3fd645c80725354de9d831a6785503007a60681461407f64e97305fa9330",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "qwen3",
+    "sourceId": "qwen3-report",
+    "url": "https://arxiv.org/pdf/2505.09388v1",
+    "pdfPath": "research/papers/qwen3/paper.pdf",
+    "pages": 35,
+    "sha256": "84a5e2b1fa04bb774bf12ae606d1e6d9dd2147ed2ebe78a4cfeb91ba380ffdd5",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "kimi-k2",
+    "sourceId": "kimi-k2-report",
+    "url": "https://arxiv.org/pdf/2507.20534v1",
+    "pdfPath": "research/papers/kimi-k2/paper.pdf",
+    "pages": 32,
+    "sha256": "b838917cf0a475d2e1b2f1ba4d0b4c91b6f6c8be95f15aa0d4f3ea76e4ef60f5",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "glm5",
+    "sourceId": "glm5-report",
+    "url": "https://arxiv.org/pdf/2602.15763",
+    "pdfPath": "research/papers/glm5/paper.pdf",
+    "pages": 40,
+    "sha256": "e20742ff36e08dc361de6973f7f72ad38e107edf8fd92d2a777a8428fc9b8f0e",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "instructgpt",
+    "sourceId": "instructgpt",
+    "url": "https://arxiv.org/pdf/2203.02155",
+    "pdfPath": "research/papers/instructgpt/paper.pdf",
+    "pages": 68,
+    "sha256": "c1984bb50a5b90fddb895fdc3a0f72e5bc977148c9f63ef6040cbe7a3e1f0d98",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "dpo",
+    "sourceId": "dpo-paper",
+    "url": "https://arxiv.org/pdf/2305.18290v3",
+    "pdfPath": "research/papers/dpo/paper.pdf",
+    "pages": 27,
+    "sha256": "92cb3a2b71362acda98a789b03d88688fd33cf5fcf13f81d2b1de30ee7d3b67a",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "deepseek-math",
+    "sourceId": "grpo-paper",
+    "url": "https://arxiv.org/pdf/2402.03300v3",
+    "pdfPath": "research/papers/deepseek-math/paper.pdf",
+    "pages": 30,
+    "sha256": "6cc20b3c5b8d25b8b53868fc4ec1792c144f07d67bdf7395138efd4422197e7b",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "deepseek-r1",
+    "sourceId": "r1-report",
+    "url": "https://arxiv.org/pdf/2501.12948v1",
+    "pdfPath": "research/papers/deepseek-r1/paper.pdf",
+    "pages": 22,
+    "sha256": "52d8ca3ac93e88cef9944e1fd03b0e04aec5954495a8250fb2fadf8fa20a4dad",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "process-supervision",
+    "sourceId": "process-supervision",
+    "url": "https://arxiv.org/pdf/2305.20050",
+    "pdfPath": "research/papers/process-supervision/paper.pdf",
+    "pages": 29,
+    "sha256": "fbd170e2042c32950c3fe97d3a558d89e8a8dffaadc942e774ccb4b751abc123",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "flashattention",
+    "sourceId": "flashattention",
+    "url": "https://arxiv.org/pdf/2205.14135",
+    "pdfPath": "research/papers/flashattention/paper.pdf",
+    "pages": 34,
+    "sha256": "ca7f9fda10b90fc05dd291a3accc85e9c1a4a860b99b31928dab03ed3fcb14e4",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "deepseek-v41",
+    "sourceId": "deepseek-v41-report",
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/DeepSeek_V41_Tech_Report.pdf",
+    "pdfPath": "research/frontier/deepseek-ai--DeepSeek-V4.1-Flash/DeepSeek_V41_Tech_Report.pdf",
+    "pages": 51,
+    "sha256": "ba68e2e40408125ae6d2f63a9a241b61c73910691c74ec1a2a7023c851eac08d",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "mimo-v26",
+    "sourceId": "mimo26-report",
+    "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL/resolve/5711b268169967567844e1e560e8a3966da959b1/MiMo_V2_6_technical_report.pdf",
+    "pdfPath": "research/frontier/XiaomiMiMo--MiMo-V2.6-Flash-RL/MiMo_V2_6_technical_report.pdf",
+    "pages": 44,
+    "sha256": "fb81e6e083801b3358f084ed6be953dc23b0d2e434690f4541d5eae03e01e7af",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "kimi-k3",
+    "sourceId": "kimi-k3-report",
+    "url": "https://github.com/MoonshotAI/Kimi-K3/blob/3cb39dfd32e51c3328e2e4b4af21341247d06c43/k3_tech_report.pdf",
+    "pdfPath": "research/frontier/moonshotai--Kimi-K3/k3_tech_report.pdf",
+    "pages": 47,
+    "sha256": "86fb82a63ced501f0c3f4f404c0c6fa88a7a6cfac17aae81fd1a8f455998067c",
+    "accessed": "2026-09-22"
+  },
+  {
+    "id": "qwen38",
+    "sourceId": "qwen38-report",
+    "url": "https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/69885871a64393807d988b27b1b5e380e8f28526/tech_report.pdf",
+    "pdfPath": "research/frontier/Qwen--Qwen3.8-Flash-Next/tech_report.pdf",
+    "pages": 28,
+    "sha256": "04f263446d74a35cb7cea368574e0c561f3b05c133be2c777ac884404063655d",
+    "accessed": "2026-09-22"
+  }
+]

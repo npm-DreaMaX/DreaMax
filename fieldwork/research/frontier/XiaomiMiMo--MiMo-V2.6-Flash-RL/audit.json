@@ -1,0 +1,26 @@
+{
+  "repository": "XiaomiMiMo/MiMo-V2.6-Flash-RL",
+  "sha": "5711b268169967567844e1e560e8a3966da959b1",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-09-21T15:39:51.000Z",
+  "lastModified": "2026-09-22T03:52:25.000Z",
+  "license": "mit",
+  "documents": [
+    "MiMo_V2_6_technical_report.pdf",
+    "README.md",
+    "audio_tokenizer/config.json",
+    "audio_tokenizer/generation_config.json",
+    "audio_tokenizer/tokenizer_config.json",
+    "config.json",
+    "configuration_mimo_v2.py",
+    "dflash/config.json",
+    "dflash/dflash.py",
+    "generation_config.json",
+    "modeling_mimo_v2.py",
+    "preprocessor_config.json",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "vocab.json"
+  ],
+  "readmeSha256": "132596ea76492320f5283756015e3f696f289b87fcf38e4b71602a8c901b0557"
+}

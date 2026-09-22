@@ -1,0 +1,28 @@
+{
+  "repository": "Qwen/Qwen3.8-Flash-Next",
+  "sha": "de4b8e4d43b917e7706784d8bb445c9af86a3540",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-08-24T08:24:59.000Z",
+  "lastModified": "2026-08-27T05:03:36.000Z",
+  "license": "other",
+  "results": [
+    {
+      "file": "README.md",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/resolve/de4b8e4d43b917e7706784d8bb445c9af86a3540/README.md",
+      "bytes": 65155,
+      "sha256": "35ca37ccc366f1ba478dab33841a2c0c18ce53fd62f291ca05341f7728b225b2"
+    },
+    {
+      "file": "config.json",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/resolve/de4b8e4d43b917e7706784d8bb445c9af86a3540/config.json",
+      "bytes": 4745,
+      "sha256": "889658f2508e8c61d409b02e70e0d78d8d4452ec65aaafbe129805d213d2e74b"
+    },
+    {
+      "file": "LICENSE",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/resolve/de4b8e4d43b917e7706784d8bb445c9af86a3540/LICENSE",
+      "bytes": 3235,
+      "sha256": "a0dc422560841fd68e06d974907f8b4c709bca44a67daad2b528437bdf676c08"
+    }
+  ]
+}

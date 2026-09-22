@@ -1,0 +1,9 @@
+{
+  "id": "qwen38",
+  "sourceId": "qwen38-report",
+  "url": "https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/69885871a64393807d988b27b1b5e380e8f28526/tech_report.pdf",
+  "pdfPath": "research/frontier/Qwen--Qwen3.8-Flash-Next/tech_report.pdf",
+  "pages": 28,
+  "sha256": "04f263446d74a35cb7cea368574e0c561f3b05c133be2c777ac884404063655d",
+  "accessed": "2026-09-22"
+}

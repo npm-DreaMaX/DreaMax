@@ -8,7 +8,7 @@ import PageLayout from "../../../layouts/PageLayout.astro";
       <a href="/tools" class="font-mono text-sm link-underline" style="color:rgba(255,255,255,0.4);">&larr; Back to Tools</a>
 
       <div class="game-box" style="margin-top:24px;">
-        <h1 class="font-sans text-2xl font-semibold text-white" style="margin:0 0 12px;">⚫ 五子棋 · Gomoku</h1>
+        <h1 class="font-sans text-2xl font-semibold text-white" style="margin:0 0 12px;">五子棋 · Gomoku</h1>
         <div id="status" class="font-mono text-sm" style="color:rgba(255,255,255,0.6); margin-bottom:12px; padding:6px 16px; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); display:inline-block;">黑棋先手</div>
 
         <div class="board-wrap" style="padding:12px; border-radius:16px; background:rgba(255,255,255,0.04); box-shadow:0 8px 30px rgba(0,0,0,0.3);">
@@ -19,7 +19,7 @@ import PageLayout from "../../../layouts/PageLayout.astro";
           <button onclick="restartGame()" class="btn btn-pink" style="padding:8px 20px;font-size:12px;">重新开始</button>
           <button id="musicBtn" onclick="toggleMusic()" class="btn btn-ghost" style="padding:8px 20px;font-size:12px;">开启音乐</button>
           <button id="soundBtn" onclick="toggleSound()" class="btn btn-ghost" style="padding:8px 20px;font-size:12px;">落子声：开</button>
-          <select id="difficulty" onchange="restartGame()" style="padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);font-family:'JetBrains Mono',monospace;font-size:12px;border:1px solid rgba(255,255,255,0.1);outline:none;cursor:pointer;">
+          <select aria-label="棋局难度" id="difficulty" onchange="restartGame()" style="padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);font-family:'JetBrains Mono',monospace;font-size:12px;border:1px solid rgba(255,255,255,0.1);outline:none;cursor:pointer;">
             <option value="normal" style="background:#1a1a1e;">休闲</option>
             <option value="hard" selected style="background:#1a1a1e;">标准</option>
             <option value="master" style="background:#1a1a1e;">挑战</option>

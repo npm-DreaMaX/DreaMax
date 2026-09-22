@@ -1,0 +1,40 @@
+---
+import TrainingLayout from '../../layouts/TrainingLayout.astro';
+import Sculpture from '../../components/experience/Sculpture.astro';
+import PaperShowcase from '../../components/experience/PaperShowcase.astro';
+import ToolArt from '../../components/experience/ToolArt.astro';
+import { trainingDirections as directions, trainingLabs as tools } from '../../data/experience';
+import { papers } from '../../../fieldwork/src/data/readings';
+---
+<TrainingLayout title="LLM Training — DreaMax" description="DreaMax 的大模型学习栏目。精读前沿技术报告，探索预训练、中训练、Agentic RL 与真实计算系统。">
+  <section class="dm-hero dm-container" aria-labelledby="hero-title">
+    <div class="dm-hero-copy">
+      <p class="dm-eyebrow hero-arrive"><span class="dm-status-dot"></span> DREAMAX / LLM TRAINING</p>
+      <h1 id="hero-title" class="hero-arrive">Learn deeply.<br/><span>Think bigger.</span></h1>
+      <div class="dm-hero-description hero-arrive"><p>从论文里的一个公式，<br/>到真正跑起来的一次训练。</p><span>PAPERS · SOURCE CODE · EXPERIMENTS</span></div>
+      <a class="dm-button dm-button-light hero-arrive" href="/fieldwork/">开始学习 <span aria-hidden="true">↗</span></a>
+    </div>
+    <Sculpture />
+    <div class="dm-hero-bottom"><span>A LEARNING SPACE BY DREAMAX</span><a href="#explore">向下探索 <span aria-hidden="true">↓</span></a></div>
+  </section>
+  <section class="dm-reading-section" id="explore" aria-labelledby="reading-title">
+    <div class="dm-container">
+      <div class="dm-section-top"><span class="dm-eyebrow">01 / THE READING ROOM</span><span class="dm-section-note">一个正在生长的公开阅读室</span></div>
+      <div class="dm-reading-heading" data-reveal><h2 id="reading-title">读懂智能，<br/><span>从一篇论文开始。</span></h2><div><p>跳出模型发布的热闹，回到值得读的原文。<br/>把技术报告拆开，将方法放在一起，<br/>再亲手运行一次。</p><a class="dm-text-link" href="/fieldwork/">进入 Fieldwork <span>↗</span></a></div></div>
+      <PaperShowcase />
+      <div class="dm-reading-bottom"><div class="dm-reading-stats"><span><strong>{papers.length.toString().padStart(2,'0')}</strong> 篇论文精读</span><span><strong>05</strong> 条阅读路线</span><span><strong>08</strong> 个交互实验</span></div><a class="dm-text-link" href="/fieldwork/papers">打开完整书架 ↗</a></div>
+      <a id="dm-resume-reading" class="dm-resume" href="/fieldwork/notebook" hidden><span class="dm-status-dot"></span><span data-resume-text>继续上次的阅读</span><span>继续阅读 ↗</span></a>
+    </div>
+  </section>
+  <section class="dm-directions dm-container" id="research" aria-labelledby="directions-title">
+    <div class="dm-section-top"><span class="dm-eyebrow">02 / AREAS OF CURIOSITY</span><span class="dm-section-note">让问题带路</span></div>
+    <h2 id="directions-title" class="dm-section-title" data-reveal>三个方向。<br/><span>同一种好奇心。</span></h2>
+    <div class="dm-direction-list">{directions.map(d => <a href={d.href} class="dm-direction" data-reveal><span class="dm-direction-no">{d.id}</span><div class="dm-direction-name"><h3>{d.title}</h3><span>{d.zh}</span></div><p>{d.description}</p><span class="dm-circle-arrow" aria-hidden="true">↗</span><div class={`dm-direction-art art-${d.kind}`} aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></a>)}</div>
+  </section>
+  <section class="dm-play-section" aria-labelledby="play-title">
+    <div class="dm-container"><div class="dm-section-top"><span class="dm-eyebrow">03 / THE EXPERIMENTS</span><a class="dm-text-link" href="/fieldwork/labs">全部实验 ↗</a></div>
+    <div class="dm-play-heading" data-reveal><h2 id="play-title">理解之后。<br/><span>让它运行。</span></h2><p>改变参数，观察结果。<br/>从最小实验看到训练系统的真实机制。</p></div>
+    <div class="dm-play-grid">{tools.slice(0,3).map(t => <a class={`dm-tool-preview ${t.color}`} href={t.href} data-reveal><div class="dm-tool-art"><ToolArt kind={t.art}/><span class="dm-tool-open" aria-hidden="true">↗</span></div><div class="dm-tool-meta"><div><span class="dm-eyebrow">{t.category}</span><h3>{t.title}<small>{t.zh}</small></h3></div><span>{t.tag}</span></div></a>)}</div></div>
+  </section>
+  <section class="dm-about-strip dm-container" data-reveal><p class="dm-eyebrow">PART OF DREAMAX</p><p>从报告到实验，<br/>再回到<strong>自己的判断</strong>。<br/><span>这个学习空间，是我个人网站的一部分。</span></p><a class="dm-text-link" href="/">返回个人主页 ↗</a></section>
+</TrainingLayout>

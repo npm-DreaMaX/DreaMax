@@ -1,0 +1,67 @@
+[
+  {
+    "id": "verl-async",
+    "title": "verl V1 Async Trainer",
+    "organization": "verl-project",
+    "type": "官方源码",
+    "url": "https://github.com/verl-project/verl/blob/8e03c039f9a70750490c93196b759b332fc029fd/docs/advance/v1_async_trainer.md",
+    "published": "2026-09-21",
+    "accessed": "2026-09-22",
+    "repository": "https://github.com/verl-project/verl",
+    "version": "8e03c039f9a70750490c93196b759b332fc029fd",
+    "license": "Apache-2.0",
+    "file": "docs/advance/v1_async_trainer.md",
+    "supports": [
+      "V1 sync/colocate_async/separate_async modes",
+      "Partial rollout保留前缀且可跨policy版本",
+      "staleness按group丢弃/等待策略"
+    ],
+    "chapters": [
+      "agent-rollout",
+      "agent-flywheel"
+    ],
+    "evidence": "源码观察"
+  },
+  {
+    "id": "kimi-k2-report",
+    "title": "Kimi K2: Open Agentic Intelligence",
+    "organization": "Moonshot AI",
+    "type": "技术报告",
+    "url": "https://arxiv.org/abs/2507.20534",
+    "published": "2025-07-28",
+    "accessed": "2026-09-22",
+    "repository": "https://github.com/MoonshotAI/Kimi-K2",
+    "version": "arXiv:2507.20534v1",
+    "license": "未核验",
+    "supports": [
+      "Agentic数据合成与真实/合成环境中的联合RL",
+      "可验证奖励和self-critique rubric结合的报告实践"
+    ],
+    "chapters": [
+      "agent-flywheel",
+      "agent-rewards"
+    ],
+    "evidence": "官方事实"
+  },
+  {
+    "id": "humaneval",
+    "repository": "https://github.com/openai/human-eval",
+    "version": "6d43fb980f9fee3c892a914eda09951f772ad10d",
+    "file": "human_eval/evaluation.py",
+    "url": "https://github.com/openai/human-eval/blob/6d43fb980f9fee3c892a914eda09951f772ad10d/human_eval/evaluation.py",
+    "title": "HumanEval pass@k estimator",
+    "organization": "OpenAI",
+    "type": "官方源码",
+    "published": "未标注",
+    "accessed": "2026-09-22",
+    "license": "未核验",
+    "symbol": "estimate_pass_at_k",
+    "supports": [
+      "按任务n,c估计pass@k，并按任务均值聚合"
+    ],
+    "chapters": [
+      "evaluation"
+    ],
+    "evidence": "源码观察"
+  }
+]

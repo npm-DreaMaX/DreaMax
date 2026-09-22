@@ -7,4 +7,4 @@ const s: Record<string, string> = {
   subtle: "border-white/5 text-white/30",
 };
 ---
-<span class="inline-block rounded-full border px-3 py-0.5 font-mono text-xs tracking-wider {s[variant]}">{label}</span>
+<span class={`inline-block rounded-full border px-3 py-0.5 font-mono text-xs tracking-wider ${s[variant]}`}>{label}</span>

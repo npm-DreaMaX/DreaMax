@@ -1,0 +1,9 @@
+{
+  "id": "deepseek-r1",
+  "sourceId": "r1-report",
+  "url": "https://arxiv.org/pdf/2501.12948v1",
+  "pdfPath": "research/papers/deepseek-r1/paper.pdf",
+  "pages": 22,
+  "sha256": "52d8ca3ac93e88cef9944e1fd03b0e04aec5954495a8250fb2fadf8fa20a4dad",
+  "accessed": "2026-09-22"
+}

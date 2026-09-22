@@ -1,0 +1,24 @@
+{
+  "repository": "moonshotai/Kimi-K3",
+  "sha": "f831ab66814297da540d832a5235f8e904f29d06",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-06-13T06:42:57.000Z",
+  "lastModified": "2026-09-02T02:22:41.000Z",
+  "license": "other",
+  "documents": [
+    "README.md",
+    "config.json",
+    "configuration_kimi_k3.py",
+    "encoding_k3.py",
+    "generation_config.json",
+    "kimi_k3_processor.py",
+    "kimi_k3_vision_processing.py",
+    "media_utils.py",
+    "modeling_kimi_k3.py",
+    "modeling_kimi_linear.py",
+    "preprocessor_config.json",
+    "tokenization_kimi.py",
+    "tokenizer_config.json"
+  ],
+  "readmeSha256": "57de265b5842dfa465c6e73b368b0e15a89b8793b5450528dad577da202cc6fe"
+}

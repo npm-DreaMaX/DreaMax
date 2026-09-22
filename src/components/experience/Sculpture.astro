@@ -1,0 +1,16 @@
+<div class="dm-sculpture" data-sculpture>
+  <div class="dm-sculpture-caption"><span>FIG. 001</span><span>THE SHAPE OF CURIOSITY</span></div>
+  <div class="dm-sculpture-stage" tabindex="0" role="img" aria-label="可交互的银色几何雕塑。拖动或按方向键旋转；下方按钮可以切换形态。">
+    <svg class="sculpture-fallback" viewBox="0 0 600 600" aria-hidden="true"><g transform="translate(300 300) rotate(-28)" fill="none" stroke="#aab0a3">{Array.from({length:24},(_,i) => <ellipse rx={145+i*2.2} ry={70+i*3.8} transform={`rotate(${i*7.5})`} stroke-opacity={.25+i*.025}/>)}</g></svg>
+    <canvas aria-hidden="true"></canvas>
+  </div>
+  <div class="dm-sculpture-toolbar">
+    <div class="dm-sculpture-modes" role="group" aria-label="雕塑形态"><button data-shape="0" aria-pressed="true">流形</button><button data-shape="1" aria-pressed="false">轨道</button><button data-shape="2" aria-pressed="false">结点</button></div>
+    <div class="dm-sculpture-controls"><span>拖动探索</span><button data-sculpture-reset aria-label="重置雕塑视角">↺</button><button data-sculpture-pause aria-label="暂停雕塑动画" aria-pressed="false"><span data-pause-icon>Ⅱ</span></button></div>
+  </div>
+</div>
+<script>
+  import { initSculpture } from '../../scripts/sculpture';
+  const host = document.querySelector<HTMLElement>('[data-sculpture]');
+  if (host) initSculpture(host);
+</script>

@@ -1,41 +1,45 @@
 ---
 import "../styles/global.css";
-import ClickEffect from "../components/ui/ClickEffect.astro";
-import GradientBackground from "../components/ui/GradientBackground.astro";
-import TerminalSlogan from "../components/ui/TerminalSlogan.astro";
+import "@fontsource-variable/space-grotesk";
+import "@fontsource-variable/manrope";
+import "../styles/experience.css";
+import "../styles/portfolio.css";
+import RouteTransition from "../components/navigation/RouteTransition.astro";
+import TransitionHead from "../components/navigation/TransitionHead.astro";
 
 interface Props {
   title?: string;
   description?: string;
+  area?: "portfolio" | "training";
 }
 
-const { title = "DreaMax", description = "Personal academic portfolio" } = Astro.props;
+const { title = "DreaMax", description = "Personal academic portfolio", area = "portfolio" } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap"
-      rel="stylesheet"
-    />
-
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <meta name="theme-color" content="#111210" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/social-cover.png', Astro.site)} />
     <title>{title}</title>
+    <TransitionHead />
     <meta name="google-site-verification" content="3YL1gKOah_n_SNHoKifTj6UMS3C6bJEj0_3UXSkF4pg" />
     <meta name="msvalidate.01" content="95670F94350AAEFDAB55FD3E650690FA" />
   </head>
-  <body>
-    <GradientBackground />
-    <div class="grain-overlay"></div>
-    <ClickEffect />
-    <TerminalSlogan />
+  <body class:list={["dm-site", `dm-${area}`]}>
+    <RouteTransition />
+    <a class="dm-skip" href="#main-content">跳到正文</a>
     <slot />
+    <script>
+      import { initExperience } from '../scripts/experience';
+      initExperience();
+    </script>
   </body>
 </html>

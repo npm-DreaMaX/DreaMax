@@ -1,0 +1,16 @@
+{
+  "repository": "zai-org/GLM-5.3",
+  "sha": "aca966e4e02791568aa6a4ced368624b3d897f42",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-08-25T06:42:50.000Z",
+  "lastModified": "2026-09-04T06:41:23.000Z",
+  "license": "other",
+  "documents": [
+    "README.md",
+    "config.json",
+    "generation_config.json",
+    "tokenizer.json",
+    "tokenizer_config.json"
+  ],
+  "readmeSha256": "ed1c0a4563c437a32f8953d637a1db9bd831de1b24bd3062a5ace9e04340b1cf"
+}

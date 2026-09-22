@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script>document.documentElement.classList.add('js');</script>  <title>[2507.20534v1] Kimi K2: Open Agentic Intelligence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/browse/0.3.4/images/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/browse/0.3.4/images/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/browse/0.3.4/images/icons/favicon-16x16.png">
+  <link rel="manifest" href="/static/browse/0.3.4/images/icons/site.webmanifest">
+  <link rel="mask-icon" href="/static/browse/0.3.4/images/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" type="text/css" media="screen" href="/static/browse/0.3.4/css/arXiv.css?v=20260318" />
+  <link rel="stylesheet" type="text/css" media="print" href="/static/browse/0.3.4/css/arXiv-print.css?v=20200611" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/static/browse/0.3.4/css/browse_search.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/static/base/1.0.1/css/arxiv-header-footer.css?v=20260626" />
+  <script language="javascript" src="/static/browse/0.3.4/js/accordion.js" ></script>
+  <script language="javascript" src="/static/browse/0.3.4/js/optin-modal.js?v=20250819"></script>
+  
+  <link rel="canonical" href="https://arxiv.org/abs/2507.20534"/>
+  <meta name="description" content="Abstract page for arXiv paper 2507.20534v1: Kimi K2: Open Agentic Intelligence"><meta property="og:type" content="website" />
+<meta property="og:site_name" content="arXiv.org" />
+<meta property="og:title" content="Kimi K2: Open Agentic Intelligence" />
+<meta property="og:url" content="https://arxiv.org/abs/2507.20534v1" />
+<meta property="og:image" content="/static/browse/0.3.4/images/arxiv-logo-fb.png" />
+<meta property="og:image:secure_url" content="/static/browse/0.3.4/images/arxiv-logo-fb.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="700" />
+<meta property="og:image:alt" content="arXiv logo"/>
+<meta property="og:description" content="We introduce Kimi K2, a Mixture-of-Experts (MoE) large language model with 32 billion activated parameters and 1 trillion total parameters. We propose the MuonClip optimizer, which improves upon Muon with a novel QK-clip technique to address training instability while enjoying the advanced token efficiency of Muon. Based on MuonClip, K2 was pre-trained on 15.5 trillion tokens with zero loss spike. During post-training, K2 undergoes a multi-stage post-training process, highlighted by a large-scale agentic data synthesis pipeline and a joint reinforcement learning (RL) stage, where the model improves its capabilities through interactions with real and synthetic environments.
+  Kimi K2 achieves state-of-the-art performance among open-source non-thinking models, with strengths in agentic capabilities. Notably, K2 obtains 66.1 on Tau2-Bench, 76.5 on ACEBench (En), 65.8 on SWE-Bench Verified, and 47.3 on SWE-Bench Multilingual -- surpassing most open and closed-sourced baselines in non-thinking settings. It also exhibits strong capabilities in coding, mathematics, and reasoning tasks, with a score of 53.7 on LiveCodeBench v6, 49.5 on AIME 2025, 75.1 on GPQA-Diamond, and 27.1 on OJBench, all without extended thinking. These results position Kimi K2 as one of the most capable open-source large language models to date, particularly in software engineering and agentic tasks. We release our base and post-trained model checkpoints to facilitate future research and applications of agentic intelligence."/>
+<meta name="twitter:site" content="@arxiv"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kimi K2: Open Agentic Intelligence"/>
+<meta name="twitter:description" content="We introduce Kimi K2, a Mixture-of-Experts (MoE) large language model with 32 billion activated parameters and 1 trillion total parameters. We propose the MuonClip optimizer, which improves upon..."/>
+<meta name="twitter:image" content="https://static.arxiv.org/icons/twitter/arxiv-logo-twitter-square.png"/>
+<meta name="twitter:image:alt" content="arXiv logo"/>
+  <link rel="stylesheet" media="screen" type="text/css" href="/static/browse/0.3.4/css/tooltip.css"/><link rel="stylesheet" media="screen" type="text/css" href="https://static.arxiv.org/js/bibex-dev/bibex.css?20200709"/>  <script src="/static/browse/0.3.4/js/mathjaxToggle.min.js" type="text/javascript"></script>  <script src="//code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+  <script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" type="text/javascript"></script>
+  <script src="//cdn.jsdelivr.net/npm/dompurify@2.3.5/dist/purify.min.js"></script>
+  <script src="/static/browse/0.3.4/js/toggle-labs.js?20241022" type="text/javascript"></script>
+  <script src="/static/browse/0.3.4/js/cite.js" type="text/javascript"></script><meta name="citation_title" content="Kimi K2: Open Agentic Intelligence" /><meta name="citation_author" content="Kimi Team" /><meta name="citation_author" content="Bai, Yifan" /><meta name="citation_author" content="Bao, Yiping" /><meta name="citation_author" content="Chen, Guanduo" /><meta name="citation_author" content="Chen, Jiahao" /><meta name="citation_author" content="Chen, Ningxin" /><meta name="citation_author" content="Chen, Ruijue" /><meta name="citation_author" content="Chen, Yanru" /><meta name="citation_author" content="Chen, Yuankun" /><meta name="citation_author" content="Chen, Yutian" /><meta name="citation_author" content="Chen, Zhuofu" /><meta name="citation_author" content="Cui, Jialei" /><meta name="citation_author" content="Ding, Hao" /><meta name="citation_author" content="Dong, Mengnan" /><meta name="citation_author" content="Du, Angang" /><meta name="citation_author" content="Du, Chenzhuang" /><meta name="citation_author" content="Du, Dikang" /><meta name="citation_author" content="Du, Yulun" /><meta name="citation_author" content="Fan, Yu" /><meta name="citation_author" content="Feng, Yichen" /><meta name="citation_author" content="Fu, Kelin" /><meta name="citation_author" content="Gao, Bofei" /><meta name="citation_author" content="Gao, Hongcheng" /><meta name="citation_author" content="Gao, Peizhong" /><meta name="citation_author" content="Gao, Tong" /><meta name="citation_author" content="Gu, Xinran" /><meta name="citation_author" content="Guan, Longyu" /><meta name="citation_author" content="Guo, Haiqing" /><meta name="citation_author" content="Guo, Jianhang" /><meta name="citation_author" content="Hu, Hao" /><meta name="citation_author" content="Hao, Xiaoru" /><meta name="citation_author" content="He, Tianhong" /><meta name="citation_author" content="He, Weiran" /><meta name="citation_author" content="He, Wenyang" /><meta name="citation_author" content="Hong, Chao" /><meta name="citation_author" content="Hu, Yangyang" /><meta name="citation_author" content="Hu, Zhenxing" /><meta name="citation_author" content="Huang, Weixiao" /><meta name="citation_author" content="Huang, Zhiqi" /><meta name="citation_author" content="Huang, Zihao" /><meta name="citation_author" content="Jiang, Tao" /><meta name="citation_author" content="Jiang, Zhejun" /><meta name="citation_author" content="Jin, Xinyi" /><meta name="citation_author" content="Kang, Yongsheng" /><meta name="citation_author" content="Lai, Guokun" /><meta name="citation_author" content="Li, Cheng" /><meta name="citation_author" content="Li, Fang" /><meta name="citation_author" content="Li, Haoyang" /><meta name="citation_author" content="Li, Ming" /><meta name="citation_author" content="Li, Wentao" /><meta name="citation_author" content="Li, Yanhao" /><meta name="citation_author" content="Li, Yiwei" /><meta name="citation_author" content="Li, Zhaowei" /><meta name="citation_author" content="Li, Zheming" /><meta name="citation_author" content="Lin, Hongzhan" /><meta name="citation_author" content="Lin, Xiaohan" /><meta name="citation_author" content="Lin, Zongyu" /><meta name="citation_author" content="Liu, Chengyin" /><meta name="citation_author" content="Liu, Chenyu" /><meta name="citation_author" content="Liu, Hongzhang" /><meta name="citation_author" content="Liu, Jingyuan" /><meta name="citation_author" content="Liu, Junqi" /><meta name="citation_author" content="Liu, Liang" /><meta name="citation_author" content="Liu, Shaowei" /><meta name="citation_author" content="Liu, T. Y." /><meta name="citation_author" content="Liu, Tianwei" /><meta name="citation_author" content="Liu, Weizhou" /><meta name="citation_author" content="Liu, Yangyang" /><meta name="citation_author" content="Liu, Yibo" /><meta name="citation_author" content="Liu, Yiping" /><meta name="citation_author" content="Liu, Yue" /><meta name="citation_author" content="Liu, Zhengying" /><meta name="citation_author" content="Lu, Enzhe" /><meta name="citation_author" content="Lu, Lijun" /><meta name="citation_author" content="Ma, Shengling" /><meta name="citation_author" content="Ma, Xinyu" /><meta name="citation_author" content="Ma, Yingwei" /><meta name="citation_author" content="Mao, Shaoguang" /><meta name="citation_author" content="Mei, Jie" /><meta name="citation_author" content="Men, Xin" /><meta name="citation_author" content="Miao, Yibo" /><meta name="citation_author" content="Pan, Siyuan" /><meta name="citation_author" content="Peng, Yebo" /><meta name="citation_author" content="Qin, Ruoyu" /><meta name="citation_author" content="Qu, Bowen" /><meta name="citation_author" content="Shang, Zeyu" /><meta name="citation_author" content="Shi, Lidong" /><meta name="citation_author" content="Shi, Shengyuan" /><meta name="citation_author" content="Song, Feifan" /><meta name="citation_author" content="Su, Jianlin" /><meta name="citation_author" content="Su, Zhengyuan" /><meta name="citation_author" content="Sun, Xinjie" /><meta name="citation_author" content="Sung, Flood" /><meta name="citation_author" content="Tang, Heyi" /><meta name="citation_author" content="Tao, Jiawen" /><meta name="citation_author" content="Teng, Qifeng" /><meta name="citation_author" content="Wang, Chensi" /><meta name="citation_author" content="Wang, Dinglu" /><meta name="citation_author" content="Wang, Feng" /><meta name="citation_author" content="Wang, Haiming" /><meta name="citation_author" content="Wang, Jianzhou" /><meta name="citation_author" content="Wang, Jiaxing" /><meta name="citation_author" content="Wang, Jinhong" /><meta name="citation_author" content="Wang, Shengjie" /><meta name="citation_author" content="Wang, Shuyi" /><meta name="citation_author" content="Wang, Yao" /><meta name="citation_author" content="Wang, Yejie" /><meta name="citation_author" content="Wang, Yiqin" /><meta name="citation_author" content="Wang, Yuxin" /><meta name="citation_author" content="Wang, Yuzhi" /><meta name="citation_author" content="Wang, Zhaoji" /><meta name="citation_author" content="Wang, Zhengtao" /><meta name="citation_author" content="Wang, Zhexu" /><meta name="citation_author" content="Wei, Chu" /><meta name="citation_author" content="Wei, Qianqian" /><meta name="citation_author" content="Wu, Wenhao" /><meta name="citation_author" content="Wu, Xingzhe" /><meta name="citation_author" content="Wu, Yuxin" /><meta name="citation_author" content="Xiao, Chenjun" /><meta name="citation_author" content="Xie, Xiaotong" /><meta name="citation_author" content="Xiong, Weimin" /><meta name="citation_author" content="Xu, Boyu" /><meta name="citation_author" content="Xu, Jing" /><meta name="citation_author" content="Xu, Jinjing" /><meta name="citation_author" content="Xu, L. H." /><meta name="citation_author" content="Xu, Lin" /><meta name="citation_author" content="Xu, Suting" /><meta name="citation_author" content="Xu, Weixin" /><meta name="citation_author" content="Xu, Xinran" /><meta name="citation_author" content="Xu, Yangchuan" /><meta name="citation_author" content="Xu, Ziyao" /><meta name="citation_author" content="Yan, Junjie" /><meta name="citation_author" content="Yan, Yuzi" /><meta name="citation_author" content="Yang, Xiaofei" /><meta name="citation_author" content="Yang, Ying" /><meta name="citation_author" content="Yang, Zhen" /><meta name="citation_author" content="Yang, Zhilin" /><meta name="citation_author" content="Yang, Zonghan" /><meta name="citation_author" content="Yao, Haotian" /><meta name="citation_author" content="Yao, Xingcheng" /><meta name="citation_author" content="Ye, Wenjie" /><meta name="citation_author" content="Ye, Zhuorui" /><meta name="citation_author" content="Yin, Bohong" /><meta name="citation_author" content="Yu, Longhui" /><meta name="citation_author" content="Yuan, Enming" /><meta name="citation_author" content="Yuan, Hongbang" /><meta name="citation_author" content="Yuan, Mengjie" /><meta name="citation_author" content="Zhan, Haobing" /><meta name="citation_author" content="Zhang, Dehao" /><meta name="citation_author" content="Zhang, Hao" /><meta name="citation_author" content="Zhang, Wanlu" /><meta name="citation_author" content="Zhang, Xiaobin" /><meta name="citation_author" content="Zhang, Yangkun" /><meta name="citation_author" content="Zhang, Yizhi" /><meta name="citation_author" content="Zhang, Yongting" /><meta name="citation_author" content="Zhang, Yu" /><meta name="citation_author" content="Zhang, Yutao" /><meta name="citation_author" content="Zhang, Yutong" /><meta name="citation_author" content="Zhang, Zheng" /><meta name="citation_author" content="Zhao, Haotian" /><meta name="citation_author" content="Zhao, Yikai" /><meta name="citation_author" content="Zheng, Huabin" /><meta name="citation_author" content="Zheng, Shaojie" /><meta name="citation_author" content="Zhou, Jianren" /><meta name="citation_author" content="Zhou, Xinyu" /><meta name="citation_author" content="Zhou, Zaida" /><meta name="citation_author" content="Zhu, Zhen" /><meta name="citation_author" content="Zhuang, Weiyu" /><meta name="citation_author" content="Zu, Xinxing" /><meta name="citation_date" content="2025/07/28" /><meta name="citation_online_date" content="2025/07/28" /><meta name="citation_pdf_url" content="https://arxiv.org/pdf/2507.20534" /><meta name="citation_arxiv_id" content="2507.20534" /><meta name="citation_abstract" content="We introduce Kimi K2, a Mixture-of-Experts (MoE) large language model with 32 billion activated parameters and 1 trillion total parameters. We propose the MuonClip optimizer, which improves upon Muon with a novel QK-clip technique to address training instability while enjoying the advanced token efficiency of Muon. Based on MuonClip, K2 was pre-trained on 15.5 trillion tokens with zero loss spike. During post-training, K2 undergoes a multi-stage post-training process, highlighted by a large-scale agentic data synthesis pipeline and a joint reinforcement learning (RL) stage, where the model improves its capabilities through interactions with real and synthetic environments. Kimi K2 achieves state-of-the-art performance among open-source non-thinking models, with strengths in agentic capabilities. Notably, K2 obtains 66.1 on Tau2-Bench, 76.5 on ACEBench (En), 65.8 on SWE-Bench Verified, and 47.3 on SWE-Bench Multilingual -- surpassing most open and closed-sourced baselines in non-thinking settings. It also exhibits strong capabilities in coding, mathematics, and reasoning tasks, with a score of 53.7 on LiveCodeBench v6, 49.5 on AIME 2025, 75.1 on GPQA-Diamond, and 27.1 on OJBench, all without extended thinking. These results position Kimi K2 as one of the most capable open-source large language models to date, particularly in software engineering and agentic tasks. We release our base and post-trained model checkpoints to facilitate future research and applications of agentic intelligence." />
+</head>
+
+<body ><div class="flex-wrap-footer">
+    <a href="#content" class="ds-skip-link">Skip to main content</a>
+  
+  
+  
+<header class="ds-site-header">
+  <a aria-hidden="true" tabindex="-1" href="https://arxiv.org/IgnoreMe" class="is-sr-only"></a>
+
+  <a href="https://arxiv.org/" class="ds-site-header-logo" aria-label="archive home">
+    <img src="/static/base/1.0.1/images/arxiv-logo-primary-light.svg" alt="archive">
+  </a>
+
+  <button type="button" id="ds-nav-toggle" class="ds-site-header-nav-toggle"
+    aria-label="Open menu" aria-controls="ds-site-header-nav" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+
+  <nav class="ds-site-header-nav" id="ds-site-header-nav" aria-label="Main navigation"><a id="arxiv-search-toggle" href="https://arxiv.org/search"
+      aria-controls="arxiv-search-overlay" aria-expanded="false">
+      <svg class="ds-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      Search
+    </a>
+    <a href="https://arxiv.org/user/create">Submit</a>
+    <a href="https://info.arxiv.org/about/donate.html">Donate</a>
+    <span class="ds-site-header-divider" aria-hidden="true"></span>
+      <a href="https://arxiv.org/login" class="ds-site-header-login">Log in</a>
+  </nav>
+</header>
+
+<div class="arxiv-search-overlay" id="arxiv-search-overlay" hidden>
+  <div class="arxiv-search-panel" role="search">
+    <form method="GET" action="https://arxiv.org/search">
+      <label for="arxiv-search-input" class="is-sr-only">Search arXiv</label>
+      <input type="text" name="query" id="arxiv-search-input" autocomplete="off"
+        placeholder="Search papers by title, author, abstract, or ID...">
+      <input type="hidden" name="searchtype" value="all">
+      <input type="hidden" name="source" value="header">
+    </form>
+    <div class="arxiv-search-hint">
+      Press Enter to search &middot; <a href="https://arxiv.org/search/advanced">Advanced search</a>
+    </div>
+  </div>
+</div>
+    <main>
+      <div id="content">
+<!--
+rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+    <rdf:Description
+        rdf:about="/abs/2507.20534"
+        dc:identifier="/abs/2507.20534"
+        dc:title="Kimi K2: Open Agentic Intelligence"
+        trackback:ping="/trackback/2507.20534" />
+    </rdf:RDF>
+--><div id="abs-outer">
+
+  <div class="leftcolumn">
+    <div class="subheader">
+      <h1>Computer Science > Machine Learning</h1>
+    </div>
+
+    <div class="header-breadcrumbs-mobile">
+      <strong>arXiv:2507.20534v1</strong> (cs)
+    </div>
+<link rel="stylesheet" type="text/css" href="/static/base/1.0.1/css/abs.css">
+<div id="content-inner">
+  <div id="abs">
+    <div class="dateline">
+  [Submitted on 28 Jul 2025 (this version), <em>latest version 3 Feb 2026</em> (<a href="https://arxiv.org/abs/2507.20534v2">v2</a>)]</div>
+    <h1 class="title mathjax"><span class="descriptor">Title:</span>Kimi K2: Open Agentic Intelligence</h1>
+    <div class="authors"><span class="descriptor">Authors:</span><a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Kimi+Team" rel="nofollow">Kimi Team</a>: <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Bai,+Y" rel="nofollow">Yifan Bai</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Bao,+Y" rel="nofollow">Yiping Bao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen,+G" rel="nofollow">Guanduo Chen</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen,+J" rel="nofollow">Jiahao Chen</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen,+N" rel="nofollow">Ningxin Chen</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen,+R" rel="nofollow">Ruijue Chen</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen,+Y" rel="nofollow">Yanru Chen</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen,+Y" rel="nofollow">Yuankun Chen</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen,+Y" rel="nofollow">Yutian Chen</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen,+Z" rel="nofollow">Zhuofu Chen</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Cui,+J" rel="nofollow">Jialei Cui</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Ding,+H" rel="nofollow">Hao Ding</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Dong,+M" rel="nofollow">Mengnan Dong</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Du,+A" rel="nofollow">Angang Du</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Du,+C" rel="nofollow">Chenzhuang Du</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Du,+D" rel="nofollow">Dikang Du</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Du,+Y" rel="nofollow">Yulun Du</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Fan,+Y" rel="nofollow">Yu Fan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Feng,+Y" rel="nofollow">Yichen Feng</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Fu,+K" rel="nofollow">Kelin Fu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Gao,+B" rel="nofollow">Bofei Gao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Gao,+H" rel="nofollow">Hongcheng Gao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Gao,+P" rel="nofollow">Peizhong Gao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Gao,+T" rel="nofollow">Tong Gao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Gu,+X" rel="nofollow">Xinran Gu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Guan,+L" rel="nofollow">Longyu Guan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Guo,+H" rel="nofollow">Haiqing Guo</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Guo,+J" rel="nofollow">Jianhang Guo</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Hu,+H" rel="nofollow">Hao Hu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Hao,+X" rel="nofollow">Xiaoru Hao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=He,+T" rel="nofollow">Tianhong He</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=He,+W" rel="nofollow">Weiran He</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=He,+W" rel="nofollow">Wenyang He</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Hong,+C" rel="nofollow">Chao Hong</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Hu,+Y" rel="nofollow">Yangyang Hu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Hu,+Z" rel="nofollow">Zhenxing Hu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Huang,+W" rel="nofollow">Weixiao Huang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Huang,+Z" rel="nofollow">Zhiqi Huang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Huang,+Z" rel="nofollow">Zihao Huang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Jiang,+T" rel="nofollow">Tao Jiang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Jiang,+Z" rel="nofollow">Zhejun Jiang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Jin,+X" rel="nofollow">Xinyi Jin</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Kang,+Y" rel="nofollow">Yongsheng Kang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lai,+G" rel="nofollow">Guokun Lai</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+C" rel="nofollow">Cheng Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+F" rel="nofollow">Fang Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+H" rel="nofollow">Haoyang Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+M" rel="nofollow">Ming Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+W" rel="nofollow">Wentao Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+Y" rel="nofollow">Yanhao Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+Y" rel="nofollow">Yiwei Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+Z" rel="nofollow">Zhaowei Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+Z" rel="nofollow">Zheming Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lin,+H" rel="nofollow">Hongzhan Lin</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lin,+X" rel="nofollow">Xiaohan Lin</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lin,+Z" rel="nofollow">Zongyu Lin</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+C" rel="nofollow">Chengyin Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+C" rel="nofollow">Chenyu Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+H" rel="nofollow">Hongzhang Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+J" rel="nofollow">Jingyuan Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+J" rel="nofollow">Junqi Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+L" rel="nofollow">Liang Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+S" rel="nofollow">Shaowei Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+T" rel="nofollow">T.Y. Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+T" rel="nofollow">Tianwei Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+W" rel="nofollow">Weizhou Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+Y" rel="nofollow">Yangyang Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+Y" rel="nofollow">Yibo Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+Y" rel="nofollow">Yiping Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+Y" rel="nofollow">Yue Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+Z" rel="nofollow">Zhengying Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lu,+E" rel="nofollow">Enzhe Lu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lu,+L" rel="nofollow">Lijun Lu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Ma,+S" rel="nofollow">Shengling Ma</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Ma,+X" rel="nofollow">Xinyu Ma</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Ma,+Y" rel="nofollow">Yingwei Ma</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Mao,+S" rel="nofollow">Shaoguang Mao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Mei,+J" rel="nofollow">Jie Mei</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Men,+X" rel="nofollow">Xin Men</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Miao,+Y" rel="nofollow">Yibo Miao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Pan,+S" rel="nofollow">Siyuan Pan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Peng,+Y" rel="nofollow">Yebo Peng</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Qin,+R" rel="nofollow">Ruoyu Qin</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Qu,+B" rel="nofollow">Bowen Qu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Shang,+Z" rel="nofollow">Zeyu Shang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Shi,+L" rel="nofollow">Lidong Shi</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Shi,+S" rel="nofollow">Shengyuan Shi</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Song,+F" rel="nofollow">Feifan Song</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Su,+J" rel="nofollow">Jianlin Su</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Su,+Z" rel="nofollow">Zhengyuan Su</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Sun,+X" rel="nofollow">Xinjie Sun</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Sung,+F" rel="nofollow">Flood Sung</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Tang,+H" rel="nofollow">Heyi Tang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Tao,+J" rel="nofollow">Jiawen Tao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Teng,+Q" rel="nofollow">Qifeng Teng</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+C" rel="nofollow">Chensi Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+D" rel="nofollow">Dinglu Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+F" rel="nofollow">Feng Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+H" rel="nofollow">Haiming Wang</a>
+<script type="text/javascript">
+<!--
+function toggleAuthorList(whichLayer,toggleThis)
+{
+  var elem, vis, tempToggle;
+  tempToggle=toggleThis;
+  if( document.getElementById ) // standard
+      elem = document.getElementById( whichLayer );
+  else if( document.all ) // old msie versions
+      elem = document.all[whichLayer];
+  else if( document.layers ) // nn4
+      elem = document.layers[whichLayer];
+  vis = elem.style;
+  // if the style.display value is blank we try to figure it out here
+  if(vis.display==''&&elem.offsetWidth!=undefined&&elem.offsetHeight!=undefined)
+    vis.display = (elem.offsetWidth!=0&&elem.offsetHeight!=0)?'inline':'none';
+  vis.display = (vis.display==''||vis.display=='inline')?'none':'inline';
+
+  // toggle link inner text
+  status = vis.display;
+  if(status=='none'){
+      document.getElementById('toggle').innerHTML = tempToggle ;
+      document.getElementById('toggle').title = "Show Entire Author List";
+  }
+  else if(status=='inline'){
+      document.getElementById('toggle').innerHTML = "(collapse list)";
+      document.getElementById('toggle').title = "Collapse Author List";
+  }
+}
+//-->
+</script>
+
+  <div id="long-author-list" style="display: none;">
+        , <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+J" rel="nofollow">Jianzhou Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+J" rel="nofollow">Jiaxing Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+J" rel="nofollow">Jinhong Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+S" rel="nofollow">Shengjie Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+S" rel="nofollow">Shuyi Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+Y" rel="nofollow">Yao Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+Y" rel="nofollow">Yejie Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+Y" rel="nofollow">Yiqin Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+Y" rel="nofollow">Yuxin Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+Y" rel="nofollow">Yuzhi Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+Z" rel="nofollow">Zhaoji Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+Z" rel="nofollow">Zhengtao Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+Z" rel="nofollow">Zhexu Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wei,+C" rel="nofollow">Chu Wei</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wei,+Q" rel="nofollow">Qianqian Wei</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wu,+W" rel="nofollow">Wenhao Wu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wu,+X" rel="nofollow">Xingzhe Wu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wu,+Y" rel="nofollow">Yuxin Wu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xiao,+C" rel="nofollow">Chenjun Xiao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xie,+X" rel="nofollow">Xiaotong Xie</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xiong,+W" rel="nofollow">Weimin Xiong</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+B" rel="nofollow">Boyu Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+J" rel="nofollow">Jing Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+J" rel="nofollow">Jinjing Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+L" rel="nofollow">L.H. Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+L" rel="nofollow">Lin Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+S" rel="nofollow">Suting Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+W" rel="nofollow">Weixin Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+X" rel="nofollow">Xinran Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+Y" rel="nofollow">Yangchuan Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+Z" rel="nofollow">Ziyao Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yan,+J" rel="nofollow">Junjie Yan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yan,+Y" rel="nofollow">Yuzi Yan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yang,+X" rel="nofollow">Xiaofei Yang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yang,+Y" rel="nofollow">Ying Yang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yang,+Z" rel="nofollow">Zhen Yang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yang,+Z" rel="nofollow">Zhilin Yang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yang,+Z" rel="nofollow">Zonghan Yang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yao,+H" rel="nofollow">Haotian Yao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yao,+X" rel="nofollow">Xingcheng Yao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Ye,+W" rel="nofollow">Wenjie Ye</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Ye,+Z" rel="nofollow">Zhuorui Ye</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yin,+B" rel="nofollow">Bohong Yin</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yu,+L" rel="nofollow">Longhui Yu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yuan,+E" rel="nofollow">Enming Yuan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yuan,+H" rel="nofollow">Hongbang Yuan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yuan,+M" rel="nofollow">Mengjie Yuan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhan,+H" rel="nofollow">Haobing Zhan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+D" rel="nofollow">Dehao Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+H" rel="nofollow">Hao Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+W" rel="nofollow">Wanlu Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+X" rel="nofollow">Xiaobin Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+Y" rel="nofollow">Yangkun Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+Y" rel="nofollow">Yizhi Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+Y" rel="nofollow">Yongting Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+Y" rel="nofollow">Yu Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+Y" rel="nofollow">Yutao Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+Y" rel="nofollow">Yutong Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+Z" rel="nofollow">Zheng Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhao,+H" rel="nofollow">Haotian Zhao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhao,+Y" rel="nofollow">Yikai Zhao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zheng,+H" rel="nofollow">Huabin Zheng</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zheng,+S" rel="nofollow">Shaojie Zheng</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhou,+J" rel="nofollow">Jianren Zhou</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhou,+X" rel="nofollow">Xinyu Zhou</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhou,+Z" rel="nofollow">Zaida Zhou</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhu,+Z" rel="nofollow">Zhen Zhu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhuang,+W" rel="nofollow">Weiyu Zhuang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zu,+X" rel="nofollow">Xinxing Zu</a>
+  </div>
+  <a href="javascript:toggleAuthorList('long-author-list','et al. (69 additional authors not shown)');"
+     title="Show Entire Author List" id="toggle">
+    et al. (69 additional authors not shown)</a>
+  <noscript>&nbsp;You must enable JavaScript to view entire author list.</noscript></div>            <div id="download-button-info" hidden>View a PDF of the paper titled Kimi K2: Open Agentic Intelligence, by Kimi Team: Yifan Bai and 167 other authors</div>
+    <a class="mobile-submission-download" href="/pdf/2507.20534v1">View PDF</a>
+    <a class="mobile-submission-download" href="https://arxiv.org/html/2507.20534v1">HTML (experimental)</a>
+
+
+
+    <blockquote class="abstract mathjax">
+            <span class="descriptor">Abstract:</span>We introduce Kimi K2, a Mixture-of-Experts (MoE) large language model with 32 billion activated parameters and 1 trillion total parameters. We propose the MuonClip optimizer, which improves upon Muon with a novel QK-clip technique to address training instability while enjoying the advanced token efficiency of Muon. Based on MuonClip, K2 was pre-trained on 15.5 trillion tokens with zero loss spike. During post-training, K2 undergoes a multi-stage post-training process, highlighted by a large-scale agentic data synthesis pipeline and a joint reinforcement learning (RL) stage, where the model improves its capabilities through interactions with real and synthetic environments.
+<br>Kimi K2 achieves state-of-the-art performance among open-source non-thinking models, with strengths in agentic capabilities. Notably, K2 obtains 66.1 on Tau2-Bench, 76.5 on ACEBench (En), 65.8 on SWE-Bench Verified, and 47.3 on SWE-Bench Multilingual -- surpassing most open and closed-sourced baselines in non-thinking settings. It also exhibits strong capabilities in coding, mathematics, and reasoning tasks, with a score of 53.7 on LiveCodeBench v6, 49.5 on AIME 2025, 75.1 on GPQA-Diamond, and 27.1 on OJBench, all without extended thinking. These results position Kimi K2 as one of the most capable open-source large language models to date, particularly in software engineering and agentic tasks. We release our base and post-trained model checkpoints to facilitate future research and applications of agentic intelligence.
+    </blockquote>
+
+    <!--CONTEXT-->
+    <div class="metatable">
+      <table summary="Additional metadata">        <tr>
+          <td class="tablecell label">Comments:</td>
+          <td class="tablecell comments mathjax">tech report of Kimi K2</td>
+        </tr>
+<tr>
+          <td class="tablecell label">Subjects:</td>
+          <td class="tablecell subjects">
+            <span class="primary-subject">Machine Learning (cs.LG)</span>; Artificial Intelligence (cs.AI); Computation and Language (cs.CL)</td>
+        </tr><tr>
+          <td class="tablecell label">Cite as:</td>
+          <td class="tablecell arxivid"><span class="arxivid"><a href="https://arxiv.org/abs/2507.20534">arXiv:2507.20534</a> [cs.LG]</span></td>
+        </tr>
+        <tr>
+          <td class="tablecell label">&nbsp;</td>
+          <td class="tablecell arxividv">(or <span class="arxivid">
+              <a href="https://arxiv.org/abs/2507.20534v1">arXiv:2507.20534v1</a> [cs.LG]</span> for this version)
+          </td>
+        </tr>
+        <tr>
+          <td class="tablecell label">&nbsp;</td>
+          <td class="tablecell arxivdoi">              <a href="https://doi.org/10.48550/arXiv.2507.20534"  id="arxiv-doi-link">https://doi.org/10.48550/arXiv.2507.20534</a><div class="button-and-tooltip">
+              <button class="more-info" aria-describedby="more-info-desc-1">
+                <svg height="15" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" class=""></path></svg>
+                <span class="visually-hidden">Focus to learn more</span>
+              </button>
+              <!-- tooltip description -->
+              <div role="tooltip" id="more-info-desc-1">
+                <span class="left-corner"></span>                  arXiv-issued DOI via DataCite</div>
+            </div>
+          </td>
+        </tr></table>
+    </div>
+  </div>
+</div>
+    <div class="submission-history">
+      <h2>Submission history</h2> From: Yulun Du [<a href="/show-email/723946f0/2507.20534" rel="nofollow">view email</a>]      <br/>    <strong>[v1]</strong>
+        Mon, 28 Jul 2025 05:35:43 UTC (4,719 KB)<br/>
+            <strong><a href="/abs/2507.20534v2" rel="nofollow">[v2]</a></strong>
+        Tue, 3 Feb 2026 04:57:00 UTC (4,612 KB)<br/>
+</div>
+  </div>
+  <!--end leftcolumn-->
+<div class="extra-services">    <div class="full-text">
+      <a name="other"></a>
+      <span class="descriptor">Full-text links:</span>
+      <h2>Access Paper:</h2>
+      <ul>
+  <div id="download-button-info" hidden>
+View a PDF of the paper titled Kimi K2: Open Agentic Intelligence, by Kimi Team: Yifan Bai and 167 other authors</div><li><a href="/pdf/2507.20534v1" aria-describedby="download-button-info" accesskey="f" class="abs-button download-pdf">View PDF</a></li><li><a href="https://arxiv.org/html/2507.20534v1" class="abs-button" id="latexml-download-link">HTML (experimental)</a></li><li><a href="/src/2507.20534v1" class="abs-button download-eprint">TeX Source
+ </a></li></ul>
+      <div class="abs-license"><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" title="Rights to this article" class="has_license">
+          <img alt="license icon" role="presentation" src="https://arxiv.org/icons/licenses/by-nc-nd-4.0.png"/>
+          <span>view license</span>
+        </a></div>
+    </div>
+    <!--end full-text-->    <div class="browse">
+    <h3 class="browse-context-heading">Current browse context:</h3>
+  <div class="current">cs.LG</div>
+
+  <div class="prevnext">
+<span class="arrow">
+      <a class="abs-button prev-url" href="/prevnext?id=2507.20534&amp;function=prev&amp;context=cs.LG"
+         accesskey="p" title="previous in cs.LG (accesskey p)" rel="nofollow">&lt;&nbsp;prev</a>
+    </span>
+    <span class="is-hidden-mobile">&nbsp; | &nbsp;</span>    <span class="arrow">
+      <a class="abs-button next-url" href="/prevnext?id=2507.20534&amp;function=next&amp;context=cs.LG" accesskey="n"
+         title="next in cs.LG (accesskey n)"  rel="nofollow">next&nbsp;&gt;</a>
+    </span><br/>
+  </div><div class="list">
+    <a class="abs-button abs-button-grey abs-button-small context-new" href="/list/cs.LG/new"  rel="nofollow">new</a>
+    <span class="is-hidden-mobile"> | </span>
+    <a class="abs-button abs-button-grey abs-button-small context-recent" href="/list/cs.LG/recent" rel="nofollow">recent</a>
+    <span class="is-hidden-mobile"> | </span><a class="abs-button abs-button-grey abs-button-small context-id" href="/list/cs.LG/2025-07" rel="nofollow">2025-07</a>
+  </div><div class="abs-switch-cat">
+    Change to browse by:
+    <div class="switch context-change">
+        <a href="/abs/2507.20534?context=cs" rel="nofollow">cs</a><br class="is-hidden-mobile">
+        <a class="subclass" href="/abs/2507.20534?context=cs.AI" rel="nofollow">cs.AI</a><br class="is-hidden-mobile">
+        <a class="subclass" href="/abs/2507.20534?context=cs.CL" rel="nofollow">cs.CL</a><br class="is-hidden-mobile">
+    </div>
+  </div>
+
+    </div>
+      <div class="extra-ref-cite">
+        <h3>References &amp; Citations</h3>
+        <ul>
+          <li><a  class="abs-button abs-button-small cite-ads" href="https://ui.adsabs.harvard.edu/abs/arXiv:2507.20534">NASA ADS</a></li><li><a  class="abs-button abs-button-small cite-google-scholar" href="https://scholar.google.com/scholar_lookup?arxiv_id=2507.20534" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a  class="abs-button abs-button-small cite-semantic-scholar" href="https://api.semanticscholar.org/arXiv:2507.20534" target="_blank" rel="noopener">Semantic Scholar</a></li>
+        </ul>
+        <div style="clear:both;"></div>
+      </div>
+
+<div class='extra-ref-cite'>
+    <button type="button" id='bib-cite-trigger' class="bib-cite-button abs-button">export BibTeX citation</button>
+    <span id='bib-cite-loading' hidden='true'>Loading...</span>
+</div>
+
+<div id='bib-cite-modal' class='bib-modal' hidden='true'>
+    <div class='bib-modal-content'>
+        <div class='bib-modal-title'>
+            <h2>BibTeX formatted citation</h2>
+            <button type="button" class='bib-modal-close' aria-label="Close">&times;</button>
+        </div>
+        <div>
+            <textarea id='bib-cite-target' class="bib-citation-content" aria-label="loading the citation">loading...</textarea>
+        </div>
+        <div>
+            <span>Data provided by: </span>
+            <a id='bib-cite-source-api'></a>
+        </div>
+    </div>
+</div><div class="bookmarks">
+  <div><h3>Bookmark</h3></div><a class="abs-button abs-button-grey abs-button-small" href="http://www.bibsonomy.org/BibtexHandler?requTask=upload&amp;url=https://arxiv.org/abs/2507.20534&amp;description=Kimi K2: Open Agentic Intelligence"
+     title="Bookmark on BibSonomy">
+    <img src="/static/browse/0.3.4/images/icons/social/bibsonomy.png"
+         alt="BibSonomy"/>
+  </a>
+  <a class="abs-button abs-button-grey abs-button-small" href="https://reddit.com/submit?url=https://arxiv.org/abs/2507.20534&amp;title=Kimi K2: Open Agentic Intelligence"
+     title="Bookmark on Reddit">
+    <img src="/static/browse/0.3.4/images/icons/social/reddit.png"
+         alt="Reddit"/>
+  </a>
+</div>  </div>
+  <!--end extra-services-->
+<!-- LABS AREA -->
+<div id="labstabs">
+  <div class="labstabs" role="tablist" aria-label="arXivLabs tools"><input type="radio" name="tabs" id="tabone"checked="checked"class="labs-tab-input">
+    <label for="tabone" role="tab" aria-selected="true" aria-controls="tabpanel-one" id="tab-label-one">Bibliographic Tools</label>
+    <div class="tab labs-display-bib" role="tabpanel" id="tabpanel-one" aria-labelledby="tab-label-one">
+      <h1>Bibliographic and Citation Tools</h1>
+      <div class="toggle">
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="bibex-toggle" type="checkbox" class="lab-toggle"
+                     data-script-url="/static/browse/0.3.4/bibex/bibex.js?20241202">
+              <span class="slider"></span>
+              <span class="is-sr-only">Bibliographic Explorer Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-bibex">Bibliographic Explorer</span> <em>(<a href="https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer">What is the Explorer?</a>)</em>
+          </div>
+        </div>
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input
+                id="connectedpapers-toggle"
+                type="checkbox"
+                class="lab-toggle"
+                data-script-url="/static/browse/0.3.4/js/connectedpapers.js"
+                aria-labelledby="label-for-connected-papers">
+              <span class="slider"></span>
+              <span class="is-sr-only">Connected Papers Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-connected-papers">Connected Papers</span> <em>(<a href="https://www.connectedpapers.com/about" target="_blank">What is Connected Papers?</a>)</em>
+          </div>
+        </div><div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input
+                id="litmaps-toggle"
+                type="checkbox"
+                class="lab-toggle"
+                data-script-url="/static/browse/0.3.4/js/litmaps.js?20210617"
+                aria-labelledby="label-for-litmaps">
+              <span class="slider"></span>
+              <span class="is-sr-only">Litmaps Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-litmaps">Litmaps</span> <em>(<a href="https://www.litmaps.co/" target="_blank">What is Litmaps?</a>)</em>
+          </div>
+        </div>
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input
+                id="scite-toggle"
+                type="checkbox"
+                class="lab-toggle"
+                data-script-url="/static/browse/0.3.4/js/scite.js?20210617"
+                aria-labelledby="label-for-scite">
+              <span class="slider"></span>
+              <span class="is-sr-only">scite.ai Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-scite">scite Smart Citations</span> <em>(<a href="https://www.scite.ai/" target="_blank">What are Smart Citations?</a>)</em>
+          </div>
+        </div>
+      </div>
+        <div class="labs-content-placeholder labs-display" style="display: none;"></div>
+        <div style="min-height: 15px" id="connectedpapers-output"></div>
+        <div style="min-height: 15px" id="litmaps-open-in"></div>
+        <div style="min-height: 15px" id="scite-open-in"></div>
+    </div>
+
+
+    <input type="radio" name="tabs" id="tabtwo" class="labs-tab-input">
+    <label for="tabtwo" role="tab" aria-selected="false" aria-controls="tabpanel-two" id="tab-label-two">Code, Data, Media</label>
+    <div class="tab" role="tabpanel" id="tabpanel-two" aria-labelledby="tab-label-two">
+      <h1>Code, Data and Media Associated with this Article</h1>
+      <div class="toggle">
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input
+                id="alphaxiv-toggle"
+                data-script-url="/static/browse/0.3.4/js/alphaxiv.js"
+                type="checkbox" class="lab-toggle" aria-labelledby="label-for-alphaxiv">
+              <span class="slider"></span>
+              <span class="is-sr-only">alphaXiv Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-alphaxiv">alphaXiv</span> <em>(<a href="https://alphaxiv.org/" target="_blank">What is alphaXiv?</a>)</em>
+          </div>
+        </div>
+
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input        
+                id="catalyzex-toggle"
+                data-script-url="/static/browse/0.3.4/js/catalyzex.js"
+                type="checkbox" class="lab-toggle" aria-labelledby="label-for-cx">
+              <span class="slider"></span>
+              <span class="is-sr-only">Links to Code Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-cx">CatalyzeX Code Finder for Papers</span> <em>(<a href="https://www.catalyzex.com" target="_blank">What is CatalyzeX?</a>)</em>
+          </div>
+        </div>
+
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input
+                id="dagshub-toggle"
+                data-script-url="/static/browse/0.3.4/js/dagshub.js"
+                type="checkbox" class="lab-toggle" aria-labelledby="label-for-dagshub">
+              <span class="slider"></span>
+              <span class="is-sr-only">DagsHub Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-dagshub">DagsHub</span> <em>(<a href="https://dagshub.com/" target="_blank">What is DagsHub?</a>)</em>
+          </div>
+        </div>
+  
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input
+                id="gotitpub-toggle"
+                data-script-url="/static/browse/0.3.4/js/gotitpub.js"
+                type="checkbox" class="lab-toggle" aria-labelledby="label-for-gotitpub">
+              <span class="slider"></span>
+              <span class="is-sr-only">GotitPub Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-gotitpub">Gotit.pub</span> <em>(<a href="http://gotit.pub/faq" target="_blank">What is GotitPub?</a>)</em>
+          </div>
+        </div>
+
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input
+                id="huggingface-toggle"
+                data-script-url="/static/browse/0.3.4/js/huggingface.js"
+                type="checkbox" class="lab-toggle" aria-labelledby="label-for-huggingface">
+              <span class="slider"></span>
+              <span class="is-sr-only">Huggingface Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-huggingface">Hugging Face</span> <em>(<a href="https://huggingface.co/huggingface" target="_blank">What is Huggingface?</a>)</em>
+          </div>
+        </div>
+
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input
+                id="sciencecast-toggle"
+                data-script-url="/static/browse/0.3.4/js/sciencecast.js"
+                type="checkbox" class="lab-toggle" aria-labelledby="label-for-sciencecast">
+              <span class="slider"></span>
+              <span class="is-sr-only">ScienceCast Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-sciencecast">ScienceCast</span> <em>(<a href="https://sciencecast.org/welcome" target="_blank">What is ScienceCast?</a>)</em>
+          </div>
+        </div>
+      </div>
+
+      <div id="alphaxiv-output" style="display:none"></div>
+      <div id="catalyzex-output" style="display:none"></div>
+      <div id="dagshub-output" style="display:none"></div>
+      <div id="gotitpub-output" style="display:none"></div>
+      <div id="sciencecast-output" style="display:none"></div>
+      <div id="huggingface-output" style="display:none"></div>
+    </div>
+
+
+      <input type="radio" name="tabs" id="labstabs-demos-input" class="labs-tab-input">
+      <label for="labstabs-demos-input" id="labstabs-demos-label" role="tab" aria-selected="false" aria-controls="tabpanel-demos">Demos</label>
+      <div class="tab" role="tabpanel" id="tabpanel-demos" aria-labelledby="labstabs-demos-label">
+        <h1>Demos</h1>
+        <div class="toggle">
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input
+                  id="replicate-toggle"
+                  data-script-url="/static/browse/0.3.4/js/replicate.js"
+                  type="checkbox" class="lab-toggle" aria-labelledby="label-for-replicate">
+                <span class="slider"></span>
+                <span class="is-sr-only">Replicate Toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-replicate">Replicate</span> <em>(<a href="https://replicate.com/docs/arxiv/about" target="_blank">What is Replicate?</a>)</em>
+            </div>
+          </div>
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input
+                  id="spaces-toggle"
+                  data-script-url="/static/browse/0.3.4/js/spaces.js"
+                  type="checkbox" class="lab-toggle" aria-labelledby="label-for-spaces">
+                <span class="slider"></span>
+                <span class="is-sr-only">Spaces Toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-spaces">Hugging Face Spaces</span> <em>(<a href="https://huggingface.co/docs/hub/spaces" target="_blank">What is Spaces?</a>)</em>
+            </div>
+          </div>
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input
+                  id="txyz-toggle"
+                  data-script-url="/static/browse/0.3.4/js/txyz.js"
+                  type="checkbox" class="lab-toggle" aria-labelledby="label-for-txyz">
+                <span class="slider"></span>
+                <span class="is-sr-only">Spaces Toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-txyz">TXYZ.AI</span> <em>(<a href="https://txyz.ai" target="_blank">What is TXYZ.AI?</a>)</em>
+            </div>
+          </div>
+        </div>
+        <div id="replicate-output"></div>
+        <div id="spaces-output"></div>
+        <div id="txyz-output"></div>
+      </div>
+      <input type="radio" name="tabs" id="tabfour" class="labs-tab-input">
+      <label for="tabfour" role="tab" aria-selected="false" aria-controls="tabpanel-four" id="tab-label-four">Related Papers</label>
+      <div class="tab" role="tabpanel" id="tabpanel-four" aria-labelledby="tab-label-four">
+        <h1>Recommenders and Search Tools</h1>
+        <div class="toggle">
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input id="influenceflower-toggle"
+                data-script-url="/static/browse/0.3.4/js/influenceflower.js"
+                type="checkbox" class="lab-toggle" aria-labelledby="label-for-influenceflower">
+                <span class="slider"></span>
+                <span class="is-sr-only">Link to Influence Flower</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-influenceflower">Influence Flower</span> <em>(<a href="https://influencemap.cmlab.dev/" target="_blank">What are Influence Flowers?</a>)</em>
+            </div>
+          </div>
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input id="core-recommender-toggle" type="checkbox" class="lab-toggle" aria-labelledby="label-for-core">
+                <span class="slider"></span>
+                <span class="is-sr-only">Core recommender toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-core">CORE Recommender</span> <em>(<a href="https://core.ac.uk/services/recommender">What is CORE?</a>)</em>
+            </div>
+          </div>          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input id="iarxiv-toggle"
+                       type="checkbox"
+                       class="lab-toggle"
+                       data-script-url="/static/browse/0.3.4/js/iarxiv.js"
+                       aria-labelledby="label-for-iarxiv">
+                <span class="slider"></span>
+                <span class="is-sr-only">IArxiv recommender toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-iarxiv">IArxiv Recommender</span>
+              <em>(<a href="https://iarxiv.org/about">What is IArxiv?</a>)</em>
+            </div>
+          </div>
+</div>
+        <div id="influenceflower-output"></div>
+        <div id="influenceflower-output-graph" style="display:none">
+          <ul class="flower-tabs">
+            <li class="active"><a class="btn tab-btn" onclick="openTab(event, 'tab-author')">Author</a></li>
+            <li><a class="btn tab-btn" onclick="openTab(event, 'tab-venue')">Venue</a></li>
+            <li><a class="btn tab-btn" onclick="openTab(event, 'tab-inst')">Institution</a></li>
+            <li><a class="btn tab-btn" onclick="openTab(event, 'tab-topic')">Topic</a></li>
+          </ul>
+          <div class="flower-tab-content">
+            <div class="tab-flower active" id="tab-author"><svg id="flower-graph-author"></svg></div>
+            <div class="tab-flower" id="tab-venue"><svg id="flower-graph-venue"></svg></div>
+            <div class="tab-flower" id="tab-inst"><svg id="flower-graph-inst"></svg></div>
+            <div class="tab-flower" id="tab-topic"><svg id="flower-graph-topic"></svg></div>
+          </div>
+        </div>
+        <div id="coreRecommenderOutput"></div>
+        <div id="iarxivOutput"></div>
+      </div>
+
+      <input type="radio" name="tabs" id="tabfive" class="labs-tab-input">
+      <label for="tabfive" role="tab" aria-selected="false" aria-controls="tabpanel-five" id="tab-label-five">
+        About arXivLabs
+      </label>
+      <div class="tab" role="tabpanel" id="tabpanel-five" aria-labelledby="tab-label-five">
+        <div class="columns">
+          <div class="column">
+            <h1>arXivLabs: experimental projects with community collaborators</h1>
+            <p>arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.</p>
+            <p>Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.</p>
+            <p>Have an idea for a project that will add value for arXiv's community? <a href="https://info.arxiv.org/labs/index.html"><strong>Learn more about arXivLabs</strong></a>.</p>
+          </div>
+          <div class="column is-narrow is-full-mobile">
+            <p class="icon-labs"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 635.572 811"><path d="M175.6 676v27h-27v-27zm-54 27v27h27v-27zm-27 27v27h27v-27zm396-54v27h-27v-27zm0 27v27h27v-27zm27 27v27h27v-27zm-27-414h27v27h-27zm27 0h27v-27h-27zm27-27h27v-27h-27zm-396 45h-27v-27h27zm-27-54h-27v27h27zm-27-27h-27v27h27z"/><path d="M94.6 730v27h-27v-27zm477 0v27h-27v-27zm-27-495h27v27h-27zm-450 18h-27v-27h27zm477 9h27v27h-27zm-54 495h27v27h-27zm-423 0h27v27h-27zm-54-504h27v27h-27z" fill="#666"/><path d="M67.6 730v27h-27v-27zm54 54v27h-27v-27zm0-108v27h27v-27zm-27 27v27h27v-27zm-81 0v27h27v-27zm585 27v27h-27v-27zm-108-54v27h27v-27zm27 27v27h27v-27zm81 0v27h27v-27zm-54-495h27v27h-27zm-54 108h27v-27h-27zm27-27h27v-27h-27zm0-81h27v-27h-27zm-423 18h-27v-27h27zm54 54h-27v27h27zm-27-27h-27v27h27zm0-81h-27v27h27zm423 612v27h-27v-27zm81-522v27h-27v-27zm-585-9v27h-27v-27z" fill="#999"/><path d="M94.6 784v27h-27v-27zm-27-27v27h27v-27zm-27-54v27h27v-27zm27 0v27h27v-27zm0-27v27h27v-27zm27 0v27h27v-27zm0-27v27h27v-27zm27 0v27h27v-27zm-108 81v27h27v-27zm558 54v27h-27v-27zm-27-27v27h27v-27zm27-54v27h27v-27zm-27 0v27h27v-27zm0-27v27h27v-27zm-27 0v27h27v-27zm0-27v27h27v-27zm-27 0v27h27v-27zm108 81v27h27v-27zm0-495h27v27h-27zm-27 27h27v-27h-27zm-54-27h27v-27h-27zm0 27h27v-27h-27zm-27 0h27v-27h-27zm0 27h27v-27h-27zm-27 0h27v-27h-27zm0 27h27v-27h-27zm81-108h27v-27h-27zm-504 45h-27v-27h27zm27-27h-27v27h27zm54-27h-27v27h27zm0 27h-27v27h27zm27 0h-27v27h27zm0 27h-27v27h27zm27 0h-27v27h27zm0 27h-27v27h27zm-81-108h-27v27h27z" fill="#ccc"/><path d="M598.6 665.1H41.5C-76.5 667 176 280.2 176 280.2h53a46.5 46.5 0 0162.8-56.3 29.2 29.2 0 1128.5 35.9h-1a46.5 46.5 0 01-1.5 20.3l142.5-.1s255.3 387 138.3 385.1zM291 181a29.3 29.3 0 10-29.2-29.3A29.3 29.3 0 00291 181zm65.4-66.8a22.4 22.4 0 10-22.5-22.4 22.4 22.4 0 0022.5 22.4z" fill="#fc0"/><path d="M245.5 172V10h153v162s324 495 198 495h-558c-126 0 207-495 207-495zm126 54h56m-13 72h56m-9 72h56m-20 72h56m-22 72h56m-29 72h56m-457-45c20.8 41.7 87.3 81 160.7 81 72.1 0 142.1-38.2 163.4-81" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="20"/><path d="M273.3 421.7c0 31-9.8 56.3-21.9 56.3s-21.8-25.2-21.8-56.3 9.8-56.3 21.8-56.3 21.9 25.2 21.9 56.3zm114.4-56.3c-12 0-21.8 25.2-21.8 56.3s9.7 56.3 21.8 56.3 21.9-25.2 21.9-56.3-9.8-56.3-21.9-56.3zM150.1 526.6c-18.2 6.7-27.5 22.9-23.2 30.2s14.8-5.5 33-12.2 37.4-4.9 33-12.2-24.5-12.6-42.8-5.8zm296 5.8c-4.2 7.3 14.9 5.5 33.1 12.2s28.7 19.5 33 12.2-5-23.5-23.2-30.2-38.5-1.5-42.8 5.8z"/></svg></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+<!-- END LABS AREA -->
+  <div class="endorsers">
+    <a href="/auth/show-endorsers/2507.20534" class="endorser-who" rel="nofollow">Which authors of this paper are endorsers?</a> |
+    <a id="mathjax_toggle" href="javascript:setMathjaxCookie()">Disable MathJax</a> (<a href="https://info.arxiv.org/help/mathjax.html">What is MathJax?</a>)
+    <span class="help" style="font-style: normal; float: right; margin-top: 0; margin-right: 1em;"></span>
+  </div>
+  <script type="text/javascript" language="javascript">mathjaxToggle();</script>
+</div>
+      </div>
+    </main>
+
+<footer class="ds-site-footer">
+  <div class="ds-site-footer-grid">
+    <div class="ds-site-footer-main">
+      <div class="ds-site-footer-ack">
+        We gratefully acknowledge support from
+        our <strong>major funders</strong>,
+        <a href="https://info.arxiv.org/about/ourmembers.html"><strong>member institutions</strong></a><span class="ack-member-inline" hidden>, <strong></strong></span>,
+        and all contributors.
+      </div>
+      <nav class="ds-site-footer-links" aria-label="Site navigation">
+        <a href="https://info.arxiv.org/about">About</a>
+        <span class="ds-site-footer-sep" aria-hidden="true">&middot;</span>
+        <a href="https://info.arxiv.org/help">Help</a>
+        <span class="ds-site-footer-sep" aria-hidden="true">&middot;</span>
+        <a href="https://info.arxiv.org/help/contact.html">Contact</a>
+        <span class="ds-site-footer-sep" aria-hidden="true">&middot;</span>
+        <a href="https://info.arxiv.org/help/subscribe">Subscribe</a>
+        <span class="ds-site-footer-sep" aria-hidden="true">&middot;</span>
+        <a href="https://info.arxiv.org/help/license/index.html">Copyright</a>
+        <span class="ds-site-footer-sep" aria-hidden="true">&middot;</span>
+        <a href="https://info.arxiv.org/help/policies/privacy_policy.html">Privacy</a>
+        <span class="ds-site-footer-sep" aria-hidden="true">&middot;</span>
+        <a href="https://info.arxiv.org/help/web_accessibility.html">Accessibility</a>
+        <span class="ds-site-footer-sep" aria-hidden="true">&middot;</span>
+        <a href="https://status.arxiv.org" target="_blank" rel="noopener noreferrer">Operational Status<span class="is-sr-only"> (opens in new tab)</span></a>
+      </nav>
+    </div>
+
+    <div class="ds-site-footer-funders" aria-label="Major funders">
+      <div class="ds-site-footer-funders-label">Major funding support from</div>
+      <div class="ds-site-footer-funders-logos">
+        <a class="ds-funder-link" href="https://www.simonsfoundation.org/" target="_blank" rel="noopener noreferrer">
+          <img class="ds-funder-logo" src="/static/base/1.0.1/images/funders/simons-foundation.png" alt="Simons Foundation">
+        </a>
+        <a class="ds-funder-link" href="https://www.sfi.org.bm/" target="_blank" rel="noopener noreferrer">
+          <img class="ds-funder-logo" src="/static/base/1.0.1/images/funders/simons-foundation-international.png" alt="Simons Foundation International">
+        </a>
+        <a class="ds-funder-link" href="https://www.schmidtsciences.org/" target="_blank" rel="noopener noreferrer">
+          <img class="ds-funder-logo" src="/static/base/1.0.1/images/funders/schmidt-sciences.png" alt="Schmidt Sciences">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>  </div>
+
+  <script src="/static/base/1.0.1/js/arxiv-header.js?v=20260626"></script>
+
+</body>
+
+</html>

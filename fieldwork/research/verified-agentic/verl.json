@@ -1,0 +1,8 @@
+{
+  "id": "verl",
+  "repository": "https://github.com/verl-project/verl",
+  "version": "8e03c039f9a70750490c93196b759b332fc029fd",
+  "file": "verl/trainer/ppo/core_algos.py",
+  "url": "https://github.com/verl-project/verl/blob/8e03c039f9a70750490c93196b759b332fc029fd/verl/trainer/ppo/core_algos.py",
+  "commitDate": "2026-09-22T02:10:26Z"
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "compute-budget",
+  "title": "算力预算：从 scaling 曲线到有效 GPU 小时",
+  "subtitle": "参数、token、数据复用与推理成本的联合决策",
+  "track": "pretraining",
+  "order": 21,
+  "minutes": 25,
+  "difficulty": "进阶",
+  "description": "推导预算近似的适用边界，学习用实测吞吐、数据预算和恢复开销做训练决策。",
+  "prerequisites": ["能阅读 Python/PyTorch", "理解交叉熵；梯度直觉可先补充"],
+  "learningGoals": [
+    "区分 compute-optimal 与 deployment-optimal",
+    "计算 token 与容量约束",
+    "设计可比较的 scaling pilot"
+  ],
+  "sources": [
+    "chinchilla",
+    "olmo3-pretrain",
+    "olmo-mixture",
+    "deepseek-v3-report"
+  ],
+  "lab": "data-mixture",
+  "body": "## 最优模型取决于你优化什么\n同样一笔 GPU 预算，可以训练更大的模型读更少 token，也可以训练较小模型读更多 token。若模型之后服务数十亿次或成为 RL rollout 的 policy，较小模型的长期推理节省也进入目标函数。**课程分析**：只最小化训练成本，与最小化训练加终身服务成本，是不同的问题。\n\nChinchilla 给出的价值是用实验拟合参数与 token 的损失关系，并在固定训练算力上比较配置，而不是要求所有模型遵守一个常数比值。[论文实验](/sources#chinchilla) 数据质量、模型架构、训练长度和硬件边界变化时，要重新验证拟合的外推能力。\n\n## 公开成本数字需要边界\nDeepSeek-V3 报告把正式训练费用与此前研究、数据/架构消融分开，明确其给出的训练成本不包含那些前期工作。[报告的成本口径](/sources#deepseek-v3-report) 因而不能把一个发布模型的“最终训练费用”直接当作复制整个研发项目的预算。读任何头部模型报告，先寻找类似的范围说明。\n\n## 两个公式，四个不能省略的假设\n一个常见简化写法是\n$$L(N,T)=L_\\infty+aN^{-\\alpha}+bT^{-\\beta},\\quad C\\approx 6NT.$$\n在这个模型里用固定 $C$ 消去 $T$，可以搜索参数规模 $N$。但你实际上假设了：loss 可平滑拟合；数据分布近似不变；token 继续增加仍有足够新信息；参数计算主导开销。长上下文、重复数据、MoE 和高度通信受限配置都可能违反这些条件。\n\n墙钟估算应该再用实测吞吐校正：\n$$t_{\\mathrm{wall}}\\approx \\frac{T_{\\mathrm{effective}}}{q_{\\mathrm{effective}}}+t_{\\mathrm{checkpoint}}+t_{\\mathrm{eval}}+t_{\\mathrm{recovery}}.$$\n$q$ 是整个集群的有效训练 token/s，剔除 padding 和纯等待。若分母来自短稳态 profiler，而训练中会频繁编译、做重型评测或从对象存储阻塞读取，这个预算仍然乐观。\n\n## 一张透明的预算样表\n下面数字是**课程假设，不是任何模型的公开训练配置**：目标 10B 有效 token，实测集群 100,000 有效 token/s，纯训练约 27.8 小时。如果 checkpoint、评测、冷启动和故障余量合计占纯训练的 20%，预算约 33.3 小时。再乘 GPU 数和每 GPU 小时价格，才得到这次实验的直接费用。\n\n| 预算栏 | 单位 | 需要的证据 |\n| --- | --- | --- |\n| unique data | 去重后 token | 冻结 manifest 与 tokenizer |\n| training exposure | 实际读取 token | 数据加载器统计，不只是文件大小 |\n| useful loss tokens | 有效标签 token | mask 与 loss 分母 |\n| training compute | FLOPs / GPU 小时 | 架构估算 + profiler |\n| rollout compute | generated token / 环境时间 | 解码长度、并发与环境延迟 |\n| reliability reserve | 小时 | checkpoint 开销与恢复实测 |\n\n同样“10B token”可能指 unique、exposure 或 useful tokens；跨报告比较前先消除这个口径差异。\n\n## 数据预算可以先于算力耗尽\n假设某高质量池只有 100M 独有 token，你想让它占 10B 训练 token 的 30%，意味着平均约 30 次暴露。增大训练时长后，重复可能成为主要变量。OLMo-core 将 `target_ratio` 与 `max_repetition_ratio` 分开建模，说明不能从目标配比直接推断唯一内容覆盖。[源码观察](/sources#olmo-mixture)\n\n**课程建议**：每个 pilot 保存实际池占比、重复次数分布和域级验证 loss。不要只报告模型参数量与训练 token。质量评分更高的池不一定值得无限重复，极端重复也可能让小规模 pilot 看上去比扩展后更有利。\n\n## MFU 能回答什么，不能回答什么\nMFU 的一种常见口径是模型理论 FLOPs 除以 elapsed time，再除以硬件名义峰值。必须注明理论计算是否包含重计算、使用何种精度峰值、MoE 是否只计激活参数、GPU 数是否含 idle 或 rollout 节点。不同口径的 50% 不必可比较。\n\n更高 MFU 可能来自更长序列或更大 batch，却不一定缩短达到目标能力的时间。你还需要 time-to-quality：从启动到达到固定评测标准花了多久；以及 cost-to-quality：为了获得这个结果用了多少计算和人工数据预算。数据质量改进可在 MFU 不变时显著改善后两项。\n\n## 如何读官方预算而不误读配置\n[OLMo 3 7B 预训练第二段脚本](/sources#olmo3-pretrain) 同时含 `max_duration`、`hard_stop`、恢复 checkpoint 和学习率计划。它们一起决定可运行行为。单看 `max_duration=7T` 无法说明这一次调用又额外训练了 7T，因为 trainer state 中已有累计进度。阶段切换时不加载 trainer state，则时间坐标又不同。预算推导必须沿恢复语义阅读。\n\n## 最小实验与提交要求\n```bash\npython3 -m labs.run --experiment mixture --seed 7\npython3 -m labs.run --experiment moe --seed 7\n```\n第一个实验把 token 分配抽象成领域更新预算，第二个展示相同 token 数如何因为不均衡路由浪费容量。它们不测 GPU MFU，不应把 CPU 运行时间用于估算大模型吞吐。\n\n工程练习：用三个小模型规模、三个 token 预算做 pilot 设计，不要求立刻训练九个大模型。先写出要固定的 tokenizer、mixture、评测格式、有效 batch 和总曝光次数；给每条拟合曲线保留验证点；再加入一个部署请求量情境，说明你会怎样改变模型规模选择。若外推跨越两个数量级，主动列出最可能失效的假设和需要补跑的中间点。把这份预算设计带入 [现代预训练](/learn/modern-pretraining) 的阶段评测决策。\n"
+}

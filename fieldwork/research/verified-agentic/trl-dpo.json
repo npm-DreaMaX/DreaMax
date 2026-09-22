@@ -1,0 +1,8 @@
+{
+  "id": "trl-dpo",
+  "repository": "https://github.com/huggingface/trl",
+  "version": "b8721872beaf3e8b6e78b6c991f15682d17d86d2",
+  "file": "trl/trainer/dpo_trainer.py",
+  "url": "https://github.com/huggingface/trl/blob/b8721872beaf3e8b6e78b6c991f15682d17d86d2/trl/trainer/dpo_trainer.py",
+  "commitDate": "2026-09-22T09:38:34Z"
+}

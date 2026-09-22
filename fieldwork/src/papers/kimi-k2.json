@@ -1,0 +1,82 @@
+{
+  "id": "kimi-k2",
+  "title": "Kimi K2",
+  "subtitle": "从工具库生成任务，再从环境反馈学习",
+  "organization": "Moonshot AI",
+  "year": "2025",
+  "kind": "bridge",
+  "stages": ["pretraining", "posttraining", "agentic"],
+  "tags": [
+    "MuonClip",
+    "Synthetic trajectories",
+    "Tool simulator",
+    "Verifiable rewards"
+  ],
+  "question": "没有足够的人工工具轨迹，怎样生成值得学的数据？",
+  "why": "K2 把工具使用的数据合成、真实执行和可验证 RL 写得具体；同时为 K3 的 optimizer 与数据演进提供参照。",
+  "minutes": 30,
+  "sourceId": "kimi-k2-report",
+  "cover": "k2-synthesis",
+  "sections": [
+    {
+      "id": "pretraining",
+      "title": "稳定训练与忠实改写，分别解决什么",
+      "stage": "pretraining",
+      "locator": "§2.1–2.2 · PDF p.3–6",
+      "body": "K2 对 Muon 训练中的 attention logit 增长引入 MuonClip 稳定化。需要追踪的是 Q/K 尺度与注意力数值行为，而不是看到 loss spike 就先降低全局学习率。报告的稳定训练曲线是特定设置的观测，不是对所有 Muon 配方的保证。\n\n数据侧，作者比较原文重复、一次改写后重复、多次改写各训练一遍，在其 SimpleQA 实验中观察到多样改写的收益。完整文档用 chunk-wise autoregressive rephrasing 维持连贯，并做 fidelity verification。\n\n这个结果与 V4.1 对低信息增益合成内容的警惕值得一起读：改写能改善表达多样性，但也可能变成隐式重复。两篇使用的语料、模型、训练时长与验证方式不同，不能把某个局部实验升格成“改写总有益”或“合成总有害”。",
+      "essential": true
+    },
+    {
+      "id": "synthesis",
+      "title": "Figure 8：任务不是先写好的题库",
+      "stage": "agentic",
+      "locator": "§3.1 · PDF p.9–11",
+      "body": "流程从真实工具与合成工具组成的 tool repository 开始，再生成具有能力范围的 agent 和相应任务。任务 rubric 提前定义成功条件，随后由交互过程产生轨迹，经过质量评估与筛选后用于 SFT。\n\n工具执行环境的一部分是有状态模拟器：每次工具调用会更新模拟状态，并产生成功、部分失败或边界情况。**模拟反馈不是实际执行证据。** 报告明确用真实 sandbox 补充需要真实性的 coding / SWE 场景，让代码和测试真的运行。\n\n这种合成与筛选可以理解为大规模 rejection sampling：先生成多种行为，再保留满足标准的示范。它能扩大覆盖，但成功轨迹筛选会丢掉某些有价值的恢复过程；后续 RL 才让模型在失败反馈中优化策略。",
+      "essential": true,
+      "figures": [
+        {
+          "id": "k2-synthesis",
+          "title": "用四个问题读这张流水线",
+          "notes": [
+            "工具从哪里来？区分真实 MCP 规格和合成规格。",
+            "任务由谁构造，rubric 在什么时候定义？",
+            "最后保留的是经过评估的轨迹；模拟环境和真实 sandbox 不应混写。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agentic",
+      "title": "从高质量示范到可验证的 Gym",
+      "stage": "agentic",
+      "locator": "§3.2.1 · PDF p.11–12",
+      "body": "RL 环境覆盖数学、STEM、逻辑、复杂指令和代码任务。作者用 SFT 模型的 pass@k 估计难度，选择适中的题目：全对组缺少差异，全错组缺少可用成功信号。**题目难度必须相对当前 policy 定义**，不是永久属性。\n\nSWE 从真实 issue / PR 和测试构建环境；报告描述可并发运行大量 sandbox 的基础设施。这个数字表示环境容量，不是同一时刻训练 GPU 的数量。CPU、磁盘、镜像构建与网络依赖也会限制 rollout。\n\n复杂指令采用代码规则和模型判断结合，并加入 hack 检查。这里评分器的错误可能被策略逐步放大，因此训练 reward 上升必须由独立评测验证。",
+      "essential": true
+    },
+    {
+      "id": "reward",
+      "title": "Self-Critique 不能被理解为自己说了算",
+      "stage": "posttraining",
+      "locator": "§3.2.2 · PDF p.12–13",
+      "body": "开放任务没有像单测那样清楚的答案，K2 用 rubric 约束的 critic 对候选做成对评价。critic 能力先用偏好数据初始化，再通过可验证任务的反馈持续校准。\n\n因此“self-critic”并不是裸模型随便给自己满分。它包含外部规则、偏好标注与可验证信号的锚定。但这种锚定不能消除主观偏好或共同盲点，仍需独立审计和跨分布评测。\n\n练习：选择一个有真实工具的任务，写出模拟环境可能错误允许的动作、真实环境会如何反馈、grader 怎样发现差别。随后运行 agent-loop 教学实验，观察错误奖励怎样让 policy 学到错误捷径。",
+      "essential": true
+    }
+  ],
+  "takeaways": [
+    "合成轨迹的可靠性取决于执行环境与筛选标准。",
+    "难度应相对策略动态估计。",
+    "模型评分需要外部锚定，不能用同源自证代替正确性。"
+  ],
+  "connections": [
+    {
+      "id": "kimi-k3",
+      "reason": "跟踪工具数据、白盒 harness 与多教师方法的演进。"
+    },
+    {
+      "id": "mimo-v26",
+      "reason": "进一步拆解通过测试之后的质量排序。"
+    }
+  ],
+  "lab": "agent-loop",
+  "codeChapter": "agent-boundaries"
+}

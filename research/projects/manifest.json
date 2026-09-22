@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Triple-pi",
+    "url": "https://github.com/npm-DreaMaX/Triple-pi",
+    "description": "A Pi_based coding agent with persistent memory and project-aware code review.",
+    "commit": "d8d8cb159d3d5ac82c6fbf7893f20acfc649f23b",
+    "readme": "https://github.com/npm-DreaMaX/Triple-pi/blob/d8d8cb159d3d5ac82c6fbf7893f20acfc649f23b/README.md",
+    "accessed": "2026-09-22",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "sourceFile": "research/projects/Triple-pi-README.md"
+  },
+  {
+    "name": "TripleTeam",
+    "url": "https://github.com/npm-DreaMaX/TripleTeam",
+    "description": null,
+    "commit": "9e6172e4f21c27f86f07d6018b4afdbd19b25ac8",
+    "readme": "https://github.com/npm-DreaMaX/TripleTeam/blob/9e6172e4f21c27f86f07d6018b4afdbd19b25ac8/README.md",
+    "accessed": "2026-09-22",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "sourceFile": "research/projects/TripleTeam-README.md"
+  },
+  {
+    "name": "TokenCircuit",
+    "url": "https://github.com/npm-DreaMaX/TokenCircuit",
+    "description": "From Transformer Block to Llm System, spectacular yet clear.",
+    "commit": "fa7b727247fb8383eaf44ca0d0a3843a631b29d1",
+    "readme": "https://github.com/npm-DreaMaX/TokenCircuit/blob/fa7b727247fb8383eaf44ca0d0a3843a631b29d1/README.md",
+    "accessed": "2026-09-22",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "sourceFile": "research/projects/TokenCircuit-README.md"
+  }
+]

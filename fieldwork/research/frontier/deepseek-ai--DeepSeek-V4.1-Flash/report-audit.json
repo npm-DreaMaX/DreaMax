@@ -1,0 +1,16 @@
+{
+  "repository": "deepseek-ai/DeepSeek-V4.1-Flash",
+  "sha": "dba1be0a40aa45a94ad051997016db3960a90277",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-09-10T02:17:58.000Z",
+  "lastModified": "2026-09-10T08:18:10.000Z",
+  "license": "mit",
+  "results": [
+    {
+      "file": "DeepSeek_V41_Tech_Report.pdf",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/DeepSeek_V41_Tech_Report.pdf",
+      "bytes": 1809802,
+      "sha256": "ba68e2e40408125ae6d2f63a9a241b61c73910691c74ec1a2a7023c851eac08d"
+    }
+  ]
+}

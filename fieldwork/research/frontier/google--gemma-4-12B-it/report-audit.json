@@ -1,0 +1,26 @@
+{
+  "repository": "google/gemma-4-12B-it",
+  "sha": "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-05-23T01:17:15.000Z",
+  "lastModified": "2026-07-20T16:42:08.000Z",
+  "license": "apache-2.0",
+  "results": [
+    {
+      "file": "README.md",
+      "url": "https://huggingface.co/google/gemma-4-12B-it/resolve/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/README.md",
+      "bytes": 28484,
+      "sha256": "04a06469e3d83b941eaa776a3647b8690b5a7cc5c833af2381e5345bb1bb45c0"
+    },
+    {
+      "file": "config.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it/resolve/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/config.json",
+      "bytes": 4423,
+      "sha256": "478c46e8d2c52d5c2d85bf67e3b3e8c90e7c9d91086cee27e3c267907e936bd9"
+    },
+    {
+      "file": "LICENSE",
+      "status": "not listed"
+    }
+  ]
+}

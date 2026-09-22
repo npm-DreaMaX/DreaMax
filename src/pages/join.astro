@@ -44,13 +44,12 @@ import { profile } from "../data/profile";
       <div class="flex flex-col gap-12 md:flex-row md:gap-16" style="margin-top:40px;">
         <div class="flex-1">
           <h2 class="font-mono text-xs tracking-widest uppercase" style="color:#66d9ed; margin-bottom:12px;">Contact</h2>
-          <a href="mailto:{profile.email}" class="font-mono text-sm link-underline" style="color:#66d9ed;">{profile.email}</a>
+          <a href={`mailto:${profile.email}`} class="font-mono text-sm link-underline" style="color:#66d9ed;">{profile.email}</a>
         </div>
         <div class="flex-1">
           <h2 class="font-mono text-xs tracking-widest uppercase" style="color:#66d9ed; margin-bottom:12px;">Links</h2>
           <ul class="space-y-3" style="list-style:none; padding:0; margin:0;">
             <li><a href={profile.social.github} target="_blank" class="font-mono text-sm link-underline" style="color:rgba(255,255,255,0.55);">GitHub ↗</a></li>
-            <li><a href={profile.social.googleScholar} target="_blank" class="font-mono text-sm link-underline" style="color:rgba(255,255,255,0.55);">Google Scholar ↗</a></li>
             <li><a href={profile.social.csdn} target="_blank" class="font-mono text-sm link-underline" style="color:rgba(255,255,255,0.55);">CSDN ↗</a></li>
           </ul>
         </div>

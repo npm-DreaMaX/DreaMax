@@ -1,0 +1,225 @@
+[
+  {
+    "slug": "data-mixture",
+    "title": "数据不是原料，是训练的控制面",
+    "subtitle": "质量、去重、污染与 mixture 的可观测工程",
+    "track": "data",
+    "order": 10,
+    "minutes": 32,
+    "difficulty": "进阶",
+    "description": "把数据流水线、采样概率和模型能力联系起来，实际观察数据重平衡如何改变能力与遗忘。",
+    "prerequisites": [
+      "能阅读 Python/PyTorch",
+      "理解交叉熵；梯度直觉可先补充"
+    ],
+    "learningGoals": [
+      "建立可恢复的数据血缘",
+      "区分质量筛选与分布控制",
+      "用 token 预算设计 mixture 消融"
+    ],
+    "sources": [
+      "dolma",
+      "fineweb",
+      "olmo-mixture",
+      "olmo3",
+      "qwen3-report"
+    ],
+    "lab": "data-mixture"
+  },
+  {
+    "slug": "modern-pretraining",
+    "title": "现代预训练：从单次长跑到能力生产系统",
+    "subtitle": "不变的 next-token 目标，变化的数据、架构与实验决策",
+    "track": "pretraining",
+    "order": 20,
+    "minutes": 35,
+    "difficulty": "进阶",
+    "description": "沿真实训练配置拆解数据、token预算、稳定性、评测、分布式与恢复如何共同定义预训练。",
+    "prerequisites": [
+      "能阅读 Python/PyTorch",
+      "理解交叉熵；梯度直觉可先补充"
+    ],
+    "learningGoals": [
+      "读懂真实预训练配置的控制边界",
+      "理解预算、有效 token 与 MFU",
+      "设计能定位失效原因的训练观测"
+    ],
+    "sources": [
+      "olmo-core",
+      "olmo3-pretrain",
+      "olmo3-midtrain",
+      "olmo3",
+      "chinchilla",
+      "deepseek-v3-report",
+      "qwen3-report",
+      "deepseek-v41",
+      "qwen38",
+      "qwen38-report"
+    ],
+    "lab": "data-mixture"
+  },
+  {
+    "slug": "compute-budget",
+    "title": "算力预算：从 scaling 曲线到有效 GPU 小时",
+    "subtitle": "参数、token、数据复用与推理成本的联合决策",
+    "track": "pretraining",
+    "order": 21,
+    "minutes": 25,
+    "difficulty": "进阶",
+    "description": "推导预算近似的适用边界，学习用实测吞吐、数据预算和恢复开销做训练决策。",
+    "prerequisites": [
+      "能阅读 Python/PyTorch",
+      "理解交叉熵；梯度直觉可先补充"
+    ],
+    "learningGoals": [
+      "区分 compute-optimal 与 deployment-optimal",
+      "计算 token 与容量约束",
+      "设计可比较的 scaling pilot"
+    ],
+    "sources": [
+      "chinchilla",
+      "olmo3-pretrain",
+      "olmo-mixture",
+      "deepseek-v3-report"
+    ],
+    "lab": "data-mixture"
+  },
+  {
+    "slug": "moe-training",
+    "title": "MoE 训练：稀疏计算背后的路由与通信",
+    "subtitle": "从 token → expert 到容量、负载和训练稳定性",
+    "track": "pretraining",
+    "order": 22,
+    "minutes": 33,
+    "difficulty": "进阶",
+    "description": "通过 Megatron 的真实 router 对齐算法、张量形状、负载均衡与 all-to-all 成本。",
+    "prerequisites": [
+      "能阅读 Python/PyTorch",
+      "理解交叉熵；梯度直觉可先补充"
+    ],
+    "learningGoals": [
+      "分清总参数与激活参数",
+      "定位 TopKRouter 的输入输出",
+      "用指标区分路由塌缩与系统瓶颈"
+    ],
+    "sources": [
+      "megatron-moe",
+      "olmo-core",
+      "deepseek-v3-report"
+    ],
+    "lab": "moe"
+  },
+  {
+    "slug": "training-stability",
+    "title": "训练稳定性：从 loss spike 追到张量和状态",
+    "subtitle": "精度、梯度、异常批次与可恢复训练的诊断链",
+    "track": "pretraining",
+    "order": 23,
+    "minutes": 32,
+    "difficulty": "进阶",
+    "description": "把BF16/FP8、梯度范数、logit异常、恢复语义和硬件观测组织成可执行的排查流程。",
+    "prerequisites": [
+      "能阅读 Python/PyTorch",
+      "理解交叉熵；梯度直觉可先补充"
+    ],
+    "learningGoals": [
+      "区分数值、数据、优化与系统故障",
+      "理解低精度训练的边界",
+      "设计完整 checkpoint 与恢复验证"
+    ],
+    "sources": [
+      "olmo-core",
+      "olmo3-pretrain",
+      "olmo3-longcontext",
+      "olmo2",
+      "deepseek-v3-report"
+    ],
+    "lab": "gradients"
+  },
+  {
+    "slug": "midtraining",
+    "title": "Mid-training：把基础能力塑造成可学习的起点",
+    "subtitle": "数据重平衡、continued pretraining、退火与阶段切换",
+    "track": "midtraining",
+    "order": 30,
+    "minutes": 38,
+    "difficulty": "进阶",
+    "description": "以Qwen的分阶段预训练和公开配置对照，解释中训练做什么、何时该做，以及怎样避免遗忘和错误恢复。",
+    "prerequisites": [
+      "能阅读 Python/PyTorch",
+      "理解交叉熵；梯度直觉可先补充"
+    ],
+    "learningGoals": [
+      "严谨区分官方术语与课程抽象",
+      "设计数据与学习率阶段切换",
+      "判断能力应在哪个训练阶段获得"
+    ],
+    "sources": [
+      "qwen3-report",
+      "deepseek-v3-report",
+      "olmo3-midtrain",
+      "olmo3-pretrain",
+      "olmo2",
+      "olmo3",
+      "olmo-mixture",
+      "mimo26-report"
+    ],
+    "lab": "data-mixture"
+  },
+  {
+    "slug": "capability-shaping",
+    "title": "能力塑形：代码、数学、推理与合成数据",
+    "subtitle": "从提高续写概率到提供 RL 可探索的候选",
+    "track": "midtraining",
+    "order": 31,
+    "minutes": 34,
+    "difficulty": "进阶",
+    "description": "系统比较合成推理、蒸馏、数据再平衡与后训练接口，避免把格式与模型真实能力混为一谈。",
+    "prerequisites": [
+      "能阅读 Python/PyTorch",
+      "理解交叉熵；梯度直觉可先补充"
+    ],
+    "learningGoals": [
+      "分清知识、推理、格式能力",
+      "设计可验证合成数据的血缘",
+      "衡量中训练对后续SFT/RL的真实收益"
+    ],
+    "sources": [
+      "qwen3-report",
+      "grpo-paper",
+      "r1-report",
+      "olmo3-midtrain",
+      "olmo-mixture"
+    ],
+    "lab": "data-mixture"
+  },
+  {
+    "slug": "long-context",
+    "title": "长上下文：位置、数据、计算和利用能力",
+    "subtitle": "从训练长度扩展到真正解决跨文档任务",
+    "track": "midtraining",
+    "order": 32,
+    "minutes": 36,
+    "difficulty": "进阶",
+    "description": "拆分上下文长度的不同含义，连接RoPE扩展、文档打包、上下文并行、训练评测与Agent轨迹。",
+    "prerequisites": [
+      "能阅读 Python/PyTorch",
+      "理解交叉熵；梯度直觉可先补充"
+    ],
+    "learningGoals": [
+      "区分接受长度与可用长度",
+      "理解RoPE缩放和真实长度配方",
+      "设计长文档训练与评测"
+    ],
+    "sources": [
+      "yarn",
+      "flashattention",
+      "qwen3-report",
+      "deepseek-v3-report",
+      "olmo3-longcontext",
+      "olmo-rope",
+      "olmo3"
+    ],
+    "lab": "rollout"
+  }
+]

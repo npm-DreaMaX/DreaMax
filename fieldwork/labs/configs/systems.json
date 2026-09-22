@@ -1,0 +1,23 @@
+{
+  "gpu_count": 8,
+  "gpus_per_node": 4,
+  "tensor_parallel": 4,
+  "parameters": 7000000000,
+  "tokens_per_replica": 2048,
+  "hidden_size": 4096,
+  "layers": 32,
+  "parameter_bytes": 2,
+  "gradient_bytes": 2,
+  "master_parameter_bytes": 4,
+  "optimizer_moments_bytes": 8,
+  "activation_bytes": 2,
+  "saved_activation_factor": 8,
+  "activation_checkpoint_fraction": 1,
+  "sequence_parallel": false,
+  "intra_bandwidth_GBps": 200,
+  "inter_bandwidth_GBps": 25,
+  "link_latency_us": 5,
+  "compute_TFLOPs": 600,
+  "hbm_bandwidth_GBps": 2000,
+  "gpu_memory_GiB": 80
+}

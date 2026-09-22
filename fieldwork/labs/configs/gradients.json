@@ -1,0 +1,7 @@
+{
+  "inputs": [1.5, -2.0],
+  "parameters": [0.3, -0.2, 0.1],
+  "target": 0.7,
+  "learning_rate": 0.1,
+  "steps": 40
+}

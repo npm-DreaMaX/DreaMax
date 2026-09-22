@@ -1,0 +1,8 @@
+{
+  "theta": -0.5,
+  "reference_theta": 0.2,
+  "feature_deltas": [1.0, 0.8, 0.5, 0.3, -0.4],
+  "beta": 0.2,
+  "learning_rate": 0.3,
+  "steps": 120
+}

@@ -1,0 +1,28 @@
+{
+  "repository": "Qwen/Qwen3.8-27B",
+  "sha": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-08-05T08:22:59.000Z",
+  "lastModified": "2026-08-14T15:00:01.000Z",
+  "license": "apache-2.0",
+  "results": [
+    {
+      "file": "README.md",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/README.md",
+      "bytes": 65012,
+      "sha256": "57e4bdb258ee1a7d2635c5174ebd4e56abe392505cdb5f8bbb356b0dc4293641"
+    },
+    {
+      "file": "config.json",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/config.json",
+      "bytes": 4312,
+      "sha256": "191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab"
+    },
+    {
+      "file": "LICENSE",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/LICENSE",
+      "bytes": 11544,
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+    }
+  ]
+}

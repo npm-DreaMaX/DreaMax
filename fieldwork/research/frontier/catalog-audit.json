@@ -1,0 +1,70 @@
+{
+  "checked_at": "2026-09-22T10:27:19.305707+00:00",
+  "model_count": 6,
+  "source_count": 64,
+  "status": "ok",
+  "checks": [
+    "required model schema",
+    "sources exist in combined registries",
+    "chapters exist",
+    "string array and disclosure types"
+  ],
+  "errors": [],
+  "results": [
+    {
+      "id": "deepseek",
+      "sourceIds": [
+        "deepseek-v41",
+        "deepseek-v41-report",
+        "deepseek-v41-code",
+        "deepseek-v3-report"
+      ],
+      "chapter_count": 4
+    },
+    {
+      "id": "kimi",
+      "sourceIds": [
+        "kimi-k3",
+        "kimi-k3-report",
+        "kimi-k3-code",
+        "kimi-k2-report"
+      ],
+      "chapter_count": 4
+    },
+    {
+      "id": "qwen",
+      "sourceIds": [
+        "qwen38",
+        "qwen38-report",
+        "qwen38-dense",
+        "qwen3-report"
+      ],
+      "chapter_count": 4
+    },
+    {
+      "id": "glm",
+      "sourceIds": [
+        "glm53",
+        "glm5-report"
+      ],
+      "chapter_count": 3
+    },
+    {
+      "id": "mimo",
+      "sourceIds": [
+        "mimo26",
+        "mimo26-report",
+        "mimo26-code"
+      ],
+      "chapter_count": 4
+    },
+    {
+      "id": "gemma",
+      "sourceIds": [
+        "gemma4",
+        "gemma4-report"
+      ],
+      "chapter_count": 3
+    }
+  ]
+}

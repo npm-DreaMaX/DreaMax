@@ -1,0 +1,9 @@
+{
+  "id": "instructgpt",
+  "sourceId": "instructgpt",
+  "url": "https://arxiv.org/pdf/2203.02155",
+  "pdfPath": "research/papers/instructgpt/paper.pdf",
+  "pages": 68,
+  "sha256": "c1984bb50a5b90fddb895fdc3a0f72e5bc977148c9f63ef6040cbe7a3e1f0d98",
+  "accessed": "2026-09-22"
+}

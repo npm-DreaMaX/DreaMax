@@ -1,0 +1,91 @@
+{
+  "kind": "Observed local smoke validation, not a portable performance benchmark",
+  "generator": "python3 -m labs.profile_report --output labs/expected/profile-validation.json",
+  "regenerate_measurements": [
+    "python3 -m labs.torch_profile --device cpu --operation mlp --output labs/measurements/cpu.json --trace labs/measurements/cpu.trace.json",
+    "python3 -m labs.torch_profile --device cuda --operation mlp --output labs/measurements/cuda.json --trace labs/measurements/cuda.trace.json"
+  ],
+  "observations": [
+    {
+      "torch_version": "2.11.0+cu128",
+      "device": "cpu",
+      "device_name": "CPU",
+      "dtype": "float32",
+      "operation": "mlp",
+      "shape": {
+        "inputs": [
+          128,
+          256
+        ],
+        "weights": [
+          [
+            256,
+            1024
+          ],
+          [
+            1024,
+            256
+          ]
+        ]
+      },
+      "warmup_steps": 2,
+      "measured_steps": 3,
+      "all_gradients_finite": true,
+      "raw_report": "labs/measurements/cpu.json",
+      "raw_sha256": "8fd486cccaefc9154f982f727de6f9510d9cfe16ce73b34f5deb1c565ff0b264",
+      "preserved_trace": "labs/measurements/cpu.trace.json",
+      "observed_operators": [
+        "aten::_softmax",
+        "aten::_softmax_backward_data",
+        "aten::gelu",
+        "aten::gelu_backward",
+        "aten::mm",
+        "aten::softmax"
+      ]
+    },
+    {
+      "torch_version": "2.11.0+cu128",
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "dtype": "float32",
+      "operation": "mlp",
+      "shape": {
+        "inputs": [
+          128,
+          256
+        ],
+        "weights": [
+          [
+            256,
+            1024
+          ],
+          [
+            1024,
+            256
+          ]
+        ]
+      },
+      "warmup_steps": 2,
+      "measured_steps": 3,
+      "all_gradients_finite": true,
+      "raw_report": "labs/measurements/cuda.json",
+      "raw_sha256": "4f4ca63a81e2cb979d058956f71aa08e6987c4db01dd6c4a46ebca88b406381a",
+      "preserved_trace": "labs/measurements/cuda.trace.json",
+      "observed_operators": [
+        "ampere_sgemm_128x32_nn",
+        "ampere_sgemm_128x32_tn",
+        "ampere_sgemm_32x128_tn",
+        "aten::_softmax",
+        "aten::_softmax_backward_data",
+        "aten::gelu",
+        "aten::gelu_backward",
+        "aten::mm",
+        "aten::softmax",
+        "void (anonymous namespace)::softmax_warp_backward<float, float, float, 8, false, false>(float*, float const*, float const*, int, int, int, bool const*)",
+        "void (anonymous namespace)::softmax_warp_forward<float, float, float, 8, false, false>(float*, float const*, int, int, int, bool const*, int, bool)",
+        "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nt_align1>(cutlass_80_simt_sgemm_64x64_8x5_nt_align1::Params)"
+      ]
+    }
+  ],
+  "limits": "CUDA observation exists only for a real available device. Raw timings are machine-specific and intentionally omitted from this summary. No optimizer or multi-GPU collective was measured."
+}

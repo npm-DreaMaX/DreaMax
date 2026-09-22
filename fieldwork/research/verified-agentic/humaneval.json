@@ -1,0 +1,7 @@
+{
+  "id": "humaneval",
+  "repository": "https://github.com/openai/human-eval",
+  "version": "6d43fb980f9fee3c892a914eda09951f772ad10d",
+  "file": "human_eval/evaluation.py",
+  "url": "https://github.com/openai/human-eval/blob/6d43fb980f9fee3c892a914eda09951f772ad10d/human_eval/evaluation.py"
+}

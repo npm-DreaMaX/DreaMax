@@ -1,42 +1,4 @@
-<div id="dlwrap">
-  <div class="dl-card">
-    <div class="dl-row">
-      <span class="dl-ch">D</span>
-      <span class="dl-ch">r</span>
-      <span class="dl-ch">e</span>
-      <span class="dl-ch">a</span>
-      <span class="dl-ch">M</span>
-      <span class="dl-ch">a</span>
-      <span class="dl-ch">x</span>
-      <!-- Amazon-style smile arrow -->
-      <svg class="dl-arw" viewBox="0 0 60 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4,16 C10,8 22,4 32,8 C42,12 46,20 42,25 C38,30 32,28 30,24 C28,20 32,16 38,16 C44,16 48,20 46,24" stroke="#e31b6d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <path d="M33,20 L38,26 L45,22" stroke="#e31b6d" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-    </div>
-    <div class="dl-bar"></div>
-  </div>
-</div>
-
-<style>
-#dlwrap{display:inline-flex;cursor:default;}
-.dl-card{
-  background:#f4f1ea;border-radius:18px;padding:28px 48px 22px;
-  box-shadow:0 14px 50px rgba(0,0,0,0.18);
-}
-.dl-row{display:flex;align-items:center;gap:3px;position:relative;}
-.dl-ch{
-  font:800 clamp(36px,6vw,72px) 'Poppins',sans-serif;
-  color:#111;line-height:1;letter-spacing:0.5px;
-}
-.dl-arw{
-  width:clamp(28px,3.5vw,48px);height:auto;
-  margin-left:6px;margin-top:-6px;flex-shrink:0;
-}
-.dl-arw path{stroke:#e31b6d;stroke-linecap:round;stroke-linejoin:round;}
-.dl-bar{height:4px;background:#e31b6d;border-radius:2px;margin-top:6px;width:100%;}
-@media(max-width:640px){
-  .dl-card{padding:16px 24px 14px;border-radius:14px;}
-  .dl-ch{font-size:24px;}.dl-arw{width:20px;margin-left:4px;margin-top:-4px;}
-}
-</style>
+---
+import BrandMark from './BrandMark.astro';
+---
+<div class="portfolio-nameplate"><BrandMark size={48}/><h1>DreaMax</h1><span aria-hidden="true">↗</span></div>

@@ -36,3 +36,14 @@ Desktop.ini
 
 # Astro
 .cache/
+.wrangler/
+artifacts/
+playwright-report/
+test-results/
+**/__pycache__/
+**/*.pyc
+fieldwork/research/**/*.pdf
+fieldwork/research/**/paper.txt
+fieldwork/research/**/pages.json
+fieldwork/public/
+fieldwork/tsconfig.tsbuildinfo

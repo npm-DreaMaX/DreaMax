@@ -1,0 +1,69 @@
+{
+  "id": "instructgpt",
+  "title": "InstructGPT",
+  "subtitle": "把示范、偏好和策略优化分开看",
+  "organization": "OpenAI",
+  "year": "2022",
+  "kind": "foundation",
+  "stages": ["posttraining"],
+  "tags": ["RLHF", "SFT", "Reward model", "PPO-ptx"],
+  "question": "人类更喜欢的回答，怎样变成可优化的信号？",
+  "why": "不是用它概括今天全部后训练，而是用这张经典系统图建立参照，之后才看得懂 DPO、RLVR 和在线蒸馏删改了哪些部分。",
+  "minutes": 22,
+  "sourceId": "instructgpt",
+  "cover": "instructgpt-pipeline",
+  "sections": [
+    {
+      "id": "pipeline",
+      "title": "Figure 2：三种数据，三种不同的学习",
+      "stage": "posttraining",
+      "locator": "§3.1–3.5 · PDF p.3、5–8",
+      "body": "第一步收集人类示范，SFT 学习给定 prompt 应怎样作答；第二步对同一 prompt 的多个模型回答排序，训练 reward model；第三步由当前策略生成新答案，通过 reward model 得分，用 PPO 更新策略。\n\n**偏好数据不是正确答案文本。** 一条示范直接给可模仿序列；一个排序只告诉你相对选择；rollout 又来自正在变化的策略。把它们混成“instruction data”会漏掉系统最关键的分布差异。\n\n这张图也解释了资源开销：policy 需要训练，reward model 需要打分，reference 用于约束偏移，value 估计帮助构造低方差优势。之后 DPO 与 GRPO 的贡献，恰好可以对照它们移除了哪一种角色。",
+      "essential": true,
+      "figures": [
+        {
+          "id": "instructgpt-pipeline",
+          "title": "同一张图，区分人和模型分别提供什么",
+          "notes": [
+            "人类在第一步提供示范，在第二步提供排序。",
+            "第三步的回答由当前策略采样，而不是从固定示范库读出。",
+            "奖励模型只是偏好代理，策略优化仍需控制偏离。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "objective",
+      "title": "为什么奖励越高不一定越好",
+      "stage": "posttraining",
+      "locator": "§3.5、§4 · PDF p.7–12",
+      "body": "可以把优化目标理解为提高 learned reward，同时通过 KL 惩罚限制策略偏离 reference。reward model 只在有限偏好数据上训练，策略若远离该分布，可能找到模型的盲点而不是用户喜欢的行为。\n\n论文还观察到部分公共 NLP 能力回退，PPO-ptx 混合预训练分布的语言建模更新以缓解。**行为对齐和基础能力保留需要同时评估**，并不因为偏好胜率上升就全部解决。\n\n这不是“PPO 天生让模型变笨”的结论。数据分布、目标权重和评测范围共同作用；应看同一实验里的对照，而非从个别任务概括一切。",
+      "essential": true
+    },
+    {
+      "id": "limits",
+      "title": "论文说的“人类偏好”到底是谁的偏好",
+      "stage": "posttraining",
+      "locator": "§5.2–5.3 · PDF p.15–18",
+      "body": "标注者选择、任务分布和标注规则决定模型对齐的对象。论文讨论 held-out labeler 的泛化，但这并不能代表全部文化、专业领域和冲突价值下的偏好。\n\n实践中至少记录 prompt 来源、候选生成模型、采样设置、排序规则和标注分歧。一个 reward model 可以在测试排序上准确，却在被策略反复优化后出现 reward hacking，因此需要 on-policy 审计。\n\n继续读 DPO 时问“它是否省掉了显式 RM”，读 R1 时问“是否换成可验证结果”，读 MiMo 时问“评分系统为何又变得复杂”。这三条不是简单的新算法替代旧算法，而是不同监督条件下的路线。",
+      "essential": true
+    }
+  ],
+  "takeaways": [
+    "SFT、RM 与 RL 分别消费不同形式和分布的数据。",
+    "奖励模型是代理目标，需要评测分布与 KL 约束。",
+    "偏好提升与通用能力保留应分开测量。"
+  ],
+  "connections": [
+    {
+      "id": "dpo",
+      "reason": "看偏好优化如何通过重参数化去掉显式 RM 与在线 RL 环。"
+    },
+    {
+      "id": "deepseek-r1",
+      "reason": "看可验证奖励下的推理训练和冷启动数据。"
+    }
+  ],
+  "lab": "preference",
+  "codeChapter": "posttraining"
+}

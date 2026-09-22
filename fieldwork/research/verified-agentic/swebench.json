@@ -1,0 +1,8 @@
+{
+  "id": "swebench",
+  "repository": "https://github.com/SWE-bench/SWE-bench",
+  "version": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+  "file": "swebench/harness/grading.py",
+  "url": "https://github.com/SWE-bench/SWE-bench/blob/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/grading.py",
+  "commitDate": "2026-09-02T01:50:34Z"
+}

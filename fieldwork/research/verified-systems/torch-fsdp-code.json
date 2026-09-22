@@ -1,0 +1,9 @@
+{
+  "id": "torch-fsdp-code",
+  "repository": "https://github.com/pytorch/pytorch",
+  "version": "a402343453f89b31a2ec8372b304accdc5b78e5f",
+  "file": "torch/distributed/fsdp/_fully_shard/_fully_shard.py",
+  "url": "https://github.com/pytorch/pytorch/blob/a402343453f89b31a2ec8372b304accdc5b78e5f/torch/distributed/fsdp/_fully_shard/_fully_shard.py",
+  "accessed": "2026-09-22",
+  "commitDate": "2026-09-22T09:45:54Z"
+}

@@ -1,0 +1,7 @@
+{
+  "tokens": 256,
+  "experts": 4,
+  "top_k": 2,
+  "capacity_factor": 1.1,
+  "hot_expert_bias": 3.0
+}

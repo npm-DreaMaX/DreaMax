@@ -1,0 +1,25 @@
+{
+  "slug": "reasoning-rl",
+  "title": "推理 RL：让奖励变成有效梯度",
+  "subtitle": "从组内优势到 token mask，再到离策略修正与探索失败。",
+  "track": "posttraining",
+  "order": 52,
+  "minutes": 40,
+  "difficulty": "研究",
+  "description": "把 GRPO 放回采样、验证和更新系统，理解零方差组、长回答权重和策略漂移。",
+  "prerequisites": ["策略梯度直觉", "期望与方差", "偏好优化中的参考策略"],
+  "learningGoals": [
+    "手算组内优势并映射到源码",
+    "区分 mask 和归约导致的权重变化",
+    "诊断探索不足与离策略偏差"
+  ],
+  "sources": [
+    "grpo-paper",
+    "verl-grpo",
+    "r1-report",
+    "verl-agent-loop",
+    "mimo26"
+  ],
+  "lab": "agent-loop",
+  "body": "## 奖励可以计算，不代表可以学到\n\n对数学题验证最终答案，对代码运行隐藏测试，看似把奖励问题解决了。但若一个任务的八次生成全错，组内相对优化可能没有区分信号；若八次全对，同样无法区分哪些动作更好。训练瓶颈从“没有标签”变成“如何产生有信息的候选”。\n\nDeepSeekMath 提出 GRPO，以组内奖励构造相对优势，减少对独立价值模型的依赖；论文中的实验证据属于其数学训练设置，不是所有长轨迹 Agent 的无条件结论。[论文来源](/sources#grpo-paper) R1 的报告展示可验证奖励参与推理训练，但没有公开完整生产训练系统供本站复现。[报告证据](/sources#r1-report)\n\n## 优势：这次尝试相对于什么更好\n\n同一提示采样 $G$ 个回答，奖励为 $r_1,\\ldots,r_G$。标准化的结果优势写为：\n\n$$\nA_i=\\frac{r_i-\\bar r}{s_r+\\epsilon},\\qquad \\bar r=\\frac{1}{G}\\sum_i r_i.\n$$\n\n这里只是一个常见构造；是否除标准差、样本标准差的约定、组大小为一的处理都属于实现。结果奖励给同一轨迹内的所有生成 token 相同标量优势，不等于证明每个 token 对结果贡献相同。它是低成本估计，而不是局部因果解释。\n\n**源码观察**：verl 固定版本 `8e03c039f9a70750490c93196b759b332fc029fd` 的 `verl/trainer/ppo/core_algos.py::compute_grpo_outcome_advantage` 接收 `[B,T]` 的奖励、response mask 和长度为 `B` 的 `index`，先按 token 求和，再按 `index` 分组。实现使用 `torch.std`，并允许关闭标准差归一化；单元素组另设均值零、标准差一。最后把标量扩展到 `[B,T]` 并乘 mask，返回优势及相同的第二个张量。[真实源码](/sources#verl-grpo)\n\n因此，当组大小至少为二且奖励全相同，组内中心化优势为零；这个结论不能无条件套到该代码的单元素组分支。训练数据 `index` 分错会把不同难度任务互相比，产生没有语义的优势。\n\n## 从优势到 clipped surrogate\n\n令 $\\rho_{i,t}=\\exp(\\log\\pi_\\theta(a_{i,t}|s_{i,t})-\\log\\pi_{\\mathrm{old}}(a_{i,t}|s_{i,t}))$，一个常见目标是：\n\n$$\n\\mathcal L=-\\mathbb E_{i,t}\\!\\left[\\min\\left(\\rho_{i,t}A_i,\\operatorname{clip}(\\rho_{i,t},1-\\varepsilon,1+\\varepsilon)A_i\\right)\\right]+\\beta\\mathcal L_{\\mathrm{KL}}.\n$$\n\n这个式子刻画重要机制，不是完整列出某个训练库全部分支。正优势样本鼓励提升概率，负优势样本抑制概率；clip 限制 surrogate 中一侧的收益，不能保证参数更新或真实 KL 被硬性限制。\n\n**源码观察**：同文件 `compute_policy_loss_vanilla` 由新旧 log-prob 构造 ratio，计算未裁剪与裁剪损失，再经过 dual-clip 等逻辑；可接收 rollout correction weights，最终通过 `agg_loss` 应用 mask 和归约。只翻译论文中的一个 `min`，会漏掉生产配置对实际目标的改变。[源码](/sources#verl-grpo)\n\n## 长度与 mask 会偷偷改变训练目标\n\n多轮 Agent 的序列包含模型动作与环境观察。观察影响下一步决策，但并非策略采样的动作。verl `AgentLoopOutput.response_mask` 对模型生成 token 取一，对工具响应取零；padding 还需排除。[数据接口](/sources#verl-agent-loop)\n\n**课程分析**：三种平均方式分别回答不同问题：全 token 平均让长轨迹占更多权重；每条轨迹先按长度平均，让任务权重更均衡；固定长度归一化又有另一种偏置。不要把 loss scale 的变化误当成“算法更强”。记录每条轨迹有效动作 token 数、环境 token 数和最终权重。\n\n截断也不是终止。达到 token 上限时，模型未必失败；若统一赋零分且不区分原因，优化器会偏好更短的轨迹。可以丢弃、继续生成、赋专门状态或使用有依据的 bootstrap，但每条路线都改变估计量或样本分布。\n\n## 新案例：全对组真的没有可学信息吗\n\n二元结果奖励下，全对组的中心化优势为零，但通过方案之间仍可能在成本、稳健性和质量上不同。MiMo-V2.6-Flash-RL 的官方模型卡描述 Groupwise Reward Synthesis 与 Groupwise Advantage Redistribution：前者从对比轨迹构造任务 rubric，后者在在线阶段区分通过轨迹的质量并调整优势。[官方公开路线](/sources#mimo26)\n\n**课程分析**：它回答的不是“如何再给 GRPO 起一个名字”，而是“通过率饱和后如何保持可用梯度”。新增排序器也新增错误来源：若偏爱短轨迹，可能低估必要验证；若排序与隐藏正确性矛盾，策略会朝错误方向精细优化。应固定通过条件，审计额外质量分数与独立任务质量的相关性。本站没有该生产实现的完整训练源码，不能把下方教学 REINFORCE 当作其复现。\n\n## On-policy、异步与重要性采样\n\n在同步设置中，采样一批轨迹后更新一次或有限次数，行为策略相对容易追踪。在异步设置中，某条长轨迹返回时，trainer 可能已经前进多个版本。版本差是工程代理指标，概率比才与分布偏移直接相关。\n\n理想重要性采样需要目标分布在行为分布上有支持。完整轨迹的比率连乘常方差很大，裁剪又引入偏差；环境非平稳、截断选择和丢弃策略也不能仅靠一个 token ratio 修复。教学中所谓“修正”必须说明修正了哪一层偏差。生产系统需同时限制版本滞后、监控 ratio 尾部与有效样本量，并记录真实 behavior log-prob。\n\n参考策略用于控制训练漂移，旧策略用于 surrogate，行为策略用于描述样本来源。这三个对象的区分见[偏好优化](/learn/preference-optimization)。\n\n## 探索、熵与难度课程\n\n**课程分析**：可把困难任务分成“偶尔成功”和“始终失败”。前者值得增加候选或做难例课程；后者可能需要更强基础能力、示范或环境分解。只加 temperature 不一定带来有价值探索，也可能增加协议错误。\n\n熵奖励或采样温度是两个不同杠杆：前者改变训练目标，后者改变采样分布。增加熵后要监控有效动作率、任务成功率和每成功样本成本。难度课程需要保留旧能力回放与固定评测集，防止把所有算力移到当前高方差任务造成遗忘。\n\n## 可运行实验与诊断顺序\n\n```bash\npython3 -m labs.run --experiment agent --seed 7\npython3 -m labs.run --experiment rollout --seed 7\n```\n\n第一个实验在有限动作环境中真正采样轨迹、执行状态转移、计算奖励并更新策略；第二个模拟 rollout 与训练的排队及版本滞后。策略是 `[2,3,4]` 的表格：加/减两类任务、三个观察阶段、四个工具动作，共 24 个 logit。`labs/agent.py::group_advantages` 使用总体标准差，和上游示例中的 `torch.std` 约定不同；更新是组内标准化的 on-policy REINFORCE，未实现 PPO clip、reference KL 或 token mask。\n\n默认 seed 7 的参考运行训练 19,200 条轨迹，在 400 个保留评测任务上，成功率从 0.020 到 0.975。它学会的是 read → 运算 → submit 协议，算术由环境工具执行；不能把这个数字当成 LLM 推理提升。实验不使用 LLM 权重，不声称复现大规模 GRPO。\n\n| 异常 | 先查什么 | 验证动作 |\n| --- | --- | --- |\n| reward 不涨且梯度近零 | 全零或全一组比例、mask、组 id | 打印一个完整组，手算优势 |\n| reward 涨但输出崩坏 | reward 漏洞、KL、entropy、长度 | 独立验证器和固定 prompt 复测 |\n| clip 比例很高 | 学习率、epoch 数、行为版本 | 降更新强度并缩短采样滞后 |\n| 长题成功率下降 | timeout、截断、长度归约 | 固定预算做长短分桶对照 |\n\n**工程任务**：让一个 batch 同时含全错组、全对组、混合组和单元素组。手工预言每组优势，再对照源码与教学实现。随后把一段工具输出的 mask 错设为一，说明损失为何会改变，却不代表策略真的执行了那段观察。提交按任务统计的零方差组比例与有效训练 token 分母。"
+}

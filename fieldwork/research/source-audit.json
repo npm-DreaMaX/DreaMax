@@ -1,0 +1,1036 @@
+{
+  "checked_at": "2026-09-22T10:25:49.484816+00:00",
+  "mode": "network",
+  "source_count": 64,
+  "success_count": 64,
+  "scope": [
+    "src/data/sources-frontier.json",
+    "src/data/sources-systems.json",
+    "src/data/sources.json"
+  ],
+  "results": [
+    {
+      "id": "deepseek-v41",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/dba1be0a40aa45a94ad051997016db3960a90277/README.md",
+      "version": "dba1be0a40aa45a94ad051997016db3960a90277",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/deepseek-ai--DeepSeek-V4.1-Flash/README.md",
+      "bytes": 13110,
+      "sha256": "347c9db4e5506acb531cbc3b724407ab88e9af8781679152f0823d7bac16d251",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/deepseek-ai/DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/README.md?%2Fdeepseek-ai%2FDeepSeek-V4.1-Flash%2Fresolve%2Fdba1be0a40aa45a94ad051997016db3960a90277%2FREADME.md=&etag=%22211b83857abd5e8420df3a4f10db1096294227e6%22"
+    },
+    {
+      "id": "deepseek-v41-report",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/DeepSeek_V41_Tech_Report.pdf",
+      "version": "dba1be0a40aa45a94ad051997016db3960a90277",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/deepseek-ai--DeepSeek-V4.1-Flash/DeepSeek_V41_Tech_Report.pdf",
+      "bytes": 1809802,
+      "sha256": "ba68e2e40408125ae6d2f63a9a241b61c73910691c74ec1a2a7023c851eac08d",
+      "network_status": 200,
+      "resolved_url": "https://us.aws.cdn.hf.co/xet-bridge-us/6aa213563d5b3527359d1af2/3611438dc4b7fa3f6be8abbfa4a793e7c3336313172d36339611adeadd4a5ac9?response-content-disposition=inline%3B+filename*%3DUTF-8%27%27DeepSeek_V41_Tech_Report.pdf%3B+filename%3D%22DeepSeek_V41_Tech_Report.pdf%22%3B&response-content-type=application%2Fpdf&X-Xet-Cas-Uid=public&user_id=public&Expires=1790076335&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly91cy5hd3MuY2RuLmhmLmNvL3hldC1icmlkZ2UtdXMvNmFhMjEzNTYzZDViMzUyNzM1OWQxYWYyLzM2MTE0MzhkYzRiN2ZhM2Y2YmU4YWJiZmE0YTc5M2U3YzMzMzYzMTMxNzJkMzYzMzk2MTFhZGVhZGQ0YTVhYzlcXD9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPWlubGluZSUzQitmaWxlbmFtZSUyQSUzRFVURi04JTI3JTI3RGVlcFNlZWtfVjQxX1RlY2hfUmVwb3J0LnBkZiUzQitmaWxlbmFtZSUzRCUyMkRlZXBTZWVrX1Y0MV9UZWNoX1JlcG9ydC5wZGYlMjIlM0ImcmVzcG9uc2UtY29udGVudC10eXBlPWFwcGxpY2F0aW9uJTJGcGRmJlgtWGV0LUNhcy1VaWQ9cHVibGljJnVzZXJfaWQ9cHVibGljIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJFcG9jaFRpbWUiOjE3OTAwNzYzMzV9fX1dfQ__&Signature=MEUCIFgJPx%7E-IJ%7E4%7Eg1fBnUJLGxd98Xu0W0vnueGSLEPisGAAiEAqQ6MFr7dFWwQEka4PQTihyJS0n3KkUWPjOoJXKn4r5U_&Key-Pair-Id=01KXEF4KZ1B6FV465MAWR4M21F&Hash-Algorithm=SHA256"
+    },
+    {
+      "id": "deepseek-v41-code",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/dba1be0a40aa45a94ad051997016db3960a90277/inference/model.py#L739",
+      "version": "dba1be0a40aa45a94ad051997016db3960a90277",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/deepseek-ai--DeepSeek-V4.1-Flash/inference/model.py",
+      "bytes": 61549,
+      "sha256": "4e9ae23620edc8028ccc5d5fef552ab7fdc7dcd6f79608754fe9f67644056f65",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/deepseek-ai/DeepSeek-V4.1-Flash/dba1be0a40aa45a94ad051997016db3960a90277/inference%2Fmodel.py?%2Fdeepseek-ai%2FDeepSeek-V4.1-Flash%2Fresolve%2Fdba1be0a40aa45a94ad051997016db3960a90277%2Finference%2Fmodel.py=&etag=%223e7dc222a6352ccc0c6469d58908934c2b4cd99b%22"
+    },
+    {
+      "id": "kimi-k3",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/f831ab66814297da540d832a5235f8e904f29d06/README.md",
+      "version": "f831ab66814297da540d832a5235f8e904f29d06",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/moonshotai--Kimi-K3/README.md",
+      "bytes": 45261,
+      "sha256": "57de265b5842dfa465c6e73b368b0e15a89b8793b5450528dad577da202cc6fe",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/moonshotai/Kimi-K3/f831ab66814297da540d832a5235f8e904f29d06/README.md?%2Fmoonshotai%2FKimi-K3%2Fresolve%2Ff831ab66814297da540d832a5235f8e904f29d06%2FREADME.md=&etag=%2210466db3bd36b1eb9b14a099d9d8d77130247712%22"
+    },
+    {
+      "id": "kimi-k3-report",
+      "url": "https://github.com/MoonshotAI/Kimi-K3/blob/3cb39dfd32e51c3328e2e4b4af21341247d06c43/k3_tech_report.pdf",
+      "version": "3cb39dfd32e51c3328e2e4b4af21341247d06c43",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/moonshotai--Kimi-K3/k3_tech_report.pdf",
+      "bytes": 1795670,
+      "sha256": "86fb82a63ced501f0c3f4f404c0c6fa88a7a6cfac17aae81fd1a8f455998067c",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/MoonshotAI/Kimi-K3/3cb39dfd32e51c3328e2e4b4af21341247d06c43/k3_tech_report.pdf"
+    },
+    {
+      "id": "kimi-k3-code",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/f831ab66814297da540d832a5235f8e904f29d06/modeling_kimi_linear.py#L1075",
+      "version": "f831ab66814297da540d832a5235f8e904f29d06",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/moonshotai--Kimi-K3/modeling_kimi_linear.py",
+      "bytes": 51506,
+      "sha256": "9e3564c70ac21854ce5a090cc946c5dc76b70d1050ef50840449181a20fff44a",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/moonshotai/Kimi-K3/f831ab66814297da540d832a5235f8e904f29d06/modeling_kimi_linear.py?%2Fmoonshotai%2FKimi-K3%2Fresolve%2Ff831ab66814297da540d832a5235f8e904f29d06%2Fmodeling_kimi_linear.py=&etag=%22b8c41e8bfce768d74d8da3a37e693f5ee43876a0%22"
+    },
+    {
+      "id": "kimi-k3-vision-code",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/f831ab66814297da540d832a5235f8e904f29d06/modeling_kimi_k3.py#L893",
+      "version": "f831ab66814297da540d832a5235f8e904f29d06",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/moonshotai--Kimi-K3/modeling_kimi_k3.py",
+      "bytes": 53444,
+      "sha256": "b9171c96726eda55234c92ac8dfae7e24c512fda68968ae8f2c3782b42665ea2",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/moonshotai/Kimi-K3/f831ab66814297da540d832a5235f8e904f29d06/modeling_kimi_k3.py?%2Fmoonshotai%2FKimi-K3%2Fresolve%2Ff831ab66814297da540d832a5235f8e904f29d06%2Fmodeling_kimi_k3.py=&etag=%22be85612710534c2e41065b67933a9639e7817d7f%22"
+    },
+    {
+      "id": "qwen38",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/de4b8e4d43b917e7706784d8bb445c9af86a3540/README.md",
+      "version": "de4b8e4d43b917e7706784d8bb445c9af86a3540",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/Qwen--Qwen3.8-Flash-Next/README.md",
+      "bytes": 65155,
+      "sha256": "35ca37ccc366f1ba478dab33841a2c0c18ce53fd62f291ca05341f7728b225b2",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3.8-Flash-Next/de4b8e4d43b917e7706784d8bb445c9af86a3540/README.md?%2FQwen%2FQwen3.8-Flash-Next%2Fresolve%2Fde4b8e4d43b917e7706784d8bb445c9af86a3540%2FREADME.md=&etag=%22a1fe177999aa2cb975cd5c17b787405e168bd176%22"
+    },
+    {
+      "id": "qwen38-report",
+      "url": "https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/69885871a64393807d988b27b1b5e380e8f28526/tech_report.pdf",
+      "version": "69885871a64393807d988b27b1b5e380e8f28526",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/Qwen--Qwen3.8-Flash-Next/tech_report.pdf",
+      "bytes": 2366146,
+      "sha256": "04f263446d74a35cb7cea368574e0c561f3b05c133be2c777ac884404063655d",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/QwenLM/Qwen3.8-Flash-Next/69885871a64393807d988b27b1b5e380e8f28526/tech_report.pdf"
+    },
+    {
+      "id": "qwen38-dense",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/blob/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/README.md",
+      "version": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/Qwen--Qwen3.8-27B/README.md",
+      "bytes": 65012,
+      "sha256": "57e4bdb258ee1a7d2635c5174ebd4e56abe392505cdb5f8bbb356b0dc4293641",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3.8-27B/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/README.md?%2FQwen%2FQwen3.8-27B%2Fresolve%2F1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0%2FREADME.md=&etag=%22bc8aa0e396cd029c21cd773cca21830d0ded28ec%22"
+    },
+    {
+      "id": "glm53",
+      "url": "https://huggingface.co/zai-org/GLM-5.3/blob/aca966e4e02791568aa6a4ced368624b3d897f42/README.md",
+      "version": "aca966e4e02791568aa6a4ced368624b3d897f42",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/zai-org--GLM-5.3/README.md",
+      "bytes": 14209,
+      "sha256": "ed1c0a4563c437a32f8953d637a1db9bd831de1b24bd3062a5ace9e04340b1cf",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/zai-org/GLM-5.3/aca966e4e02791568aa6a4ced368624b3d897f42/README.md?%2Fzai-org%2FGLM-5.3%2Fresolve%2Faca966e4e02791568aa6a4ced368624b3d897f42%2FREADME.md=&etag=%22e965a0a6ea0da381140a9ce4cc2c571058a31d05%22"
+    },
+    {
+      "id": "glm5-report",
+      "url": "https://arxiv.org/abs/2602.15763",
+      "version": "arXiv:2602.15763",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2602.15763",
+      "remote_bytes": 72031
+    },
+    {
+      "id": "mimo26",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL/blob/5711b268169967567844e1e560e8a3966da959b1/README.md",
+      "version": "5711b268169967567844e1e560e8a3966da959b1",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/XiaomiMiMo--MiMo-V2.6-Flash-RL/README.md",
+      "bytes": 9612,
+      "sha256": "132596ea76492320f5283756015e3f696f289b87fcf38e4b71602a8c901b0557",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/XiaomiMiMo/MiMo-V2.6-Flash-RL/5711b268169967567844e1e560e8a3966da959b1/README.md?%2FXiaomiMiMo%2FMiMo-V2.6-Flash-RL%2Fresolve%2F5711b268169967567844e1e560e8a3966da959b1%2FREADME.md=&etag=%22a780c5f93d7d7d78e503e809f335efa39484db9a%22"
+    },
+    {
+      "id": "mimo26-report",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL/resolve/5711b268169967567844e1e560e8a3966da959b1/MiMo_V2_6_technical_report.pdf",
+      "version": "5711b268169967567844e1e560e8a3966da959b1",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/XiaomiMiMo--MiMo-V2.6-Flash-RL/MiMo_V2_6_technical_report.pdf",
+      "bytes": 3046687,
+      "sha256": "fb81e6e083801b3358f084ed6be953dc23b0d2e434690f4541d5eae03e01e7af",
+      "network_status": 200,
+      "resolved_url": "https://us.aws.cdn.hf.co/xet-bridge-us/6ab14fc71e92143b484f4f8c/94d57d7651820dc98cee6b659ab52bb59107f8b64501b3766ae629117a15b62d?user_id=public&response-content-type=application%2Fpdf&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27MiMo_V2_6_technical_report.pdf%3B+filename%3D%22MiMo_V2_6_technical_report.pdf%22%3B&Expires=1790076338&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly91cy5hd3MuY2RuLmhmLmNvL3hldC1icmlkZ2UtdXMvNmFiMTRmYzcxZTkyMTQzYjQ4NGY0ZjhjLzk0ZDU3ZDc2NTE4MjBkYzk4Y2VlNmI2NTlhYjUyYmI1OTEwN2Y4YjY0NTAxYjM3NjZhZTYyOTExN2ExNWI2MmRcXD91c2VyX2lkPXB1YmxpYyZyZXNwb25zZS1jb250ZW50LXR5cGU9YXBwbGljYXRpb24lMkZwZGYmWC1YZXQtQ2FzLVVpZD1wdWJsaWMmcmVzcG9uc2UtY29udGVudC1kaXNwb3NpdGlvbj1pbmxpbmUlM0IrZmlsZW5hbWUlMkElM0RVVEYtOCUyNyUyN01pTW9fVjJfNl90ZWNobmljYWxfcmVwb3J0LnBkZiUzQitmaWxlbmFtZSUzRCUyMk1pTW9fVjJfNl90ZWNobmljYWxfcmVwb3J0LnBkZiUyMiUzQiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiRXBvY2hUaW1lIjoxNzkwMDc2MzM4fX19XX0_&Signature=MEUCIQCuzo5XXUtAsXEmHb8K%7EDN3oMeTRhBzd7O%7EumYC9QPBJQIgR25w3LA6V5MahpfnCW3LTEQQ79ifhQBi0EQCXPXRNDA_&Key-Pair-Id=01KXEF4KZ1B6FV465MAWR4M21F&Hash-Algorithm=SHA256"
+    },
+    {
+      "id": "mimo26-code",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL/blob/5711b268169967567844e1e560e8a3966da959b1/modeling_mimo_v2.py#L1758",
+      "version": "5711b268169967567844e1e560e8a3966da959b1",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/XiaomiMiMo--MiMo-V2.6-Flash-RL/modeling_mimo_v2.py",
+      "bytes": 85516,
+      "sha256": "a8c3cb3aae473bcc15f023010547c919f15eba6546e6ed7efb61a8937b12f3ad",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/XiaomiMiMo/MiMo-V2.6-Flash-RL/5711b268169967567844e1e560e8a3966da959b1/modeling_mimo_v2.py?%2FXiaomiMiMo%2FMiMo-V2.6-Flash-RL%2Fresolve%2F5711b268169967567844e1e560e8a3966da959b1%2Fmodeling_mimo_v2.py=&etag=%2240225ab4e30d790eab2a4dbbd74690dbb71c55ad%22"
+    },
+    {
+      "id": "gemma4",
+      "url": "https://huggingface.co/google/gemma-4-12B-it/blob/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/README.md",
+      "version": "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/frontier/google--gemma-4-12B-it/README.md",
+      "bytes": 28484,
+      "sha256": "04a06469e3d83b941eaa776a3647b8690b5a7cc5c833af2381e5345bb1bb45c0",
+      "network_status": 200,
+      "resolved_url": "https://huggingface.co/api/resolve-cache/models/google/gemma-4-12B-it/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/README.md?%2Fgoogle%2Fgemma-4-12B-it%2Fresolve%2F707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7%2FREADME.md=&etag=%2299f6f1ce7651f7c7436612f82038ddc7258542c1%22"
+    },
+    {
+      "id": "gemma4-report",
+      "url": "https://arxiv.org/abs/2607.02770v2",
+      "version": "arXiv:2607.02770v2",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2607.02770v2",
+      "remote_bytes": 95200
+    },
+    {
+      "id": "gpu-architecture",
+      "url": "https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html",
+      "version": "2026-09-22 查阅的官方文档",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html",
+      "remote_bytes": 319635
+    },
+    {
+      "id": "gemm-roofline",
+      "url": "https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html",
+      "version": "2026-09-22 查阅的官方文档",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html",
+      "remote_bytes": 326039
+    },
+    {
+      "id": "torch-profiler",
+      "url": "https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html",
+      "version": "2026-09-22 查阅的官方文档",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html",
+      "remote_bytes": 213241
+    },
+    {
+      "id": "triton-vector",
+      "url": "https://triton-lang.org/main/getting-started/tutorials/01-vector-add.html",
+      "version": "2026-09-22 查阅的官方文档",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://triton-lang.org/main/getting-started/tutorials/01-vector-add.html",
+      "remote_bytes": 36950
+    },
+    {
+      "id": "nvidia-smi-util",
+      "url": "https://docs.nvidia.com/deploy/nvidia-smi/",
+      "version": "2026-09-22 查阅的官方文档",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.nvidia.com/deploy/nvidia-smi/",
+      "remote_bytes": 218860
+    },
+    {
+      "id": "nccl-collectives",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html",
+      "version": "2026-09-22 查阅的官方文档",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html",
+      "remote_bytes": 86584
+    },
+    {
+      "id": "nccl-diagnostics",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/troubleshooting.html",
+      "version": "2026-09-22 查阅的官方文档",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/troubleshooting.html",
+      "remote_bytes": 78589
+    },
+    {
+      "id": "megatron-parallel-guide",
+      "url": "https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/parallelism-guide.html",
+      "version": "2026-09-22 查阅的官方文档",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/parallelism-guide.html",
+      "remote_bytes": 105717
+    },
+    {
+      "id": "torch-distributed-checkpoint",
+      "url": "https://docs.pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html",
+      "version": "2026-09-22 查阅的官方文档",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html",
+      "remote_bytes": 185102
+    },
+    {
+      "id": "flashattention-code",
+      "url": "https://github.com/Dao-AILab/flash-attention/blob/edb5c76ee329b18ed95d1f7ea9aa522a1331ab7d/flash_attn/flash_attn_interface.py",
+      "version": "edb5c76ee329b18ed95d1f7ea9aa522a1331ab7d",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/verified-systems/flashattention-code.py",
+      "bytes": 62021,
+      "sha256": "2423392604cd55ecb3a6912b502031cfa12e97264bd2421460e802e97f8a84a5",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/Dao-AILab/flash-attention/edb5c76ee329b18ed95d1f7ea9aa522a1331ab7d/flash_attn/flash_attn_interface.py"
+    },
+    {
+      "id": "nccl-bandwidth",
+      "url": "https://github.com/NVIDIA/nccl-tests/blob/b4d5beebca8a76cf01335f724d154b9b9d394d96/doc/PERFORMANCE.md",
+      "version": "b4d5beebca8a76cf01335f724d154b9b9d394d96",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/verified-systems/nccl-bandwidth.md",
+      "bytes": 5692,
+      "sha256": "2242493053a6f9d5db1c6542a8ce7740be919778645125b94eeae440efd31edf",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/NVIDIA/nccl-tests/b4d5beebca8a76cf01335f724d154b9b9d394d96/doc/PERFORMANCE.md"
+    },
+    {
+      "id": "torch-fsdp-code",
+      "url": "https://github.com/pytorch/pytorch/blob/a402343453f89b31a2ec8372b304accdc5b78e5f/torch/distributed/fsdp/_fully_shard/_fully_shard.py",
+      "version": "a402343453f89b31a2ec8372b304accdc5b78e5f",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/verified-systems/torch-fsdp-code.py",
+      "bytes": 45213,
+      "sha256": "4536abc84dc343d83fb6f9c73272589772c17bacf340e83a5e071e24ff7b1c5e",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/pytorch/pytorch/a402343453f89b31a2ec8372b304accdc5b78e5f/torch/distributed/fsdp/_fully_shard/_fully_shard.py"
+    },
+    {
+      "id": "olmo-core",
+      "url": "https://github.com/allenai/OLMo-core/blob/0589a034f721f13383d4c1a519df9e6880691212/src/olmo_core/train/train_module/transformer/train_module.py#L391",
+      "version": "0589a034f721f13383d4c1a519df9e6880691212",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/olmo-core/src/olmo_core/train/train_module/transformer/train_module.py",
+      "bytes": 30504,
+      "sha256": "6cf8fd746106ce191f56d8c49877c2eca0dfab8d6d7c1fa24b5c26001c7260e9",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/allenai/OLMo-core/0589a034f721f13383d4c1a519df9e6880691212/src/olmo_core/train/train_module/transformer/train_module.py"
+    },
+    {
+      "id": "olmo3-pretrain",
+      "url": "https://github.com/allenai/OLMo-core/blob/0589a034f721f13383d4c1a519df9e6880691212/src/scripts/official/OLMo3/OLMo-3-1025-7B-pretrain-2.py#L100",
+      "version": "0589a034f721f13383d4c1a519df9e6880691212",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/olmo-core/src/scripts/official/OLMo3/OLMo-3-1025-7B-pretrain-2.py",
+      "bytes": 7418,
+      "sha256": "4ccf501239f306e63e1a594ce98283213dd764fa1d5c7eb3aa282a7d4982e4cd",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/allenai/OLMo-core/0589a034f721f13383d4c1a519df9e6880691212/src/scripts/official/OLMo3/OLMo-3-1025-7B-pretrain-2.py"
+    },
+    {
+      "id": "olmo3-midtrain",
+      "url": "https://github.com/allenai/OLMo-core/blob/0589a034f721f13383d4c1a519df9e6880691212/src/scripts/official/OLMo3/OLMo-3-1025-7B-midtrain.py#L96",
+      "version": "0589a034f721f13383d4c1a519df9e6880691212",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/olmo-core/src/scripts/official/OLMo3/OLMo-3-1025-7B-midtrain.py",
+      "bytes": 4864,
+      "sha256": "506a9212c9a12beaac150fee466b63ecdb4e199f57de07fd700637527600f049",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/allenai/OLMo-core/0589a034f721f13383d4c1a519df9e6880691212/src/scripts/official/OLMo3/OLMo-3-1025-7B-midtrain.py"
+    },
+    {
+      "id": "olmo3-longcontext",
+      "url": "https://github.com/allenai/OLMo-core/blob/0589a034f721f13383d4c1a519df9e6880691212/src/scripts/official/OLMo3/OLMo-3-1025-7B-long-context.py#L44",
+      "version": "0589a034f721f13383d4c1a519df9e6880691212",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/olmo-core/src/scripts/official/OLMo3/OLMo-3-1025-7B-long-context.py",
+      "bytes": 5073,
+      "sha256": "45c001ebbb3312b17bd3797fc8ee5422717c16ea71cdff70f608982231183af2",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/allenai/OLMo-core/0589a034f721f13383d4c1a519df9e6880691212/src/scripts/official/OLMo3/OLMo-3-1025-7B-long-context.py"
+    },
+    {
+      "id": "olmo-mixture",
+      "url": "https://github.com/allenai/OLMo-core/blob/0589a034f721f13383d4c1a519df9e6880691212/src/olmo_core/data/source_mixture.py#L40",
+      "version": "0589a034f721f13383d4c1a519df9e6880691212",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/olmo-core/src/olmo_core/data/source_mixture.py",
+      "bytes": 24049,
+      "sha256": "3b3a35e56a911514ce4074836f3997b9d51b4e25e2e8b1f4279c9b273237e09c",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/allenai/OLMo-core/0589a034f721f13383d4c1a519df9e6880691212/src/olmo_core/data/source_mixture.py"
+    },
+    {
+      "id": "olmo-rope",
+      "url": "https://github.com/allenai/OLMo-core/blob/0589a034f721f13383d4c1a519df9e6880691212/src/olmo_core/nn/rope.py#L213",
+      "version": "0589a034f721f13383d4c1a519df9e6880691212",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/olmo-core/src/olmo_core/nn/rope.py",
+      "bytes": 34332,
+      "sha256": "a3ea5e4274068e3b8a31f87f2470e1a16f56c7528f94cf425c7fc50761e6ba7c",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/allenai/OLMo-core/0589a034f721f13383d4c1a519df9e6880691212/src/olmo_core/nn/rope.py"
+    },
+    {
+      "id": "dolma",
+      "url": "https://github.com/allenai/dolma/blob/669f534823b08d266a8fff01f8a1c916a5a56576/python/dolma/cli/deduper.py#L138",
+      "version": "669f534823b08d266a8fff01f8a1c916a5a56576",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/dolma/python/dolma/cli/deduper.py",
+      "bytes": 12286,
+      "sha256": "9430527aca85e68e3ba5300955b83b945bf014c0935486e7a7818c918864ca63",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/allenai/dolma/669f534823b08d266a8fff01f8a1c916a5a56576/python/dolma/cli/deduper.py"
+    },
+    {
+      "id": "megatron-moe",
+      "url": "https://github.com/NVIDIA/Megatron-LM/blob/dae135048e9fcb9f75c8fe02ccdd54375711162a/megatron/core/transformer/moe/router.py#L756",
+      "version": "dae135048e9fcb9f75c8fe02ccdd54375711162a",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/megatron-moe/megatron/core/transformer/moe/router.py",
+      "bytes": 46699,
+      "sha256": "aaf39b7ed4c43519fcf71c138e29c6b038912464a797b6c5091894f48a92e556",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/NVIDIA/Megatron-LM/dae135048e9fcb9f75c8fe02ccdd54375711162a/megatron/core/transformer/moe/router.py"
+    },
+    {
+      "id": "verl",
+      "url": "https://github.com/volcengine/verl/blob/8e03c039f9a70750490c93196b759b332fc029fd/verl/trainer/ppo/ray_trainer.py#L286",
+      "version": "8e03c039f9a70750490c93196b759b332fc029fd",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/verl/verl/trainer/ppo/ray_trainer.py",
+      "bytes": 91036,
+      "sha256": "eb41f99ccc66976eab14ebe35aa1aa5b7318e02469240ef1569ac4c884c94312",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/volcengine/verl/8e03c039f9a70750490c93196b759b332fc029fd/verl/trainer/ppo/ray_trainer.py"
+    },
+    {
+      "id": "verl-agent-loop",
+      "url": "https://github.com/volcengine/verl/blob/8e03c039f9a70750490c93196b759b332fc029fd/verl/experimental/agent_loop/agent_loop.py#L88",
+      "version": "8e03c039f9a70750490c93196b759b332fc029fd",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/verl/verl/experimental/agent_loop/agent_loop.py",
+      "bytes": 61495,
+      "sha256": "eb2196253a0b5392432b509fb4e4e21da8af4842e6f0a950f52bbd130d5834de",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/volcengine/verl/8e03c039f9a70750490c93196b759b332fc029fd/verl/experimental/agent_loop/agent_loop.py"
+    },
+    {
+      "id": "verl-grpo",
+      "url": "https://github.com/volcengine/verl/blob/8e03c039f9a70750490c93196b759b332fc029fd/verl/trainer/ppo/core_algos.py#L268",
+      "version": "8e03c039f9a70750490c93196b759b332fc029fd",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/verl/verl/trainer/ppo/core_algos.py",
+      "bytes": 104620,
+      "sha256": "a54b6d812db4441e8b0989ae69d2c46b0a0a7b584296f73d8316f264462c37cb",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/volcengine/verl/8e03c039f9a70750490c93196b759b332fc029fd/verl/trainer/ppo/core_algos.py"
+    },
+    {
+      "id": "trl-dpo",
+      "url": "https://github.com/huggingface/trl/blob/b8721872beaf3e8b6e78b6c991f15682d17d86d2/trl/trainer/dpo_trainer.py#L1470",
+      "version": "b8721872beaf3e8b6e78b6c991f15682d17d86d2",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/trl-dpo/trl/trainer/dpo_trainer.py",
+      "bytes": 106149,
+      "sha256": "1f1edf577ba04999454e8336e103cde9a0435629eda7eb9871ff29281a6348d4",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/huggingface/trl/b8721872beaf3e8b6e78b6c991f15682d17d86d2/trl/trainer/dpo_trainer.py"
+    },
+    {
+      "id": "vllm-scheduler",
+      "url": "https://github.com/vllm-project/vllm/blob/6dc34b6334fe9439a46748a0df290bc785dd69df/vllm/v1/core/sched/scheduler.py#L571",
+      "version": "6dc34b6334fe9439a46748a0df290bc785dd69df",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/vllm-scheduler/vllm/v1/core/sched/scheduler.py",
+      "bytes": 154827,
+      "sha256": "b956bc2d88f803edf0ba87918cafdaeb6ddb72cd5b85d1872c88fef6aa6bdfb3",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/vllm-project/vllm/6dc34b6334fe9439a46748a0df290bc785dd69df/vllm/v1/core/sched/scheduler.py"
+    },
+    {
+      "id": "swebench",
+      "url": "https://github.com/SWE-bench/SWE-bench/blob/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/grading.py#L309",
+      "version": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/swebench/swebench/harness/grading.py",
+      "bytes": 14144,
+      "sha256": "a095273010175001a6779e365b3b77abb8657c7ac2e4f80b4bc360faa6f09483",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/grading.py"
+    },
+    {
+      "id": "swe-agent",
+      "url": "https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/agent/agents.py#L1235",
+      "version": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/swe-agent/sweagent/agent/agents.py",
+      "bytes": 55804,
+      "sha256": "d6cdf7ac66a6509ceba08e3541b856f0734acf79f9a485ed8a6e2c72f0d211a8",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/agent/agents.py"
+    },
+    {
+      "id": "agent-lightning",
+      "url": "https://github.com/microsoft/agent-lightning/blob/ff9457587fb6ec900e16e93be9ad2d77409afa08/README.md#L1",
+      "version": "ff9457587fb6ec900e16e93be9ad2d77409afa08",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/agent-lightning/README.md",
+      "bytes": 10438,
+      "sha256": "80652c19f70d5f6dc2770a34b3827f34c1b90fd79b05fbc6d84c5bf173635dc5",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/microsoft/agent-lightning/ff9457587fb6ec900e16e93be9ad2d77409afa08/README.md"
+    },
+    {
+      "id": "olmo3",
+      "url": "https://arxiv.org/abs/2512.13961v1",
+      "version": "arXiv:2512.13961v1",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2512.13961v1",
+      "remote_bytes": 49613
+    },
+    {
+      "id": "olmo2",
+      "url": "https://arxiv.org/abs/2501.00656v2",
+      "version": "arXiv:2501.00656v2",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2501.00656v2",
+      "remote_bytes": 48651
+    },
+    {
+      "id": "fineweb",
+      "url": "https://arxiv.org/abs/2406.17557v2",
+      "version": "arXiv:2406.17557v2",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2406.17557v2",
+      "remote_bytes": 41892
+    },
+    {
+      "id": "yarn",
+      "url": "https://arxiv.org/abs/2309.00071v3",
+      "version": "arXiv:2309.00071v3",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2309.00071v3",
+      "remote_bytes": 41182
+    },
+    {
+      "id": "chinchilla",
+      "url": "https://arxiv.org/abs/2203.15556",
+      "version": "arXiv:2203.15556",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2203.15556",
+      "remote_bytes": 44600
+    },
+    {
+      "id": "flashattention",
+      "url": "https://arxiv.org/abs/2205.14135",
+      "version": "arXiv:2205.14135",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2205.14135",
+      "remote_bytes": 43989
+    },
+    {
+      "id": "dpo-paper",
+      "url": "https://arxiv.org/abs/2305.18290v3",
+      "version": "arXiv:2305.18290v3",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2305.18290v3",
+      "remote_bytes": 44625
+    },
+    {
+      "id": "grpo-paper",
+      "url": "https://arxiv.org/abs/2402.03300v3",
+      "version": "arXiv:2402.03300v3",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2402.03300v3",
+      "remote_bytes": 42477
+    },
+    {
+      "id": "r1-report",
+      "url": "https://arxiv.org/abs/2501.12948v1",
+      "version": "arXiv:2501.12948v1",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2501.12948v1",
+      "remote_bytes": 73095
+    },
+    {
+      "id": "process-supervision",
+      "url": "https://arxiv.org/abs/2305.20050",
+      "version": "arXiv:2305.20050",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2305.20050",
+      "remote_bytes": 42592
+    },
+    {
+      "id": "instructgpt",
+      "url": "https://arxiv.org/abs/2203.02155",
+      "version": "arXiv:2203.02155",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2203.02155",
+      "remote_bytes": 44863
+    },
+    {
+      "id": "pagedattention-paper",
+      "url": "https://arxiv.org/abs/2309.06180",
+      "version": "arXiv:2309.06180",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2309.06180",
+      "remote_bytes": 43425
+    },
+    {
+      "id": "torch-autograd",
+      "url": "https://docs.pytorch.org/docs/stable/notes/autograd.html",
+      "version": "stable 文档快照",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.pytorch.org/docs/stable/notes/autograd.html",
+      "remote_bytes": 1701
+    },
+    {
+      "id": "fsdp2-doc",
+      "url": "https://docs.pytorch.org/docs/main/distributed.fsdp.fully_shard.html",
+      "version": "main 文档快照",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://docs.pytorch.org/docs/main/distributed.fsdp.fully_shard.html",
+      "remote_bytes": 776571
+    },
+    {
+      "id": "qwen3-report",
+      "url": "https://arxiv.org/abs/2505.09388v1",
+      "version": "arXiv:2505.09388v1",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2505.09388v1",
+      "remote_bytes": 51054
+    },
+    {
+      "id": "deepseek-v3-report",
+      "url": "https://arxiv.org/abs/2412.19437v2",
+      "version": "arXiv:2412.19437v2",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2412.19437v2",
+      "remote_bytes": 73368
+    },
+    {
+      "id": "kimi-k2-report",
+      "url": "https://arxiv.org/abs/2507.20534v1",
+      "version": "arXiv:2507.20534v1",
+      "status": "ok",
+      "checks": [
+        "source_url_accessible"
+      ],
+      "errors": [],
+      "network_status": 200,
+      "resolved_url": "https://arxiv.org/abs/2507.20534v1",
+      "remote_bytes": 70766
+    },
+    {
+      "id": "verl-async",
+      "url": "https://github.com/verl-project/verl/blob/8e03c039f9a70750490c93196b759b332fc029fd/docs/advance/v1_async_trainer.md",
+      "version": "8e03c039f9a70750490c93196b759b332fc029fd",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/verl/docs/advance/v1_async_trainer.md",
+      "bytes": 21104,
+      "sha256": "b3ef5d7f69fb1bbcaf40b56a3bc1479031243544c320e54d9ea5bbef6628433f",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/verl-project/verl/8e03c039f9a70750490c93196b759b332fc029fd/docs/advance/v1_async_trainer.md"
+    },
+    {
+      "id": "humaneval",
+      "url": "https://github.com/openai/human-eval/blob/6d43fb980f9fee3c892a914eda09951f772ad10d/human_eval/evaluation.py",
+      "version": "6d43fb980f9fee3c892a914eda09951f772ad10d",
+      "status": "ok",
+      "checks": [
+        "local_snapshot_present",
+        "full_commit_sha",
+        "python_symbols_found",
+        "excerpt_matches_exact_lines",
+        "pinned_remote_sha256_matches"
+      ],
+      "errors": [],
+      "snapshot": "research/source-cache/humaneval/human_eval/evaluation.py",
+      "bytes": 3438,
+      "sha256": "e926d5e9b8f1ec040096cd5952e8cf79f8dc0b7fb80ba6667ce604ffea0397bc",
+      "network_status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/openai/human-eval/6d43fb980f9fee3c892a914eda09951f772ad10d/human_eval/evaluation.py"
+    }
+  ],
+  "missing_references": []
+}

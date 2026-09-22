@@ -1,0 +1,9 @@
+{
+  "updates": 100,
+  "groups_per_update": 12,
+  "group_size": 16,
+  "max_steps": 4,
+  "learning_rate": 0.8,
+  "entropy_coefficient": 0.01,
+  "evaluation_episodes": 400
+}

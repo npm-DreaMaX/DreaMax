@@ -1,0 +1,28 @@
+{
+  "repository": "moonshotai/Kimi-K3",
+  "sha": "f831ab66814297da540d832a5235f8e904f29d06",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-06-13T06:42:57.000Z",
+  "lastModified": "2026-09-02T02:22:41.000Z",
+  "license": "other",
+  "results": [
+    {
+      "file": "modeling_kimi_k3.py",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/resolve/f831ab66814297da540d832a5235f8e904f29d06/modeling_kimi_k3.py",
+      "bytes": 53444,
+      "sha256": "b9171c96726eda55234c92ac8dfae7e24c512fda68968ae8f2c3782b42665ea2"
+    },
+    {
+      "file": "README.md",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/resolve/f831ab66814297da540d832a5235f8e904f29d06/README.md",
+      "bytes": 45261,
+      "sha256": "57de265b5842dfa465c6e73b368b0e15a89b8793b5450528dad577da202cc6fe"
+    },
+    {
+      "file": "config.json",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/resolve/f831ab66814297da540d832a5235f8e904f29d06/config.json",
+      "bytes": 7006,
+      "sha256": "9710e121a58d03ac92c8d6da287a19541994319afbbe6d6202af001ffd379213"
+    }
+  ]
+}

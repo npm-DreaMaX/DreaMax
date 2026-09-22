@@ -1,0 +1,15 @@
+---
+import '../../styles/transitions.css';
+import BrandMark from '../ui/BrandMark.astro';
+const path = Astro.url.pathname;
+const label = path.startsWith('/llm-training') || path.startsWith('/fieldwork') ? 'LLM Training' : path.startsWith('/agentic-scholar') ? 'Agentic Scholar' : path.startsWith('/algorithms') ? 'Algorithm' : path.startsWith('/tools') ? 'Tools' : path.startsWith('/join') ? 'About DreaMax' : 'DreaMax';
+---
+<div class="route-curtain" aria-hidden="true" inert>
+  <div class="route-curtain-top"><span><BrandMark size={28}/> DreaMax</span><span>FOLLOW YOUR CURIOSITY</span></div>
+  <div class="route-curtain-center"><span class="route-curtain-kicker">YOU ARE ENTERING</span><span class="route-curtain-title" data-route-title>{label}</span><span class="route-curtain-arrow">↗</span></div>
+  <div class="route-curtain-bottom"><span>ONE THOUGHT LEADS TO ANOTHER.</span><i></i><span>EXPLORE / LEARN / BUILD</span></div>
+</div>
+<script>
+  import { initRouteTransitions } from '../../scripts/transitions';
+  initRouteTransitions();
+</script>

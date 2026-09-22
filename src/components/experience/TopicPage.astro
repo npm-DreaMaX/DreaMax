@@ -1,0 +1,14 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { paperById, paths } from '../../../fieldwork/src/data/readings';
+interface Props { eyebrow:string; title:string; accent:string; description:string; ids:string[]; stages:string[]; feature?:{title:string;description:string;href:string} }
+const {eyebrow,title,accent,description,ids,stages,feature}=Astro.props;
+const selected=ids.map(paperById).filter(Boolean);
+---
+<PageLayout title={`${title}${accent} — DreaMax`} {description}>
+  <div class="dm-container"><header class="dm-page-intro"><p class="dm-eyebrow">{eyebrow}</p><h1>{title}<br/><span>{accent}</span></h1><div class="dm-intro-bottom"><p>{description}</p><a class="dm-text-link" href="/fieldwork/papers">全部论文精读 ↗</a></div></header>
+  <nav class="dm-topic-paths" aria-label="相关阅读路线">{paths.filter(p=>stages.includes(p.id)).map(p=><a href={`/fieldwork/paths/${p.id}`}>{p.index} / {p.name} ↗</a>)}</nav>
+  {feature && <section class="dm-topic-feature"><div><h2>{feature.title}</h2><p>{feature.description}</p></div><a href={feature.href} class="dm-button dm-button-light">打开交互实验 <span>↗</span></a></section>}
+  <div class="dm-report-list">{selected.map((p,i)=>p&&<article class="dm-report-row"><span class="dm-report-no">{String(i+1).padStart(2,'0')}</span><div><span class="dm-eyebrow">{p.organization} / {p.year}</span><h2><a href={`/fieldwork/papers/${p.id}`}>{p.title}</a></h2><h3>{p.subtitle}</h3><div class="dm-paper-tags">{p.tags.slice(0,3).map(t=><span>{t}</span>)}</div></div><div><p>{p.why}</p><span class="dm-eyebrow">{p.sections.length} 个精读段落 · 约 {p.minutes} 分钟</span></div><a class="dm-circle-arrow" href={`/fieldwork/papers/${p.id}`} aria-label={`阅读 ${p.title}`}>↗</a></article>)}</div>
+  </div>
+</PageLayout>

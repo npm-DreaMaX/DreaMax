@@ -1,0 +1,69 @@
+{
+  "id": "dpo",
+  "title": "Direct Preference Optimization",
+  "subtitle": "沿着公式，看奖励模型怎样消失",
+  "organization": "Stanford / UC Berkeley 等",
+  "year": "2023",
+  "kind": "foundation",
+  "stages": ["posttraining"],
+  "tags": ["DPO", "Bradley–Terry", "KL", "Offline preference"],
+  "question": "能否直接用好坏答案对训练 policy，而不先拟合一个独立奖励模型？",
+  "why": "DPO 的推导短而关键。读清楚重参数化、reference 和数据支持范围，才能判断何时值得用离线偏好优化。",
+  "minutes": 25,
+  "sourceId": "dpo-paper",
+  "cover": "dpo-pipeline",
+  "sections": [
+    {
+      "id": "setup",
+      "title": "从 RLHF 的约束问题出发",
+      "stage": "posttraining",
+      "locator": "§3–4 · PDF p.3–4",
+      "body": "起点是 $\\max_\\pi E_{y\\sim\\pi}[r(x,y)]-\\beta D_{KL}(\\pi\\Vert\\pi_{ref})$。在相应假设下，最优策略与 reference 乘以指数奖励成比例：$\\pi_r(y|x)\\propto\\pi_{ref}(y|x)e^{r(x,y)/\\beta}$。\n\n将它反解成奖励，得到 $r(x,y)=\\beta\\log\\frac{\\pi_r(y|x)}{\\pi_{ref}(y|x)}+\\beta\\log Z(x)$。Z 难算，但同一个 prompt 的两个回答相减时，这一项会抵消。**DPO 的关键是这个变量替换，而不是凭直觉提高好答案概率。**",
+      "essential": true,
+      "figures": [
+        {
+          "id": "dpo-pipeline",
+          "title": "省掉的是什么，保留的是什么",
+          "notes": [
+            "左侧先训练 reward，再通过 RL 训练 policy。",
+            "右侧直接用偏好对更新 policy；reference 仍进入概率比。",
+            "系统简单了，但偏好数据和初始分布仍决定学习边界。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "objective",
+      "title": "一个完整的 DPO loss，逐项读",
+      "stage": "posttraining",
+      "locator": "§4 · PDF p.4–5",
+      "body": "令 chosen 为 $y_w$，rejected 为 $y_l$，则\n\n$$L=-\\log\\sigma\\left(\\beta\\left[\\log\\frac{\\pi_\\theta(y_w|x)}{\\pi_{ref}(y_w|x)}-\\log\\frac{\\pi_\\theta(y_l|x)}{\\pi_{ref}(y_l|x)}\\right]\\right).$$\n\n对数概率是回答序列的 token log-prob 之和，只计算 answer 部分，prompt 与 padding 必须 mask。reference 固定，policy 反传；chosen 与 rejected 的 prompt 必须一致，才符合上面的抵消。\n\n若两者相对 reference 的变化都为零，括号为零，loss 为 $\\log2$。优化促使 chosen 相对 rejected 的 log-ratio 增大。它不保证 chosen 的绝对概率每一步都增加，因此只监控偏好 margin 会漏掉整体概率变化。\n\n训练时应同时记录 chosen/rejected log-prob、隐式 reward margin、长度和独立生成评测。β 不只是一根简单的“更保守”旋钮；有限数据与参数化训练中，应通过验证而不是口头解释选择。",
+      "essential": true
+    },
+    {
+      "id": "limits",
+      "title": "从离线目标到真实使用，中间缺了什么",
+      "stage": "posttraining",
+      "locator": "§5–6 · PDF p.5–9",
+      "body": "固定偏好库只覆盖已观察到的候选。DPO 本身没有替你探索新工具策略或构造环境，因此在长任务状态分布变化很大时，可能需要迭代收集新偏好，或改用在线训练。\n\n偏好差异也可能来自长度、格式或标注捷径。模型学会迎合 judge，不等于事实或代码质量变好。把偏好对随机拆分会保留同题或相似模板泄漏，评测应按任务来源和去重组划分。\n\n本页 preference 实验可以逐步调整两个候选的概率，看 loss 与 reference 的关系。真实实现导读指向已核验的 TRL 源码；教学计算不是 TRL 的完整 trainer，不包含分布式、packing 与 reference cache。",
+      "essential": true
+    }
+  ],
+  "takeaways": [
+    "DPO 用最优策略与奖励的关系重参数化偏好学习。",
+    "只优化回答 token，保持 prompt 与 reference 口径一致。",
+    "离线数据不能自动覆盖 policy 将来遇到的所有状态。"
+  ],
+  "connections": [
+    {
+      "id": "instructgpt",
+      "reason": "回看 DPO 删除的系统组件。"
+    },
+    {
+      "id": "deepseek-math",
+      "reason": "从固定偏好对转向同题在线采样的相对奖励。"
+    }
+  ],
+  "lab": "preference",
+  "codeChapter": "preference-optimization"
+}

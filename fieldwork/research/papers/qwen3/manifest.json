@@ -1,0 +1,9 @@
+{
+  "id": "qwen3",
+  "sourceId": "qwen3-report",
+  "url": "https://arxiv.org/pdf/2505.09388v1",
+  "pdfPath": "research/papers/qwen3/paper.pdf",
+  "pages": 35,
+  "sha256": "84a5e2b1fa04bb774bf12ae606d1e6d9dd2147ed2ebe78a4cfeb91ba380ffdd5",
+  "accessed": "2026-09-22"
+}

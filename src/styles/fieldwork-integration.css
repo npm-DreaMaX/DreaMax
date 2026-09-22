@@ -1,0 +1,103 @@
+.fieldwork-host {
+  font-family: "Manrope Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.fieldwork-host .wordmark {
+  font-family: "Space Grotesk Variable", sans-serif;
+}
+.fieldwork-host .site-header {
+  padding-inline: max(24px, calc((100vw - 1440px) / 2 + 48px));
+}
+.fieldwork-brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+.fieldwork-home-link {
+  color: var(--ink);
+  font-family: "Space Grotesk Variable", sans-serif;
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -1px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.fieldwork-brand .brand-slash {
+  color: var(--muted);
+  font-size: 22px;
+  font-weight: 300;
+}
+.fieldwork-host .fieldwork-brand .wordmark {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.9px;
+}
+.fieldwork-host .desktop-nav {
+  margin-left: auto;
+  gap: 22px;
+}
+.fieldwork-host .site-header {
+  gap: 24px;
+}
+.fieldwork-host .editorial-footer .footer-top:before {
+  content: "A DreaMax project";
+  display: none;
+}
+.fieldwork-host .header-actions {
+  gap: 8px;
+}
+@media (max-width: 1100px) {
+  .fieldwork-host .desktop-nav {
+    gap: 15px;
+  }
+  .fieldwork-host .site-header {
+    padding-inline: 24px;
+    gap: 16px;
+  }
+  .fieldwork-host .header-reading {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .fieldwork-home-link {
+    font-size: 17px;
+    gap: 7px;
+  }
+  .fieldwork-brand {
+    gap: 10px;
+  }
+  .fieldwork-host .fieldwork-brand .wordmark {
+    font-size: 19px;
+  }
+  .fieldwork-host .site-header {
+    padding-inline: 18px;
+  }
+}
+
+.fieldwork-host .fieldwork-brand .wordmark {
+  font-size: 18px;
+  letter-spacing: -0.6px;
+}
+@media (max-width: 600px) {
+  .fieldwork-host .fieldwork-brand .wordmark {
+    font-size: 15px;
+  }
+  .fieldwork-brand {
+    gap: 8px;
+  }
+  .fieldwork-host .site-header {
+    gap: 8px;
+  }
+  .fieldwork-home-link {
+    font-size: 16px;
+    gap: 6px;
+  }
+  .fieldwork-home-link svg {
+    width: 22px;
+  }
+  .fieldwork-host .site-header .header-actions {
+    gap: 2px;
+  }
+}

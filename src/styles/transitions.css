@@ -1,0 +1,102 @@
+.route-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px clamp(24px, 5vw, 96px);
+  background: #d7e6b9;
+  color: #1b2319;
+  font-family: "Space Grotesk Variable", sans-serif;
+  transform: translateY(101%);
+  visibility: hidden;
+  pointer-events: none;
+  will-change: transform;
+}
+.route-curtain-top,
+.route-curtain-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  font-size: 10px;
+  letter-spacing: 0.09em;
+}
+.route-curtain-top > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 18px;
+  letter-spacing: -0.05em;
+}
+.route-curtain-center {
+  position: relative;
+  padding: 35px 0 55px;
+  border-bottom: 1px solid #1b231930;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.route-curtain-kicker {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+.route-curtain-title {
+  font-size: clamp(46px, 9vw, 160px);
+  line-height: 1.05;
+  letter-spacing: -0.065em;
+  font-weight: 500;
+}
+.route-curtain-arrow {
+  position: absolute;
+  right: 0;
+  top: -80px;
+  font-size: 100px;
+  line-height: 1;
+  font-weight: 300;
+}
+.route-curtain-bottom i {
+  height: 1px;
+  background: #1b23194a;
+  flex: 1;
+}
+html[data-route-transition="exit"] .route-curtain {
+  visibility: visible;
+  transform: translateY(0);
+  transition: transform 0.28s cubic-bezier(0.5, 0, 0.2, 1);
+  pointer-events: auto;
+}
+html[data-route-transition="enter"] .route-curtain {
+  visibility: visible;
+  animation: route-uncover 0.58s cubic-bezier(0.7, 0, 0.25, 1) 0.06s both;
+}
+@keyframes route-uncover {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-101%);
+    visibility: hidden;
+  }
+}
+@media (max-width: 600px) {
+  .route-curtain {
+    padding-block: 24px;
+  }
+  .route-curtain-top > span:last-child {
+    font-size: 8px;
+  }
+  .route-curtain-bottom > span:last-child {
+    display: none;
+  }
+  .route-curtain-arrow {
+    font-size: 64px;
+    top: -60px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-curtain {
+    display: none !important;
+  }
+}

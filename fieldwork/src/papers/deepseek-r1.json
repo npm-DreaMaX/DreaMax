@@ -1,0 +1,77 @@
+{
+  "id": "deepseek-r1",
+  "title": "DeepSeek-R1",
+  "subtitle": "把 R1-Zero 和 R1 当作两个问题来读",
+  "organization": "DeepSeek",
+  "year": "2025",
+  "kind": "foundation",
+  "stages": ["posttraining"],
+  "tags": ["RLVR", "Cold start", "Rejection sampling", "Distillation"],
+  "question": "推理行为能否从 RL 中出现，以及怎样把它变成更可用的模型？",
+  "why": "这篇是理解 reasoning RL 的关键转折；同时必须区分纯 RL 观察、多阶段产品配方和蒸馏结果。",
+  "minutes": 28,
+  "sourceId": "r1-report",
+  "cover": "r1-length",
+  "sections": [
+    {
+      "id": "zero",
+      "title": "R1-Zero：不给先验推理示范，会发生什么",
+      "stage": "posttraining",
+      "locator": "§2.2 · PDF p.4–9",
+      "body": "R1-Zero 从 base model 直接进入 RL，使用可验证的准确性与格式奖励，观察推理行为变化。随着训练推进，平均响应长度增加，模型出现反思、检查等行为。Figure 3 展示长度，不是给出“越长越正确”的因果证明。\n\n这里的“无需 SFT”是该实验设置，不意味着底座没有从预训练学过数学、代码或推理文本。强底座提供可探索的行为空间，RL 的验证信号再改变这些行为出现的概率。\n\n结果同时有可读性、语言混杂等问题。把 R1-Zero 的实验价值与最终可用模型的目标分开，才能理解为什么下一节重新引入 cold-start 数据。",
+      "essential": true,
+      "figures": [
+        {
+          "id": "r1-length",
+          "title": "一条上升的长度曲线能说明多少",
+          "notes": [
+            "纵轴是平均响应长度，横轴是 RL 训练进展。",
+            "它说明行为分布变化，需要与准确率曲线一起读。",
+            "单个反思案例是定性证据，不代表所有生成都完成了真实自我纠错。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pipeline",
+      "title": "R1：冷启动、推理 RL、再造数据、再次 RL",
+      "stage": "posttraining",
+      "locator": "§2.3 · PDF p.9–11",
+      "body": "R1 先用少量长 CoT 数据 cold start，改善起点的可读性和行为；再进行 reasoning-oriented RL；随后用 rejection sampling 收集推理答案，并混入非推理数据做 SFT；最后进行覆盖更广任务的 RL。\n\n**这不是只在 base 上跑一次 GRPO。** 拒绝采样阶段使用新的 policy 生成候选、按正确性和质量筛选，得到约 600K 推理样本，加上约 200K 非推理样本，再训练新的阶段。\n\n一个阶段提升了数学能力，并不保证一般回答和语言风格不受影响。报告的多阶段链路正是在协调不同监督与能力。复现时应保存每个边界的 checkpoint 与评测，才能知道收益来自哪里。",
+      "essential": true
+    },
+    {
+      "id": "distillation",
+      "title": "小模型学会了什么，不能从名字猜",
+      "stage": "posttraining",
+      "locator": "§2.4、§3.2、§4.1 · PDF p.11、14–16",
+      "body": "报告将 R1 产生的数据用于较小的 Qwen / Llama 系列底座蒸馏，并比较部分小模型直接 RL 的效果。对特定规模与预算，强教师数据表现出优势；这不证明小模型永远不能通过 RL 提升。\n\n蒸馏后的能力包含底座、教师质量、筛选规则和训练目标共同贡献。不同 student 参数量、原始预训练与输出预算都影响比较。应把 teacher data 和 student rollout 是否 on-policy 写明。\n\n这里主要是从生成数据进行知识迁移。到 Kimi K3 和 MiMo 时，学生自己的生成再由教师密集打分，接口进一步变化。理解这个演进比记“蒸馏”一个词更有用。",
+      "essential": true
+    },
+    {
+      "id": "evaluation",
+      "title": "如何避免把推理 token 当作免费增益",
+      "stage": "posttraining",
+      "locator": "§3、§4 · PDF p.12–17",
+      "body": "比较推理模型时必须对齐采样温度、最大输出、样本数、投票或筛选策略。pass@1、consensus 与多候选 best-of-N 消耗不同预算。只摘最大数字容易把推理时计算误当训练能力。\n\n可做的缩小实验是同一任务分别给短、中、长预算，记录正确率和真实 token 成本；再检查每类失败。长度增加但准确率不动，可能意味着重复、错误路径坚持或验证能力不足。\n\n报告中未成功的路线同样值得读。奖励模型和搜索不因理论上合理就必然在该设置中有效；将负面结果与实验条件一起记下来，避免把某篇成功故事当完整研究空间。",
+      "essential": false
+    }
+  ],
+  "takeaways": [
+    "R1-Zero 研究行为涌现，R1 协调可用性的多阶段配方。",
+    "强底座、验证器、数据筛选与 RL 都参与贡献。",
+    "推理时预算必须进入模型能力比较。"
+  ],
+  "connections": [
+    {
+      "id": "deepseek-math",
+      "reason": "回溯 GRPO 与数据起点。"
+    },
+    {
+      "id": "kimi-k3",
+      "reason": "继续看在线蒸馏和 effort 专家如何演进。"
+    }
+  ],
+  "lab": "evaluation",
+  "codeChapter": "reasoning-rl"
+}

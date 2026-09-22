@@ -1,0 +1,20 @@
+{
+  "repository": "Qwen/Qwen3.6-35B-A3B",
+  "sha": "995ad96eacd98c81ed38be0c5b274b04031597b0",
+  "accessed": "2026-09-22",
+  "createdAt": "2026-04-15T05:59:19.000Z",
+  "lastModified": "2026-04-24T02:53:42.000Z",
+  "license": "apache-2.0",
+  "documents": [
+    "README.md",
+    "config.json",
+    "configuration.json",
+    "generation_config.json",
+    "preprocessor_config.json",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "video_preprocessor_config.json",
+    "vocab.json"
+  ],
+  "readmeSha256": "c4ddaa065649ff6352648f64747a16eda31726f3e34add94ce04abb461c77b75"
+}

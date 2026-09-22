@@ -1,0 +1,17 @@
+---
+import { paperById, figures } from '../../../fieldwork/src/data/readings';
+const selected = ['mimo-v26','deepseek-v41','kimi-k3','qwen38'].map(id=>paperById(id)!);
+---
+<div class="dm-paper-showcase" data-reveal>
+  <div class="dm-paper-tabs" role="tablist" aria-label="精选模型报告">{selected.map((p,i)=><button role="tab" id={`paper-tab-${i}`} aria-selected={i===0} aria-controls={`paper-panel-${i}`} tabindex={i===0?0:-1} data-paper-tab={i}><span>0{i+1}</span>{p.title}<span aria-hidden="true">↗</span></button>)}</div>
+  {selected.map((p,i)=>{
+    const figure=figures.find(f=>f.id===p.cover)!;
+    return <div class="dm-paper-panel" role="tabpanel" id={`paper-panel-${i}`} aria-labelledby={`paper-tab-${i}`} hidden={i!==0}>
+      <a class="dm-paper-visual" href={`/fieldwork/papers/${p.id}`} aria-label={`阅读 ${p.title}`}>
+        <div class="dm-paper-sheet"><div class="dm-paper-sheet-top"><span>{p.organization}</span><span>TECHNICAL REPORT</span></div><strong>{p.title}</strong><span class="dm-paper-sheet-rule"></span><img src={figure.src} alt={`${p.title} 论文原图：${figure.label}`} width={figure.width} height={figure.height} loading="lazy"/><div class="dm-paper-sheet-bottom"><span>ORIGINAL FIGURE · p.{figure.page}</span><span>{p.year}</span></div></div>
+        <span class="dm-figure-orbit" aria-hidden="true"></span>
+      </a>
+      <div class="dm-paper-copy"><span class="dm-eyebrow">FRONTIER REPORT / {p.organization}</span><h3>{p.subtitle}</h3><p>{p.why}</p><div class="dm-paper-tags">{p.tags.slice(0,3).map(t=><span>{t}</span>)}</div><a class="dm-button dm-button-dark" href={`/fieldwork/papers/${p.id}`}>展开这篇精读 <span aria-hidden="true">↗</span></a><span class="dm-paper-time">{p.sections.length} 个精读段落 · 约 {p.minutes} 分钟</span></div>
+    </div>;
+  })}
+</div>

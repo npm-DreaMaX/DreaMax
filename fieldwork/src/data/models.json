@@ -1,0 +1,241 @@
+[
+  {
+    "id": "deepseek",
+    "name": "DeepSeek · V4.1-Flash",
+    "organization": "DeepSeek",
+    "current": "本次核验代表：2026-09官方V4.1-Flash公开分支",
+    "generations": [
+      "V3：MoE、MLA、FP8与MTP",
+      "V4.1-Flash：CED与CSA2，输入密集Agent成本设计"
+    ],
+    "takeaway": "把训练架构与长期Agent输入、KV复用成本一起设计。",
+    "changes": [
+      "CED改变decoder全局KV的来源；CSA2跨层复用缓存和索引",
+      "从文本效率配方走向原生图文联合训练",
+      "后训练报告把主要投入放在任务合成、环境规模与验证"
+    ],
+    "questions": [
+      "压缩缓存后哪类长任务最先退步？",
+      "索引器成本究竟从哪个层开始不随全上下文线性增长？"
+    ],
+    "limits": "没有复现报告的大规模训练；不能把前代超参数直接移植；官方benchmark采用特定harness与effort。",
+    "disclosure": {
+      "Training Code": "本次发布材料未提供可复现全流程预训练器",
+      "Post-training Code": "报告／模型定义不等于完整RL训练流水线；未核验完整发布",
+      "Data Recipe": "方法级信息可读；完整可重建数据mixture未核验",
+      "API Only": "否；公开权重分支",
+      "Open Weight": "是；本次核验官方权重与config",
+      "Open Source": "官方推理代码可读；训练全流程公开性单列",
+      "Inference Code": "inference/model.py、kernel.py等已定位",
+      "Technical Report": "固定HF SHA的完整PDF已核验",
+      "License": "MIT，见固定仓库LICENSE"
+    },
+    "sourceIds": [
+      "deepseek-v41",
+      "deepseek-v41-report",
+      "deepseek-v41-code",
+      "deepseek-v3-report"
+    ],
+    "chapters": [
+      "modern-pretraining",
+      "long-context",
+      "inference-serving",
+      "agent-flywheel"
+    ],
+    "reported": "2026-09-22"
+  },
+  {
+    "id": "kimi",
+    "name": "Kimi · K3",
+    "organization": "Moonshot AI",
+    "current": "本次核验代表：官方K3，非仅K2历史案例",
+    "generations": [
+      "K2：公开Agentic合成与可验证反馈",
+      "K3：KDA、AttnRes与长上下文系统协同"
+    ],
+    "takeaway": "把序列长度、深度信息流与专家容量当成三种不同的扩展轴。",
+    "changes": [
+      "KDA/MLA混合与Attention Residuals分工不同",
+      "长上下文cooldown逐段扩展；不用把RoPE方案套给NoPE骨干",
+      "SFT、领域RL与多教师on-policy distillation串联"
+    ],
+    "questions": [
+      "递归state怎样跨chunk、rank和prefix缓存保持一致？",
+      "AttnRes额外保存的深度状态如何影响流水线通信？"
+    ],
+    "limits": "公开模型代码依赖外部kernel；完整pretraining/RL集群代码与数据未核验；自定义许可证需按分支阅读。",
+    "disclosure": {
+      "Training Code": "本次发布材料未提供可复现全流程预训练器",
+      "Post-training Code": "报告／模型定义不等于完整RL训练流水线；未核验完整发布",
+      "Data Recipe": "方法级信息可读；完整可重建数据mixture未核验",
+      "API Only": "否；公开权重分支",
+      "Open Weight": "是；官方模型卡与分片文件可确认",
+      "Open Source": "源码可见，但采用自定义许可证，不能等同通用开源授权",
+      "Inference Code": "modeling_kimi_k3.py / modeling_kimi_linear.py已核验",
+      "Technical Report": "官方GitHub固定commit PDF已核验",
+      "License": "Kimi K3 License；源码部分继承Apache-2.0"
+    },
+    "sourceIds": [
+      "kimi-k3",
+      "kimi-k3-report",
+      "kimi-k3-code",
+      "kimi-k2-report"
+    ],
+    "chapters": [
+      "moe-training",
+      "long-context",
+      "posttraining",
+      "frontier-reading"
+    ],
+    "reported": "2026-09-22"
+  },
+  {
+    "id": "qwen",
+    "name": "Qwen · 3.8 Flash-Next / 27B",
+    "organization": "Qwen",
+    "current": "本次核验代表：3.8 Flash-Next架构预览，同时对照3.8-27B",
+    "generations": [
+      "Qwen3：分阶段预训练与推理能力塑形",
+      "Qwen3.8-27B：Dense GDN/Attention混合",
+      "Qwen3.8-Flash-Next：QSA、Gated Residual与n-gram embedding"
+    ],
+    "takeaway": "同一个家族版本号仍可能包含不同架构和许可证。",
+    "changes": [
+      "Flash-Next将稀疏选择推进到micro-block，并调节残差读写",
+      "按参数类型选择Muon/AdamW，重新拟合batch/LR",
+      "报告记录pretraining指标几乎无损、post-training生成变差的失败消融"
+    ],
+    "questions": [
+      "gate是在时间维、残差维还是专家维起作用？",
+      "同名版本的Dense与MoE是否共享你想比较的变化？"
+    ],
+    "limits": "Flash-Next被官方称为实验预览；27B不是同一架构；API Qwen3.8-Flash的托管功能不能自动归给权重checkpoint。",
+    "disclosure": {
+      "Training Code": "本次发布材料未提供可复现全流程预训练器",
+      "Post-training Code": "报告／模型定义不等于完整RL训练流水线；未核验完整发布",
+      "Data Recipe": "方法级信息可读；完整可重建数据mixture未核验",
+      "API Only": "否；公开权重分支",
+      "Open Weight": "两个所选分支均公开权重",
+      "Open Source": "27B与Flash-Next授权不同，不能按系列统一判断",
+      "Inference Code": "官方卡列Transformers/vLLM等兼容；此次未审计其全部实现",
+      "Technical Report": "Flash-Next官方GitHub固定commit PDF；27B模型卡",
+      "License": "27B: Apache-2.0；Flash-Next: Qwen Community License 1.0"
+    },
+    "sourceIds": ["qwen38", "qwen38-report", "qwen38-dense", "qwen3-report"],
+    "chapters": [
+      "modern-pretraining",
+      "midtraining",
+      "training-stability",
+      "frontier-reading"
+    ],
+    "reported": "2026-09-22"
+  },
+  {
+    "id": "glm",
+    "name": "GLM · 5.3",
+    "organization": "Z.ai",
+    "current": "本次核验代表：GLM-5.3官方公开权重",
+    "generations": [
+      "GLM-5家族：Agentic Engineering研究",
+      "GLM-5.2→5.3：官方声明沿用同一base"
+    ],
+    "takeaway": "提供一个将代际变化定位到后训练的清晰对照。",
+    "changes": [
+      "同base声明使后训练增益成为主要研究问题",
+      "模型卡详细列harness、超时、sampling和benchmark修订"
+    ],
+    "questions": [
+      "同一base上，数据、reward与rollout预算各贡献多少？",
+      "改过的评测任务与旧排行榜是否仍可直接比较？"
+    ],
+    "limits": "5.3模型卡引用GLM-5家族报告；未公开的具体5.3训练配方不能由早期家族报告补全。",
+    "disclosure": {
+      "Training Code": "本次发布材料未提供可复现全流程预训练器",
+      "Post-training Code": "报告／模型定义不等于完整RL训练流水线；未核验完整发布",
+      "Data Recipe": "方法级信息可读；完整可重建数据mixture未核验",
+      "API Only": "否；公开权重分支",
+      "Open Weight": "是；官方HF权重分支",
+      "Open Source": "模型权重用自定义授权；推理框架另有各自许可证",
+      "Inference Code": "模型卡链接多种开源服务框架；本次HF仓库主要为权重/config",
+      "Technical Report": "可访问GLM-5家族报告；5.3全部增量细节未充分公开",
+      "License": "GLM-5.3 License（自定义）"
+    },
+    "sourceIds": ["glm53", "glm5-report"],
+    "chapters": ["posttraining", "evaluation", "frontier-reading"],
+    "reported": "2026-09-22"
+  },
+  {
+    "id": "mimo",
+    "name": "MiMo · V2.6-Flash-RL",
+    "organization": "Xiaomi MiMo",
+    "current": "本次核验代表：2026-09-22可访问的V2.6公开RL分支",
+    "generations": [
+      "V2.5→V2.6：官方同系列对照",
+      "V2.6：Agent中心mid-training与混合RL/分组评分"
+    ],
+    "takeaway": "把中训练视为大批RL的能力、长度和优化器准备阶段。",
+    "changes": [
+      "文本→全模态两阶段预训练，随后Agent中心中训练",
+      "中训练包含长度扩展、优化器适配和量化感知训练",
+      "GRS/GAR优化通过测试后的质量差异；后接MOPD2"
+    ],
+    "questions": [
+      "中训练对后续RL的收益是否仍存在于固定rollout预算下？",
+      "组内质量排名是否引入grader偏好或新的reward hacking？"
+    ],
+    "limits": "报告中的GRPO、grader和Muown设计没有在所下载modeling文件里完整实现；不要把推理定义当作训练源码。",
+    "disclosure": {
+      "Training Code": "本次发布材料未提供可复现全流程预训练器",
+      "Post-training Code": "报告／模型定义不等于完整RL训练流水线；未核验完整发布",
+      "Data Recipe": "方法级信息可读；完整可重建数据mixture未核验",
+      "API Only": "否；公开权重分支",
+      "Open Weight": "是；Flash-RL公开checkpoint",
+      "Open Source": "发布模型定义可读；完整训练系统的公开性未核验",
+      "Inference Code": "modeling_mimo_v2.py、configuration与draft定义",
+      "Technical Report": "固定HF SHA的完整PDF已核验",
+      "License": "模型卡标MIT；modeling_mimo_v2.py文件头Apache-2.0"
+    },
+    "sourceIds": ["mimo26", "mimo26-report", "mimo26-code"],
+    "chapters": [
+      "midtraining",
+      "capability-shaping",
+      "agent-rewards",
+      "reasoning-rl"
+    ],
+    "reported": "2026-09-22"
+  },
+  {
+    "id": "gemma",
+    "name": "Gemma · 4 12B Unified",
+    "organization": "Google DeepMind",
+    "current": "本次核验海外代表：Gemma4公开系列中的12B Unified",
+    "generations": [
+      "Gemma4家族：Dense/MoE及多种部署规模",
+      "Gemma4-12B Unified：encoder-free多模态分支"
+    ],
+    "takeaway": "提供端侧效率与原生模态接口的另一种设计边界。",
+    "changes": [
+      "12B分支直接处理图像/音频输入，区别于独立encoder路线",
+      "同家族包含预训练与指令checkpoint，以及不同Dense/MoE规模"
+    ],
+    "questions": [
+      "多模态统一接口如何改变数据packing与算力分配？",
+      "端侧内存约束下，推理预算和训练目标怎样协同？"
+    ],
+    "limits": "这一项用于机制对照，不声称它在所有任务优于更大模型；家族能力不能默认套在每个尺寸上。",
+    "disclosure": {
+      "Training Code": "本次发布材料未提供可复现全流程预训练器",
+      "Post-training Code": "报告／模型定义不等于完整RL训练流水线；未核验完整发布",
+      "Data Recipe": "方法级信息可读；完整可重建数据mixture未核验",
+      "API Only": "否；公开权重分支",
+      "Open Weight": "是；有base与instruction-tuned分支",
+      "Open Source": "官方模型许可证Apache-2.0；完整训练复现仍需单独核验",
+      "Inference Code": "官方提供多个运行生态；此次未逐个审计kernel",
+      "Technical Report": "Gemma4官方报告v2可访问",
+      "License": "Apache-2.0，已对照Google官方许可证页"
+    },
+    "sourceIds": ["gemma4", "gemma4-report"],
+    "chapters": ["modern-pretraining", "inference-serving", "frontier-reading"],
+    "reported": "2026-09-22"
+  }
+]

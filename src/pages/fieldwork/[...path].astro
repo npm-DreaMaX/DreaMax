@@ -1,0 +1,57 @@
+---
+import Fieldwork from '../../../fieldwork/src/Fieldwork';
+import { papers, paths } from '../../../fieldwork/src/data/readings';
+import { articles } from '../../../fieldwork/src/data/catalog';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/manrope';
+import 'katex/dist/katex.min.css';
+import '../../../fieldwork/src/styles.css';
+import '../../../fieldwork/src/editorial.css';
+import '../../styles/fieldwork-integration.css';
+import RouteTransition from '../../components/navigation/RouteTransition.astro';
+import TransitionHead from '../../components/navigation/TransitionHead.astro';
+
+export function getStaticPaths() {
+  const routes = [undefined, 'papers', 'sources', 'models', 'notebook', 'labs', 'roadmap',
+    ...papers.map(p => `papers/${p.id}`),
+    ...paths.map(p => `paths/${p.id}`),
+    ...articles.map(a => `learn/${a.slug}`),
+    ...['gradients','data-mixture','preference','agent-loop','rollout','moe','evaluation','systems'].map(l => `labs/${l}`)];
+  return routes.map(path => ({ params: { path } }));
+}
+const slug = Astro.params.path || '';
+if (slug === 'roadmap') return Astro.redirect('/fieldwork/paths/pretraining', 301);
+const paper = papers.find(p => `papers/${p.id}` === slug);
+const article = articles.find(a => `learn/${a.slug}` === slug);
+const title = `${paper?.title || article?.title || 'Fieldwork · 读懂智能'} — DreaMax`;
+const description = paper?.subtitle || '从前沿技术报告到可运行的实验。沿预训练、中训练、后训练、Agentic RL 与算子集群五条路线，建立自己的理解。';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#faf9f6" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/social-cover.png', Astro.site)} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <TransitionHead />
+    <script is:inline>
+      try { document.documentElement.dataset.theme = JSON.parse(localStorage.getItem('fieldwork-theme') || '"light"') === 'dark' ? 'dark' : 'light'; } catch {}
+      document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k' && document.documentElement.dataset.fieldworkReady !== 'true') {
+          e.preventDefault(); document.documentElement.dataset.queuedSearch = 'true';
+        }
+      });
+    </script>
+  </head>
+  <body class="fieldwork-host">
+    <RouteTransition />
+    <Fieldwork pathname={Astro.url.pathname} client:load />
+  </body>
+</html>

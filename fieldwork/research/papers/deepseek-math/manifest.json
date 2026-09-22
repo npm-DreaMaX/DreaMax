@@ -1,0 +1,9 @@
+{
+  "id": "deepseek-math",
+  "sourceId": "grpo-paper",
+  "url": "https://arxiv.org/pdf/2402.03300v3",
+  "pdfPath": "research/papers/deepseek-math/paper.pdf",
+  "pages": 30,
+  "sha256": "6cc20b3c5b8d25b8b53868fc4ec1792c144f07d67bdf7395138efd4422197e7b",
+  "accessed": "2026-09-22"
+}

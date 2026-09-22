@@ -1,0 +1,9 @@
+<script is:inline>
+  try {
+    const marker = JSON.parse(sessionStorage.getItem('dreamax-route') || 'null');
+    sessionStorage.removeItem('dreamax-route');
+    if (marker && Date.now() - marker.at < 15000 && marker.to.replace(/\/+$/, '') === location.pathname.replace(/\/+$/, '') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.dataset.routeTransition = 'enter';
+    }
+  } catch {}
+</script>

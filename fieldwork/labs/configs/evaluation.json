@@ -1,0 +1,7 @@
+{
+  "tasks": 40,
+  "samples_per_task": 8,
+  "bootstrap_repetitions": 1000,
+  "k_values": [1, 2, 4, 8],
+  "contamination_threshold": 0.55
+}

@@ -1,0 +1,9 @@
+{
+  "id": "deepseek-v3",
+  "sourceId": "deepseek-v3-report",
+  "url": "https://arxiv.org/pdf/2412.19437v2",
+  "pdfPath": "research/papers/deepseek-v3/paper.pdf",
+  "pages": 53,
+  "sha256": "812a3fd645c80725354de9d831a6785503007a60681461407f64e97305fa9330",
+  "accessed": "2026-09-22"
+}

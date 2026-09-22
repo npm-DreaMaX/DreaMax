@@ -1,0 +1,113 @@
+[
+  {
+    "id": "qwen3",
+    "name": "Qwen3",
+    "sourceId": "qwen3-report",
+    "locator": "§3.2 · PDF p.4–5",
+    "section": "midtraining",
+    "insight": "S1 与 S2 的长度相同。第二阶段的关键变化首先是数据分布和学习率衰减，之后才扩展上下文。",
+    "phases": [
+      {
+        "name": "General · S1",
+        "tokens": ">30T tokens",
+        "context": "4,096",
+        "objective": "语言建模",
+        "data": "覆盖 119 种语言与方言的通用语料。",
+        "optimization": "为通用知识与语言能力分配主要训练预算。",
+        "read": "先建立广覆盖底座。不能只用后续数学榜单评价这个阶段。"
+      },
+      {
+        "name": "Reasoning · S2",
+        "tokens": "约 5T tokens",
+        "context": "4,096",
+        "objective": "继续语言建模",
+        "data": "增加 STEM、代码、推理与合成数据的比例。",
+        "optimization": "加快学习率衰减；仍使用与 S1 相同的上下文长度。",
+        "read": "名字里有 Reasoning，但这里不是 reasoning RL；监督仍来自训练序列。"
+      },
+      {
+        "name": "Long Context",
+        "tokens": "数百 B tokens",
+        "context": "32,768",
+        "objective": "长上下文预训练",
+        "data": "75% 长度 16K–32K，25% 长度 4K–16K 的长语料。",
+        "optimization": "RoPE base 从 10,000 提高到 1,000,000；推理扩展技术另行区分。",
+        "read": "长文本的依赖结构与位置适配一起训练，不是只修改最大长度。"
+      }
+    ]
+  },
+  {
+    "id": "glm5",
+    "name": "GLM-5",
+    "sourceId": "glm5-report",
+    "locator": "§2.3 · PDF p.8–9",
+    "section": "midtraining",
+    "insight": "这里三段都属于报告明确命名的 Mid-Training。软件工程上下文和长轨迹数据随着长度一起增加。",
+    "phases": [
+      {
+        "name": "Mid-training · 32K",
+        "tokens": "1T tokens",
+        "context": "32K",
+        "objective": "能力塑形",
+        "data": "仓库代码、issue / PR、commit diff 和关联文件组成软件工程序列。",
+        "optimization": "先在较短的长上下文阶段分配较多 token。",
+        "read": "此处展示中训练的三段，不包含此前的通用与代码预训练。"
+      },
+      {
+        "name": "Mid-training · 128K",
+        "tokens": "500B tokens",
+        "context": "128K",
+        "objective": "长程依赖适配",
+        "data": "提高长文档和合成 agent 轨迹的采样权重。",
+        "optimization": "自然文档与合成长程依赖并用，扩大利用上下文的任务覆盖。",
+        "read": "token 总量下降不代表数据价值下降；更长序列改变了每步成本。"
+      },
+      {
+        "name": "Mid-training · 200K",
+        "tokens": "50B tokens",
+        "context": "200K",
+        "objective": "更长上下文适配",
+        "data": "继续扩大长上下文任务多样性，并加入少量 MRCR-like 多轮召回数据。",
+        "optimization": "报告观察到后续 200K 阶段也改善 128K 范围内表现。",
+        "read": "这是特定报告的实验观察，不能泛化为越长必然越好。"
+      }
+    ]
+  },
+  {
+    "id": "mimo-v26",
+    "name": "MiMo-V2.6-Flash",
+    "sourceId": "mimo26-report",
+    "locator": "§3.1–3.2 · PDF p.7",
+    "section": "midtraining",
+    "insight": "预训练两段共 48T token；中训练的 token 数在这段配方中未给出。进入 RL 前，数据、优化器和数值精度同时适配。",
+    "phases": [
+      {
+        "name": "Text pre-training",
+        "tokens": "26T tokens",
+        "context": "预训练由 32K 起步",
+        "objective": "文本语言建模",
+        "data": "网页、书籍、论文、代码与 STEM 等文本。",
+        "optimization": "AdamW；先建立语言 backbone。",
+        "read": "这里使用 Flash 的 26T + 22T，不能与 Pro 的 27T + 3T 混写。"
+      },
+      {
+        "name": "Omni pre-training",
+        "tokens": "22T tokens",
+        "context": "训练中扩展到 256K",
+        "objective": "多模态联合训练",
+        "data": "接入预训练 ViT 与音频编码器，加入视觉、视频和音频数据。",
+        "optimization": "AdamW；报告未在此细分长度切换发生在哪个模态子段。",
+        "read": "总 token 比例不等于图像数或音频小时数，模态统计需要另看口径。"
+      },
+      {
+        "name": "Mid-training",
+        "tokens": "该节未披露 token 量",
+        "context": "256K → 1M",
+        "objective": "为 Agentic RL 准备起点",
+        "data": "Agent 轨迹、仓库代码、高质量文本与多模态数据混合。",
+        "optimization": "隐藏矩阵改用 Muown；部分参数保留 AdamW；引入 MXFP4 QAT。",
+        "read": "多数计算在 256K 阶段，最后扩到 1M。优化器与精度的切换同样属于阶段设计。"
+      }
+    ]
+  }
+]

@@ -1,0 +1,285 @@
+{
+  "seed": 7,
+  "generator": "python3 -m labs.report --seed 7 --output labs/expected/seed7.json",
+  "notice": "Original educational computations; no LLM training or real hardware throughput measurements.",
+  "gradients": {
+    "initial_loss": 0.0007913455843350267,
+    "final_loss": 7.667439789931908e-11,
+    "max_gradient_error": 1.18220710998429e-10
+  },
+  "mixture": {
+    "base": {
+      "weight": 0.006940003715162839,
+      "validation_mse": {
+        "A": 0.3223299562146985,
+        "B": 0.33140334224740114
+      },
+      "sample_counts": {
+        "A": 3860,
+        "B": 3820
+      }
+    },
+    "focused_mid_training": {
+      "weight": 0.9046402066528749,
+      "validation_mse": {
+        "A": 0.00297221551455516,
+        "B": 1.1857021033575768
+      },
+      "sample_counts": {
+        "A": 7297,
+        "B": 383
+      }
+    },
+    "mid_training_with_replay": {
+      "weight": 0.34047929317935927,
+      "validation_mse": {
+        "A": 0.14216954234788065,
+        "B": 0.5873134053703386
+      },
+      "sample_counts": {
+        "A": 5064,
+        "B": 2616
+      }
+    }
+  },
+  "moe": {
+    "biased_router": {
+      "capacity_per_expert": 141,
+      "requested_assignments": [
+        256,
+        107,
+        60,
+        89
+      ],
+      "accepted_assignments": [
+        141,
+        107,
+        60,
+        89
+      ],
+      "dropped_assignments": 115,
+      "fully_dropped_tokens": 0,
+      "max_to_mean_load": 2.0,
+      "balance_auxiliary": 1.7498614971366524,
+      "mean_router_entropy": 0.5971467776571219
+    },
+    "bias_removed_router": {
+      "capacity_per_expert": 141,
+      "requested_assignments": [
+        139,
+        137,
+        117,
+        119
+      ],
+      "accepted_assignments": [
+        139,
+        137,
+        117,
+        119
+      ],
+      "dropped_assignments": 0,
+      "fully_dropped_tokens": 0,
+      "max_to_mean_load": 1.0859375,
+      "balance_auxiliary": 1.003483314553336,
+      "mean_router_entropy": 1.1762358144258052
+    }
+  },
+  "preference": {
+    "initial_loss": 0.7249951786587165,
+    "final_loss": 0.6565293041623497,
+    "gradient_error": 7.007797120373027e-13
+  },
+  "agent": {
+    "before": {
+      "success_rate": 0.02,
+      "episodes": 400,
+      "mean_actions": 1.3925,
+      "invalid_rate": 0.9525
+    },
+    "after": {
+      "success_rate": 0.975,
+      "episodes": 400,
+      "mean_actions": 2.9825,
+      "invalid_rate": 0.0225
+    },
+    "train_episodes": 19200
+  },
+  "rollout": {
+    "synchronous": {
+      "mode": "synchronous",
+      "simulated_seconds": 170.3687494304891,
+      "completed_trajectories": 96,
+      "accepted_trajectories": 96,
+      "rejected_stale_trajectories": 0,
+      "accepted_per_simulated_second": 0.5634836219723985,
+      "environment_worker_busy_fraction": 0.4609538936623767,
+      "trainer_busy_fraction": 0.14087090549309964,
+      "policy_updates": 12,
+      "accepted_max_lag": 0,
+      "all_ingest_lag_histogram": {
+        "0": 96
+      }
+    },
+    "asynchronous": {
+      "mode": "asynchronous",
+      "simulated_seconds": 93.85962369850996,
+      "completed_trajectories": 96,
+      "accepted_trajectories": 88,
+      "rejected_stale_trajectories": 8,
+      "accepted_per_simulated_second": 0.9375703474229571,
+      "environment_worker_busy_fraction": 0.836697776038713,
+      "trainer_busy_fraction": 0.23439258685573927,
+      "policy_updates": 11,
+      "accepted_max_lag": 1,
+      "all_ingest_lag_histogram": {
+        "0": 38,
+        "1": 50,
+        "2": 5,
+        "3": 2,
+        "4": 1
+      }
+    }
+  },
+  "evaluation": {
+    "pass_at_k": {
+      "1": 0.48125,
+      "2": 0.6875000000000001,
+      "4": 0.8614285714285714,
+      "8": 0.975
+    },
+    "pass1_task_bootstrap": {
+      "mean": 0.48125,
+      "lower": 0.396875,
+      "upper": 0.559375,
+      "confidence": 0.95,
+      "resampling_unit": "task",
+      "repetitions": 1000
+    },
+    "contamination": {
+      "matches": [
+        {
+          "evaluation_id": "eval-a",
+          "training_id": "doc-1",
+          "kind": "normalized_exact",
+          "jaccard": 1.0,
+          "evaluation_sha256": "942847b645a2abac85efa92470d5696d090cf93935892f2be325deb8c3d3656b"
+        },
+        {
+          "evaluation_id": "eval-b",
+          "training_id": "doc-2",
+          "kind": "shingle_candidate",
+          "jaccard": 0.5714285714285714,
+          "evaluation_sha256": "f92c003e5fe1f56e8590b48f8d520b19d3b76c297a078795207dfdbff17d97bc"
+        }
+      ],
+      "flagged_evaluation_ids": [
+        "eval-a",
+        "eval-b"
+      ],
+      "method": "NFKC + casefold + whitespace normalization; word 3-shingle Jaccard candidates require manual review",
+      "limits": "Cannot establish absence of semantic/paraphrase leakage. Shared boilerplate can cause false positives; code casefolding can merge distinct identifiers."
+    }
+  },
+  "systems": {
+    "units": {
+      "GB": 1000000000,
+      "GiB": 1073741824,
+      "TFLOP": 1000000000000,
+      "FMA_flops": 2
+    },
+    "memory": {
+      "model_state_components_bytes": {
+        "parameters": 14000000000.0,
+        "gradients": 14000000000.0,
+        "master_parameters": 28000000000.0,
+        "optimizer_moments": 56000000000.0
+      },
+      "bytes_per_parameter_state": 16.0,
+      "gpu_capacity_bytes": 85899345920.0,
+      "estimates": {
+        "dp": {
+          "persistent_state_bytes_per_gpu": 112000000000.0,
+          "saved_activation_bytes_per_gpu": 4294967296.0,
+          "assumed_extra_unit_buffers_bytes": 0,
+          "accounted_bytes_per_gpu": 116294967296.0,
+          "accounted_GiB_per_gpu": 108.3081283569336,
+          "below_configured_capacity_in_this_model": false
+        },
+        "fsdp": {
+          "persistent_state_bytes_per_gpu": 14000000000.0,
+          "saved_activation_bytes_per_gpu": 4294967296.0,
+          "assumed_extra_unit_buffers_bytes": 875000000.0,
+          "accounted_bytes_per_gpu": 19169967296.0,
+          "accounted_GiB_per_gpu": 17.853423297405243,
+          "below_configured_capacity_in_this_model": true
+        },
+        "tp": {
+          "persistent_state_bytes_per_gpu": 28000000000.0,
+          "saved_activation_bytes_per_gpu": 4294967296.0,
+          "assumed_extra_unit_buffers_bytes": 0,
+          "accounted_bytes_per_gpu": 32294967296.0,
+          "accounted_GiB_per_gpu": 30.0770320892334,
+          "below_configured_capacity_in_this_model": true
+        }
+      },
+      "omitted": "Attention score tensors, fragmentation, allocator reserve, NCCL buffers, prefetch overlap, kernel workspace, logits, optimizer temporaries; fit flag is NOT an OOM guarantee."
+    },
+    "step_time": {
+      "dp": {
+        "compute_proxy_seconds": 0.14336,
+        "communication_proxy_seconds": 0.9800700000000002,
+        "no_overlap_proxy_seconds": 1.1234300000000002,
+        "perfect_overlap_proxy_seconds": 0.9800700000000002,
+        "global_tokens_per_step": 16384.0
+      },
+      "fsdp": {
+        "compute_proxy_seconds": 0.14336,
+        "communication_proxy_seconds": 1.47336,
+        "no_overlap_proxy_seconds": 1.61672,
+        "perfect_overlap_proxy_seconds": 1.47336,
+        "global_tokens_per_step": 16384.0
+      },
+      "tp": {
+        "compute_proxy_seconds": 0.03584,
+        "communication_proxy_seconds": 0.15995612736000003,
+        "no_overlap_proxy_seconds": 0.19579612736000002,
+        "perfect_overlap_proxy_seconds": 0.15995612736000003,
+        "global_tokens_per_step": 4096.0
+      }
+    },
+    "roofline": {
+      "representative_gemm": {
+        "a_shape": [
+          2048,
+          4096
+        ],
+        "b_shape": [
+          4096,
+          16384
+        ],
+        "output_shape": [
+          2048,
+          16384
+        ],
+        "flops": 274877906944,
+        "compulsory_hbm_bytes": 218103808.0,
+        "arithmetic_intensity_flops_per_byte": 1260.3076923076924,
+        "compute_lower_bound_seconds": 0.00045812984490666665,
+        "memory_lower_bound_seconds": 0.000109051904,
+        "ideal_lower_bound_seconds": 0.00045812984490666665,
+        "limiting_roof": "compute",
+        "attainable_tflops_upper_bound": 600.0,
+        "assumptions": "Each matrix read/written once; no cache tiling inefficiency, launch, layout conversion, occupancy loss, or synchronization."
+      },
+      "softmax": {
+        "shape": [
+          2048,
+          4096
+        ],
+        "minimum_read_write_bytes": 33554432.0,
+        "memory_lower_bound_seconds": 1.6777216e-05,
+        "note": "A memory traffic floor only: exponentials/reductions need their own throughput model."
+      }
+    }
+  }
+}
