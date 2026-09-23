@@ -78,7 +78,7 @@ test("material and lighting controls change the rendered sculpture and compariso
   await expect(page.locator(".comparison-control output")).toHaveText("98%");
   await page.keyboard.press("Home");
   await expect(page.locator(".comparison-control output")).toHaveText("2%");
-  // Visit the shader-based project too: shader compilation failures are console errors.
+  // Visit the third project too: renderer and shader failures are console errors.
   await page.getByRole("tab", { name: /TokenCircuit/ }).click();
   await page.locator("#projects [data-spatial-scene]").scrollIntoViewIfNeeded();
   await expect(page.locator("#projects [data-spatial-scene]")).toHaveAttribute(

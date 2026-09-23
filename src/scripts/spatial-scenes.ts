@@ -49,7 +49,7 @@ export function initSpatialScene(host: HTMLElement) {
   renderer.toneMappingExposure = 1.05;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 30);
-  camera.position.set(0, 0.15, 7.6);
+  camera.position.set(0, 0.15, 8.5);
   const environment = createStudioEnvironment(renderer);
   scene.environment = environment.texture;
   scene.environmentIntensity = 1.15;
@@ -79,24 +79,23 @@ export function initSpatialScene(host: HTMLElement) {
   const speedInput = host.querySelector<HTMLInputElement>(
     "[data-spatial-speed]",
   )!;
-  let speed = 0.7;
+  let speed = 1;
   const finishes = [
     ...host.querySelectorAll<HTMLButtonElement>("[data-spatial-finish]"),
   ];
   const baseMaterials = new Map<
-    THREE.MeshPhysicalMaterial,
-    { metalness: number; roughness: number; clearcoat: number }
+    THREE.MeshStandardMaterial,
+    { metalness: number; roughness: number }
   >();
   model.root.traverse((object) => {
     if (!(object instanceof THREE.Mesh)) return;
     for (const m of Array.isArray(object.material)
       ? object.material
       : [object.material]) {
-      if (m instanceof THREE.MeshPhysicalMaterial && !baseMaterials.has(m))
+      if (m instanceof THREE.MeshStandardMaterial && !baseMaterials.has(m))
         baseMaterials.set(m, {
           metalness: m.metalness,
           roughness: m.roughness,
-          clearcoat: m.clearcoat,
         });
     }
   });
@@ -116,7 +115,6 @@ export function initSpatialScene(host: HTMLElement) {
         baseMaterials.forEach((base, m) => {
           m.metalness = matte ? 0.04 : base.metalness;
           m.roughness = matte ? 0.58 : base.roughness;
-          m.clearcoat = matte ? 0.08 : base.clearcoat;
         });
         finishes.forEach((b) =>
           b.setAttribute("aria-pressed", String(b === button)),
@@ -149,8 +147,8 @@ export function initSpatialScene(host: HTMLElement) {
   let state = Number(host.dataset.state || 0),
     visible = false,
     paused = reduced.matches;
-  let targetX = 0.23,
-    targetY = -0.27,
+  let targetX = 0.45,
+    targetY = -0.35,
     rotationX = targetX,
     rotationY = targetY;
   let expanded = false,
@@ -184,11 +182,7 @@ export function initSpatialScene(host: HTMLElement) {
       rotationY = targetY;
       spread = expanded ? 1 : 0;
     }
-    model.root.rotation.set(
-      rotationX + Math.sin(time * 0.22) * 0.045,
-      rotationY + Math.sin(time * 0.18) * 0.16,
-      -0.06,
-    );
+    model.root.rotation.set(rotationX, rotationY, -0.12);
     model.update(time, delta, spread, immediate);
     renderer.render(scene, camera);
   }
@@ -206,6 +200,7 @@ export function initSpatialScene(host: HTMLElement) {
     const dt = Math.min((now - last) / 1000, 0.06);
     last = now;
     time += dt * speed;
+    if (!dragging) targetY += dt * speed * 0.095;
     const blend = 1 - Math.exp(-dt * 8);
     rotationX += (targetX - rotationX) * blend;
     rotationY += (targetY - rotationY) * blend;
@@ -269,8 +264,8 @@ export function initSpatialScene(host: HTMLElement) {
   reset.addEventListener(
     "click",
     () => {
-      targetX = 0.23;
-      targetY = -0.27;
+      targetX = 0.45;
+      targetY = -0.35;
       draw(true);
     },
     options,
@@ -290,14 +285,6 @@ export function initSpatialScene(host: HTMLElement) {
   frameEl.addEventListener(
     "pointermove",
     (event) => {
-      if (model.pointer && !reduced.matches) {
-        const box = frameEl.getBoundingClientRect();
-        model.pointer(
-          ((event.clientX - box.left) / box.width) * 2 - 1,
-          1 - ((event.clientY - box.top) / box.height) * 2,
-        );
-        if (paused) draw(true);
-      }
       if (!dragging) return;
       const dx = event.clientX - px,
         dy = event.clientY - py;
