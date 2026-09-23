@@ -31,9 +31,13 @@ src/components/home/             全屏封面、探索分区、项目舞台与�
 src/data/                        简介、项目、栏目与动态
 src/styles/portfolio.css          个人主页配色、字体和响应式布局
 src/styles/navigation.css         导航结构、学习路线展开和全站目录
-src/styles/expedition.css         Adventure X 参考方向、全屏首屏与全站中性色主题
+src/styles/expedition.css         Adventure X 参考方向、全屏首屏与黑白橙主题
 src/styles/home-stages.css        全幅栏目、交互展示与响应式布局
-src/scripts/home-stages.ts        训练阶段、Agent 轨迹、项目切换与滚动视差
+src/scripts/home-stages.ts        训练阶段、Agent 轨迹、项目切换与三维状态联动
+src/components/experience/SpatialScene.astro  可复用三维图形与控制栏
+src/scripts/spatial-*.ts          懒加载、渲染生命周期与三种三维模型
+src/components/experience/SortingScene.astro  可逐步播放的立体冒泡排序
+src/scripts/depth-effects.ts      工具透视交互与导航阅读进度
 src/styles/collections.css        Scholar、工具作品集与个人介绍的统一排版
 src/data/scholar.ts               研究阅读入口、原始来源与核对日期
 src/data/algorithms.ts            我的 CSDN 算法笔记分组与阅读提示
@@ -55,10 +59,12 @@ research/projects/               三个项目的 README 版本证据
 ## 导航与动态效果
 
 - 浮动导航直达主要栏目；学习路线支持点击展开、方向键进入、Esc 和外部点击关闭。全屏导航保留六个平级栏目，直接进入五条学习路线。
-- 全屏暖色光轨首屏，使用用户提供背景和开源 Orbix 字标及其特殊 X；自托管字体并保留 OFL 授权。原有跳动标语移至 Join Us；首页保留点击掉落 HTML 字符串、涟漪与背景视差。首页两行名言使用自托管 Ma Shan Zheng 毛笔字体，入场后保持静止；减少动态效果时停用装饰运动。下方栏目统一为黑灰、米白与低饱和沙色，个人方向为 `LLM training & RSI`。
+- 全屏暖色光轨首屏，使用用户提供背景和开源 Orbix 字标及其特殊 X；自托管字体并保留 OFL 授权。原有跳动标语移至 Join Us；首页保留点击掉落 HTML 字符串、涟漪与背景视差。首页两行英文名言使用自托管 Cormorant Garamond 斜体，入场后保持静止；减少动态效果时停用装饰运动。全站主色为黑、白、橙，Agentic Scholar 使用整块橙色背景，个人方向为 `LLM training & RSI`。
 - `Ctrl+K` / `⌘K` 搜索栏目、项目、论文和工具，方向键选择，Esc 关闭。
 - 原生跨页链接使用可取消的幕布转场，浏览器前进/返回正常；减少动态效果时直接导航。
-- Three.js 雕塑支持拖动、方向键、三种形态、暂停与重置。无 WebGL 时显示自绘 SVG；屏外/后台暂停，限制像素比和帧率。
+- 首页增加三个 WebGL 场景：训练阶段切换体素形态、Agent 节点选择、项目三维结构切换；Scholar 页面增加三维轨道。支持拖动、方向键、暂停、展开和重置，按可见区域加载，最高 30fps / DPR 1.5，屏外和后台停止，缺少 WebGL 时显示 SVG。
+- 算法区的冒泡排序支持单步、播放、重排；工具和照片支持指针控制的透视倾斜。
+- LLM Training 原有的 Three.js 雕塑支持拖动、方向键、三种形态、暂停与重置。无 WebGL 时显示自绘 SVG；屏外/后台暂停，限制像素比和帧率。
 - 学习区的原图放大、阶段对照、实验参数与笔记保留；内部 React 路由不被跨页转场拦截。
 
 ## 更新内容

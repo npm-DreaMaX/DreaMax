@@ -37,6 +37,10 @@ export function initHomeStages() {
     });
   };
   bindTabs("[data-phase-tab]", "phase-panel-", (index) => {
+    const spatial = document.querySelector<HTMLElement>(
+      '[data-spatial-scene="training"]',
+    );
+    if (spatial) spatial.dataset.state = String(index);
     const field = document.querySelector<HTMLElement>("[data-training-field]");
     const tab = document.querySelector<HTMLElement>(
       `[data-phase-tab="${index}"]`,
@@ -47,7 +51,12 @@ export function initHomeStages() {
     );
     field?.style.setProperty("--field-angle", `${index * 24}deg`);
   });
-  bindTabs("[data-project-tab]", "project-panel-");
+  bindTabs("[data-project-tab]", "project-panel-", (index) => {
+    const spatial = document.querySelector<HTMLElement>(
+      '[data-spatial-scene="projects"]',
+    );
+    if (spatial) spatial.dataset.state = String(index);
+  });
 
   const trajectory = [
     { title: "接收任务", text: "修复一个失败的单元测试。" },
@@ -61,6 +70,10 @@ export function initHomeStages() {
   let current = 0;
   const setStep = (step: number) => {
     current = step;
+    const spatial = document.querySelector<HTMLElement>(
+      '#research [data-spatial-scene="agents"]',
+    );
+    if (spatial) spatial.dataset.state = String(step);
     stepButtons.forEach((button, i) =>
       button.setAttribute("aria-pressed", String(i === step)),
     );
@@ -77,6 +90,19 @@ export function initHomeStages() {
   stepButtons.forEach((button, i) =>
     button.addEventListener("click", () => setStep(i)),
   );
+  document.addEventListener("spatial-select", (event) => {
+    const host = event.target as HTMLElement;
+    const index = (event as CustomEvent<number>).detail;
+    if (host.dataset.spatialScene === "training")
+      document
+        .querySelector<HTMLButtonElement>(`[data-phase-tab="${index}"]`)
+        ?.click();
+    if (host.dataset.spatialScene === "projects")
+      document
+        .querySelector<HTMLButtonElement>(`[data-project-tab="${index}"]`)
+        ?.click();
+    if (host.dataset.spatialScene === "agents") setStep(index);
+  });
   document
     .querySelector("[data-agent-next]")
     ?.addEventListener("click", () =>

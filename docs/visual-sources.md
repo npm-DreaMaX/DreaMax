@@ -11,12 +11,13 @@
 - SVG、favicon、分享图均由项目脚本生成；未复制 AdventureX 的整页源代码。
 - 字体适合字标，正文仍使用 Inter / Noto Sans SC，标题使用 Outfit。
 
-## 首页题字
+## 首页英文题字
 
-- 文案由用户提供：“我带着离开的决心 / 只为更辉煌的归来”，不添加未经确认的作者署名。
-- 字体：Ma Shan Zheng，毛笔书写风格。使用 `@fontsource/ma-shan-zheng@5.3.1` 自托管，浏览器按 Unicode 子集加载所需字形。
-- 原始项目：[googlefonts / mashanzheng](https://github.com/googlefonts/mashanzheng)，Copyright 2018 The MaShanZheng Project Authors，SIL Open Font License 1.1。完整许可证随站点保存在 `public/fonts/ma-shan-zheng/LICENSE.txt`。
-- 仅用于首页这两行文字；首次进入时两行依次淡入，之后静止，支持减少动态效果。
+- 用户提供原文：“With resolve I depart; in greater glory I shall return.”，不添加未经确认的作者署名。
+- 字体：Cormorant Garamond，500 italic。使用 `@fontsource/cormorant-garamond@5.3.0` 自托管，浏览器只加载所需子集。
+- 原始项目：[CatharsisFonts / Cormorant](https://github.com/CatharsisFonts/Cormorant)，Copyright 2015 The Cormorant Project Authors，SIL Open Font License 1.1。
+- 完整许可证随站点保存在 `public/fonts/cormorant-garamond/LICENSE.txt`。原毛笔字体依赖已移除。
+- 仅用于首页两行英文；两行依次淡入，之后静止，支持减少动态效果。
 
 ## 首页背景
 
@@ -36,8 +37,10 @@
 
 ## 其他栏目与示意图
 
-- 训练环面、Agent 轨迹和项目图形由本地 SVG / CSS 绘制；环面参数在 `TrainingField.astro`，不是实际训练结果或损失曲线。
-- 点击涟漪与 HTML 字符串掉落保留原实现；原有跳动文字移至 Join Us。减少动态效果的系统偏好会停用装饰运动。
+- 训练体素形变、Agent 轨道、项目几何由 `src/scripts/spatial-models.ts` 使用 Three.js 生成；没有外部贴图、模型文件或视频。光照环境使用项目已有的 Three.js `RoomEnvironment`。这些均为抽象示意，不声称是模型实际架构或训练数据。
+- 排序演示由 `SortingScene.astro` / `sorting-scenes.ts` 实现，使用真实冒泡排序，每次执行一次相邻比较；CSS 透视负责立体排版。
+- 工具与个人照片的指针视差在 `depth-effects.ts`；鼠标移动控制倾斜，触屏保留正常滚动。
+- 点击涟漪与 HTML 字符串掉落保留原交互，颜色统一为橙白；原有跳动文字仅在 Join Us，使用橙白配色。减少动态效果的系统偏好会停用装饰运动。
 - 个人照片与简历沿用原仓库文件。研究阅读存档迁至 Agentic Scholar 的折叠区域。
 - Agentic Scholar 的阅读提示由本站编写，原始材料于 2026-09-23 核对；条目级来源保存在 `src/data/scholar.ts`：
   - [MCP 官方架构文档](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture)：协议职责、Host / Client / Server 与上下文边界。

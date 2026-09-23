@@ -6,10 +6,10 @@ test("the new homepage exposes peer destinations and three real projects", async
   await page.goto("/");
   await expect(page.locator("h1")).toHaveText("DreaMax");
   await expect(page.locator(".portfolio-quote")).toContainText(
-    "我带着离开的决心",
+    "With resolve I depart;",
   );
   await expect(page.locator(".portfolio-quote")).toContainText(
-    "只为更辉煌的归来",
+    "in greater glory I shall return.",
   );
   await expect(page.locator(".portfolio-focus")).toHaveText(
     "LLM training & RSI",

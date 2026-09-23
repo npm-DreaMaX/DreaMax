@@ -1,9 +1,9 @@
 /* Adventure X reference: Orbix + supplied artwork. All layout and motion are local. */
 :root {
-  --dm-accent: #c8b99f;
+  --dm-accent: #ff712e;
   --dm-bg: #171717;
   --dm-panel: #222222;
-  --dm-ink: #ebe8e1;
+  --dm-ink: #f6f5f2;
   --dm-muted: #b7b1a6;
   --dm-line: #3c3b37;
 }
@@ -38,7 +38,7 @@
   box-shadow: 0 5px 25px #11111110;
   --dm-ink: #ebe8e1;
   --dm-line: #454440;
-  --dm-accent: #b7b1a6;
+  --dm-accent: #ff712e;
   transition:
     background 0.25s,
     border-color 0.25s,
@@ -108,15 +108,15 @@ body.dm-home .dm-header:not([data-scrolled="true"]) {
   color: #d3cec4;
 }
 .dm-site .dm-menu-trigger {
-  background: #e1d9cc;
-  color: #222222;
+  background: #ff712e;
+  color: #171717;
   border-radius: 30px;
   min-height: 40px;
   gap: 14px;
   padding-inline: 19px;
 }
 .dm-site .dm-menu-trigger:hover {
-  background: #f1ece3;
+  background: #ff8b50;
   transform: translateY(-1px);
 }
 .dm-site .dm-mobile-training {
@@ -135,7 +135,7 @@ body.dm-home .dm-header:not([data-scrolled="true"]) {
   box-shadow: 0 25px 65px #11111155;
 }
 .dm-site .dm-training-feature {
-  background: #d3cec4;
+  background: #ff712e;
   color: #222222 !important;
 }
 .dm-site .dm-training-feature .dm-flyout-eyebrow {
@@ -206,7 +206,7 @@ body.dm-home .dm-header:not([data-scrolled="true"]) {
 .dm-site .dm-menu-main > a:focus-visible,
 .dm-site .dm-menu-main > a[aria-current="page"],
 .dm-site .dm-menu-main > a:hover > span:last-child {
-  color: #d3cec4;
+  color: #ff8b50;
 }
 .dm-site .dm-menu-secondary {
   background: #222222;
@@ -418,12 +418,12 @@ body.dm-home #dreamax .portfolio-hero-actions {
     border-color 0.2s;
 }
 .dm-home .hero-primary {
-  background: #fff1df;
-  color: #3d2618;
+  background: #ff712e;
+  color: #171717;
   box-shadow: 0 4px 24px #49261b15;
 }
 .dm-home .hero-primary:hover {
-  background: #fffaf1;
+  background: #ff8b50;
   transform: translateY(-3px);
 }
 .hero-primary > span,
@@ -480,18 +480,19 @@ body.dm-home #dreamax .portfolio-quote {
 .dm-home #dreamax .portfolio-quote p {
   margin: 0;
   font:
-    400 clamp(30px, 2.8vw, 42px)/1.4 "Ma Shan Zheng",
-    KaiTi,
-    cursive !important;
+    italic 500 clamp(30px, 2.8vw, 43px)/1.08 "Cormorant Garamond",
+    Georgia,
+    serif !important;
   color: #fff4e7 !important;
-  letter-spacing: 0.1em !important;
+  letter-spacing: -0.018em !important;
   text-shadow: 0 2px 16px #24150c35;
 }
 .dm-home #dreamax .portfolio-quote span {
   display: block;
   color: inherit !important;
-  white-space: nowrap;
+  white-space: normal;
   animation: quote-ink-in 1.25s cubic-bezier(0.2, 0.65, 0.3, 1) 0.55s both;
+  text-wrap: balance;
 }
 .dm-home #dreamax .portfolio-quote span + span {
   animation-delay: 0.85s;
@@ -529,8 +530,8 @@ body.dm-home #dreamax .portfolio-quote {
   }
 }
 .route-curtain {
-  background: #d3cec4;
-  color: #222222;
+  background: #ff712e;
+  color: #171717;
   font-family: var(--dm-display);
 }
 .route-curtain-center {
@@ -552,6 +553,7 @@ body.dm-home #dreamax .portfolio-quote {
     width: calc(100% - 40px);
     padding-inline: 17px;
     gap: 14px;
+    --dm-accent: #ff712e;
   }
   .dm-site .dm-brand .orbix-wordmark {
     font-size: 20px;
@@ -586,6 +588,7 @@ body.dm-home #dreamax .portfolio-quote {
     width: calc(100% - 28px);
     padding: 0 12px;
     border-radius: 9px;
+    --dm-accent: #ff712e;
   }
   .dm-site .dm-brand .orbix-wordmark {
     font-size: 18px;
@@ -597,6 +600,8 @@ body.dm-home #dreamax .portfolio-quote {
     min-height: 40px;
     width: 40px;
     padding: 0;
+    background: #ff712e;
+    color: #171717;
   }
   .dm-site .dm-primary-nav {
     display: none;
@@ -613,7 +618,7 @@ body.dm-home #dreamax .portfolio-quote {
     max-width: 100%;
   }
   body.dm-home .portfolio-nameplate h1 {
-    font-size: clamp(47px, 12.8vw, 96px);
+    font-size: clamp(39px, 12.8vw, 96px);
     letter-spacing: -0.035em;
   }
   body.dm-home #dreamax .portfolio-focus {
@@ -652,8 +657,13 @@ body.dm-home #dreamax .portfolio-quote {
     text-align: center;
   }
   .dm-home #dreamax .portfolio-quote p {
-    font-size: clamp(27px, 7.5vw, 36px) !important;
-    line-height: 1.55 !important;
+    font-size: clamp(25px, 7vw, 32px) !important;
+    line-height: 1.12 !important;
+    font:
+      italic 500 clamp(30px, 2.8vw, 43px)/1.08 "Cormorant Garamond",
+      Georgia,
+      serif;
+    letter-spacing: -0.018em;
   }
   .expedition-kicker {
     font-size: 8px;

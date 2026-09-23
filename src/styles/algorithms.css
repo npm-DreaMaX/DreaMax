@@ -3,7 +3,7 @@
   margin: auto;
   padding: 168px 40px 95px;
   color: #ebe8e1;
-  --dm-accent: #b7b1a6;
+  --dm-accent: #ff712e;
 }
 .algorithm-masthead {
   display: grid;
@@ -37,7 +37,7 @@
   display: block;
   font: 300 100px/1 var(--dm-display);
   letter-spacing: -0.055em;
-  color: #b7b1a6;
+  color: #ff712e;
 }
 .algorithm-volume > small {
   display: block;
@@ -92,8 +92,8 @@
   color: #ebe8e1;
 }
 .algorithm-categories > button[aria-pressed="true"] {
-  background: #b7b1a6;
-  color: #222222;
+  background: #ff712e;
+  color: #171717;
 }
 .algorithm-categories > button[aria-pressed="true"] > span {
   color: #454440;
@@ -198,7 +198,7 @@
   margin: 9px 0 13px;
 }
 .algorithm-article:hover h2 {
-  color: #d3cec4;
+  color: #ff9863;
 }
 .algorithm-article p {
   font: 400 13px/1.9 var(--dm-font);
@@ -232,7 +232,7 @@
     transform 0.25s;
 }
 .algorithm-article:hover .algorithm-article-arrow {
-  background: #b7b1a6;
+  background: #ff712e;
   color: #171717;
   transform: rotate(45deg);
 }
@@ -272,11 +272,12 @@
   min-height: 44px;
 }
 .algorithm-page :focus-visible {
-  outline-color: #b7b1a6;
+  outline-color: #ff712e;
 }
 @media (max-width: 760px) {
   .algorithm-page {
     padding: 125px 24px 65px;
+    --dm-accent: #ff712e;
   }
   .algorithm-masthead {
     grid-template-columns: 1fr;
@@ -307,6 +308,7 @@
     display: flex;
     align-items: center;
     gap: 17px;
+    color: #ff712e;
   }
   .algorithm-volume > small {
     font-size: 10px;

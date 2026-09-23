@@ -10,7 +10,7 @@ let letterIndex = 0;
     {lines.map(line => <div class="ts-row" aria-hidden="true">{line.split(' ').map(word => <span class="ts-block">{word}</span>)}</div>)}
   </div>
   <button id="cw-line" class="ts-world" type="button" aria-label="Change The World — 点击重播跳动文字" title="点击，让文字再跳一次">
-    {words.map(word => <span class="ts-world-word" aria-hidden="true">{[...word].map(letter => <span class="cl" style={`--letter-color:hsl(${200 + letterIndex++ * 22} 70% 48%)`}>{letter}</span>)}</span>)}
+    {words.map(word => <span class="ts-world-word" aria-hidden="true">{[...word].map(letter => <span class="cl" style={`--letter-color:${['#ff712e','#f5f3ef','#ffad80'][letterIndex++ % 3]}`}>{letter}</span>)}</span>)}
   </button>
 </div>
 <script>

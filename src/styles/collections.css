@@ -79,8 +79,8 @@
     color 0.2s;
 }
 .dm-site .collection-filters > button[aria-pressed="true"] {
-  background: #d3cec4;
-  color: #222222;
+  background: #ff712e;
+  color: #171717;
 }
 .dm-site .collection-filters > button:hover:not([aria-pressed="true"]) {
   background: #f6f3ed0c;
@@ -142,7 +142,7 @@
   right: 18px;
   top: 16px;
   font: 300 30px/1 var(--dm-display);
-  color: #30302e;
+  color: #171717;
 }
 .dm-site .collection-tool-caption {
   padding-top: 23px;
@@ -173,7 +173,7 @@
   margin-top: 13px;
 }
 .dm-site .scholar-page .collection-hero h1 > span {
-  color: #9d978b;
+  color: #ff712e;
 }
 .dm-site .scholar-sigil {
   position: relative;
@@ -220,7 +220,7 @@
 }
 .dm-site .scholar-index {
   font: 400 12px/1.5 var(--dm-font);
-  color: #9d978b;
+  color: #ff8b50;
   padding-top: 2px;
 }
 .dm-site .scholar-reading summary small {
@@ -241,7 +241,7 @@
 .dm-site .scholar-expand {
   justify-self: end;
   font: 300 39px/1 var(--dm-display);
-  color: #b7b1a6;
+  color: #ff8b50;
   transition: transform 0.25s;
 }
 .dm-site .scholar-reading[open] .scholar-expand {
@@ -277,7 +277,7 @@
   align-self: start;
   padding: 25px;
   background: #222222;
-  border-left: 2px solid #9d978b;
+  border-left: 2px solid #ff712e;
   transition: background 0.2s;
 }
 .dm-site .scholar-source:hover {
@@ -393,6 +393,7 @@
   color: #ebe8e1;
   font: 500 12px/1.5 var(--dm-font);
   margin-top: 23px;
+  border-color: #ff712e;
 }
 .dm-site .collection-action > span {
   font-size: 25px;
@@ -553,6 +554,7 @@
     right: 12px;
     top: 10px;
     font-size: 24px;
+    color: #171717;
   }
   .dm-site .scholar-sigil {
     display: none;
@@ -564,6 +566,7 @@
   }
   .dm-site .scholar-index {
     font-size: 9px;
+    color: #ff8b50;
   }
   .dm-site .scholar-reading h2 {
     font-size: 28px;
@@ -576,6 +579,7 @@
   }
   .dm-site .scholar-expand {
     font-size: 29px;
+    color: #ff8b50;
   }
   .dm-site .scholar-reading-body {
     grid-template-columns: 1fr;
@@ -590,6 +594,7 @@
   }
   .dm-site .scholar-source {
     padding: 20px;
+    border-left: 2px solid #ff712e;
   }
   .dm-site .scholar-source strong {
     font-size: 16px;
@@ -657,5 +662,18 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 28px;
+  }
+}
+
+.dm-site .scholar-page .spatial-compact {
+  flex: 0 0 30%;
+}
+.dm-site .collection-tool:nth-child(3n + 2) .collection-tool-art {
+  background: #ff712e;
+}
+@media (max-width: 760px) {
+  .dm-site .scholar-page .spatial-compact {
+    margin: 25px auto 0;
+    max-width: 310px;
   }
 }

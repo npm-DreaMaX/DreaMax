@@ -1,4 +1,5 @@
 ---
+import SpatialScene from '../../components/experience/SpatialScene.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { scholarReadings } from '../../data/scholar';
 import { featuredResearch } from '../../data/featured';
@@ -6,7 +7,7 @@ import '../../styles/collections.css';
 ---
 <PageLayout title="Agentic Scholar — DreaMax" description="从工具协议、代码世界模型到视觉 Agent。沿着问题阅读原始研究，理解能够采取行动的智能系统。">
   <div class="collection-page scholar-page">
-    <header class="collection-hero"><p class="collection-eyebrow">DREAMAX / RESEARCH</p><div class="collection-title-row"><h1>AGENTIC<br/><span>SCHOLAR.</span></h1><div class="scholar-sigil" aria-hidden="true"><i></i><i></i><i></i><span>↗</span></div></div><div class="collection-hero-bottom"><p>Agent 研究笔记<br/><span>工具协议、世界模型与多轮交互。</span></p><a href="/fieldwork/paths/agentic">Agentic RL 学习路线 ↗</a></div></header>
+    <header class="collection-hero"><p class="collection-eyebrow">DREAMAX / RESEARCH</p><div class="collection-title-row"><h1>AGENTIC<br/><span>SCHOLAR.</span></h1><SpatialScene variant="agents" label="研究轨道" compact /></div><div class="collection-hero-bottom"><p>Agent 研究笔记<br/><span>工具协议、世界模型与多轮交互。</span></p><a href="/fieldwork/paths/agentic">Agentic RL 学习路线 ↗</a></div></header>
     <div class="scholar-readings" aria-label="研究阅读入口">{scholarReadings.map((reading,i)=><details class="scholar-reading" open={i===0}><summary><span class="scholar-index">0{i+1}</span><div><small>{reading.topic}</small><h2>{reading.title}</h2><p>{reading.question}</p></div><span class="scholar-expand" aria-hidden="true">+</span></summary><div class="scholar-reading-body"><div><p>{reading.description}</p><p class="scholar-prompt">阅读线索 · {reading.takeaway}</p><a href={reading.related} class="scholar-related">{reading.relatedLabel} ↗</a></div><a class="scholar-source" href={reading.source.url} target="_blank" rel="noreferrer"><small>{reading.source.type} / ORIGINAL SOURCE</small><strong>{reading.source.title}</strong><span>打开原文 ↗</span><small>来源核对 {reading.source.checkedAt}</small></a></div></details>)}</div>
     <details class="scholar-archive"><summary>过往阅读存档 <span>RESNET / NEOVERSE / MEGASAM <b>+</b></span></summary><div>{featuredResearch.map(item=><a href={item.link} target="_blank" rel="noreferrer"><span>{item.year}</span><strong>{item.title}</strong><span>↗</span></a>)}</div></details>
   </div>

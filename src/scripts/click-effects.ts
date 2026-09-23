@@ -17,15 +17,7 @@ export function initClickEffects(layer: HTMLElement) {
     "<section>",
     "<body>",
   ];
-  const colors = [
-    "#e9689e",
-    "#66d9ed",
-    "#c586c0",
-    "#ce9178",
-    "#78b7e8",
-    "#ff9060",
-    "#a7c891",
-  ];
+  const colors = ["#ff712e", "#f5f3ef", "#ff9b6c", "#dedede"];
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const active = new Set<Animation>();
   const clear = () => {

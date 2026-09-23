@@ -1,0 +1,73 @@
+.dm-site [data-depth] {
+  transform: perspective(850px) rotateX(var(--depth-x, 0deg))
+    rotateY(var(--depth-y, 0deg));
+  transition:
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s;
+}
+.dm-site .about-portrait[data-depth] {
+  transform: perspective(850px) rotateX(var(--depth-x, 0deg))
+    rotateY(var(--depth-y, 0deg)) rotate(-3deg);
+}
+@media (hover: hover) and (pointer: fine) {
+  .dm-site [data-depth]:hover {
+    box-shadow: 0 22px 35px #00000025;
+  }
+  .dm-home .piece-gomoku svg circle {
+    transition:
+      transform 0.4s,
+      filter 0.4s;
+  }
+  .dm-home .piece-gomoku:hover svg circle:nth-child(2n) {
+    transform: translateY(-7px);
+    filter: drop-shadow(2px 8px 2px #0004);
+  }
+  .dm-home .piece-gomoku:hover svg circle:nth-child(2n + 1) {
+    transform: translateY(-3px);
+    filter: drop-shadow(2px 4px 1px #0004);
+  }
+}
+.dm-home .mail-art {
+  text-shadow:
+    1px 1px #49403b,
+    2px 2px #49403b,
+    3px 3px #49403b,
+    4px 4px #49403b,
+    5px 5px #49403b,
+    9px 12px 12px #0002;
+}
+.dm-site .dm-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: #ff712e;
+  transform: scaleX(var(--reading-progress, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+.dm-home .stage-jumpbar a > span {
+  transition:
+    transform 0.25s,
+    color 0.25s;
+}
+.dm-home .stage-jumpbar a:hover > span {
+  color: #ff8b50;
+  transform: translateX(5px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dm-site [data-depth],
+  .dm-site .about-portrait[data-depth] {
+    transform: none;
+    transition: none;
+  }
+  .dm-home .piece-gomoku svg circle {
+    transform: none !important;
+    transition: none;
+  }
+  .dm-home .stage-jumpbar a > span {
+    transition: none;
+  }
+}

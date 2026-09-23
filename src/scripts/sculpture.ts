@@ -41,17 +41,17 @@ export function initSculpture(host: HTMLElement) {
   pmrem.dispose();
   const group = new THREE.Group();
   scene.add(group);
-  const key = new THREE.DirectionalLight(0xf8ffe8, 4);
+  const key = new THREE.DirectionalLight(0xffffff, 4);
   key.position.set(3, 4, 5);
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0xb7c5bb, 3);
+  const rim = new THREE.DirectionalLight(0xd1d1d1, 3);
   rim.position.set(-4, -2, 3);
   scene.add(rim);
-  const warm = new THREE.DirectionalLight(0xe6a16b, 2);
+  const warm = new THREE.DirectionalLight(0xff712e, 2);
   warm.position.set(2, -4, -3);
   scene.add(warm);
   const material = new THREE.MeshPhysicalMaterial({
-    color: 0xbcbfb7,
+    color: 0xbdbdbd,
     metalness: 0.92,
     roughness: 0.25,
     side: THREE.DoubleSide,
@@ -59,7 +59,7 @@ export function initSculpture(host: HTMLElement) {
     clearcoatRoughness: 0.3,
   });
   const edgeMaterial = new THREE.LineBasicMaterial({
-    color: 0xe9eddc,
+    color: 0xf3f3f3,
     transparent: true,
     opacity: 0.35,
   });
