@@ -102,7 +102,7 @@ body.dm-home {
 .portfolio-footer {
   max-width: 1180px;
   margin: auto;
-  border-top: 1px solid #334059;
+  border-top: 1px solid #454440;
   padding: 37px 0 32px;
   display: grid;
   grid-template-columns: 1fr 1fr auto;
@@ -116,19 +116,19 @@ body.dm-home {
 }
 .portfolio-footer .portfolio-email {
   font: 400 13px var(--dm-font);
-  color: #adbdd8;
+  color: #b7b1a6;
 }
 .portfolio-footer > div {
   display: flex;
   gap: 26px;
   font: 450 12px var(--dm-font);
-  color: #afbfda;
+  color: #b7b1a6;
 }
 .portfolio-footer > p {
   grid-column: 1/-1;
   font: 400 10px var(--dm-font);
   letter-spacing: 0.03em;
-  color: #8294b3;
+  color: #9d978b;
 }
 .dm-portfolio:not(.dm-home) .card {
   border-color: #33435d;

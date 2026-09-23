@@ -1,12 +1,13 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import { profile } from '../data/profile';
+import TerminalSlogan from '../components/ui/TerminalSlogan.astro';
 import '../styles/collections.css';
 ---
-<PageLayout title="About — DreaMax" description={profile.tagline}>
+<PageLayout title="Join Us — DreaMax" description={profile.tagline}>
   <div class="collection-page about-page">
-    <header class="collection-hero"><p class="collection-eyebrow">DREAMAX / THE PERSON BEHIND THE PIXELS</p><h1>ALWAYS<br/><span>EXPLORING.</span></h1></header>
-    <div class="about-layout"><div class="about-portrait"><img src={profile.avatar} alt="DreaMax 的个人照片" width="1024" height="1364"/><span>STAY CURIOUS. / DREAMAX</span></div><div class="about-copy"><p class="collection-eyebrow">HELLO, I'M DREAMAX.</p><h2>把好奇心，<br/>放进真实的实验里。</h2><p class="about-bio">{profile.bio}</p><div class="about-interests"><span>PRE-TRAINING</span><span>AGENTIC RL</span><span>TRAINING SYSTEMS</span></div><a href={profile.cv} class="collection-action">下载我的简历 <span>↗</span></a></div></div>
-    <div class="about-contact"><div><p class="collection-eyebrow">LET'S BUILD SOMETHING.</p><h2>保持联系。</h2></div><div><a class="about-email" href={`mailto:${profile.email}`}>{profile.email}</a><button data-copy-email={profile.email}>复制邮箱 ↗</button><div class="about-socials"><a href={profile.social.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a></div></div></div>
+    <header class="collection-hero"><p class="collection-eyebrow">DREAMAX / ABOUT & CONTACT</p><div class="about-heading-row"><h1>JOIN US.</h1><div class="about-signature"><TerminalSlogan /></div></div></header>
+    <div class="about-layout"><div class="about-portrait"><img src={profile.avatar} alt="DreaMax 的个人照片" width="1024" height="1364"/><span>DREAMAX</span></div><div class="about-copy"><p class="collection-eyebrow">{profile.title}</p><h2>DreaMax</h2><p class="about-bio">{profile.bio}</p><div class="about-interests"><span>LLM TRAINING</span><span>RSI</span><span>AGENTIC RL</span></div><a href={profile.cv} class="collection-action">下载简历 <span>↗</span></a></div></div>
+    <div class="about-contact"><div><p class="collection-eyebrow">CONTACT</p><h2>联系方式</h2></div><div><a class="about-email" href={`mailto:${profile.email}`}>{profile.email}</a><button data-copy-email={profile.email}>复制邮箱 ↗</button><div class="about-socials"><a href={profile.social.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a></div></div></div>
   </div>
 </PageLayout>

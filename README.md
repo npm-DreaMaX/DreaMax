@@ -31,7 +31,7 @@ src/components/home/             全屏封面、探索分区、项目舞台与�
 src/data/                        简介、项目、栏目与动态
 src/styles/portfolio.css          个人主页配色、字体和响应式布局
 src/styles/navigation.css         导航结构、学习路线展开和全站目录
-src/styles/expedition.css         Adventure X 参考方向、全屏首屏与全站暖色主题
+src/styles/expedition.css         Adventure X 参考方向、全屏首屏与全站中性色主题
 src/styles/home-stages.css        全幅栏目、交互展示与响应式布局
 src/scripts/home-stages.ts        训练阶段、Agent 轨迹、项目切换与滚动视差
 src/styles/collections.css        Scholar、工具作品集与个人介绍的统一排版
@@ -55,7 +55,7 @@ research/projects/               三个项目的 README 版本证据
 ## 导航与动态效果
 
 - 浮动导航直达主要栏目；学习路线支持点击展开、方向键进入、Esc 和外部点击关闭。全屏导航保留六个平级栏目，直接进入五条学习路线。
-- 全屏暖色光轨首屏，使用用户提供背景和开源 Orbix 字标及其特殊 X；自托管字体并保留 OFL 授权。原有跳动标语、点击掉落 HTML 字符串和涟漪保留，轻微背景视差随滚动变化；减少动态效果时禁用。
+- 全屏暖色光轨首屏，使用用户提供背景和开源 Orbix 字标及其特殊 X；自托管字体并保留 OFL 授权。原有跳动标语移至 Join Us；首页保留点击掉落 HTML 字符串、涟漪与背景视差。首页两行名言使用自托管 Ma Shan Zheng 毛笔字体，入场后保持静止；减少动态效果时停用装饰运动。下方栏目统一为黑灰、米白与低饱和沙色，个人方向为 `LLM training & RSI`。
 - `Ctrl+K` / `⌘K` 搜索栏目、项目、论文和工具，方向键选择，Esc 关闭。
 - 原生跨页链接使用可取消的幕布转场，浏览器前进/返回正常；减少动态效果时直接导航。
 - Three.js 雕塑支持拖动、方向键、三种形态、暂停与重置。无 WebGL 时显示自绘 SVG；屏外/后台暂停，限制像素比和帧率。

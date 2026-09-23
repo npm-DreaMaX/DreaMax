@@ -44,14 +44,12 @@ test("the immersive home keeps signature effects and exposes the next section on
   await page.goto("/");
   await expect(page.locator(".hero-backdrop img")).toBeVisible();
   await expect(page.locator("h1 .orbix-x")).toHaveText("x");
-  await expect(page.locator("[data-terminal-slogan]")).toBeVisible();
+  await expect(page.locator("[data-terminal-slogan]")).toHaveCount(0);
+  await expect(page.locator(".hero-scroll")).toHaveCount(0);
   await page.locator("h1").click();
   await expect(page.locator(".click-code-particle").first()).toBeAttached();
   await expect(page.locator(".click-code-ripple")).toBeAttached();
-  const logo = await page.locator("h1").boundingBox();
-  const slogan = await page.locator("[data-terminal-slogan]").boundingBox();
-  expect(logo && slogan && slogan.y + slogan.height <= logo.y + 5).toBe(true);
-  await page.getByRole("link", { name: "向下探索网站栏目" }).click();
+  await page.mouse.wheel(0, 1000);
   await expect(page.locator("#explore")).toBeInViewport();
   await page.locator('#algorithm a[href="/algorithms/"]').click();
   await expect(page.locator("#algorithm-heading")).toBeVisible();
@@ -61,6 +59,12 @@ test("the immersive home keeps signature effects and exposes the next section on
     .locator(".hero-backdrop picture")
     .evaluate((el) => getComputedStyle(el).transform);
   expect(state).toBe("none");
+  expect(
+    await page
+      .locator(".portfolio-quote span")
+      .first()
+      .evaluate((el) => getComputedStyle(el).animationName),
+  ).toBe("none");
   await page.locator("h1").click();
   await expect(page.locator(".click-code-particle")).toHaveCount(0);
 });

@@ -1,28 +1,24 @@
 ---
 import { profile } from '../../data/profile';
 import DreaMaxLogo from '../ui/DreaMaxLogo.astro';
-import TerminalSlogan from '../ui/TerminalSlogan.astro';
 import GradientBackground from '../ui/GradientBackground.astro';
+import '@fontsource/ma-shan-zheng/400.css';
 ---
 <section id="dreamax" class="expedition-hero" aria-label="DreaMax 个人主页">
   <GradientBackground />
-  <div class="hero-edition"><span>INDEPENDENT EXPLORER</span><span>BEIJING, CN <i></i> 2026</span></div>
   <div class="hero-content">
     <div class="portfolio-identity">
-      <span class="hero-preface">STAY CURIOUS. BUILD SOMETHING.</span>
       <DreaMaxLogo />
-      <TerminalSlogan />
     </div>
     <p class="portfolio-focus">{profile.title}</p>
     <div class="portfolio-hero-actions">
       <a href="/llm-training/" class="hero-primary">进入 LLM Training <span aria-hidden="true">↗</span></a>
-      <a href="#projects" class="hero-secondary">探索我的项目 <span aria-hidden="true">↓</span></a>
+      <a href="#projects" class="hero-secondary">查看项目 <span aria-hidden="true">↓</span></a>
     </div>
   </div>
   <div class="hero-baseline">
     <div class="hero-socials"><a href={profile.social.github} target="_blank" rel="noreferrer">GITHUB ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a></div>
-    <div class="portfolio-quote"><p>“It’s about a man who has nothing, who risks everything, to feel something.” <span>— Jessica Day</span></p></div>
-    <a href="#explore" class="hero-scroll" aria-label="向下探索网站栏目"><span>SCROLL TO EXPLORE</span><span class="hero-scroll-arrow" aria-hidden="true">↓</span></a>
+    <blockquote class="portfolio-quote"><p><span>我带着离开的决心</span><span>只为更辉煌的归来</span></p></blockquote>
   </div>
 </section>
 <script>

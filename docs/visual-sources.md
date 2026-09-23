@@ -11,6 +11,13 @@
 - SVG、favicon、分享图均由项目脚本生成；未复制 AdventureX 的整页源代码。
 - 字体适合字标，正文仍使用 Inter / Noto Sans SC，标题使用 Outfit。
 
+## 首页题字
+
+- 文案由用户提供：“我带着离开的决心 / 只为更辉煌的归来”，不添加未经确认的作者署名。
+- 字体：Ma Shan Zheng，毛笔书写风格。使用 `@fontsource/ma-shan-zheng@5.3.1` 自托管，浏览器按 Unicode 子集加载所需字形。
+- 原始项目：[googlefonts / mashanzheng](https://github.com/googlefonts/mashanzheng)，Copyright 2018 The MaShanZheng Project Authors，SIL Open Font License 1.1。完整许可证随站点保存在 `public/fonts/ma-shan-zheng/LICENSE.txt`。
+- 仅用于首页这两行文字；首次进入时两行依次淡入，之后静止，支持减少动态效果。
+
 ## 首页背景
 
 - 用户于 2026-09-23 在对话中提供的原始 2048 × 954 JPG，用户说明来自 Adventure X 首页。
@@ -30,7 +37,7 @@
 ## 其他栏目与示意图
 
 - 训练环面、Agent 轨迹和项目图形由本地 SVG / CSS 绘制；环面参数在 `TrainingField.astro`，不是实际训练结果或损失曲线。
-- 点击涟漪、HTML 字符串掉落与跳动文字保留原实现。减少动态效果的系统偏好会停用装饰运动。
+- 点击涟漪与 HTML 字符串掉落保留原实现；原有跳动文字移至 Join Us。减少动态效果的系统偏好会停用装饰运动。
 - 个人照片与简历沿用原仓库文件。研究阅读存档迁至 Agentic Scholar 的折叠区域。
 - Agentic Scholar 的阅读提示由本站编写，原始材料于 2026-09-23 核对；条目级来源保存在 `src/data/scholar.ts`：
   - [MCP 官方架构文档](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture)：协议职责、Host / Client / Server 与上下文边界。

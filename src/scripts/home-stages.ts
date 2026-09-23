@@ -43,7 +43,7 @@ export function initHomeStages() {
     );
     field?.style.setProperty(
       "--field-color",
-      tab?.dataset.fieldColor || "#ff8b54",
+      tab?.dataset.fieldColor || "#c8b99f",
     );
     field?.style.setProperty("--field-angle", `${index * 24}deg`);
   });

@@ -5,7 +5,15 @@ test("the new homepage exposes peer destinations and three real projects", async
 }) => {
   await page.goto("/");
   await expect(page.locator("h1")).toHaveText("DreaMax");
-  await expect(page.locator("#dreamax")).toContainText("Jessica Day");
+  await expect(page.locator(".portfolio-quote")).toContainText(
+    "我带着离开的决心",
+  );
+  await expect(page.locator(".portfolio-quote")).toContainText(
+    "只为更辉煌的归来",
+  );
+  await expect(page.locator(".portfolio-focus")).toHaveText(
+    "LLM training & RSI",
+  );
   await expect(
     page.locator('#research a[href="/agentic-scholar/"]'),
   ).toBeVisible();
@@ -34,7 +42,7 @@ test("LLM Training has the immersive experience and opens the full reading site"
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/llm-training/");
-  await expect(page.locator("#hero-title")).toContainText("Learn deeply.");
+  await expect(page.locator("#hero-title")).toContainText("Training.");
   await expect(page.locator("[data-sculpture]")).toHaveAttribute(
     "data-render",
     /webgl|fallback/,
@@ -178,6 +186,11 @@ test("all seven tools remain accessible and profile reflects new focus", async (
   await page.getByRole("button", { name: "全部作品", exact: true }).click();
   await expect(page.locator("[data-tool-category]:visible")).toHaveCount(7);
   await page.goto("/join/");
+  await expect(page.locator("[data-terminal-slogan]")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Change The World — 点击重播跳动文字" })
+    .click();
+  await expect(page.locator(".ts-world .cl")).toHaveCount(14);
   await expect(page.locator("main")).toContainText(
     "重点关注现代预训练与 Agentic RL",
   );

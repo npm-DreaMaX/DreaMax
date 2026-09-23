@@ -47,7 +47,7 @@ export const featuredProjects: FeaturedProject[] = [
   {
     title: "Triple-pi",
     description:
-      "基于 Pi 的编程 Agent，把跨会话记忆与项目规则审查接入日常开发流程。让上下文积累下来，让每次修改都有据可查。",
+      "基于 Pi 的编程 Agent，把跨会话记忆与项目规则审查接入日常开发流程。支持跨会话上下文管理与代码审查。",
     tags: ["TypeScript", "Pi Agent", "Memory", "Code Review"],
     link: "https://github.com/npm-DreaMaX/Triple-pi",
   },

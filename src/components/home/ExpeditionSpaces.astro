@@ -2,26 +2,26 @@
 import TrainingField from './TrainingField.astro';
 import { algorithmArticles } from '../../data/algorithms';
 const phases = [
-  { name: 'Pre-training', zh: '预训练', title: '让数据，变成能力。', text: '数据配方、MoE、数值精度与训练预算。从技术报告进入真正的训练现场。', href: '/fieldwork/paths/pretraining', label: 'DATA → PARAMETERS', color: '#ff8b54' },
-  { name: 'Mid-training', zh: '中训练', title: '把能力，推向更远。', text: '继续预训练、长上下文与能力塑形。看懂训练阶段之间，数据与目标如何切换。', href: '/fieldwork/paths/midtraining', label: 'CONTEXT → CAPABILITY', color: '#efc882' },
-  { name: 'Post-training', zh: '后训练', title: '让模型，学会选择。', text: '从 SFT、偏好优化到可验证奖励，理解模型行为背后的训练策略。', href: '/fieldwork/paths/posttraining', label: 'FEEDBACK → BEHAVIOR', color: '#d6bea4' },
-  { name: 'Agentic RL', zh: 'Agentic RL', title: '从回答，走向行动。', text: '把长轨迹、环境、奖励与异步 rollout 放到同一个系统里理解。', href: '/fieldwork/paths/agentic', label: 'EXPERIENCE → POLICY', color: '#f8a36f' },
+  { name: 'Pre-training', zh: '预训练', title: '数据、架构与训练预算', text: '数据配方、MoE、数值精度与训练预算。对照技术报告与源码阅读。', href: '/fieldwork/paths/pretraining', label: 'DATA → PARAMETERS', color: '#c8b99f' },
+  { name: 'Mid-training', zh: '中训练', title: '长上下文与能力塑形', text: '继续预训练、长上下文与能力塑形。分析训练阶段的数据分布与目标切换。', href: '/fieldwork/paths/midtraining', label: 'CONTEXT → CAPABILITY', color: '#d3c9b7' },
+  { name: 'Post-training', zh: '后训练', title: 'SFT、偏好优化与推理 RL', text: '比较监督微调、偏好优化与可验证奖励的目标和数据形式。', href: '/fieldwork/paths/posttraining', label: 'FEEDBACK → BEHAVIOR', color: '#b6ad9b' },
+  { name: 'Agentic RL', zh: 'Agentic RL', title: '环境、轨迹与策略更新', text: '长轨迹交互、奖励设计与异步 rollout 的算法和系统实现。', href: '/fieldwork/paths/agentic', label: 'EXPERIENCE → POLICY', color: '#d8ccba' },
 ];
 const notes = ['161870362','160561647','161896756'].map(id => algorithmArticles.find(a => a.id === id)!);
 ---
 <section id="explore" class="home-manifesto stage-shell" aria-labelledby="manifesto-heading">
-  <div class="stage-meta"><span>THE NEXT ADVENTURE</span><span>01 — 05 / KEEP EXPLORING</span></div>
+  <div class="stage-meta"><span>CONTENTS</span><span>01 — 05</span></div>
   <div class="manifesto-layout">
-    <h2 id="manifesto-heading" data-reveal>好奇心，<br/>值得<span>付诸行动。</span></h2>
-    <div class="manifesto-note" data-reveal><span class="manifesto-asterisk orbix-x" aria-hidden="true">x</span><p>我是 DreaMax。<br/>专注大模型预训练与 Agentic RL，<br/>在论文、代码和实验之间不断往返。</p><a href="/join/" class="stage-text-link">更多关于我 <span aria-hidden="true">↗</span></a></div>
+    <h2 id="manifesto-heading" data-reveal>学习笔记<br/><span>与开源项目</span></h2>
+    <div class="manifesto-note" data-reveal><span class="manifesto-asterisk orbix-x" aria-hidden="true">x</span><p>主要关注 LLM training 与 RSI。<br/>这里整理了论文笔记、开源项目和工具。</p><a href="/join/" class="stage-text-link">更多关于我 <span aria-hidden="true">↗</span></a></div>
   </div>
-  <nav class="stage-jumpbar" aria-label="首页探索路线"><a href="#training">01 <span>学习</span> ↘</a><a href="#research">02 <span>研究</span> ↘</a><a href="#algorithm">03 <span>算法</span> ↘</a><a href="#projects">04 <span>项目</span> ↘</a><a href="#tools">05 <span>有趣的东西</span> ↘</a></nav>
+  <nav class="stage-jumpbar" aria-label="首页探索路线"><a href="#training">01 <span>学习</span> ↘</a><a href="#research">02 <span>研究</span> ↘</a><a href="#algorithm">03 <span>算法</span> ↘</a><a href="#projects">04 <span>项目</span> ↘</a><a href="#tools">05 <span>工具</span> ↘</a></nav>
 </section>
 
 <section id="training" class="home-training stage-shell" aria-labelledby="training-heading" data-home-stage>
-  <div class="stage-meta"><span>01 / THE LEARNING SPACE</span><span>PAPERS. CODE. EXPERIMENTS.</span></div>
+  <div class="stage-meta"><span>01 / LLM TRAINING</span><span>PAPERS. CODE. EXPERIMENTS.</span></div>
   <div class="training-stage-layout">
-    <div class="stage-story" data-reveal><h2 id="training-heading" class="stage-display">LLM<br/><span>TRAINING</span><sup>↗</sup></h2><p class="stage-intro">走进模型背后的世界。</p><p class="stage-description">沿着顶尖模型的技术报告，<br/>拆解从数据、训练到自主行动的完整路径。</p><a href="/llm-training/" class="stage-button home-training-entry">探索 LLM Training <span aria-hidden="true">↗</span></a></div>
+    <div class="stage-story" data-reveal><h2 id="training-heading" class="stage-display">LLM<br/><span>TRAINING</span><sup>↗</sup></h2><p class="stage-intro">技术报告与训练实验</p><p class="stage-description">预训练、中训练、后训练与 Agentic RL。<br/>包含论文精读、源码导读和交互实验。</p><a href="/llm-training/" class="stage-button home-training-entry">进入 LLM Training <span aria-hidden="true">↗</span></a></div>
     <TrainingField />
   </div>
   <div class="training-console" data-home-training>
@@ -32,11 +32,11 @@ const notes = ['161870362','160561647','161896756'].map(id => algorithmArticles.
 </section>
 
 <section id="research" class="home-agents stage-shell" aria-labelledby="agents-heading" data-home-stage>
-  <div class="stage-meta"><span>02 / AGENTIC SCHOLAR</span><span>INTELLIGENCE, IN ACTION.</span></div>
+  <div class="stage-meta"><span>02 / AGENTIC SCHOLAR</span><span>AGENTS / TOOLS / RL</span></div>
   <div class="agent-stage-layout">
-    <div class="stage-story" data-reveal><h2 id="agents-heading" class="stage-display">THINK.<br/>ACT.<br/><span>LEARN.</span></h2><p class="stage-intro">理解世界，然后改变一点。</p><p class="stage-description">研究 Agent 如何使用工具、感知环境，<br/>在一次次行动与反馈中完成复杂任务。</p><a href="/agentic-scholar/" class="stage-button">进入 Agentic Scholar <span aria-hidden="true">↗</span></a></div>
+    <div class="stage-story" data-reveal><h2 id="agents-heading" class="stage-display">AGENTIC<br/><span>SCHOLAR</span></h2><p class="stage-intro">Agent 系统与相关研究</p><p class="stage-description">工具协议、世界模型与多轮交互。<br/>整理相关论文、项目和阅读记录。</p><a href="/agentic-scholar/" class="stage-button">进入 Agentic Scholar <span aria-hidden="true">↗</span></a></div>
     <div class="agent-trajectory" data-agent-demo aria-label="Agent 交互轨迹示意">
-      <div class="trajectory-label"><span>AN AGENT'S JOURNEY</span><span>交互示意</span></div>
+      <div class="trajectory-label"><span>AGENT TRAJECTORY</span><span>交互示意</span></div>
       <svg class="trajectory-orbit" viewBox="0 0 500 500" fill="none" aria-hidden="true"><circle cx="250" cy="250" r="218"/><circle cx="250" cy="250" r="170" stroke-dasharray="2 9"/><ellipse cx="250" cy="250" rx="217" ry="86" transform="rotate(-36 250 250)"/><path d="M32 250h436M250 32v436"/>{[[250,32],[468,250],[250,468],[32,250]].map(([x,y],i)=><g class:list={['trajectory-node',{'is-active':i===0}]} data-trajectory-node={i}><circle cx={x} cy={y} r="10"/></g>)}</svg>
       <div class="trajectory-core" aria-live="polite"><span class="trajectory-step" data-agent-number>01</span><strong data-agent-title>接收任务</strong><p data-agent-detail>修复一个失败的单元测试。</p></div>
       <div class="trajectory-controls" role="group" aria-label="查看轨迹步骤">{['任务','动作','观察','验证'].map((label,i)=><button data-agent-step={i} aria-pressed={i===0?'true':'false'}><span>0{i+1}</span>{label}</button>)}</div>
@@ -47,11 +47,11 @@ const notes = ['161870362','160561647','161896756'].map(id => algorithmArticles.
 </section>
 
 <section id="algorithm" class="home-algorithms stage-shell" aria-labelledby="algorithm-stage-heading" data-home-stage>
-  <div class="stage-meta"><span>03 / THINK IT THROUGH</span><span>PERSONAL NOTES · CSDN</span></div>
+  <div class="stage-meta"><span>03 / ALGORITHM</span><span>PERSONAL NOTES · CSDN</span></div>
   <h2 id="algorithm-stage-heading" class="algorithm-stage-title" data-reveal>ALGORITHM<span aria-hidden="true">↗</span></h2>
   <div class="algorithm-stage-layout">
-    <div class="algorithm-count-art" aria-label={`${algorithmArticles.length} 篇原创算法笔记`}><span class="algorithm-orbit" aria-hidden="true"></span><strong>{algorithmArticles.length.toString().padStart(2,'0')}</strong><span class="algorithm-count-label">NOTES & COUNTING</span><span class="algorithm-count-brace" aria-hidden="true">{'{ }'}</span></div>
-    <div class="algorithm-stage-notes"><p class="stage-intro">把每一步想清楚。<br/>把想明白的，写下来。</p><div class="algorithm-preview-list">{notes.map((note,i)=><a href={note.url} target="_blank" rel="noreferrer"><small>0{i+1} / {note.tags[0]}</small><span>{note.title}</span><b aria-hidden="true">↗</b></a>)}</div><a class="stage-button" href="/algorithms/">阅读全部 {algorithmArticles.length} 篇笔记 <span aria-hidden="true">↗</span></a></div>
+    <div class="algorithm-count-art" aria-label={`${algorithmArticles.length} 篇原创算法笔记`}><span class="algorithm-orbit" aria-hidden="true"></span><strong>{algorithmArticles.length.toString().padStart(2,'0')}</strong><span class="algorithm-count-label">ORIGINAL ARTICLES</span><span class="algorithm-count-brace" aria-hidden="true">{'{ }'}</span></div>
+    <div class="algorithm-stage-notes"><p class="stage-intro">算法题解与学习笔记。<br/>原文发布在 CSDN。</p><div class="algorithm-preview-list">{notes.map((note,i)=><a href={note.url} target="_blank" rel="noreferrer"><small>0{i+1} / {note.tags[0]}</small><span>{note.title}</span><b aria-hidden="true">↗</b></a>)}</div><a class="stage-button" href="/algorithms/">阅读全部 {algorithmArticles.length} 篇笔记 <span aria-hidden="true">↗</span></a></div>
   </div>
 </section>
 

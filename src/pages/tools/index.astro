@@ -3,11 +3,11 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ToolArt from '../../components/experience/ToolArt.astro';
 import { tools } from '../../data/experience';
 import '../../styles/collections.css';
-const filters = [{id:'ALL',label:'全部作品'},{id:'PLAY',label:'玩一会儿'},{id:'CREATE',label:'创造'},{id:'UTILITY',label:'实用工具'},{id:'LIFE',label:'日常'}];
+const filters = [{id:'ALL',label:'全部作品'},{id:'PLAY',label:'游戏'},{id:'CREATE',label:'创造'},{id:'UTILITY',label:'实用工具'},{id:'LIFE',label:'日常'}];
 ---
-<PageLayout title="Playground — DreaMax 的工具与小作品" description="五子棋、图像工作台、临时邮箱、打卡、文件传送与写作工具。给好奇心留一点玩的空间。">
+<PageLayout title="Tools — DreaMax" description="五子棋、图像工作台、临时邮箱、打卡、文件传送与写作工具。">
   <div class="collection-page playground-page">
-    <header class="collection-hero"><p class="collection-eyebrow">DREAMAX / THE PLAYGROUND</p><div class="collection-title-row"><h1>SMALL TOOLS.<br/><span>BIG CURIOSITY.</span></h1><p>认真之外，<br/>留一点好玩的空间。</p></div></header>
+    <header class="collection-hero"><p class="collection-eyebrow">DREAMAX / TOOLS</p><div class="collection-title-row"><h1>TOOLS</h1><p>游戏、图像处理<br/>与实用工具。</p></div></header>
     <div class="collection-filter-bar"><div class="collection-filters" role="group" aria-label="工具分类">{filters.map((f,i)=><button data-tool-filter={f.id} aria-pressed={i===0?'true':'false'}>{f.label}</button>)}</div><span data-tool-count aria-live="polite">7 个小作品</span></div>
     <div class="collection-tool-gallery">{tools.map((tool,i)=><a href={tool.href.replace(/\/$/,'')} class={`collection-tool tool-color-${tool.color}`} data-tool-category={tool.category}><div class="collection-tool-art"><ToolArt kind={tool.art}/><span class="collection-tool-number">0{i+1}</span><span class="collection-tool-arrow" aria-hidden="true">↗</span></div><div class="collection-tool-caption"><span>{tool.category} / {tool.tag}</span><h2>{tool.title}<small>{tool.zh}</small></h2><p>{tool.description}</p></div></a>)}</div>
   </div>
