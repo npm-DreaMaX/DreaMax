@@ -37,7 +37,7 @@
 
 ## 其他栏目与示意图
 
-- 训练体素形变、Agent 轨道、项目几何由 `src/scripts/spatial-models.ts` 使用 Three.js 生成；没有外部贴图、模型文件或视频。光照环境使用项目已有的 Three.js `RoomEnvironment`。这些均为抽象示意，不声称是模型实际架构或训练数据。
+- 连续训练曲面、Agent 机械光圈、螺旋带、互锁环与流动线束由 `src/scripts/spatial-models.ts` 使用 Three.js 生成；没有外部贴图、模型文件或视频。光照环境由 `studio-environment.ts` 本地生成摄影棚柔光板，经 PMREM 预过滤。这些均为抽象示意，不声称是模型实际架构或训练数据。
 - 排序演示由 `SortingScene.astro` / `sorting-scenes.ts` 实现，使用真实冒泡排序，每次执行一次相邻比较；CSS 透视负责立体排版。
 - 工具与个人照片的指针视差在 `depth-effects.ts`；鼠标移动控制倾斜，触屏保留正常滚动。
 - 点击涟漪与 HTML 字符串掉落保留原交互，颜色统一为橙白；原有跳动文字仅在 Join Us，使用橙白配色。减少动态效果的系统偏好会停用装饰运动。
@@ -47,3 +47,7 @@
   - [CWM 技术报告](https://arxiv.org/abs/2510.02387)：代码生成与世界模型的研究入口。
   - [VAGEN 论文](https://arxiv.org/abs/2510.16907)：多轮视觉 Agent、状态推理与强化学习。
 - 原页面未附来源的性能数字不再沿用；当前栏目是有原文入口的阅读索引，不宣称包含尚未编写的论文精读。
+
+## 三维交互参考
+
+已查阅 Lusion 的 [Devin AI](https://lusion.co/projects/devin_ai/) 与 [Synthetic Human](https://lusion.co/projects/synthetic_human/) 官方案例；本站使用独立编写的参数化几何、材质和交互，没有下载其模型、贴图或源代码。完整参考、设计推导、功能和限制见 [motion-art-direction.md](motion-art-direction.md)。

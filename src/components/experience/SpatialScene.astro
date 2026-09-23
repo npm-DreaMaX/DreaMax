@@ -5,11 +5,18 @@ const { variant, label, theme = 'dark', compact = false } = Astro.props;
 ---
 <figure class:list={['spatial-scene', `spatial-${variant}`, { 'spatial-compact': compact }]} data-spatial-scene={variant} data-spatial-theme={theme} data-render="waiting" data-state="0" data-expanded="false">
   <div class="spatial-canvas-frame" tabindex="0" role="img" aria-label={`${label}。拖动或用方向键旋转，数字键切换形态。`}>
-    <svg class="spatial-fallback" viewBox="0 0 500 440" fill="none" aria-hidden="true"><g transform="translate(250 220)" stroke="currentColor"><ellipse rx="173" ry="95" transform="rotate(-30)"/><ellipse rx="173" ry="95" transform="rotate(30)"/><ellipse rx="95" ry="173"/><circle r="53"/><circle cx="150" cy="-73" r="14" fill="currentColor"/><circle cx="-145" cy="85" r="8" fill="currentColor"/></g></svg>
+    <svg class="spatial-fallback" viewBox="0 0 500 440" fill="none" aria-hidden="true"><g transform="translate(250 220)" stroke="currentColor">
+      {variant === 'agents' ? <><circle r="151"/><circle r="140"/>{Array.from({length:8},(_,i)=><path d="M120 -10 C90 -70 25 -90 -25 -45 C20 -35 70 25 118 14Z" transform={`rotate(${i*45})`}/>)}</> : variant === 'training' ? <>{[0,120,240].map(a=><path d="M-125 100 C-170 25 -70 -80 5 -143 C32 -165 50 -90 72 -45 C90 -3 98 38 128 80 C156 120 40 127 -125 100Z" transform={`rotate(${a})`}/>)}</> : <>{Array.from({length:27},(_,i)=><path d={`M-175 ${-100+i*8} C-60 ${-175+i*8} 50 ${-45+i*8} 175 ${-100+i*8}`}/>)}</>}
+    </g></svg>
     <canvas aria-hidden="true"></canvas>
     <span class="spatial-corner spatial-corner-a" aria-hidden="true">+</span><span class="spatial-corner spatial-corner-b" aria-hidden="true">+</span>
   </div>
-  <figcaption class="spatial-toolbar"><span class="spatial-hint">拖动旋转 <i>／</i> 三维示意</span><div><button type="button" data-spatial-expand aria-pressed="false" aria-label={`展开${label}`} disabled>展开 <span aria-hidden="true">↗</span></button><button type="button" data-spatial-pause aria-label={`暂停${label}动画`} aria-pressed="false" disabled><span data-spatial-pause-icon aria-hidden="true">Ⅱ</span></button><button type="button" data-spatial-reset aria-label={`重置${label}视角`} disabled><span aria-hidden="true">↺</span></button></div></figcaption>
+  <figcaption class="spatial-toolbar"><span class="spatial-hint">拖动旋转 <i>／</i><span>三维示意</span></span><div><button type="button" data-spatial-settings aria-controls={`spatial-${variant}-settings`} aria-label={`调节${label}`} aria-expanded="false" disabled>调节 <span aria-hidden="true">＋</span></button><button type="button" data-spatial-expand aria-pressed="false" aria-label={`展开${label}`} disabled>展开 <span aria-hidden="true">↗</span></button><button type="button" data-spatial-pause aria-label={`暂停${label}动画`} aria-pressed="false" disabled><span data-spatial-pause-icon aria-hidden="true">Ⅱ</span></button><button type="button" data-spatial-reset aria-label={`重置${label}视角`} disabled><span aria-hidden="true">↺</span></button></div></figcaption>
+  <div class="spatial-settings" id={`spatial-${variant}-settings`} data-spatial-settings-panel hidden>
+    <div class="spatial-finish"><span>材质</span><div role="group" aria-label={`${label}材质`}><button data-spatial-finish="metal" aria-pressed="true" disabled>金属</button><button data-spatial-finish="matte" aria-pressed="false" disabled>磨砂</button></div></div>
+    <label><span>光线</span><input type="range" min="-180" max="180" value="0" data-spatial-light aria-label={`${label}光线方向`} disabled/><output data-spatial-light-value>0°</output></label>
+    <label><span>速度</span><input type="range" min="0" max="150" value="70" data-spatial-speed aria-label={`${label}运动速度`} disabled/><output data-spatial-speed-value>0.7×</output></label>
+  </div>
 </figure>
 <script>
   import { observeSpatialScenes } from '../../scripts/spatial-loader';

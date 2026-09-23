@@ -3,6 +3,19 @@ export function initExpeditionHero() {
   if (!hero) return;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = matchMedia("(pointer: fine)");
+  const loadOptics = () => {
+    if (reduced.matches) return;
+    void import("./hero-optics")
+      .then(({ initHeroOptics }) => initHeroOptics(hero))
+      .catch(() => {
+        hero.dataset.optics = "fallback";
+      });
+  };
+  // The photograph and text render first; WebGL is only a progressive enhancement.
+  if ("requestIdleCallback" in window)
+    window.requestIdleCallback(loadOptics, { timeout: 2500 });
+  else setTimeout(loadOptics, 1200);
+  reduced.addEventListener("change", loadOptics);
   let frame = 0;
   const update = () => {
     frame = 0;

@@ -960,7 +960,7 @@ body.dm-home .home-playground {
   place-items: center;
 }
 .dm-home .piece-beautifier:hover .beautifier-split {
-  right: 74%;
+  right: calc(100% - var(--comparison, 50%));
 }
 .dm-home .beautifier-before,
 .dm-home .beautifier-after {

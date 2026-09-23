@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { createStudioEnvironment } from "./studio-environment";
 import { createSpatialModel } from "./spatial-models";
 
 export function initSpatialScene(host: HTMLElement) {
@@ -7,12 +7,19 @@ export function initSpatialScene(host: HTMLElement) {
   host.dataset.initialized = "true";
   const frameEl = host.querySelector<HTMLElement>(".spatial-canvas-frame")!;
   const canvas = host.querySelector("canvas")!;
-  const buttons = [...host.querySelectorAll<HTMLButtonElement>("button")];
+  const buttons = [
+    ...host.querySelectorAll<HTMLButtonElement | HTMLInputElement>(
+      "button,input",
+    ),
+  ];
   const pause = host.querySelector<HTMLButtonElement>("[data-spatial-pause]")!;
   const expand = host.querySelector<HTMLButtonElement>(
     "[data-spatial-expand]",
   )!;
   const reset = host.querySelector<HTMLButtonElement>("[data-spatial-reset]")!;
+  const originalLabel = frameEl.getAttribute("aria-label")!;
+  const hint = host.querySelector<HTMLElement>(".spatial-hint")!;
+  const originalHint = hint.innerHTML;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const abort = new AbortController();
   const options = { signal: abort.signal };
@@ -39,21 +46,17 @@ export function initSpatialScene(host: HTMLElement) {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.setClearColor(0x111111, 0);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.5;
+  renderer.toneMappingExposure = 1.05;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 30);
-  camera.position.set(0, 0.15, 8.5);
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  const room = new RoomEnvironment();
-  const environment = pmrem.fromScene(room, 0.08);
+  camera.position.set(0, 0.15, 7.6);
+  const environment = createStudioEnvironment(renderer);
   scene.environment = environment.texture;
-  room.dispose();
-  pmrem.dispose();
-  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+  scene.environmentIntensity = 1.15;
+  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
   for (const [x, y, z, power] of [
-    [3, 4, 5, 4],
-    [-4, -1, 2, 2],
-    [1, -4, -2, 2],
+    [3, 4, 5, 1.6],
+    [-4, -1, 2, 0.45],
   ]) {
     const light = new THREE.DirectionalLight(0xffffff, power);
     light.position.set(x, y, z);
@@ -64,11 +67,90 @@ export function initSpatialScene(host: HTMLElement) {
     host.dataset.spatialTheme === "orange",
   );
   scene.add(model.root);
+  const settings = host.querySelector<HTMLButtonElement>(
+    "[data-spatial-settings]",
+  )!;
+  const panel = host.querySelector<HTMLElement>(
+    "[data-spatial-settings-panel]",
+  )!;
+  const lightInput = host.querySelector<HTMLInputElement>(
+    "[data-spatial-light]",
+  )!;
+  const speedInput = host.querySelector<HTMLInputElement>(
+    "[data-spatial-speed]",
+  )!;
+  let speed = 0.7;
+  const finishes = [
+    ...host.querySelectorAll<HTMLButtonElement>("[data-spatial-finish]"),
+  ];
+  const baseMaterials = new Map<
+    THREE.MeshPhysicalMaterial,
+    { metalness: number; roughness: number; clearcoat: number }
+  >();
+  model.root.traverse((object) => {
+    if (!(object instanceof THREE.Mesh)) return;
+    for (const m of Array.isArray(object.material)
+      ? object.material
+      : [object.material]) {
+      if (m instanceof THREE.MeshPhysicalMaterial && !baseMaterials.has(m))
+        baseMaterials.set(m, {
+          metalness: m.metalness,
+          roughness: m.roughness,
+          clearcoat: m.clearcoat,
+        });
+    }
+  });
+  settings.addEventListener(
+    "click",
+    () => {
+      panel.hidden = !panel.hidden;
+      settings.setAttribute("aria-expanded", String(!panel.hidden));
+    },
+    options,
+  );
+  finishes.forEach((button) =>
+    button.addEventListener(
+      "click",
+      () => {
+        const matte = button.dataset.spatialFinish === "matte";
+        baseMaterials.forEach((base, m) => {
+          m.metalness = matte ? 0.04 : base.metalness;
+          m.roughness = matte ? 0.58 : base.roughness;
+          m.clearcoat = matte ? 0.08 : base.clearcoat;
+        });
+        finishes.forEach((b) =>
+          b.setAttribute("aria-pressed", String(b === button)),
+        );
+        host.dataset.finish = button.dataset.spatialFinish;
+        draw(true);
+      },
+      options,
+    ),
+  );
+  lightInput.addEventListener(
+    "input",
+    () => {
+      scene.environmentRotation.y = (Number(lightInput.value) * Math.PI) / 180;
+      host.querySelector("[data-spatial-light-value]")!.textContent =
+        `${lightInput.value}°`;
+      draw(true);
+    },
+    options,
+  );
+  speedInput.addEventListener(
+    "input",
+    () => {
+      speed = Number(speedInput.value) / 100;
+      host.querySelector("[data-spatial-speed-value]")!.textContent =
+        `${speed.toFixed(1)}×`;
+    },
+    options,
+  );
   let state = Number(host.dataset.state || 0),
     visible = false,
     paused = reduced.matches;
-  let targetX = 0.45,
-    targetY = -0.35,
+  let targetX = 0.23,
+    targetY = -0.27,
     rotationX = targetX,
     rotationY = targetY;
   let expanded = false,
@@ -102,7 +184,11 @@ export function initSpatialScene(host: HTMLElement) {
       rotationY = targetY;
       spread = expanded ? 1 : 0;
     }
-    model.root.rotation.set(rotationX, rotationY, -0.12);
+    model.root.rotation.set(
+      rotationX + Math.sin(time * 0.22) * 0.045,
+      rotationY + Math.sin(time * 0.18) * 0.16,
+      -0.06,
+    );
     model.update(time, delta, spread, immediate);
     renderer.render(scene, camera);
   }
@@ -119,8 +205,7 @@ export function initSpatialScene(host: HTMLElement) {
     }
     const dt = Math.min((now - last) / 1000, 0.06);
     last = now;
-    time += dt;
-    if (!dragging) targetY += dt * 0.095;
+    time += dt * speed;
     const blend = 1 - Math.exp(-dt * 8);
     rotationX += (targetX - rotationX) * blend;
     rotationY += (targetY - rotationY) * blend;
@@ -184,8 +269,8 @@ export function initSpatialScene(host: HTMLElement) {
   reset.addEventListener(
     "click",
     () => {
-      targetX = 0.45;
-      targetY = -0.35;
+      targetX = 0.23;
+      targetY = -0.27;
       draw(true);
     },
     options,
@@ -205,6 +290,14 @@ export function initSpatialScene(host: HTMLElement) {
   frameEl.addEventListener(
     "pointermove",
     (event) => {
+      if (model.pointer && !reduced.matches) {
+        const box = frameEl.getBoundingClientRect();
+        model.pointer(
+          ((event.clientX - box.left) / box.width) * 2 - 1,
+          1 - ((event.clientY - box.top) / box.height) * 2,
+        );
+        if (paused) draw(true);
+      }
       if (!dragging) return;
       const dx = event.clientX - px,
         dy = event.clientY - py;
@@ -325,6 +418,8 @@ export function initSpatialScene(host: HTMLElement) {
       lost = false;
       host.dataset.render = "webgl";
       frameEl.tabIndex = 0;
+      frameEl.setAttribute("aria-label", originalLabel);
+      hint.innerHTML = originalHint;
       buttons.forEach((b) => (b.disabled = false));
       size();
       schedule();

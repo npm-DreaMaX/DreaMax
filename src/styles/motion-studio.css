@@ -1,0 +1,267 @@
+.hero-optical-canvas {
+  position: absolute;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(
+      var(--pointer-x, 0px),
+      calc(var(--pointer-y, 0px) + var(--hero-scroll, 0) * 110px),
+      0
+    )
+    scale(calc(1.02 + var(--hero-scroll, 0) * 0.06));
+  transition:
+    opacity 1.2s ease,
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-optics="ready"] .hero-optical-canvas {
+  opacity: 1;
+}
+.hero-motion-control {
+  position: absolute;
+  bottom: 34px;
+  right: 5.5vw;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 44px;
+  min-height: 44px;
+  color: #fff4e7;
+  background: #16161626;
+  border: 1px solid #fff4e742;
+  border-radius: 30px;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.hero-motion-control[hidden] {
+  display: none;
+}
+.hero-motion-control:hover {
+  background: #16161660;
+}
+.hero-motion-control small {
+  font: 400 10px/1.4 var(--dm-font);
+}
+.hero-motion-control:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.spatial-settings {
+  border-top: 1px solid var(--scene-line);
+  padding: 14px 0 20px;
+  display: grid;
+  gap: 10px;
+}
+.spatial-settings[hidden] {
+  display: none;
+}
+.spatial-settings > label,
+.spatial-finish {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font: 400 11px/1.5 var(--dm-font);
+}
+.spatial-settings > label > span,
+.spatial-finish > span {
+  flex: 0 0 40px;
+  opacity: 0.7;
+}
+.spatial-settings input {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  background: transparent;
+  cursor: ew-resize;
+}
+.spatial-settings input::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--scene-line);
+}
+.spatial-settings input::-moz-range-track {
+  height: 2px;
+  background: var(--scene-line);
+}
+.spatial-settings input::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--scene-ink);
+  border: 0;
+}
+.spatial-settings input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--scene-ink);
+  border: 0;
+}
+.spatial-settings output {
+  flex: 0 0 40px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.spatial-finish > div {
+  display: flex;
+  gap: 6px;
+}
+.spatial-finish button {
+  border: 1px solid var(--scene-line);
+  min-height: 44px;
+  min-width: 72px;
+  padding: 0 14px;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.spatial-finish button[aria-pressed="true"] {
+  background: var(--scene-ink);
+  color: #171717;
+}
+.spatial-finish button:hover {
+  background: var(--scene-ink);
+  color: #171717;
+}
+.spatial-scene[data-spatial-theme="orange"]
+  .spatial-finish
+  button[aria-pressed="true"] {
+  color: #fff;
+}
+.spatial-settings :focus-visible {
+  outline: 2px solid var(--scene-accent);
+  outline-offset: 3px;
+}
+
+.dm-home .stage-display,
+.dm-home .algorithm-stage-title,
+.dm-home .project-stage-heading h2,
+.dm-home .playground-heading h2 {
+  clip-path: inset(-8% -10% -10% -10%);
+  transition:
+    clip-path 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dm-motion .dm-home [data-reveal]:not(.is-visible) .stage-display,
+.dm-motion .dm-home .algorithm-stage-title:not(.is-visible),
+.dm-motion .dm-home [data-reveal]:not(.is-visible) #projects-heading,
+.dm-motion .dm-home [data-reveal]:not(.is-visible) #playground-heading {
+  clip-path: inset(0 -10% 100% -10%);
+  transform: translateY(18px) rotateX(12deg);
+}
+.dm-site [data-magnetic] > span:last-child {
+  transform: translate(var(--magnetic-x, 0px), var(--magnetic-y, 0px));
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dm-home .closing-wordmark[data-foil="true"] .orbix-wordmark {
+  background: linear-gradient(
+    105deg,
+    #ff712e 0%,
+    #ff712e calc(var(--foil-x, 50%) - 14%),
+    #fff4ec var(--foil-x, 50%),
+    #ff712e calc(var(--foil-x, 50%) + 14%),
+    #ff712e 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.dm-home .closing-wordmark[data-foil="true"] .orbix-x {
+  color: inherit;
+}
+.dm-home .piece-beautifier .beautifier-split {
+  right: calc(100% - var(--comparison, 50%));
+  transition: right 0.08s linear;
+}
+.comparison-control {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 52px;
+  border-bottom: 1px solid #17171728;
+  color: #171717;
+  font: 400 10px/1.4 var(--dm-font);
+}
+.comparison-control input {
+  min-width: 0;
+  flex: 1;
+  accent-color: #171717;
+  cursor: ew-resize;
+  height: 44px;
+}
+.comparison-control input:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 3px;
+}
+.comparison-control output {
+  min-width: 32px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.dm-home .piece-beautifier a.piece-caption {
+  display: block;
+}
+
+@media (max-width: 760px) {
+  .hero-motion-control {
+    right: 24px;
+    bottom: 26px;
+    padding: 0;
+    background: transparent;
+    border-color: #fff4e72b;
+  }
+  .hero-motion-control small {
+    display: none;
+  }
+  .spatial-toolbar {
+    gap: 4px;
+  }
+  .spatial-toolbar button {
+    gap: 5px;
+    padding-inline: 6px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .spatial-toolbar > div {
+    gap: 0;
+  }
+  .spatial-hint {
+    white-space: nowrap;
+  }
+  .spatial-hint i,
+  .spatial-hint i + span {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-optical-canvas,
+  .hero-motion-control {
+    display: none;
+  }
+  .dm-site [data-magnetic] > span:last-child {
+    transform: none;
+    transition: none;
+  }
+  .dm-home .stage-display,
+  .dm-home .algorithm-stage-title,
+  .dm-home .project-stage-heading h2,
+  .dm-home .playground-heading h2 {
+    clip-path: none !important;
+    transform: none !important;
+    transition: none;
+  }
+  .dm-home .piece-beautifier .beautifier-split {
+    transition: none;
+  }
+}
