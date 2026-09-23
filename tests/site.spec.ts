@@ -1,25 +1,30 @@
 import { test, expect } from "./fixtures";
 
-test("personal homepage preserves original research and exposes three real projects", async ({
+test("the new homepage exposes peer destinations and three real projects", async ({
   page,
 }) => {
   await page.goto("/");
   await expect(page.locator("h1")).toHaveText("DreaMax");
   await expect(page.locator("#dreamax")).toContainText("Jessica Day");
-  for (const title of ["Deep Residual Learning", "NeoVerse", "MegaSaM"])
-    await expect(page.locator("#research")).toContainText(title);
-  for (const name of ["Triple-pi", "TripleTeam", "TokenCircuit"])
+  await expect(
+    page.locator('#research a[href="/agentic-scholar/"]'),
+  ).toBeVisible();
+  await expect(page.locator(".portfolio-project-grid")).toHaveCount(0);
+  await expect(page.locator("main")).not.toContainText("Selected Research");
+  for (const name of ["Triple-pi", "TripleTeam", "TokenCircuit"]) {
+    await page.getByRole("tab", { name: new RegExp(name) }).click();
     await expect(
       page.locator(
-        `.portfolio-project[href="https://github.com/npm-DreaMaX/${name}"]`,
+        `.project-source-link[href="https://github.com/npm-DreaMaX/${name}"]`,
       ),
     ).toBeVisible();
-  await expect(page.locator(".portfolio-project")).toHaveCount(3);
-  await expect(page.locator(".portfolio-training-entry")).toHaveAttribute(
+  }
+  await expect(page.locator(".project-source-link")).toHaveCount(3);
+  await expect(page.locator(".home-training-entry")).toHaveAttribute(
     "href",
     "/llm-training/",
   );
-  await expect(page.locator("#tools a")).toHaveCount(3);
+  await expect(page.locator("#tools .playground-piece")).toHaveCount(3);
   await expect(page.locator("[data-sculpture]")).toHaveCount(0);
 });
 
@@ -108,7 +113,7 @@ test("page curtain completes; browser back and same-page menu anchors remain usa
 }) => {
   await page.goto("/");
   const phase = await page
-    .locator(".portfolio-training-entry")
+    .locator(".home-training-entry")
     .evaluate((el: HTMLAnchorElement) => {
       el.click();
       return document.documentElement.dataset.routeTransition;
@@ -167,6 +172,11 @@ test("all seven tools remain accessible and profile reflects new focus", async (
     "mbti",
   ])
     await expect(page.locator(`main a[href="/tools/${slug}"]`)).toBeVisible();
+  await page.getByRole("button", { name: "创造", exact: true }).click();
+  await expect(page.locator("[data-tool-category]:visible")).toHaveCount(2);
+  await expect(page.locator("[data-tool-count]")).toHaveText("2 个小作品");
+  await page.getByRole("button", { name: "全部作品", exact: true }).click();
+  await expect(page.locator("[data-tool-category]:visible")).toHaveCount(7);
   await page.goto("/join/");
   await expect(page.locator("main")).toContainText(
     "重点关注现代预训练与 Agentic RL",
@@ -177,6 +187,27 @@ test("all seven tools remain accessible and profile reflects new focus", async (
       .locator("main")
       .getByRole("link", { name: "3752703718@qq.com", exact: true }),
   ).toHaveAttribute("href", "mailto:3752703718@qq.com");
+});
+
+test("scholar reading panels keep source links and the original reading archive", async ({
+  page,
+}) => {
+  await page.goto("/agentic-scholar/");
+  await expect(page.locator(".scholar-reading")).toHaveCount(3);
+  await page.locator(".scholar-reading").nth(2).locator("summary").click();
+  await expect(
+    page.locator(".scholar-reading").nth(2).locator(".scholar-source"),
+  ).toHaveAttribute("href", "https://arxiv.org/abs/2510.16907");
+  await page.locator(".scholar-archive summary").click();
+  for (const title of ["Deep Residual Learning", "NeoVerse", "MegaSaM"])
+    await expect(page.locator(".scholar-archive")).toContainText(title);
+  await page
+    .locator(".scholar-reading")
+    .first()
+    .locator(".scholar-related")
+    .click();
+  await expect(page).toHaveURL(/fieldwork\/learn\/agent-boundaries/);
+  await expect(page.locator("h1")).toBeVisible();
 });
 
 test("personal pages fit viewport and retired categories redirect to the new area", async ({
@@ -217,7 +248,7 @@ test("paper HTML and portfolio navigation exist without JavaScript", async ({
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:4322/");
-  await page.locator(".portfolio-training-entry").click();
+  await page.locator(".home-training-entry").click();
   await expect(page.locator("#hero-title")).toBeVisible();
   await page
     .getByRole("link", { name: "开始学习", exact: false })

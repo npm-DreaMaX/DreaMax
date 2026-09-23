@@ -68,7 +68,7 @@ export default function EditorialShell({ children }: { children: ReactNode }) {
         跳到正文
       </a>
       <header className="site-header">
-        <div className="fieldwork-brand"><a href="/" className="fieldwork-home-link" aria-label="返回 DreaMax 首页">DreaMax</a><span className="brand-slash">/</span><a href="/llm-training/" className="wordmark" aria-label="返回 LLM Training">LLM Training<span>↗</span></a></div>
+        <div className="fieldwork-brand"><a href="/" className="fieldwork-home-link" aria-label="返回 DreaMax 首页"><span className="orbix-wordmark">DreaMa<span className="orbix-x">x</span></span></a><span className="brand-slash">/</span><a href="/llm-training/" className="wordmark" aria-label="返回 LLM Training">LLM Training<span>↗</span></a></div>
         <nav className="desktop-nav" aria-label="主导航">
           <NavLink to="/papers">论文精读</NavLink>
           <NavLink to="/paths/pretraining">阅读路线</NavLink>

@@ -1,59 +1,12 @@
 ---
-import PageLayout from "../layouts/PageLayout.astro";
-import { profile } from "../data/profile";
+import PageLayout from '../layouts/PageLayout.astro';
+import { profile } from '../data/profile';
+import '../styles/collections.css';
 ---
-
-<PageLayout
-  title="Join Us — Contact DreaMax | Collaboration & Research Opportunities"
-  description="Get in touch with DreaMax for research collaboration, project opportunities, or academic discussions. GitHub, Google Scholar, and CSDN links available."
->
-  <section class="min-h-screen px-6 pt-32 pb-24">
-    <div class="mx-auto" style="max-width:960px;">
-      <h1 class="section-heading" style="margin-bottom:8px;">
-        <span class="accent-bar" style="background:#e31b6d;"></span>Join Us
-      </h1>
-      <p class="font-mono text-sm" style="color:rgba(255,255,255,0.4);">Get in touch, collaborate, or explore opportunities.</p>
-
-      <div class="flex flex-col md:flex-row md:items-start md:gap-12" style="margin-top:56px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.05);">
-        <div class="flex-1">
-          <h2 class="font-mono text-xs tracking-widest uppercase" style="color:#e31b6d; margin-bottom:16px;">About</h2>
-          <div class="flex flex-col gap-4">
-            <p style="font-family:'Georgia','Palatino','Times New Roman',serif; font-size:clamp(14px, 1.5vw, 17px); color:rgba(255,255,255,0.65); line-height:1.9; margin:0; font-style:italic; letter-spacing:0.5px;">
-              {profile.bio}
-            </p>
-            <a href={profile.cv} class="btn btn-pink" style="align-self:flex-start;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download CV
-            </a>
-          </div>
-        </div>
-        <div class="shrink-0" style="margin-top:20px; md:margin-top:0;">
-          <div class="relative" style="width:140px; height:140px;">
-            <div class="absolute inset-0 rounded-full" style="border:1px solid rgba(255,255,255,0.06);"></div>
-            <div class="absolute inset-[3px] rounded-full overflow-hidden" style="background:#131316/80;">
-              {profile.avatar ? (
-                <img src={profile.avatar} alt={`Portrait of ${profile.name}, AI researcher at Beijing Jiaotong University`} style="width:100%; height:100%; object-fit:cover;" />
-              ) : (
-                <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:36px; color:rgba(255,255,255,0.12);" aria-label="Profile photo placeholder">?</div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-12 md:flex-row md:gap-16" style="margin-top:40px;">
-        <div class="flex-1">
-          <h2 class="font-mono text-xs tracking-widest uppercase" style="color:#66d9ed; margin-bottom:12px;">Contact</h2>
-          <a href={`mailto:${profile.email}`} class="font-mono text-sm link-underline" style="color:#66d9ed;">{profile.email}</a>
-        </div>
-        <div class="flex-1">
-          <h2 class="font-mono text-xs tracking-widest uppercase" style="color:#66d9ed; margin-bottom:12px;">Links</h2>
-          <ul class="space-y-3" style="list-style:none; padding:0; margin:0;">
-            <li><a href={profile.social.github} target="_blank" class="font-mono text-sm link-underline" style="color:rgba(255,255,255,0.55);">GitHub ↗</a></li>
-            <li><a href={profile.social.csdn} target="_blank" class="font-mono text-sm link-underline" style="color:rgba(255,255,255,0.55);">CSDN ↗</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<PageLayout title="About — DreaMax" description={profile.tagline}>
+  <div class="collection-page about-page">
+    <header class="collection-hero"><p class="collection-eyebrow">DREAMAX / THE PERSON BEHIND THE PIXELS</p><h1>ALWAYS<br/><span>EXPLORING.</span></h1></header>
+    <div class="about-layout"><div class="about-portrait"><img src={profile.avatar} alt="DreaMax 的个人照片" width="1024" height="1364"/><span>STAY CURIOUS. / DREAMAX</span></div><div class="about-copy"><p class="collection-eyebrow">HELLO, I'M DREAMAX.</p><h2>把好奇心，<br/>放进真实的实验里。</h2><p class="about-bio">{profile.bio}</p><div class="about-interests"><span>PRE-TRAINING</span><span>AGENTIC RL</span><span>TRAINING SYSTEMS</span></div><a href={profile.cv} class="collection-action">下载我的简历 <span>↗</span></a></div></div>
+    <div class="about-contact"><div><p class="collection-eyebrow">LET'S BUILD SOMETHING.</p><h2>保持联系。</h2></div><div><a class="about-email" href={`mailto:${profile.email}`}>{profile.email}</a><button data-copy-email={profile.email}>复制邮箱 ↗</button><div class="about-socials"><a href={profile.social.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a></div></div></div>
+  </div>
 </PageLayout>

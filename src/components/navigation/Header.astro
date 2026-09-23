@@ -1,4 +1,6 @@
 ---
+import Wordmark from "../ui/Wordmark.astro";
+import { algorithmArticles } from '../../data/algorithms';
 import { papers } from '../../../fieldwork/src/data/readings';
 import { tools } from '../../data/experience';
 import { navigation } from '../../data/navigation';
@@ -13,6 +15,7 @@ const routes = [
   { title: '算子与集群', en:'SYSTEMS', href:'/fieldwork/paths/systems', description:'GPU、显存、带宽与通信' },
 ];
 const index = [
+  ...algorithmArticles.map(a=>({title:a.title,description:a.description,category:"我的算法笔记",href:a.url,keywords:a.tags.join(" ")})),
   ...navigation.map(n => ({title:n.label,description:n.description,category:'栏目',href:n.href,keywords:n.short})),
   ...featuredProjects.map(p=>({title:p.title,description:p.description,category:'我的项目',href:p.link,keywords:p.tags.join(' ')})),
   ...papers.map(p => ({ title:p.title,description:p.subtitle,category:'论文精读',href:`/fieldwork/papers/${p.id}`,keywords:p.tags.join(' ') })),
@@ -22,13 +25,14 @@ const index = [
 ];
 ---
 <header class="dm-header" data-command-header>
-  <a href="/" class="dm-brand" aria-label="DreaMax 首页"><span class="dm-brand-text">Drea<em>Max</em><small>INDEPENDENT MIND.</small></span></a>
+  <a href="/" class="dm-brand" aria-label="DreaMax 首页"><Wordmark /></a>
   <nav class="dm-primary-nav" aria-label="主导航">
     <div class="dm-learning-nav">
       <a href="/llm-training/" class:list={{active:pathname.startsWith('/llm-training')}} aria-current={pathname.startsWith('/llm-training')?'page':undefined}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 8 8-8 8-8-8Z"/><path d="M2 10h16M10 2v16"/></svg>LLM Training</a>
       <button data-training-toggle aria-controls="dm-training-menu" aria-expanded="false" aria-label="展开 LLM Training 学习路线"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
     </div>
     <a href="/agentic-scholar/" class:list={{active:active('/agentic-scholar/')}} aria-current={active('/agentic-scholar/')?'page':undefined}><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="4" r="2"/><circle cx="4" cy="15" r="2"/><circle cx="16" cy="15" r="2"/><path d="m9 6-4 7m6-7 4 7M6 15h8"/></svg>Agentic Scholar</a>
+    <a href="/algorithms/" class:list={{active:active('/algorithms/')}} aria-current={active('/algorithms/')?'page':undefined}>Algorithm</a>
     <a href="/#projects" data-project-nav><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="6" width="15" height="11.5" rx="2"/><path d="M6 6V3h8v3M3 10h14"/></svg>Projects</a>
     <a href="/tools/" class:list={{active:active('/tools/')}} aria-current={active('/tools/')?'page':undefined}><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="12" width="5" height="5" rx="1"/><path d="M14.5 11v7M11 14.5h7"/></svg>Tools</a>
   </nav>
@@ -43,7 +47,7 @@ const index = [
   </section>
 </header>
 <dialog id="dm-menu" class="dm-menu-dialog" aria-labelledby="dm-menu-heading">
-  <div class="dm-dialog-top"><a href="/" class="dm-brand"><span class="dm-brand-text">Drea<em>Max</em></span></a><span class="dm-menu-top-note">EXPLORE / LEARN / BUILD</span><button class="dm-close" data-close-dialog aria-label="关闭导航">关闭 <span aria-hidden="true">×</span></button></div>
+  <div class="dm-dialog-top"><a href="/" class="dm-brand"><Wordmark /></a><span class="dm-menu-top-note">EXPLORE / LEARN / BUILD</span><button class="dm-close" data-close-dialog aria-label="关闭导航">关闭 <span aria-hidden="true">×</span></button></div>
   <div class="dm-menu-content">
     <nav class="dm-menu-main" aria-labelledby="dm-menu-heading">
       <p id="dm-menu-heading" class="dm-eyebrow">THE INDEX / DREAMAX</p>

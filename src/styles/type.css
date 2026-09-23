@@ -1,3 +1,25 @@
 @import "@fontsource-variable/outfit";
 @import "@fontsource-variable/inter";
 @import "@fontsource-variable/noto-sans-sc";
+
+@font-face {
+  font-family: Orbix;
+  src: url(/fonts/orbix/Orbix-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.orbix-wordmark {
+  font-family: Orbix, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  text-transform: uppercase;
+  font-feature-settings: "ss01" 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.orbix-x {
+  font-feature-settings: "ss02" 1;
+  font-style: normal;
+}

@@ -1,4 +1,5 @@
 ---
+import Wordmark from "./Wordmark.astro";
 import { profile } from '../../data/profile';
 ---
 <footer class="dm-footer">
@@ -6,5 +7,5 @@ import { profile } from '../../data/profile';
     <div><p class="dm-eyebrow">THE NEXT IDEA STARTS WITH A CONVERSATION</p><a class="dm-footer-invitation" href={`mailto:${profile.email}`}>保持好奇。<br/>一起创造。<span aria-hidden="true">↗</span></a></div>
     <div class="dm-footer-links"><a href="/fieldwork/">Fieldwork</a><a href="/tools/">游乐场</a><a href="/join/">关于 DreaMax</a><a href={profile.social.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a></div>
   </div>
-  <div class="dm-footer-bottom dm-container"><a href="/" class="dm-brand"><span class="dm-brand-text">Drea<em>Max</em></span></a><p>独立探索 · 持续构建</p><span>© {new Date().getFullYear()} DreaMax</span><a href="#main-content" aria-label="回到顶部">BACK TO TOP ↑</a></div>
+  <div class="dm-footer-bottom dm-container"><a href="/" class="dm-brand"><Wordmark /></a><p>独立探索 · 持续构建</p><span>© {new Date().getFullYear()} DreaMax</span><a href="#main-content" aria-label="回到顶部">BACK TO TOP ↑</a></div>
 </footer>

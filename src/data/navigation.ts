@@ -20,7 +20,7 @@ export const navigation = [
   {
     label: "Algorithm",
     href: "/algorithms/",
-    description: "算法与数据结构",
+    description: "我的 CSDN 原创算法题解与学习笔记",
     short: "ALGORITHMS",
   },
   {

@@ -1,4 +1,4 @@
-/** Rasterize our own SVG assets. Run: node scripts/generate-brand-assets.mjs */
+/** Rasterize the licensed-font SVG assets. See docs/visual-sources.md for provenance. */
 import fs from "node:fs/promises";
 import { chromium } from "@playwright/test";
 const browser = await chromium.launch({ headless: true });

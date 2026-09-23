@@ -1,23 +1,21 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import DreaMax from "../components/home/DreaMax.astro";
-import ResearchHighlights from "../components/home/ResearchHighlights.astro";
-import ProjectHighlights from "../components/home/ProjectHighlights.astro";
-import RecentUpdates from "../components/home/RecentUpdates.astro";
-import ToolsShowcase from "../components/home/ToolsShowcase.astro";
-import TrainingEntry from "../components/home/TrainingEntry.astro";
-import BackToTop from "../components/ui/BackToTop.astro";
+import ExpeditionSpaces from "../components/home/ExpeditionSpaces.astro";
+import ProjectStage from "../components/home/ProjectStage.astro";
+import PlaygroundStage from "../components/home/PlaygroundStage.astro";
+import HomeClosing from "../components/home/HomeClosing.astro";
+import '../styles/home-stages.css';
 ---
 
 <PageLayout
   title="DreaMax — LLM Pre-training & Agentic RL"
   description="DreaMax 的个人主页：大模型预训练与 Agentic RL、开源项目、研究笔记与实用工具。"
+  showFooter={false}
 >
   <DreaMax />
-  <ResearchHighlights />
-  <ProjectHighlights />
-  <TrainingEntry />
-  <ToolsShowcase />
-  <RecentUpdates />
-  <BackToTop />
+  <ExpeditionSpaces />
+  <ProjectStage />
+  <PlaygroundStage />
+  <HomeClosing />
 </PageLayout>

@@ -1,0 +1,5 @@
+---
+interface Props { tagline?: boolean; }
+const { tagline = false } = Astro.props;
+---
+<span class="dm-brand-text"><span class="orbix-wordmark">DreaMa<span class="orbix-x">x</span></span>{tagline && <small>AN INDEPENDENT EXPLORER</small>}</span>

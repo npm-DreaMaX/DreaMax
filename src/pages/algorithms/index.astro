@@ -1,43 +1,31 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
+import PageLayout from '../../layouts/PageLayout.astro';
+import { algorithmArticles, algorithmCategories, algorithmAuthor } from '../../data/algorithms';
+import '../../styles/algorithms.css';
 ---
-
-<PageLayout
-  title="Algorithm & Data Structure — DreaMax | Sorting, Indexing & Data Structures"
-  description="Recent breakthroughs in algorithms and data structures: stable sorting with zSort, RL-powered R-Trees, and Tarjan's Zip-zip trees. Problem solutions and complexity analysis."
->
-  <section class="min-h-screen px-6 pt-32 pb-24">
-    <div class="mx-auto" style="max-width:960px;">
-      <h1 class="section-heading" style="margin-bottom:8px;">
-        <span class="accent-bar" style="background:#ff6b2b;"></span>Algorithm &amp; Data Structure
-      </h1>
-      <p class="font-mono text-sm" style="color:rgba(255,255,255,0.4);">Recent breakthroughs in algorithms, data structures, and theoretical CS.</p>
-
-      <div class="flex flex-col gap-4" style="margin-top:48px;">
-        <div class="card rounded-sm border border-white/8 bg-[#131316]/60 backdrop-blur-sm p-6">
-          <div>
-            <h2 class="font-sans text-base font-semibold text-white">zSort: Stable Distribution Sort using Z-Score Partitioning</h2>
-            <p class="font-mono text-xs" style="color:#ff6b2b; margin-top:6px;">arXiv:2605.14419 · May 2026</p>
-            <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.5); margin-top:10px; font-weight:300;">An adaptive stable sorting algorithm using z-score-based partitioning that avoids the traditional "stability tax." Achieves 3x–4.5x speedups over comparison-based stable sorts while matching the throughput of unstable algorithms.</p>
-          </div>
-        </div>
-
-        <div class="card rounded-sm border border-white/8 bg-[#131316]/60 backdrop-blur-sm p-6">
-          <div>
-            <h2 class="font-sans text-base font-semibold text-white">GSAR-Tree: Global Structure-Aware R-Tree using Deep RL and Self-Play</h2>
-            <p class="font-mono text-xs" style="color:#ff6b2b; margin-top:6px;">ScienceDirect · 2026</p>
-            <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.5); margin-top:10px; font-weight:300;">Replaces heuristic R-Tree construction with deep reinforcement learning + self-play. The RL agent learns globally optimal insertion decisions, reducing node accesses by 37.9%–1193.8% on real-world OpenStreetMap data.</p>
-          </div>
-        </div>
-
-        <div class="card rounded-sm border border-white/8 bg-[#131316]/60 backdrop-blur-sm p-6">
-          <div>
-            <h2 class="font-sans text-base font-semibold text-white">Zip-zip Trees: Making Zip Trees More Balanced, Biased, Compact, or Persistent</h2>
-            <p class="font-mono text-xs" style="color:#ff6b2b; margin-top:6px;">Algorithmica · Jun 2026 · Tarjan et al.</p>
-            <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.5); margin-top:10px; font-weight:300;">Overcomes key bias in zip trees using only O(log log n) bits per node. Matches treap expected depth, with support for history independence, biased variants, and partial persistence — all with O(n) space overhead.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<PageLayout title="Algorithm — DreaMax 的算法笔记" description="DreaMax 的 CSDN 原创算法笔记：搜索与枚举、KMP、哈希、离散化、贪心、二分答案与动态规划。">
+ <section class="algorithm-page" aria-labelledby="algorithm-heading">
+  <div class="algorithm-masthead">
+   <div><p class="expedition-kicker">PERSONAL NOTES / THINKING IN CODE</p><h1 id="algorithm-heading">Algorithm<span>把每一道题，想明白。</span></h1><p class="algorithm-intro">我在 CSDN 写下的题解与学习笔记。<br/>从一次枚举、一个边界，到真正理解一种解法。</p></div>
+   <aside class="algorithm-author"><span class="algorithm-volume">{String(algorithmArticles.length).padStart(2,'0')}<small>篇原创算法文章</small></span><a href={algorithmAuthor.url} target="_blank" rel="noreferrer">{algorithmAuthor.name}<span>CSDN ↗</span></a></aside>
+  </div>
+  <div class="algorithm-toolbar">
+   <div class="algorithm-categories" aria-label="按算法主题筛选">{algorithmCategories.map((category,i)=><button type="button" data-algorithm-filter={category} aria-pressed={i===0}>{category}<span>{i===0 ? algorithmArticles.length : algorithmArticles.filter(a=>a.category===category).length}</span></button>)}</div>
+   <div class="algorithm-controls"><label class="algorithm-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" data-algorithm-search aria-label="搜索我的算法文章" placeholder="搜索标题、题号或算法…"/></label><label class="algorithm-sort"><span class="sr-only">文章排序</span><select data-algorithm-sort aria-label="文章排序"><option value="newest">最近更新</option><option value="oldest">最早更新</option><option value="title">按标题排序</option></select></label></div>
+  </div>
+  <div class="algorithm-list-heading"><span data-algorithm-count aria-live="polite">{algorithmArticles.length} 篇文章</span><span>点击文章，在 CSDN 阅读完整题解与代码 ↗</span></div>
+  <div class="algorithm-list" data-algorithm-list>
+   {algorithmArticles.map((article,i)=><a id={`article-${article.id}`} class="algorithm-article" href={article.url} target="_blank" rel="noreferrer" data-algorithm-article data-category={article.category} data-search={`${article.title} ${article.description} ${article.tags.join(' ')}`} data-updated={article.updated} data-title={article.title}>
+    <div class="algorithm-article-meta"><span>/{String(i+1).padStart(2,'0')}</span><time datetime={article.updated ?? undefined}>{article.updated?.replaceAll('-','.')}</time><small>更新</small></div>
+    <div class="algorithm-article-content"><span class="algorithm-article-category">{article.category}</span><h2>{article.title}</h2><p>{article.description}</p><div class="algorithm-tags">{article.tags.map(tag=><span>{tag}</span>)}</div></div>
+    <span class="algorithm-article-arrow" aria-hidden="true">↗</span>
+   </a>)}
+  </div>
+  <div class="algorithm-empty" data-algorithm-empty hidden><p>没有找到这篇笔记。</p><span>换一个题号或关键词，或者看看其他分类。</span><button type="button" data-algorithm-reset>显示全部文章 ↗</button></div>
+  <div class="algorithm-end"><span>写下思路，也留下走过的弯路。</span><a href={algorithmAuthor.url} target="_blank" rel="noreferrer">前往我的 CSDN ↗</a></div>
+ </section>
+ <script>
+  import { initAlgorithmLibrary } from '../../scripts/algorithms';
+  initAlgorithmLibrary();
+ </script>
 </PageLayout>

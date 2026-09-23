@@ -7,9 +7,10 @@ import Footer from "../components/ui/PortfolioFooter.astro";
 interface Props {
   title?: string;
   description?: string;
+  showFooter?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, showFooter = true } = Astro.props;
 ---
 
 <BaseLayout {title} {description}>
@@ -19,5 +20,5 @@ const { title, description } = Astro.props;
       <slot />
     </main>
   </div>
-  <Footer />
+  {showFooter && <Footer />}
 </BaseLayout>

@@ -1,97 +1,31 @@
 ---
-import { profile } from "../../data/profile";
-import ScrollIndicator from "../ui/ScrollIndicator.astro";
-import DreaMaxLogo from "../ui/DreaMaxLogo.astro";
-import TerminalSlogan from "../ui/TerminalSlogan.astro";
+import { profile } from '../../data/profile';
+import DreaMaxLogo from '../ui/DreaMaxLogo.astro';
+import TerminalSlogan from '../ui/TerminalSlogan.astro';
+import GradientBackground from '../ui/GradientBackground.astro';
 ---
-
-<section id="dreamax" class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden" style="padding-top:64px;"><!-- Tech icons removed -->
-
-  <!-- Code element -->
-  <div class="code-sig" id="dreamax-code" onclick="window.location.reload()" title="Reload page" style="position:absolute; top:88px; left:50%; transform:translateX(-50%); z-index:10; cursor:pointer; user-select:none;">
-    <span style="display:flex; align-items:center; font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:500;">
-      <span style="color:rgba(255,255,255,0.35);">&lt;</span>
-      <span style="color:#569cd6; font-weight:600;">DreaMax</span>
-      <span class="code-sig-extra" style="overflow:hidden; white-space:nowrap; max-width:0px; opacity:0; display:inline-block; vertical-align:bottom; transition:max-width 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;">
-        <span style="color:#9cdcfe;">&nbsp;onClick</span>
-        <span style="color:rgba(255,255,255,0.3);">=</span>
-        <span style="color:#ce9178;">&#123;reload&#125;</span>
-      </span>
-      <span style="color:#c586c0;"> /&gt;</span>
-    </span>
-  </div>
-
-  <!-- Content -->
-  <div class="relative z-10 flex w-full max-w-6xl flex-col items-center px-6" style="margin-top:80px;">
-
-    <!-- DreaMax Logo -->
+<section id="dreamax" class="expedition-hero" aria-label="DreaMax 个人主页">
+  <GradientBackground />
+  <div class="hero-edition"><span>INDEPENDENT EXPLORER</span><span>BEIJING, CN <i></i> 2026</span></div>
+  <div class="hero-content">
     <div class="portfolio-identity">
+      <span class="hero-preface">STAY CURIOUS. BUILD SOMETHING.</span>
       <DreaMaxLogo />
       <TerminalSlogan />
     </div>
-
-    <!-- VS Code block with AI/CS flavor -->
-    <div class="portfolio-code-block relative w-full max-w-3xl" style="margin-top:8px;">
-      <div class="select-none" style="font-family:'JetBrains Mono',monospace; font-size:clamp(11px, 1.8vw, 14px); line-height:1.9; text-align:center; padding:16px 0; color:rgba(255,255,255,0.45);">
-        <span style="color:#569cd6; opacity:0.5;">&lt;html</span> <span style="color:#9cdcfe; opacity:0.5;">lang</span><span style="color:rgba(255,255,255,0.25); opacity:0.5;">=</span><span style="color:#ce9178; opacity:0.5;">"en"</span><span style="color:#569cd6; opacity:0.5;">&gt;</span><br/>
-        <span style="opacity:0.45;">&nbsp;&nbsp;&lt;</span><span style="color:#569cd6; opacity:0.45;">head</span><span style="color:#569cd6; opacity:0.45;">&gt;</span><br/>
-        <span style="opacity:0.45;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#569cd6; opacity:0.45;">meta</span> <span style="color:#9cdcfe; opacity:0.45;">name</span><span style="color:rgba(255,255,255,0.25); opacity:0.45;">=</span><span style="color:#ce9178; opacity:0.45;">"viewport"</span> <span style="color:#9cdcfe; opacity:0.45;">content</span><span style="color:rgba(255,255,255,0.25); opacity:0.45;">=</span><span style="color:#ce9178; opacity:0.45;">"width=device-width, initial-scale=1.0"</span><span style="color:#569cd6; opacity:0.45;">&gt;</span><br/>
-        <span style="opacity:0.45;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#569cd6; opacity:0.45;">title</span><span style="color:#569cd6; opacity:0.45;">&gt;</span><span style="color:rgba(255,255,255,0.35);">What do I do</span><span style="opacity:0.45;">&lt;/</span><span style="color:#569cd6; opacity:0.45;">title</span><span style="opacity:0.45;">&gt;</span><br/>
-        <span style="opacity:0.45;">&nbsp;&nbsp;&lt;/</span><span style="color:#569cd6; opacity:0.45;">head</span><span style="opacity:0.45;">&gt;</span><br/>
-        <span style="opacity:0.45;">&nbsp;&nbsp;&lt;</span><span style="color:#569cd6; opacity:0.45;">body</span><span style="color:#569cd6; opacity:0.45;">&gt;</span><br/>
-        <span style="opacity:0.45;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#569cd6; opacity:0.45;">h1</span><span style="color:#569cd6; opacity:0.45;">&gt;</span><span style="color:rgba(255,255,255,0.35);">Things I do to get a perfect background image</span><span style="opacity:0.45;">&lt;/</span><span style="color:#569cd6; opacity:0.45;">h1</span><span style="opacity:0.45;">&gt;</span><br/>
-        <span style="opacity:0.45;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#569cd6; opacity:0.45;">p</span><span style="color:#569cd6; opacity:0.45;">&gt;</span><span style="color:rgba(255,255,255,0.35);">Maybe I should stop tinkering with VSCode settings</span><br/>
-        <span style="color:rgba(255,255,255,0.30);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;just to take a screenshot of this dummy html code.</span><span style="opacity:0.45;">&lt;/</span><span style="color:#569cd6; opacity:0.45;">p</span><span style="opacity:0.45;">&gt;</span><br/>
-        <span style="opacity:0.45;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;</span><span style="color:#569cd6; opacity:0.45;">span</span><span style="color:#569cd6; opacity:0.45;">&gt;</span><span style="color:rgba(255,255,255,0.35);">Oops, Almost forgot to say "Hello World!".</span><span style="opacity:0.45;">&lt;/</span><span style="color:#569cd6; opacity:0.45;">span</span><span style="opacity:0.45;">&gt;</span><br/>
-        <span style="opacity:0.45;">&nbsp;&nbsp;&lt;/</span><span style="color:#569cd6; opacity:0.45;">body</span><span style="opacity:0.45;">&gt;</span><br/>
-        <span style="color:#569cd6; opacity:0.5;">&lt;/html&gt;</span>
-      </div>
-    </div>
-
-    <!-- Title -->
-    <p class="portfolio-focus" style="font-family:'Roboto Mono',monospace; font-size:clamp(13px, 1.8vw, 16px); letter-spacing:2px; color:rgba(255,255,255,0.70); text-align:center; margin-top:2px; position:relative; z-index:2;">
-      {profile.title}
-    </p>
-
-    <!-- Quote — single line -->
-    <div class="portfolio-quote" style="margin-top:20px; position:relative; z-index:2; text-align:center;">
-      <p style="font-family:'JetBrains Mono',monospace; font-size:clamp(11px, 1.2vw, 13px); color:#ff6b2b; opacity:0.45; letter-spacing:1px; margin:0;">
-        "It&rsquo;s about a man who has nothing, who risks everything, to feel something." &mdash; <span style="color:#66d9ed;">Jessica Day</span>
-      </p>
-    </div>
-
-    <!-- Buttons -->
-    <div class="portfolio-hero-actions flex flex-wrap justify-center gap-4" style="margin-top:32px; position:relative; z-index:2;">
-      <a href="/agentic-scholar/" class="btn btn-pink">View Research <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="#projects" class="btn btn-ghost">Explore Projects <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <p class="portfolio-focus">{profile.title}</p>
+    <div class="portfolio-hero-actions">
+      <a href="/llm-training/" class="hero-primary">进入 LLM Training <span aria-hidden="true">↗</span></a>
+      <a href="#projects" class="hero-secondary">探索我的项目 <span aria-hidden="true">↓</span></a>
     </div>
   </div>
-
-  <div class="flex w-full max-w-5xl items-end px-6" style="padding-bottom:50px; margin-top:auto;">
-    <div style="margin-left:auto;"><ScrollIndicator /></div>
+  <div class="hero-baseline">
+    <div class="hero-socials"><a href={profile.social.github} target="_blank" rel="noreferrer">GITHUB ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a></div>
+    <div class="portfolio-quote"><p>“It’s about a man who has nothing, who risks everything, to feel something.” <span>— Jessica Day</span></p></div>
+    <a href="#explore" class="hero-scroll" aria-label="向下探索网站栏目"><span>SCROLL TO EXPLORE</span><span class="hero-scroll-arrow" aria-hidden="true">↓</span></a>
   </div>
 </section>
-
-<style>
-  #dreamax-code:hover .code-sig-extra { max-width: 320px !important; opacity: 1 !important; }
-
-  .tech-icons { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .ti {
-    position: absolute; width: clamp(18px,2.5vw,32px); height: auto;
-    opacity: 0.25; animation: tiFloat 20s ease-in-out infinite;
-  }
-  .ti-1 { top: 15%; left: 8%; animation-delay: 0s; width:28px; }
-  .ti-2 { top: 25%; right: 12%; animation-delay: -3s; width:24px; }
-  .ti-3 { top: 60%; left: 5%; animation-delay: -7s; width:30px; }
-  .ti-4 { top: 70%; right: 8%; animation-delay: -11s; width:22px; }
-  .ti-5 { top: 40%; left: 15%; animation-delay: -5s; width:26px; }
-  .ti-6 { bottom: 20%; right: 15%; animation-delay: -9s; width:20px; }
-
-  @keyframes tiFloat {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0.25; }
-    25% { transform: translateY(-12px) rotate(5deg); opacity: 0.4; }
-    50% { transform: translateY(0) rotate(0deg); opacity: 0.25; }
-    75% { transform: translateY(8px) rotate(-3deg); opacity: 0.35; }
-    100% { transform: translateY(0) rotate(0deg); opacity: 0.25; }
-  }
-</style>
+<script>
+  import { initExpeditionHero } from '../../scripts/expedition';
+  initExpeditionHero();
+</script>

@@ -1,0 +1,16 @@
+---
+import { featuredProjects } from '../../data/featured';
+const captions = ['MEMORY × CONTEXT × CODE', 'PLAN × EXECUTE × VERIFY', 'MATH × CODE × MODELS'];
+---
+<section id="projects" class="home-projects stage-shell" aria-labelledby="projects-heading" data-home-stage>
+  <div class="stage-meta"><span>04 / BUILT BY DREAMAX</span><a href="https://github.com/npm-DreaMaX" target="_blank" rel="noreferrer">ALL ON GITHUB ↗</a></div>
+  <div class="project-stage-heading" data-reveal><h2 id="projects-heading">IDEAS,<br/><span>IN MOTION.</span></h2><p>让想法离开笔记本。<br/>在真实的代码里，继续生长。</p></div>
+  <div class="project-showcase" data-project-showcase>
+    <div class="project-selector" role="tablist" aria-label="选择开源项目">{featuredProjects.map((p,i)=><button id={`project-tab-${i}`} role="tab" aria-controls={`project-panel-${i}`} aria-selected={i===0?'true':'false'} tabindex={i===0?0:-1} data-project-tab={i}><span>0{i+1}</span><strong>{p.title}</strong><b aria-hidden="true">↗</b></button>)}</div>
+    <div class="project-scenes">{featuredProjects.map((p,i)=><div class={`project-scene project-scene-${i}`} id={`project-panel-${i}`} role="tabpanel" aria-labelledby={`project-tab-${i}`} tabindex="0" hidden={i!==0}>
+      <div class="project-visual" aria-hidden="true"><span class="project-visual-caption">{captions[i]}</span>{i===0?<div class="pi-art"><span>π</span>{[0,1,2,3].map(n=><i style={`--i:${n}`}/>)}</div>:i===1?<svg class="team-art" viewBox="0 0 500 320" fill="none"><path d="M250 38 432 270H68Z"/><path d="M250 38v153m182 79-182-79L68 270"/>{[[250,38],[432,270],[68,270]].map(([x,y])=><g><circle cx={x} cy={y} r="30"/><circle cx={x} cy={y} r="8" fill="currentColor"/></g>)}<circle cx="250" cy="191" r="25"/><text x="250" y="196" text-anchor="middle">GOAL</text></svg>:<div class="circuit-art">{Array.from({length:49},(_,n)=><i style={`--i:${n};--alpha:${.12 + ((n*13)%9)/10}`} />)}</div>}<span class="project-visual-footer">{p.title} / OPEN SOURCE</span></div>
+      <div class="project-scene-copy"><p>{p.description}</p><div class="project-technologies">{p.tags.map(t=><span>{t}</span>)}</div><a class="project-source-link" href={p.link} target="_blank" rel="noreferrer">探索 {p.title} <span aria-hidden="true">↗</span></a></div>
+    </div>)}</div>
+  </div>
+  <noscript><div class="project-fallback">{featuredProjects.map(p=><a href={p.link} target="_blank" rel="noreferrer">{p.title} ↗</a>)}</div></noscript>
+</section>

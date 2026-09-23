@@ -4,10 +4,11 @@ import "../styles/type.css";
 import "../styles/experience.css";
 import "../styles/portfolio.css";
 import "../styles/navigation.css";
+import "../styles/expedition.css";
 import RouteTransition from "../components/navigation/RouteTransition.astro";
 import TransitionHead from "../components/navigation/TransitionHead.astro";
 import ClickEffect from "../components/ui/ClickEffect.astro";
-import GradientBackground from "../components/ui/GradientBackground.astro";
+
 
 interface Props {
   title?: string;
@@ -24,9 +25,10 @@ const { title = "DreaMax", description = "Personal academic portfolio", area = "
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="preload" href="/fonts/orbix/Orbix-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-    <meta name="theme-color" content={Astro.url.pathname === "/" ? "#f7f9fd" : "#10141e"} />
+    <meta name="theme-color" content={Astro.url.pathname === "/" ? "#ae694b" : "#171715"} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL('/social-cover.png', Astro.site)} />
@@ -37,7 +39,7 @@ const { title = "DreaMax", description = "Personal academic portfolio", area = "
   </head>
   <body class:list={["dm-site", `dm-${area}`, { "dm-home": Astro.url.pathname === "/" }]}>
     <RouteTransition />
-    {Astro.url.pathname === "/" && <GradientBackground />}
+
     {area === "portfolio" && <ClickEffect />}
     <a class="dm-skip" href="#main-content">跳到正文</a>
     <slot />

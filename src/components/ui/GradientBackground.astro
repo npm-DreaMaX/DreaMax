@@ -1,28 +1,4 @@
-<div class="portfolio-atmosphere" data-atmosphere aria-hidden="true" inert>
-  <div class="atmosphere-plane atmosphere-plane-one"></div>
-  <div class="atmosphere-plane atmosphere-plane-two"></div>
-  <div class="atmosphere-wash"></div>
+<div class="hero-backdrop" aria-hidden="true" inert>
+  <picture><source media="(max-width: 650px)" srcset="/images/hero/adventure-light-mobile.webp"/><img src="/images/hero/adventure-light.webp" width="2048" height="954" alt="" fetchpriority="high" decoding="async" /></picture>
+  <div class="hero-backdrop-shade"></div>
 </div>
-<script>
-  const background = document.querySelector<HTMLElement>('[data-atmosphere]');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const coarse = matchMedia('(pointer: coarse)');
-  let frame = 0;
-  window.addEventListener('pointermove', event => {
-    if (!background || reduced.matches || coarse.matches || frame || scrollY > innerHeight) return;
-    frame = requestAnimationFrame(() => {
-      background.style.setProperty('--atmosphere-x', `${(event.clientX / innerWidth - .5) * 18}px`);
-      background.style.setProperty('--atmosphere-y', `${(event.clientY / innerHeight - .5) * 12}px`);
-      frame = 0;
-    });
-  }, {passive:true});
-</script>
-<style>
-  .portfolio-atmosphere { position:absolute; inset:0 0 auto; height:1100px; z-index:-1; overflow:hidden; pointer-events:none; background:#f7f9fd; contain:strict; }
-  .atmosphere-plane { position:absolute; transform:translate3d(var(--atmosphere-x,0),var(--atmosphere-y,0),0) rotate(-28deg); transition:transform 1.4s ease-out; }
-  .atmosphere-plane-one { width:1100px; height:580px; left:-630px; top:20px; border:1px solid #dbe5f559; background:linear-gradient(140deg,#d7e5fc70,#edf3fc30); box-shadow:35px 30px 80px #a9c3ee0a; }
-  .atmosphere-plane-two { width:950px; height:630px; right:-500px; top:170px; border:1px solid #dae6fa80; background:linear-gradient(135deg,#e0ebfc20,#d8e6fc8c); box-shadow:-40px -20px 90px #99b7ec0a; }
-  .atmosphere-wash { position:absolute; inset:0; background:radial-gradient(ellipse 50% 60% at 50% 35%,#ffffffba,transparent),linear-gradient(0deg,#f7f9fd 0%,transparent 32%); }
-  @media(max-width:760px) { .portfolio-atmosphere {height:1050px}.atmosphere-plane-one {left:-950px;top:60px}.atmosphere-plane-two {right:-840px;top:130px} }
-  @media(prefers-reduced-motion:reduce) { .atmosphere-plane {transition:none;transform:rotate(-28deg)} }
-</style>

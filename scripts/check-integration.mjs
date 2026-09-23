@@ -58,16 +58,35 @@ for (const p of ["agentic-scholar", "algorithms"])
       .readFileSync(`src/pages/${p}/index.astro`, "utf8")
       .includes("TopicPage"),
   );
-assert(
-  fs
-    .readFileSync("src/pages/index.astro", "utf8")
-    .includes("<ResearchHighlights />"),
+const home = fs.readFileSync("src/pages/index.astro", "utf8");
+for (const component of [
+  "DreaMax",
+  "ExpeditionSpaces",
+  "ProjectStage",
+  "PlaygroundStage",
+])
+  assert(home.includes(`<${component} />`), `Homepage is missing ${component}`);
+const spaces = fs.readFileSync(
+  "src/components/home/ExpeditionSpaces.astro",
+  "utf8",
 );
-assert(
-  fs
-    .readFileSync("src/pages/index.astro", "utf8")
-    .includes("<TrainingEntry />"),
-);
+for (const href of ["/llm-training/", "/agentic-scholar/", "/algorithms/"])
+  assert(
+    spaces.includes(`href="${href}"`),
+    `Homepage is missing the ${href} destination`,
+  );
+const csdn = read("src/data/sources/csdn-public-index.json");
+for (const id of [
+  "161870362",
+  "160561647",
+  "160192777",
+  "161896756",
+  "160181441",
+])
+  assert(
+    csdn.articles.some((article) => article.id === id),
+    `User-supplied CSDN article ${id} is missing`,
+  );
 const projects = fs.readFileSync("src/data/featured.ts", "utf8");
 for (const name of ["Triple-pi", "TripleTeam", "TokenCircuit"])
   assert(projects.includes(`https://github.com/npm-DreaMaX/${name}`));

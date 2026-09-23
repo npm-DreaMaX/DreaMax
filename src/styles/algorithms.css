@@ -1,0 +1,414 @@
+.algorithm-page {
+  max-width: 1250px;
+  margin: auto;
+  padding: 168px 40px 95px;
+  color: #eee7dc;
+  --dm-accent: #e7b887;
+}
+.algorithm-masthead {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 55px;
+  align-items: end;
+  padding-bottom: 67px;
+}
+.algorithm-masthead h1 {
+  font: 400 clamp(55px, 6.6vw, 96px)/1 var(--dm-display);
+  letter-spacing: -0.055em;
+  margin: 30px 0;
+}
+.algorithm-masthead h1 > span {
+  display: block;
+  font: 400 clamp(22px, 2.5vw, 34px)/1.5 var(--dm-font);
+  letter-spacing: -0.035em;
+  margin-top: 22px;
+  color: #cbb89e;
+}
+.algorithm-intro {
+  font-size: 14px;
+  line-height: 2;
+  color: #a9a295;
+}
+.algorithm-author {
+  border-left: 1px solid #514533;
+  padding-left: 32px;
+}
+.algorithm-volume {
+  display: block;
+  font: 300 100px/1 var(--dm-display);
+  letter-spacing: -0.055em;
+  color: #e8ba85;
+}
+.algorithm-volume > small {
+  display: block;
+  font: 400 12px/1.8 var(--dm-font);
+  letter-spacing: 0.04em;
+  color: #b8a58a;
+  margin-top: 17px;
+}
+.algorithm-author > a {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 30px;
+  font: 500 14px/1.6 var(--dm-font);
+}
+.algorithm-author > a > span {
+  font: 500 10px/1.5 var(--dm-font);
+  letter-spacing: 0.06em;
+  color: #bd9b70;
+}
+.algorithm-toolbar {
+  border-top: 1px solid #514533;
+  border-bottom: 1px solid #514533;
+  padding: 23px 0;
+}
+.algorithm-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+}
+.algorithm-categories > button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 15px;
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font: 400 12px var(--dm-font);
+  color: #bcb3a6;
+  background: transparent;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.algorithm-categories > button > span {
+  font-size: 10px;
+  color: #998467;
+}
+.algorithm-categories > button:hover {
+  background: #302c24;
+  color: #f0dbbe;
+}
+.algorithm-categories > button[aria-pressed="true"] {
+  background: #e1b17b;
+  color: #271e15;
+}
+.algorithm-categories > button[aria-pressed="true"] > span {
+  color: #68472a;
+}
+.algorithm-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-top: 22px;
+}
+.algorithm-search {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+  max-width: 600px;
+}
+.algorithm-search svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: #aa9a84;
+  stroke-width: 1.5;
+  flex-shrink: 0;
+}
+.algorithm-search input {
+  width: 100%;
+  min-width: 0;
+  font: 400 13px/1.6 var(--dm-font);
+  min-height: 44px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #443b2e;
+  border-radius: 0;
+  color: #eee2d2;
+  padding: 6px 0;
+}
+.algorithm-search input::placeholder {
+  color: #968a78;
+}
+.algorithm-sort select {
+  min-height: 44px;
+  background: #25231c;
+  color: #cbbba3;
+  font: 400 11px var(--dm-font);
+  border: 1px solid #514533;
+  border-radius: 4px;
+  padding: 0 15px;
+  cursor: pointer;
+}
+.algorithm-list-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 32px 0 10px;
+  font: 400 10px/1.8 var(--dm-font);
+  color: #a08e76;
+}
+.algorithm-article {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 50px;
+  align-items: center;
+  gap: 40px;
+  padding: 38px 0;
+  border-bottom: 1px solid #423b30;
+  transition:
+    background 0.25s,
+    padding 0.25s;
+}
+.algorithm-article:hover {
+  background: #ffffff03;
+  padding-inline: 13px;
+}
+.algorithm-article-meta {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  font: 500 10px/1.5 var(--dm-font);
+  color: #ad9678;
+}
+.algorithm-article-meta > span {
+  font-size: 13px;
+  margin-bottom: 7px;
+  color: #e3c6a1;
+}
+.algorithm-article-meta > small {
+  font-size: 9px;
+  color: #8e7c64;
+  margin-top: -7px;
+}
+.algorithm-article-category {
+  font: 500 10px/1.5 var(--dm-font);
+  letter-spacing: 0.04em;
+  color: #c99761;
+}
+.algorithm-article h2 {
+  font: 500 23px/1.6 var(--dm-font);
+  letter-spacing: -0.035em;
+  color: #eee4d6;
+  margin: 9px 0 13px;
+}
+.algorithm-article:hover h2 {
+  color: #f3c28c;
+}
+.algorithm-article p {
+  font: 400 13px/1.9 var(--dm-font);
+  color: #afa497;
+  max-width: 730px;
+}
+.algorithm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 20px;
+  font: 400 10px/1.6 var(--dm-font);
+  color: #b6a183;
+}
+.algorithm-tags > span:before {
+  content: "#";
+  color: #75674f;
+  margin-right: 3px;
+}
+.algorithm-article-arrow {
+  width: 46px;
+  height: 46px;
+  border: 1px solid #62523d;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 300 26px var(--dm-display);
+  color: #dcb07d;
+  transition:
+    background 0.2s,
+    transform 0.25s;
+}
+.algorithm-article:hover .algorithm-article-arrow {
+  background: #d7a56e;
+  color: #231b13;
+  transform: rotate(45deg);
+}
+.algorithm-empty {
+  padding: 90px 10px;
+  text-align: center;
+}
+.algorithm-empty p {
+  font-size: 25px;
+  margin-bottom: 14px;
+}
+.algorithm-empty > span {
+  font-size: 13px;
+  color: #b6a58e;
+}
+.algorithm-empty > button {
+  display: block;
+  margin: 25px auto 0;
+  min-height: 44px;
+  font: 500 12px var(--dm-font);
+  border: 1px solid #a58860;
+  background: none;
+  color: #e5ba87;
+  border-radius: 4px;
+  padding: 8px 20px;
+}
+.algorithm-end {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding-top: 45px;
+  font: 400 12px/1.8 var(--dm-font);
+  color: #a7957e;
+}
+.algorithm-end > a {
+  color: #d6ae7e;
+  min-height: 44px;
+}
+.algorithm-page :focus-visible {
+  outline-color: #e6b681;
+}
+@media (max-width: 760px) {
+  .algorithm-page {
+    padding: 125px 24px 65px;
+  }
+  .algorithm-masthead {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding-bottom: 35px;
+  }
+  .algorithm-masthead h1 {
+    font-size: 62px;
+    margin-block: 23px;
+  }
+  .algorithm-masthead h1 > span {
+    font-size: 24px;
+    margin-top: 18px;
+  }
+  .algorithm-intro {
+    font-size: 12px;
+  }
+  .algorithm-author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 0;
+    border-left: 0;
+    border-top: 1px solid #514533;
+  }
+  .algorithm-volume {
+    font-size: 52px;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+  }
+  .algorithm-volume > small {
+    font-size: 10px;
+    letter-spacing: 0;
+    margin: 0;
+  }
+  .algorithm-author > a {
+    margin: 0;
+    font-size: 12px;
+  }
+  .algorithm-categories {
+    gap: 6px 2px;
+  }
+  .algorithm-categories > button {
+    font-size: 11px;
+    padding-inline: 10px;
+    gap: 6px;
+  }
+  .algorithm-categories > button > span {
+    font-size: 9px;
+  }
+  .algorithm-toolbar {
+    padding-block: 16px;
+  }
+  .algorithm-controls {
+    gap: 14px;
+  }
+  .algorithm-search {
+    gap: 9px;
+  }
+  .algorithm-search input {
+    font-size: 11px;
+  }
+  .algorithm-sort select {
+    padding-inline: 9px;
+    font-size: 10px;
+  }
+  .algorithm-list-heading {
+    font-size: 9px;
+    margin-top: 23px;
+  }
+  .algorithm-list-heading > span:last-child {
+    max-width: 175px;
+    text-align: right;
+  }
+  .algorithm-article {
+    grid-template-columns: minmax(0, 1fr) 38px;
+    gap: 12px 17px;
+    padding-block: 29px;
+  }
+  .algorithm-article-meta {
+    grid-column: 1/-1;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    font-size: 9px;
+  }
+  .algorithm-article-meta > span {
+    font-size: 11px;
+    margin: 0 auto 0 0;
+  }
+  .algorithm-article-meta > small {
+    font-size: 9px;
+    margin: 0;
+  }
+  .algorithm-article h2 {
+    font-size: 18px;
+    line-height: 1.65;
+    margin-top: 8px;
+  }
+  .algorithm-article p {
+    font-size: 12px;
+    line-height: 1.85;
+  }
+  .algorithm-article-category {
+    font-size: 9px;
+  }
+  .algorithm-article-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+  .algorithm-tags {
+    font-size: 9px;
+    gap: 7px 12px;
+    margin-top: 17px;
+  }
+  .algorithm-article:hover {
+    padding-inline: 0;
+  }
+  .algorithm-end {
+    font-size: 10px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .algorithm-end > a {
+    align-self: flex-start;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .algorithm-article,
+  .algorithm-article-arrow {
+    transition: none;
+  }
+}

@@ -1,0 +1,10 @@
+---
+import Wordmark from '../ui/Wordmark.astro';
+import { profile } from '../../data/profile';
+---
+<footer class="home-closing stage-shell">
+  <div class="stage-meta"><span>THE ADVENTURE CONTINUES.</span><a href="#dreamax">BACK TO TOP ↑</a></div>
+  <div class="closing-invitation"><h2>下一次探索，<br/>也许从一次对话开始。</h2><a class="closing-mail" href={`mailto:${profile.email}`} aria-label={`联系 DreaMax，邮箱 ${profile.email}`}><span>LET'S TALK</span><span aria-hidden="true">↗</span></a></div>
+  <a class="closing-wordmark" href="#dreamax" aria-label="回到 DreaMax 首页顶部"><Wordmark /></a>
+  <div class="closing-baseline"><span>© {new Date().getFullYear()} DreaMax</span><a href={`mailto:${profile.email}`}>{profile.email}</a><div><a href={profile.social.github} target="_blank" rel="noreferrer">GITHUB ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a><a href="/join/">ABOUT ↗</a></div><span>STAY CURIOUS. KEEP BUILDING.</span></div>
+</footer>

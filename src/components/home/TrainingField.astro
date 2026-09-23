@@ -1,0 +1,26 @@
+---
+// A locally drawn parametric torus. Illustration, not a plot of training metrics.
+const project = (u: number, v: number) => {
+  const r = 132 + 58 * Math.cos(v);
+  const x = r * Math.cos(u), y = r * Math.sin(u), z = 58 * Math.sin(v);
+  const a = y * Math.cos(1.03) - z * Math.sin(1.03);
+  const b = y * Math.sin(1.03) + z * Math.cos(1.03);
+  return [300 + (x * .87 - a * .5) * 1.3, 292 + (x * .5 + a * .87) * 1.3, b];
+};
+const rings = Array.from({ length: 36 }, (_, i) => {
+  const pts = Array.from({ length: 81 }, (_, j) => project(i / 36 * Math.PI * 2, j / 80 * Math.PI * 2));
+  return pts.map((p, j) => `${j ? 'L' : 'M'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ') + 'Z';
+});
+const bands = Array.from({ length: 18 }, (_, i) => Array.from({ length: 121 }, (_, j) => project(j / 120 * Math.PI * 2, i / 18 * Math.PI * 2)).map((p, j) => `${j ? 'L' : 'M'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ') + 'Z');
+---
+<div class="training-field" aria-hidden="true" data-training-field>
+  <div class="field-crosshair field-crosshair-a">+</div><div class="field-crosshair field-crosshair-b">+</div>
+  <svg viewBox="0 0 600 600" fill="none" class="field-wireframe">
+    <g class="field-guides"><circle cx="300" cy="292" r="260"/><path d="M20 292h560M300 12v560"/><circle cx="300" cy="292" r="208" stroke-dasharray="2 12"/></g>
+    <g class="field-rings">{rings.map(d => <path {d}/>)}{bands.map(d => <path {d}/>)}</g>
+    <circle class="field-dot" cx="300" cy="32" r="5" fill="currentColor"/>
+  </svg>
+  <div class="field-center"><span>θ</span><small>LEARNING<br/>IN PROGRESS</small></div>
+  <span class="field-coordinate field-coordinate-a">MODEL / PARAMETERS</span>
+  <span class="field-coordinate field-coordinate-b">AN ABSTRACT TRAINING FIELD</span>
+</div>

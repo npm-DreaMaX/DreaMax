@@ -1,6 +1,6 @@
 # DreaMax
 
-个人主页 + LLM Training。保留原有首页结构、Selected Research、Agentic Scholar、Algorithm 和七个工具；新增与这些栏目平级的 `/llm-training/`。完整的论文阅读与实验网站在 `/fieldwork/`。
+个人主页 + LLM Training。首页按 Adventure X 的沉浸式方向重新设计：全屏封面、逐屏探索、可切换训练阶段、Agent 轨迹回放、个人算法笔记、项目展示与工具作品。LLM Training、Agentic Scholar、Algorithm 和七个工具仍是独立入口；完整的论文阅读与实验网站在 `/fieldwork/`。
 
 ## 运行
 
@@ -23,14 +23,20 @@ npm run preview -- --host 0.0.0.0
 ## 结构
 
 ```text
-src/pages/index.astro             原有个人主页，微调视觉
+src/pages/index.astro             全新沉浸式个人主页
 src/pages/llm-training/           独立学习入口与交互雕塑
 src/pages/fieldwork/[...path].astro 预渲染全部学习页面
 src/components/navigation/       全站导航、搜索和转场
-src/components/home/             首页原有内容与学习入口
+src/components/home/             全屏封面、探索分区、项目舞台与工具作品
 src/data/                        简介、项目、栏目与动态
 src/styles/portfolio.css          个人主页配色、字体和响应式布局
-src/styles/navigation.css         浮动导航、学习路线展开和全站目录
+src/styles/navigation.css         导航结构、学习路线展开和全站目录
+src/styles/expedition.css         Adventure X 参考方向、全屏首屏与全站暖色主题
+src/styles/home-stages.css        全幅栏目、交互展示与响应式布局
+src/scripts/home-stages.ts        训练阶段、Agent 轨迹、项目切换与滚动视差
+src/styles/collections.css        Scholar、工具作品集与个人介绍的统一排版
+src/data/scholar.ts               研究阅读入口、原始来源与核对日期
+src/data/algorithms.ts            我的 CSDN 算法笔记分组与阅读提示
 src/styles/experience.css         LLM Training 的视觉系统
 src/scripts/                     搜索、导航、转场与 Three.js
 fieldwork/src/papers/             15 篇论文精读，63 个带页码段落
@@ -49,7 +55,7 @@ research/projects/               三个项目的 README 版本证据
 ## 导航与动态效果
 
 - 浮动导航直达主要栏目；学习路线支持点击展开、方向键进入、Esc 和外部点击关闭。全屏导航保留六个平级栏目，直接进入五条学习路线。
-- 简洁 DreaMax 字标，浅色背景与钴蓝配色；自托管 Outfit / Inter / Noto Sans SC。原有跳动标语、点击掉落 HTML 字符串和涟漪保留，背景斜面提供轻微指针视差；减少动态效果时禁用。
+- 全屏暖色光轨首屏，使用用户提供背景和开源 Orbix 字标及其特殊 X；自托管字体并保留 OFL 授权。原有跳动标语、点击掉落 HTML 字符串和涟漪保留，轻微背景视差随滚动变化；减少动态效果时禁用。
 - `Ctrl+K` / `⌘K` 搜索栏目、项目、论文和工具，方向键选择，Esc 关闭。
 - 原生跨页链接使用可取消的幕布转场，浏览器前进/返回正常；减少动态效果时直接导航。
 - Three.js 雕塑支持拖动、方向键、三种形态、暂停与重置。无 WebGL 时显示自绘 SVG；屏外/后台暂停，限制像素比和帧率。
@@ -86,3 +92,28 @@ npm run test:web
 推送到生产分支后由 Cloudflare 构建发布；本地修改和本地 commit 不会更新线上。最终以 Cloudflare 部署成功并访问线上 `/llm-training/` 为准。`public/_redirects` 兼容被移除的 Magic Corner、Machine Learning 及旧文章 URL。
 
 导航与动效设计采用 [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) 的交互、键盘、性能和减少动态效果指南。记录见 `design-system/dreamax/MASTER.md`。
+
+## 同步我的算法文章
+
+Algorithm 展示账号 `2401_88204232` 的 11 篇原创算法文章，保留标题、更新时间与 CSDN 原文入口，支持分类、搜索、排序和 URL 状态。
+
+```bash
+node scripts/sync-csdn.mjs
+# 本机代理连接 CSDN 失败时，可对这一次公开请求使用直连：
+node scripts/sync-csdn.mjs --direct
+# 或解析已保存的公开主页：
+node scripts/sync-csdn.mjs --input /path/to/public-profile.html
+```
+
+脚本只读取公开主页，失败时不覆盖已有数据。原始元数据在 `src/data/sources/csdn-public-index.json`；新增文章后在 `src/data/algorithms.ts` 补充分组和阅读提示，再构建发布。原文与代码仍通过 CSDN 阅读。
+
+## 视觉素材与再生成
+
+来源与授权见 [docs/visual-sources.md](docs/visual-sources.md)。背景原图、字体、字体 OFL 授权、SVG 与生成脚本均保存在项目中。
+
+```bash
+node scripts/generate-hero-assets.mjs
+# 字标 SVG 再生成需要 Python fonttools[woff]，网站运行不需要 Python：
+python3 scripts/generate-wordmark.py
+node scripts/generate-brand-assets.mjs
+```
