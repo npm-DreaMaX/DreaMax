@@ -3,11 +3,43 @@ import PageLayout from '../layouts/PageLayout.astro';
 import { profile } from '../data/profile';
 import TerminalSlogan from '../components/ui/TerminalSlogan.astro';
 import '../styles/collections.css';
+import '../styles/about.css';
 ---
-<PageLayout title="Join Us — DreaMax" description={profile.tagline}>
+<PageLayout title="Join Us — DreaMax" description={profile.introduction}>
   <div class="collection-page about-page">
-    <header class="collection-hero"><p class="collection-eyebrow">DREAMAX / ABOUT & CONTACT</p><div class="about-heading-row"><h1>JOIN US.</h1><div class="about-signature"><TerminalSlogan /></div></div></header>
-    <div class="about-layout"><div class="about-portrait"><img src={profile.avatar} alt="DreaMax 的个人照片" width="1024" height="1364"/><span>DREAMAX</span></div><div class="about-copy"><p class="collection-eyebrow">{profile.title}</p><h2>DreaMax</h2><p class="about-bio">{profile.bio}</p><div class="about-interests"><span>LLM TRAINING</span><span>RSI</span><span>AGENTIC RL</span></div><a href={profile.cv} class="collection-action">下载简历 <span>↗</span></a></div></div>
-    <div class="about-contact"><div><p class="collection-eyebrow">CONTACT</p><h2>联系方式</h2></div><div><a class="about-email" href={`mailto:${profile.email}`}>{profile.email}</a><button data-copy-email={profile.email}>复制邮箱 ↗</button><div class="about-socials"><a href={profile.social.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a></div></div></div>
+    <header class="collection-hero about-hero">
+      <p class="collection-eyebrow">DREAMAX / ABOUT & CONTACT</p>
+      <div class="about-heading-row"><h1>JOIN US<span>.</span></h1><div class="about-signature"><TerminalSlogan /></div></div>
+      <nav class="about-index" aria-label="关于页面导航"><a href="#research-focus">研究方向 <span aria-hidden="true">↘</span></a><a href="#military-dream">军旅梦 <span aria-hidden="true">↘</span></a><a href="#contact">联系我 <span aria-hidden="true">↘</span></a></nav>
+    </header>
+
+    <section class="about-introduction" id="research-focus" aria-labelledby="research-focus-title">
+      <div data-reveal><p class="collection-eyebrow">DreaMax</p><h2 id="research-focus-title">LLM Training<br/><span>& RSI.</span></h2></div>
+      <div class="about-statement" data-reveal><p>{profile.introduction}</p><a class="collection-action" href="/llm-training/">阅读我的学习笔记 <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <div class="about-research">
+      {profile.research.map((topic,i) => <section class="about-research-row" id={topic.id} aria-labelledby={`${topic.id}-title`}>
+        <div class="about-topic" data-reveal><span class="about-topic-number" aria-hidden="true">0{i+1}</span><div><h2 id={`${topic.id}-title`}>{topic.title}</h2><p>{topic.subtitle}</p></div></div>
+        <p class="about-topic-text" data-reveal>{topic.text}</p>
+      </section>)}
+    </div>
+
+    <section class="about-memory" id="military-dream" aria-labelledby="memory-title">
+      <div class="about-memory-heading" data-reveal><span class="about-memory-marker" aria-hidden="true"></span><h2 id="memory-title">军旅梦</h2><span class="about-memory-name">DreaMax</span></div>
+      <div class="about-memory-layout">
+        <figure class="about-memory-figure" data-reveal>
+          <img src={profile.memory.image} alt={profile.memory.alt} width="1364" height="1024" loading="lazy" decoding="async"/>
+          <figcaption>{profile.memory.position}</figcaption>
+        </figure>
+        <div class="about-memory-copy" data-reveal><p>{profile.memory.caption}</p><span class="about-memory-line" aria-hidden="true"></span></div>
+      </div>
+    </section>
+
+    <section class="about-contact" id="contact" aria-labelledby="contact-title">
+      <div><p class="collection-eyebrow">CONTACT</p><h2 id="contact-title">联系我</h2></div>
+      <div><a class="about-email" href={`mailto:${profile.email}`}>{profile.email}</a><button data-copy-email={profile.email}>复制邮箱 ↗</button><div class="about-socials"><a href={profile.social.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.social.csdn} target="_blank" rel="noreferrer">CSDN ↗</a><a href={profile.cv} download>下载简历 ↗</a></div></div>
+    </section>
   </div>
+
 </PageLayout>

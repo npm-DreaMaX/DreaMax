@@ -1,0 +1,281 @@
+/* Join Us: the author's statement, followed by the supplied personal photograph. */
+.dm-site .about-page {
+  --about-ink: #f4f3f0;
+  --about-muted: #bcb9b2;
+  --about-accent: #ff712e;
+  color: var(--about-ink);
+}
+.dm-site .about-hero {
+  padding-bottom: 0;
+}
+.dm-site .about-heading-row {
+  padding-block: 10px 38px;
+  align-items: end;
+}
+.dm-site .about-hero h1 {
+  margin: 14px 0 0;
+  font-size: clamp(70px, 10.4vw, 154px);
+}
+.dm-site .about-hero h1 > span {
+  color: var(--about-accent);
+}
+.dm-site .about-signature {
+  padding-bottom: 6px;
+}
+.dm-site .about-index {
+  display: flex;
+  gap: 40px;
+  border-block: 1px solid #ffffff24;
+  padding: 9px 0;
+}
+.dm-site .about-index a {
+  display: inline-flex;
+  align-items: center;
+  gap: 45px;
+  min-height: 44px;
+  font: 400 12px/1.6 var(--dm-font);
+  color: var(--about-muted);
+}
+.dm-site .about-index a:hover {
+  color: var(--about-accent);
+}
+.dm-site .about-index a > span {
+  font-size: 20px;
+}
+.dm-site .about-page section {
+  scroll-margin-top: 120px;
+}
+.dm-site .about-introduction {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 8%;
+  padding-block: 78px 74px;
+  align-items: center;
+}
+.dm-site .about-introduction h2 {
+  font: 400 clamp(33px, 4vw, 58px)/1.13 var(--dm-display);
+  letter-spacing: -0.045em;
+  margin-top: 25px;
+}
+.dm-site .about-introduction h2 > span {
+  color: var(--about-accent);
+}
+.dm-site .about-statement > p {
+  font: 400 clamp(19px, 1.7vw, 25px)/1.9 var(--dm-font);
+  text-wrap: pretty;
+}
+.dm-site .about-statement .collection-action {
+  gap: 40px;
+  font-size: 12px;
+  margin-top: 22px;
+}
+.dm-site .about-research-row {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 8%;
+  padding-block: 42px 46px;
+  border-top: 1px solid #ffffff24;
+}
+.dm-site .about-topic {
+  display: flex;
+  gap: 25px;
+  align-items: start;
+}
+.dm-site .about-topic-number {
+  font: 400 11px/1.6 var(--dm-font);
+  color: var(--about-accent);
+  padding-top: 9px;
+}
+.dm-site .about-topic h2 {
+  font: 400 clamp(27px, 3vw, 39px)/1.2 var(--dm-display);
+  letter-spacing: -0.025em;
+}
+.dm-site .about-topic p {
+  font: 400 12px/1.7 var(--dm-font);
+  color: var(--about-muted);
+  margin-top: 12px;
+}
+.dm-site .about-topic-text {
+  font: 400 16px/2.15 var(--dm-font);
+  color: #d5d2cb;
+  text-wrap: pretty;
+}
+
+.dm-site .about-memory {
+  margin-top: 70px;
+  padding: 40px;
+  background: #f4f3f0;
+  color: #191919;
+}
+.dm-site .about-memory-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 32px;
+}
+.dm-site .about-memory-marker {
+  width: 9px;
+  height: 9px;
+  background: var(--about-accent);
+}
+.dm-site .about-memory-heading h2 {
+  font: 500 15px/1.7 var(--dm-font);
+  letter-spacing: 0.02em;
+}
+.dm-site .about-memory-name {
+  margin-left: auto;
+  font: 400 12px/1.6 var(--dm-display);
+}
+.dm-site .about-memory-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.31fr);
+  gap: 36px;
+  align-items: end;
+}
+.dm-site .about-memory-figure {
+  margin: 0;
+  min-width: 0;
+}
+.dm-site .about-memory-figure > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1364 / 1024;
+  object-fit: contain;
+}
+.dm-site .about-memory-figure figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 9px;
+  font: 400 11px/1.7 var(--dm-font);
+  color: #55534f;
+}
+.dm-site .about-memory-copy {
+  padding-bottom: 61px;
+}
+.dm-site .about-memory-copy > p {
+  font: 400 clamp(23px, 2.2vw, 34px)/1.7 var(--dm-font);
+  letter-spacing: -0.025em;
+  text-wrap: pretty;
+}
+.dm-site .about-memory-line {
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--about-accent);
+  margin-top: 30px;
+}
+.dm-site .about-page .about-contact {
+  margin-top: 84px;
+  border-color: #ffffff24;
+}
+.dm-site .about-page .about-contact h2 {
+  font-weight: 400;
+}
+.dm-site .about-page .about-socials {
+  flex-wrap: wrap;
+  gap: 10px 28px;
+}
+.dm-site .about-page a:focus-visible,
+.dm-site .about-page button:focus-visible {
+  outline: 2px solid #ff712e;
+  outline-offset: 5px;
+}
+
+@media (max-width: 1000px) {
+  .dm-site .about-introduction,
+  .dm-site .about-research-row {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 6%;
+  }
+  .dm-site .about-memory {
+    padding: 28px;
+  }
+  .dm-site .about-memory-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .dm-site .about-memory-copy {
+    grid-row: 1;
+    padding: 0;
+  }
+  .dm-site .about-memory-copy > p {
+    max-width: 27em;
+    font-size: 26px;
+    line-height: 1.65;
+  }
+  .dm-site .about-memory-line {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 760px) {
+  .dm-site .about-heading-row {
+    padding-block: 0 28px;
+    gap: 26px;
+    align-items: start;
+  }
+  .dm-site .about-hero h1 {
+    font-size: clamp(62px, 16vw, 104px);
+    margin-top: 12px;
+  }
+  .dm-site .about-index {
+    gap: 26px;
+    justify-content: space-between;
+  }
+  .dm-site .about-index a {
+    gap: 12px;
+    font-size: 11px;
+  }
+  .dm-site .about-index a > span {
+    font-size: 17px;
+  }
+  .dm-site .about-introduction {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-block: 45px 40px;
+  }
+  .dm-site .about-introduction h2 {
+    font-size: clamp(35px, 9vw, 52px);
+    margin-top: 18px;
+  }
+  .dm-site .about-statement > p {
+    font-size: 19px;
+    line-height: 1.95;
+  }
+  .dm-site .about-research-row {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-block: 30px 35px;
+  }
+  .dm-site .about-topic {
+    gap: 20px;
+  }
+  .dm-site .about-topic h2 {
+    font-size: 32px;
+  }
+  .dm-site .about-topic p {
+    margin-top: 8px;
+  }
+  .dm-site .about-topic-text {
+    font-size: 16px;
+    line-height: 2.05;
+  }
+  .dm-site .about-memory {
+    margin: 32px -24px 0;
+    padding: 30px 24px 20px;
+  }
+  .dm-site .about-memory-heading {
+    margin-bottom: 25px;
+  }
+  .dm-site .about-memory-layout {
+    gap: 26px;
+  }
+  .dm-site .about-memory-copy > p {
+    font-size: 24px;
+  }
+  .dm-site .about-page .about-contact {
+    margin-top: 50px;
+  }
+}

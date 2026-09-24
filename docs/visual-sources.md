@@ -39,9 +39,9 @@
 
 - 训练体素、Agent 轨道节点、项目堆叠、协作节点与波动方阵由 `src/scripts/spatial-models.ts` 使用 Three.js 生成；没有外部贴图、模型文件或视频。光照环境由 `studio-environment.ts` 本地生成摄影棚柔光板，经 PMREM 预过滤。这些均为抽象示意，不声称是模型实际架构或训练数据。
 - 排序演示由 `SortingScene.astro` / `sorting-scenes.ts` 实现，使用真实冒泡排序，每次执行一次相邻比较；CSS 透视负责立体排版。
-- 工具与个人照片的指针视差在 `depth-effects.ts`；鼠标移动控制倾斜，触屏保留正常滚动。
+- 工具的指针视差在 `depth-effects.ts`；鼠标移动控制倾斜，触屏保留正常滚动。
 - 点击涟漪与 HTML 字符串掉落保留原交互，颜色统一为橙白；原有跳动文字仅在 Join Us，使用橙白配色。减少动态效果的系统偏好会停用装饰运动。
-- 个人照片与简历沿用原仓库文件。研究阅读存档迁至 Agentic Scholar 的折叠区域。
+- Join Us 个人照片已于 2026-09-24 替换为用户新提供的合照，简历沿用原仓库文件。研究阅读存档迁至 Agentic Scholar 的折叠区域。
 - Agentic Scholar 的阅读提示由本站编写，原始材料于 2026-09-23 核对；条目级来源保存在 `src/data/scholar.ts`：
   - [MCP 官方架构文档](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture)：协议职责、Host / Client / Server 与上下文边界。
   - [CWM 技术报告](https://arxiv.org/abs/2510.02387)：代码生成与世界模型的研究入口。
@@ -51,3 +51,10 @@
 ## 三维交互参考
 
 已查阅 Lusion 的 [Devin AI](https://lusion.co/projects/devin_ai/) 与 [Synthetic Human](https://lusion.co/projects/synthetic_human/) 官方案例；本站使用独立编写的参数化几何、材质和交互，没有下载其模型、贴图或源代码。该版三维造型已按用户反馈回退，仅保留光照、字体、背景等改进。完整参考、当前功能和限制见 [motion-art-direction.md](motion-art-direction.md)。
+
+## Join Us 合照与自述 · 2026-09-24
+
+- 图片由用户在本对话上传，1364 × 1024 JPEG，原样保存为 `public/images/about/military-dream.jpg`，没有裁切、调色、生成或更换人物。
+- “照片左一是我”及“半年前失之交臂的军旅梦”均来自用户自己的说明；不补写拍摄时间、地点、其他人物身份或服役经历。
+- LLM Training、Agentic RL、RSI 三段正文使用用户原文，仅拆段排版。致敬语只整理标点。
+- 图片按原始比例静态呈现，没有点击放大、弹窗或原图链接。旧照片已从公开资源中移除，可从 Git 历史恢复。

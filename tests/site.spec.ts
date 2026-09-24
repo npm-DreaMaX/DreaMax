@@ -192,7 +192,7 @@ test("all seven tools remain accessible and profile reflects new focus", async (
     .click();
   await expect(page.locator(".ts-world .cl")).toHaveCount(14);
   await expect(page.locator("main")).toContainText(
-    "重点关注现代预训练与 Agentic RL",
+    "重点探索现代预训练和 Agentic RL",
   );
   await expect(page.locator("main")).not.toContainText("图机器学习");
   await expect(

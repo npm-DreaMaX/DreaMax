@@ -39,6 +39,8 @@ src/scripts/spatial-*.ts          懒加载、渲染生命周期与三种三维�
 src/components/experience/SortingScene.astro  可逐步播放的立体冒泡排序
 src/scripts/depth-effects.ts      工具透视交互与导航阅读进度
 src/styles/collections.css        Scholar、工具作品集与个人介绍的统一排版
+src/pages/join.astro              研究方向、Agentic RL、RSI、军旅梦与联系方式
+src/styles/about.css              Join Us 的叙事排版与手机适配
 src/data/scholar.ts               研究阅读入口、原始来源与核对日期
 src/data/algorithms.ts            我的 CSDN 算法笔记分组与阅读提示
 src/styles/experience.css         LLM Training 的视觉系统
@@ -63,13 +65,15 @@ research/projects/               三个项目的 README 版本证据
 - `Ctrl+K` / `⌘K` 搜索栏目、项目、论文和工具，方向键选择，Esc 关闭。
 - 原生跨页链接使用可取消的幕布转场，浏览器前进/返回正常；减少动态效果时直接导航。
 - 首页增加三个 WebGL 场景：训练阶段切换体素形态、Agent 轨道节点、项目堆叠 / 协作节点 / 波动方阵；Scholar 页面使用同系列轨道。支持拖动、方向键、暂停、展开、重置，以及金属 / 磨砂材质、打光方向和运动速度调节，按可见区域加载，最高 30fps / DPR 1.5，屏外和后台停止，缺少 WebGL 时显示 SVG。
-- 算法区的冒泡排序支持单步、播放、重排；工具和照片支持指针控制的透视倾斜。
+- 算法区的冒泡排序支持单步、播放、重排；工具支持指针控制的透视倾斜。Join Us 合照保持完整比例，静态展示，不支持点击放大。
 - LLM Training 原有的 Three.js 雕塑支持拖动、方向键、三种形态、暂停与重置。无 WebGL 时显示自绘 SVG；屏外/后台暂停，限制像素比和帧率。
 - 学习区的原图放大、阶段对照、实验参数与笔记保留；内部 React 路由不被跨页转场拦截。
 
 ## 更新内容
 
 个人简介改 `src/data/profile.ts`，项目改 `src/data/featured.ts`，共享栏目改 `src/data/navigation.ts`。三个项目的描述已对照官方 README，不把计划中的功能写成已实现能力。
+
+Join Us 的介绍、研究方向和照片说明同样维护在 `profile.ts`；合照原文件为 `public/images/about/military-dream.jpg`。页面依次呈现用户自述、Agentic RL、RSI 与军旅梦，保留原有跳动文字和联系方式。
 
 新增论文：在 `fieldwork/src/papers/` 按现有 JSON 结构添加正文，在 `fieldwork/src/data/readings.ts` 注册导入和路线，在 `sources*.json` 登记原文、查阅日期和支持的结论。图像需记录 PDF 页码、来源及 SHA-256。论文事实、源码观察和作者分析分开标注。新增实验同时提供 Python 实现、配置、运行说明和行为测试。详见 `fieldwork/README.md`。
 
