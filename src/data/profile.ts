@@ -13,15 +13,6 @@ export const profile = {
   tagline: "LLM training & RSI。论文笔记、训练实验与开源项目。",
   bio: introduction + agenticRL + rsi,
   introduction,
-  research: [
-    {
-      id: "agentic-rl",
-      title: "Agentic RL",
-      subtitle: "工具、环境与长轨迹",
-      text: agenticRL,
-    },
-    { id: "rsi", title: "RSI", subtitle: "递归自我改进", text: rsi },
-  ],
   memory: {
     image: "/images/about/military-dream.jpg",
     alt: "军旅梦合照，左一是 DreaMax",

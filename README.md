@@ -73,7 +73,7 @@ research/projects/               三个项目的 README 版本证据
 
 个人简介改 `src/data/profile.ts`，项目改 `src/data/featured.ts`，共享栏目改 `src/data/navigation.ts`。三个项目的描述已对照官方 README，不把计划中的功能写成已实现能力。
 
-Join Us 的介绍、研究方向和照片说明同样维护在 `profile.ts`；合照原文件为 `public/images/about/military-dream.jpg`。页面依次呈现用户自述、Agentic RL、RSI 与军旅梦，保留原有跳动文字和联系方式。
+Join Us 的介绍和照片说明维护在 `profile.ts`；合照原文件为 `public/images/about/military-dream.jpg`。自述与致敬语合成一段正文，合照显示宽度不超过 320px，保留完整构图、原有跳动文字和联系方式。
 
 新增论文：在 `fieldwork/src/papers/` 按现有 JSON 结构添加正文，在 `fieldwork/src/data/readings.ts` 注册导入和路线，在 `sources*.json` 登记原文、查阅日期和支持的结论。图像需记录 PDF 页码、来源及 SHA-256。论文事实、源码观察和作者分析分开标注。新增实验同时提供 Python 实现、配置、运行说明和行为测试。详见 `fieldwork/README.md`。
 
